@@ -1,5 +1,5 @@
-function Register() {
-  return <div className="Register">This is Register</div>;
-}
+const Register = () => {
+  return <div className="Register">등록하기</div>;
+};
 
 export default Register;

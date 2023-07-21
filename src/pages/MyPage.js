@@ -1,5 +1,5 @@
-function MyPage() {
-  return <div className="MyPage">This is Mypage</div>;
-}
+const MyPage = () => {
+  return <div className="MyPage">마이페이지</div>;
+};
 
 export default MyPage;
