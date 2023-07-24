@@ -113,5 +113,5 @@ const DropdownMenu = styled.div`
   margin: 10px;
   position: absolute;
   top: 100px;
-  right: 280px;
+  left: 180px;
 `
