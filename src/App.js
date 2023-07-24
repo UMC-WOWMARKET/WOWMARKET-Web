@@ -4,6 +4,7 @@ import MyPage from "./pages/MyPage";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Users from "./pages/Users";
+import Button from "./components/Button";
 
 function App() {
   return (

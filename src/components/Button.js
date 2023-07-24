@@ -3,7 +3,7 @@ const Button = ({ text, type, onClick }) => {
 
   return (
     <button
-      className={["MyButton", `MyButton_${btntype}`].join(" ")}
+      className={["Button", `Button_${btntype}`].join(" ")}
       onClick={onClick}
     >
       {text}
