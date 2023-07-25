@@ -68,7 +68,7 @@ const RegisterFormContainer = styled.div`
 const InputRegister = styled.input`
   margin: 10px;
   border-radius: 20px;
-  width: 600px;
+  width: 80%;
 `
 
 const InputImage = styled.input`
