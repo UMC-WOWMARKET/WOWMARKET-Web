@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Button from "../Button";
 import axios from "axios";
 
 const Login = () => {
@@ -32,8 +31,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    console.log(`id:${id}, pw:${pw}`);
-    //로그인 입력값 유효성 검사-> 버튼 활성화
+    //입력값 유효성 검사-> 버튼 활성화
     id.includes("@") && pw.length >= 5 ? setButton(false) : setButton(true);
   }, [id, pw]);
 
