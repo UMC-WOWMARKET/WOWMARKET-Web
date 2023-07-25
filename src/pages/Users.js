@@ -1,4 +1,5 @@
 import Login from "../components/auth/Login";
+import Join from "../components/auth/Join";
 
 const Users = () => {
   return (

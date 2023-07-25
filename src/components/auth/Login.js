@@ -14,8 +14,8 @@ const Login = () => {
   const LoginFunc = (e) => {
     //입력 성공 axios통신
     let body = {
-      id,
-      pw,
+      email: id,
+      password: pw,
     };
     axios.post("http://localhost:8080/member/login", body).then((res) => {
       console.log(res.data);
@@ -75,8 +75,8 @@ const Login = () => {
       </div>
 
       <div>
-        <button onClick={navigate("/users/")}>회원가입</button>
-        <button onClick={navigate("/users/")}>비밀번호 재설정</button>
+        <button>회원가입</button>
+        <button>비밀번호 재설정</button>
       </div>
     </div>
   );
