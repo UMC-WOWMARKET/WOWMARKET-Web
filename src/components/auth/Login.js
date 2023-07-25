@@ -17,6 +17,23 @@ const Login = () => {
 
   const LoginFunc = (e) => {
     //입력 성공 axios통신
+    let body = {
+      user_email,
+      user_password,
+    };
+
+    axios
+      .post("localhost:8080/wowmarket/users/login/email", body)
+      .then((res) => {
+        console.log(res.data);
+      });
+
+    if (true) {
+      e.stopPropagation();
+      navigate(`/?user_id=${id}`);
+    } else {
+      alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
+    }
   };
 
   return (
@@ -50,14 +67,7 @@ const Login = () => {
           type="button"
           className="loginButton"
           disabled={button}
-          onClick={(e) => {
-            if (false) {
-              e.stopPropagation();
-              navigate(`/?user_id=${id}`);
-            } else {
-              alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
-            }
-          }}
+          onClick={LoginFunc}
         >
           로그인
         </button>
