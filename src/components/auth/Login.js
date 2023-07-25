@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../Button";
+import axios from "axios";
 
 const Login = () => {
   const [id, setId] = useState("");
@@ -10,31 +11,31 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  //로그인 입력값 유효성 검사-> 버튼 활성화
-  const changeButton = () => {
-    id.includes("@") && pw.length >= 5 ? setButton(false) : setButton(true);
-  };
-
   const LoginFunc = (e) => {
     //입력 성공 axios통신
     let body = {
-      user_email,
-      user_password,
+      id,
+      pw,
     };
-
-    axios
-      .post("localhost:8080/wowmarket/users/login/email", body)
-      .then((res) => {
-        console.log(res.data);
-      });
+    axios.post("http://localhost:8080/member/login", body).then((res) => {
+      console.log(res.data);
+    });
 
     if (true) {
+      //로그인 성공
       e.stopPropagation();
       navigate(`/?user_id=${id}`);
     } else {
+      //로그인 실패
       alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
     }
   };
+
+  useEffect(() => {
+    console.log(`id:${id}, pw:${pw}`);
+    //로그인 입력값 유효성 검사-> 버튼 활성화
+    id.includes("@") && pw.length >= 5 ? setButton(false) : setButton(true);
+  }, [id, pw]);
 
   return (
     <div className="Login">
@@ -48,7 +49,6 @@ const Login = () => {
           onChange={(e) => {
             setId(e.target.value);
           }}
-          onKeyUp={changeButton}
         />
         <div className="subtitle">비밀번호</div>
         <input
@@ -58,7 +58,6 @@ const Login = () => {
           onChange={(e) => {
             setPw(e.target.value);
           }}
-          onKeyUp={changeButton}
         />
       </div>
 
@@ -76,8 +75,8 @@ const Login = () => {
       </div>
 
       <div>
-        <div>회원가입</div>
-        <div>비밀번호 재설정</div>
+        <button onClick={navigate("/users/")}>회원가입</button>
+        <button onClick={navigate("/users/")}>비밀번호 재설정</button>
       </div>
     </div>
   );
