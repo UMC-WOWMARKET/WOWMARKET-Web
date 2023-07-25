@@ -1,5 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
 import MyPage from "./pages/MyPage";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
@@ -10,6 +11,7 @@ import Button from "./components/Button";
 function App() {
   return (
     <BrowserRouter>
+    <Header />
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
