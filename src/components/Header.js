@@ -19,7 +19,7 @@ function Header() {
                     <NavLink to="/">홈</NavLink>
                     <NavLink to="/">판매</NavLink>
                     <NavLink to="/">수요조사</NavLink>
-                    <NavLink to="/register" onMouseEnter={() => {setView(true)}}>등록하기</NavLink>
+                    <NavLink onMouseEnter={() => {setView(true)}}>등록하기</NavLink>
                 </Menu>
                 <MemberMenu>
                     <MemberLink to="/mypage/:user_id">my</MemberLink>
