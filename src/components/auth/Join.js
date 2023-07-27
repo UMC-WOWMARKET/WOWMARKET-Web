@@ -9,12 +9,42 @@ const Join = () => {
   const [pw, setPw] = useState("");
   const [pwCk, setPwCk] = useState("");
 
-  const [option, setOption] = useState(false);
+  const [serviceCk, setServiceCk] = useState(false);
+  const [personalInfoCk, setPersonalInfoCk] = useState(false);
+  const [provisionCk, setProvisionCk] = useState(false);
+  const [marketingCk, setMarketingCk] = useState(false);
   const [check, setCheck] = useState(false);
 
   const [button, setButton] = useState(true);
 
   const navigate = useNavigate();
+
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    // 각 체크박스의 상태를 갱신
+    if (name === "serviceCk") {
+      setServiceCk(checked);
+    } else if (name === "personalInfoCk") {
+      setPersonalInfoCk(checked);
+    } else if (name === "provisionCk") {
+      setProvisionCk(checked);
+    } else if (name === "marketingCk") {
+      setMarketingCk(checked);
+    }
+  };
+
+  // 전체 동의 버튼 클릭 시 모든 체크박스 선택/해제
+  const handleCheckAll = () => {
+    setServiceCk(!check);
+    setPersonalInfoCk(!check);
+    setProvisionCk(!check);
+    setMarketingCk(!check);
+  };
+
+  // 필수 체크박스가 모두 true이면 check도 true로 변경
+  useEffect(() => {
+    setCheck(serviceCk && personalInfoCk && provisionCk);
+  }, [serviceCk, personalInfoCk, provisionCk]);
 
   const JoinFunc = (e) => {
     //입력 성공 axios통신
@@ -22,10 +52,10 @@ const Join = () => {
       name: name,
       email: id,
       password: pw,
-      marketing: option,
+      marketing: marketingCk,
     };
 
-    console.log(`axiosPost:${name},${id},${pw},${option}`);
+    console.log(`axiosPost:${name},${id},${pw},${marketingCk}`);
 
     // axios.post("http://localhost:8080/member/join", body).then((res) => {
     //   console.log(res.data);
@@ -95,10 +125,52 @@ const Join = () => {
         />
 
         <div>
-          <input type="checkbox" onChange={(e) => setCheck(!check)} />
-          전체동의
-          <input type="checkbox" onChange={(e) => setOption(!option)} />
-          마케팅수신
+          <label>
+            <input type="checkbox" onChange={handleCheckAll} />
+            전체 동의
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="serviceCk"
+              checked={serviceCk}
+              onChange={handleCheckboxChange}
+            />
+            서비스 이용약관에 동의합니다.
+          </label>
+          <br />
+          <label>
+            <input
+              type="checkbox"
+              name="personalInfoCk"
+              checked={personalInfoCk}
+              onChange={handleCheckboxChange}
+            />
+            개인정보 수집 및 이용에 동의합니다.
+          </label>
+          <br />
+          <label>
+            <input
+              type="checkbox"
+              name="provisionCk"
+              checked={provisionCk}
+              onChange={handleCheckboxChange}
+            />
+            약관 제공에 동의합니다.
+          </label>
+          <br />
+          <label>
+            <input
+              type="checkbox"
+              name="marketingCk"
+              checked={marketingCk}
+              onChange={handleCheckboxChange}
+            />
+            마케팅 동의
+          </label>
+
+          <br />
         </div>
       </div>
       <button disabled={button} onClick={JoinFunc}>
