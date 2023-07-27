@@ -103,6 +103,7 @@ const Join = () => {
             setId(e.target.value);
           }}
         />
+        <br />
         <input
           placeholder="이메일 주소를 확인합니다"
           onChange={(e) => {
@@ -117,8 +118,9 @@ const Join = () => {
             setPw(e.target.value);
           }}
         />
+        <br />
         <input
-          placeholder="비밀번호를 입력해주세요"
+          placeholder="비밀번호를 확인합니다"
           onChange={(e) => {
             setPwCk(e.target.value);
           }}
@@ -137,7 +139,7 @@ const Join = () => {
               checked={serviceCk}
               onChange={handleCheckboxChange}
             />
-            서비스 이용약관에 동의합니다.
+            서비스 이용약관 동의
           </label>
           <br />
           <label>
@@ -147,7 +149,7 @@ const Join = () => {
               checked={personalInfoCk}
               onChange={handleCheckboxChange}
             />
-            개인정보 수집 및 이용에 동의합니다.
+            개인정보 수집 및 이용 동의
           </label>
           <br />
           <label>
@@ -157,7 +159,7 @@ const Join = () => {
               checked={provisionCk}
               onChange={handleCheckboxChange}
             />
-            약관 제공에 동의합니다.
+            제3자 개인정보 제공 동의
           </label>
           <br />
           <label>
@@ -167,7 +169,7 @@ const Join = () => {
               checked={marketingCk}
               onChange={handleCheckboxChange}
             />
-            마케팅 동의
+            마케팅 수신 동의
           </label>
 
           <br />
@@ -176,6 +178,8 @@ const Join = () => {
       <button disabled={button} onClick={JoinFunc}>
         회원가입
       </button>
+      <br />
+      <button>카카오로 가입하기</button>
     </div>
   );
 };

@@ -75,8 +75,8 @@ const Login = () => {
       </div>
 
       <div>
-        <button>회원가입</button>
-        <button>비밀번호 재설정</button>
+        <button onClick={navigate("/users/join")}>회원가입</button>
+        <button onClick={navigate("/users/reset_pw")}>비밀번호 재설정</button>
       </div>
     </div>
   );
