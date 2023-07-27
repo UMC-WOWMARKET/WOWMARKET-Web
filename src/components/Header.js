@@ -16,7 +16,6 @@ function Header() {
             <Navigation>
                 <Menu>
                     <Logo>와우상점</Logo>
-                    <NavLink to="/">홈</NavLink>
                     <NavLink to="/">판매</NavLink>
                     <NavLink to="/">수요조사</NavLink>
                     <NavLink onMouseEnter={() => {setView(true)}}>등록하기</NavLink>
@@ -63,7 +62,7 @@ const Insta = styled.img`
 `
 
 const Logo = styled.div`
-    //로고(이미지로)
+    padding: 10px;
 `
 
 const Navigation = styled.nav`
