@@ -5,22 +5,31 @@ import axios from "axios";
 const Join = () => {
   const [name, setName] = useState("");
   const [id, setId] = useState("");
+  const [idCk, setIdCk] = useState("");
   const [pw, setPw] = useState("");
+  const [pwCk, setPwCk] = useState("");
+
   const [option, setOption] = useState(false);
   const [check, setCheck] = useState(false);
+
   const [button, setButton] = useState(true);
 
-  const JoinFunc = () => {
+  const navigate = useNavigate();
+
+  const JoinFunc = (e) => {
     //입력 성공 axios통신
-    let join_body = {
+    let body = {
       name: name,
       email: id,
       password: pw,
-      //marketing: option
+      marketing: option,
     };
-    axios.post("http://localhost:8080/member/join", join_body).then((res) => {
-      console.log(res.data);
-    });
+
+    console.log(`axiosPost:${name},${id},${pw},${option}`);
+
+    // axios.post("http://localhost:8080/member/join", body).then((res) => {
+    //   console.log(res.data);
+    // });
 
     if (true) {
       //회원가입 성공
@@ -34,10 +43,15 @@ const Join = () => {
 
   //입력값 유효성 검사->버튼활성화
   useEffect(() => {
-    id.includes("@") && pw.length >= 5 && check && name !== ""
+    id.includes("@") &&
+    pw.length >= 5 &&
+    check &&
+    name !== "" &&
+    id === idCk &&
+    pw === pwCk
       ? setButton(false)
       : setButton(true);
-  }, [name, id, pw, check]);
+  }, [name, id, pw, check, idCk, pwCk]);
 
   return (
     <div className="Join">
@@ -59,12 +73,24 @@ const Join = () => {
             setId(e.target.value);
           }}
         />
+        <input
+          placeholder="이메일 주소를 확인합니다"
+          onChange={(e) => {
+            setIdCk(e.target.value);
+          }}
+        />
 
         <div className="subtitle">비밀번호</div>
         <input
           placeholder="비밀번호를 입력해주세요"
           onChange={(e) => {
             setPw(e.target.value);
+          }}
+        />
+        <input
+          placeholder="비밀번호를 입력해주세요"
+          onChange={(e) => {
+            setPwCk(e.target.value);
           }}
         />
 
