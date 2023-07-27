@@ -16,9 +16,11 @@ const Login = () => {
       email: id,
       password: pw,
     };
-    axios.post("http://localhost:8080/member/login", body).then((res) => {
-      console.log(res.data);
-    });
+
+    console.log(`로그인데이터:${id},${pw}`);
+    // axios.post("http://localhost:8080/member/login", body).then((res) => {
+    //   console.log(res.data);
+    // });
 
     if (true) {
       //로그인 성공
@@ -37,7 +39,7 @@ const Login = () => {
 
   return (
     <div className="Login">
-      <div className="title">이메일로 로그인</div>
+      <h3>이메일로 로그인</h3>
 
       <div className="input_body">
         <div className="subtitle">이메일 주소</div>

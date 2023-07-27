@@ -55,7 +55,7 @@ const Join = () => {
       marketing: marketingCk,
     };
 
-    console.log(`axiosPost:${name},${id},${pw},${marketingCk}`);
+    console.log(`회원가입데이터:${name},${id},${pw},${marketingCk}`);
 
     // axios.post("http://localhost:8080/member/join", body).then((res) => {
     //   console.log(res.data);
@@ -85,7 +85,7 @@ const Join = () => {
 
   return (
     <div className="Join">
-      <div className="title">이메일로 회원가입</div>
+      <h3>이메일로 회원가입</h3>
 
       <div className="input_body">
         <div className="subtitle">이름</div>
@@ -129,7 +129,7 @@ const Join = () => {
             <input type="checkbox" onChange={handleCheckAll} />
             전체 동의
           </label>
-
+          <br />
           <label>
             <input
               type="checkbox"
