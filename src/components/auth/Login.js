@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState, useCallback } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
@@ -9,6 +9,14 @@ const Login = () => {
   const [button, setButton] = useState(true);
 
   const navigate = useNavigate();
+
+  const handleNavigateToJoin = useCallback(() => {
+    navigate("/users/join");
+  }, [navigate]);
+
+  const handleNavigateToResetPw = useCallback(() => {
+    navigate("/users/resetPw");
+  }, [navigate]);
 
   const LoginFunc = (e) => {
     //입력 성공 axios통신
@@ -75,8 +83,8 @@ const Login = () => {
       </div>
 
       <div>
-        <button onClick={navigate("/users/join")}>회원가입</button>
-        <button onClick={navigate("/users/reset_pw")}>비밀번호 재설정</button>
+        <button onClick={handleNavigateToJoin}>회원가입</button>
+        <button onClick={handleNavigateToResetPw}>비밀번호 재설정</button>
       </div>
     </div>
   );
