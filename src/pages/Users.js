@@ -7,7 +7,7 @@ import { useEffect } from "react";
 const Users = () => {
   const { page_type } = useParams();
 
-  console.log(page_type);
+  console.log(`${page_type}렌더링`);
 
   return (
     <div className="Users">
