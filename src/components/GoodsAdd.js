@@ -25,10 +25,12 @@ function GoodsAdd(){
 export default GoodsAdd
 
 const GoodsAddContainer = styled.div`
-  margin: 10px;
+  width: 100%;
+  display: flex;
 `
 
 const GoodsName = styled.div`
+  width: 60%;
   display: inline-block;
   margin: 5px;
 `

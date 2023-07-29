@@ -22,31 +22,45 @@ const DemandRegister = () => {
         console.log(errors);
       })} //중복 제출 방지 - 시간 지연
       >
-      <div>수요조사 등록명 *</div>
-      <InputRegister name="title" placeholder="구매자의 흥미를 불러올 수 있는 이름을 설정해주세요. ex [2차] 한정판 눈송이 x 와우 콜라보 인형 판매" {...register("title", { required: true })} />
-      <div>굿즈 설명 *</div>
-      <InputRegister name="detail" {...register("detail", { requried: true})} />
-      <div>대표 이미지 *</div>
-      <InputImage type="file" name="main_image" {...register("main_image", { requried: true})}/>
-      <div>카테고리 *</div>
-      <select>
-        <option value="clothing">의류</option>
-        <option value="staitonery">문구</option>
-        <option value="sticker">스티커</option>
-        <option value="doll">인형</option>
-        <option value="pinbutton">뱃지</option>
-        <option value="etc">기타</option>
-      </select>
-      <div>굿즈 등록 *</div>
-      <GoodsAdd></GoodsAdd>
-      <div>굿즈 소개 첨부 파일 *</div>
-      <InputImage type="file" name='detail_image' {...register('detail_image')} />
-      <div>진행 기간 *</div>
-      <Date>
-        <div>날짜 선택</div>
-        <Calendar />
-      </Date>
-      <input type="submit" disabled={isSubmitting} />
+      <InputCell>
+        <Label>수요조사 등록명 *</Label>
+        <InputRegister name="title" placeholder="구매자의 흥미를 불러올 수 있는 이름을 설정해주세요. ex [2차] 한정판 눈송이 x 와우 콜라보 인형 판매" {...register("title", { required: true })} />
+      </InputCell>
+      <InputCell>
+        <Label>굿즈 설명 *</Label>
+        <InputRegister name="detail" {...register("detail", { requried: true})} />
+      </InputCell>
+      <InputCell>
+        <Label>대표 이미지 *</Label>
+        <InputImage type="file" name="main_image" {...register("main_image", { requried: true})}/>
+      </InputCell>
+      <InputCell>
+        <Label>카테고리 *</Label>
+        <select>
+          <option value="clothing">의류</option>
+          <option value="staitonery">문구</option>
+          <option value="sticker">스티커</option>
+          <option value="doll">인형</option>
+          <option value="pinbutton">뱃지</option>
+          <option value="etc">기타</option>
+        </select>
+      </InputCell>
+      <InputCell>
+        <Label>굿즈 등록 *</Label>
+        <GoodsAdd></GoodsAdd>
+      </InputCell>
+      <InputCell>
+        <Label>굿즈 소개 첨부 파일 *</Label>
+        <InputImage type="file" name='detail_image' {...register('detail_image')} />
+      </InputCell>
+      <InputCell>
+        <Label>진행 기간 *</Label>
+        <Date>
+          <div>날짜 선택</div>
+          <Calendar />
+        </Date>
+        <input type="submit" disabled={isSubmitting} />
+      </InputCell>
       {errors.title && alert('필수 입력사항을 모두 입력해주세요')}
     </form>
     </RegisterFormContainer>
@@ -62,16 +76,28 @@ const RegisterFormContainer = styled.div`
   padding: 20px;
 `
 
+const InputCell = styled.div`
+  width: 80%;
+  margin: auto;
+`
+
+const Label = styled.div`
+  text-align: left;
+  margin: 10px;
+`
+
 const InputRegister = styled.input`
   margin: 10px;
-  border-radius: 20px;
-  width: 80%;
+  border-radius: 10px;
+  border: solid 1px;
+  width: 100%;
+  height: 25px;
 `
 
 const InputImage = styled.input`
-  width: 300px;
   margin: 10px;
 `
 
 const Date = styled.div`
+  margin: 10px;
 `
