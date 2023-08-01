@@ -7,6 +7,9 @@ const Goods = () => {
     <div className="Goods">
       <div>{goods_id}번 상품</div>
       <div>상세보기 주문폼/참여폼</div>
+      <div>굿즈소개</div>
+      <div>공지</div>
+      <div>문의</div>
     </div>
   );
 };
