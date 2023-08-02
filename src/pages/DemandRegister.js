@@ -13,20 +13,20 @@ const DemandRegister = () => {
     formState: { isSubmitting, errors },
   } = useForm(); 
   //register()로 각 입력란 등록, handleSubmit()로 submit 이벤트 처리
-
-  const [selectValue, setSelectValue] = useState('');
-  const onChangeSelect = (e) => {
-    setSelectValue(e.target.value);
+  
+  const [Selected, setSelected] = useState("");
+  const handleSelect = (e) => {
+    setSelected(e.target.value);
   };
   //카테고리 선택 관련
 
-  
   return <div className="DemandRegister">
     수요조사 등록폼
     <RegisterFormContainer>
     <form onSubmit={handleSubmit(async (data) => {
         await new Promise((r) => setTimeout(r, 1000));
         console.log(data);
+        console.log(Selected);
         //console.log(errors);
       })} //중복 제출 방지 - 시간 지연
       >
@@ -47,7 +47,7 @@ const DemandRegister = () => {
 
       <InputCell>
         <Label>카테고리 *</Label>
-        <select value={selectValue} onChange={onChangeSelect}>
+        <select onChange={handleSelect} value={Selected}>
           <option>===선택하세요===</option>
           <option value="clothing">의류</option>
           <option value="staitonery">문구</option>
@@ -60,7 +60,7 @@ const DemandRegister = () => {
 
       <InputCell>
         <Label>굿즈 등록 *</Label>
-        <GoodsAdd></GoodsAdd>
+        <GoodsAdd />
       </InputCell>
 
       <InputCell>

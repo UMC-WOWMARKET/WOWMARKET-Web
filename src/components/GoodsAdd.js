@@ -22,7 +22,8 @@ function GoodsAdd(props) {
     list[index][e.target.id] = e.target.value;
     setProducts(list);
   };
-
+  console.log(products);
+  
   return (
     <GoodsAddContainer>
       {products.map((item, index) => (
