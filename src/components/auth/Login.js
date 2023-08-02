@@ -18,6 +18,12 @@ const Login = () => {
     navigate("/users/resetPw");
   }, [navigate]);
 
+  const handleNavigateToKakaoLogin = useCallback(() => {
+    navigate(
+      "//https://kauth.kakao.com/oauth/authorize?client_id=394cbd2e5e0ad400adbc202784ad624b&redirect_uri=http://localhost:8080/wowmarket/users/login/kakao&response_type=code"
+    );
+  }, [navigate]);
+
   const LoginFunc = (e) => {
     //입력 성공 axios통신
     let body = {
@@ -47,13 +53,13 @@ const Login = () => {
 
   return (
     <div className="Login">
-      <h3>이메일로 로그인</h3>
+      <div className="title">이메일로 로그인</div>
 
       <div className="input_body">
         <div className="subtitle">이메일 주소</div>
         <input
           placeholder="이메일 주소를 입력해주세요"
-          className="login"
+          className="input_box"
           onChange={(e) => {
             setId(e.target.value);
           }}
@@ -62,7 +68,7 @@ const Login = () => {
         <input
           type="password"
           placeholder="비밀번호를 입력해주세요"
-          className="login"
+          className="input_box"
           onChange={(e) => {
             setPw(e.target.value);
           }}
@@ -72,19 +78,25 @@ const Login = () => {
       <div className="input_footer">
         <button
           type="button"
-          className="loginButton"
+          className="login_button"
           disabled={button}
           onClick={LoginFunc}
         >
           로그인
         </button>
 
-        <button>카카오로 로그인</button>
+        <button className="kakao_button" onClick={handleNavigateToKakaoLogin}>
+          카카오로 로그인
+        </button>
       </div>
 
       <div>
-        <button onClick={handleNavigateToJoin}>회원가입</button>
-        <button onClick={handleNavigateToResetPw}>비밀번호 재설정</button>
+        <button className="navigation" onClick={handleNavigateToJoin}>
+          회원가입
+        </button>
+        <button className="navigation" onClick={handleNavigateToResetPw}>
+          비밀번호 재설정
+        </button>
       </div>
     </div>
   );

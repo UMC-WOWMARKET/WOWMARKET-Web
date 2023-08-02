@@ -11,8 +11,6 @@ const Users = () => {
 
   return (
     <div className="Users">
-      <h2>로그인/회원가입</h2>
-
       {page_type === "login" && <Login />}
       {page_type === "join" && <Join />}
       {page_type === "resetPw" && <ResetPw />}
