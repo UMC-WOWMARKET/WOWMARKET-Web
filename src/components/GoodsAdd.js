@@ -2,28 +2,29 @@ import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
 
-function GoodsAdd(props) {
+function GoodsAdd({submitFunction}) {
   const [products, setProducts] = useState([
     { pdName: "", price: "", quantity: 0},
-  ]);
+  ]); //굿즈 등록 관련 정보
 
   const handleProductAdd = () => {
     setProducts([...products, { pdName: "", price: "", quantity: 0}]);
-  };
+  }; //굿즈 등록란 추가
 
   const handleProductRemove = (index) => {
     const filteredPd = [...products];
     filteredPd.splice(index, 1);
     setProducts(filteredPd);
-  };
+  }; //굿즈 등록란 삭제
 
   const handleChange = (index, e) => {
     const list = [...products];
     list[index][e.target.id] = e.target.value;
     setProducts(list);
   };
-  console.log(products);
-  
+
+  submitFunction(products); //상위 컴포넌트로 배열 값 전달
+
   return (
     <GoodsAddContainer>
       {products.map((item, index) => (
@@ -53,11 +54,11 @@ function GoodsAdd(props) {
             />
           </Quantity>
           {products.length > 1 && (
-              <button onClick={() => handleProductRemove(index)}> - </button>
+              <button type="button" onClick={() => handleProductRemove(index)}> - </button>
           )}
         </GoodsDetail>
       ))}
-      <button onClick={handleProductAdd}>+</button>
+      <button type="button" onClick={handleProductAdd}>+</button>
     </GoodsAddContainer>
   );
 }
