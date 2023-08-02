@@ -103,7 +103,6 @@ const Join = () => {
             setId(e.target.value);
           }}
         />
-        <br />
         <input
           placeholder="이메일 주소를 확인합니다"
           onChange={(e) => {
@@ -118,7 +117,6 @@ const Join = () => {
             setPw(e.target.value);
           }}
         />
-        <br />
         <input
           placeholder="비밀번호를 확인합니다"
           onChange={(e) => {

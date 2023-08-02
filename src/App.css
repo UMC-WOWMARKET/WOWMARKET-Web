@@ -41,7 +41,7 @@
 
 .Login {
   width: 545px;
-  height: 450px;
+  height: 369px;
   border: 1px solid rgba(174, 174, 174, 1);
   border-radius: 20px;
 
@@ -60,7 +60,7 @@
   justify-content: space-evenly;
   align-items: flex-start;
 
-  height: 50%;
+  height: 60%;
 
   padding-left: 50px;
 }
@@ -115,3 +115,184 @@
   color: rgba(110, 110, 110, 1);
   cursor: pointer;
 }
+
+
+/*ResetPw*/
+
+.ResetPw {
+  width: 545px;
+  height: 370px;
+  border: 1px solid rgba(174, 174, 174, 1);
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding:50px;
+  gap:30px;
+}
+
+.ResetPw .title{
+  font-size: 36px ;
+  text-align:left;
+  padding-left: 45px;
+}
+
+.ResetPw .input_body {
+  display: flex;
+  flex-direction: column;
+ 
+  align-items: flex-start;
+
+  height: 50%;
+
+  padding-left: 50px;
+  gap:20px;
+}
+
+.ResetPw .input_body .subtitle {
+  font-size: 20px;
+  color: rgba(110, 110, 110, 1);
+}
+
+.ResetPw .subtitle {
+  font-size: 20px;
+  color: rgba(110, 110, 110, 1);
+}
+
+.ResetPw .input_body .address {
+  height: 40px;
+  width: 432px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(240, 240, 240, 1);
+  color: rgba(110, 110, 110, 1);
+  padding-left: 10px;
+}
+
+.ResetPw .temp_pw{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.ResetPw .temp_pw .temp_pw_button{
+  width: 432px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: rgba(110, 110, 110, 1);
+  background-color: rgba(217, 217, 217, 1);
+
+  border: none;
+}
+
+.ResetPw .tail{
+  font-size: 16px;
+  color: rgba(110, 110, 110, 1);
+}
+
+
+
+/*TempPw*/
+
+.TempPw {
+  width: 545px;
+  height: 503px;
+  border: 1px solid rgba(174, 174, 174, 1);
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap:40px;
+  padding: 50px;
+  
+}
+
+.TempPw .title{
+  text-align:left;
+  padding-left: 45px;
+  font-size: 36px ;
+}
+
+.TempPw .input_body .subtitle {
+  font-size: 20px;
+  color: rgba(110, 110, 110, 1);
+}
+
+.TempPw .input_body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+
+  height: 50%;
+
+  padding-left: 50px;
+}
+.TempPw .input_body .input_box {
+  height: 40px;
+  width: 432px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(240, 240, 240, 1);
+  color: rgba(110, 110, 110, 1);
+  padding-left: 10px;
+}
+
+.TempPw .input_tail .subtitle {
+  font-size: 20px;
+  color: rgba(110, 110, 110, 1);
+}
+
+.TempPw .input_tail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+
+  height: 50%;
+
+  padding-left: 50px;
+}
+.TempPw .input_tail .input_box {
+  height: 40px;
+  width: 432px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(240, 240, 240, 1);
+  color: rgba(110, 110, 110, 1);
+  padding-left: 10px;
+}
+.TempPw .input_tail .input_check {
+  height: 40px;
+  width: 432px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(240, 240, 240, 1);
+  color: rgba(110, 110, 110, 1);
+  padding-left: 10px;
+}
+
+.TempPw .resePw{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.TempPw .resetPw {
+  width: 432px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: rgba(110, 110, 110, 1);
+  background-color: rgba(217, 217, 217, 1);
+
+  border: none;
+}
+
+
