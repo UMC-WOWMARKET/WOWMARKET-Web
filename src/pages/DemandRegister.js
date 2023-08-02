@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
@@ -12,6 +13,13 @@ const DemandRegister = () => {
     formState: { isSubmitting, errors },
   } = useForm(); 
   //register()로 각 입력란 등록, handleSubmit()로 submit 이벤트 처리
+
+  const [selectValue, setSelectValue] = useState('');
+  const onChangeSelect = (e) => {
+    setSelectValue(e.target.value);
+  };
+  //카테고리 선택 관련
+
   
   return <div className="DemandRegister">
     수요조사 등록폼
@@ -19,24 +27,28 @@ const DemandRegister = () => {
     <form onSubmit={handleSubmit(async (data) => {
         await new Promise((r) => setTimeout(r, 1000));
         console.log(data);
-        console.log(errors);
+        //console.log(errors);
       })} //중복 제출 방지 - 시간 지연
       >
       <InputCell>
         <Label>수요조사 등록명 *</Label>
         <InputRegister name="title" placeholder="구매자의 흥미를 불러올 수 있는 이름을 설정해주세요. ex [2차] 한정판 눈송이 x 와우 콜라보 인형 판매" {...register("title", { required: true })} />
       </InputCell>
+
       <InputCell>
         <Label>굿즈 설명 *</Label>
-        <InputRegister name="detail" {...register("detail", { requried: true})} />
+        <InputRegister name="detail" {...register("detail", { requried: true })} />
       </InputCell>
+
       <InputCell>
         <Label>대표 이미지 *</Label>
-        <InputImage type="file" name="main_image" {...register("main_image", { requried: true})}/>
+        <InputImage type="file" name="main_image" accept="image/*" {...register("main_image", { requried: true})} />
       </InputCell>
+
       <InputCell>
         <Label>카테고리 *</Label>
-        <select>
+        <select value={selectValue} onChange={onChangeSelect}>
+          <option>===선택하세요===</option>
           <option value="clothing">의류</option>
           <option value="staitonery">문구</option>
           <option value="sticker">스티커</option>
@@ -45,14 +57,17 @@ const DemandRegister = () => {
           <option value="etc">기타</option>
         </select>
       </InputCell>
+
       <InputCell>
         <Label>굿즈 등록 *</Label>
         <GoodsAdd></GoodsAdd>
       </InputCell>
+
       <InputCell>
         <Label>굿즈 소개 첨부 파일 *</Label>
         <InputImage type="file" name='detail_image' {...register('detail_image')} />
       </InputCell>
+
       <InputCell>
         <Label>진행 기간 *</Label>
         <Date>
@@ -61,7 +76,7 @@ const DemandRegister = () => {
         </Date>
         <input type="submit" disabled={isSubmitting} />
       </InputCell>
-      {errors.title && alert('필수 입력사항을 모두 입력해주세요')}
+
     </form>
     </RegisterFormContainer>
   </div>;
@@ -88,6 +103,7 @@ const Label = styled.div`
 
 const InputRegister = styled.input`
   margin: 10px;
+  padding: 5px;
   border-radius: 10px;
   border: solid 1px;
   width: 100%;
