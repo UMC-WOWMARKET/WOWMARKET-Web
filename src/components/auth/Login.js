@@ -34,6 +34,7 @@ const Login = () => {
     console.log(`로그인데이터:${id},${pw}`);
     // axios.post("http://localhost:8080/member/login", body).then((res) => {
     //   console.log(res.data);
+
     // });
 
     if (true) {
