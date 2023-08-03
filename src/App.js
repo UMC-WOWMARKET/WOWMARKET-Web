@@ -15,7 +15,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/users" element={<Users />} />
+          <Route path="/users/:page_type" element={<Users />} />
           <Route path="/register" element={<Register />} />
           <Route path="/detail/:goods_id" element={<Goods />} />
           <Route path="/mypage/:user_id" element={<MyPage />} />
