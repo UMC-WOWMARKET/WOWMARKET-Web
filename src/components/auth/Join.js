@@ -52,23 +52,23 @@ const Join = () => {
       name: name,
       email: id,
       password: pw,
-      marketing: marketingCk,
+      marketing_agree: marketingCk,
     };
 
     console.log(`회원가입데이터:${name},${id},${pw},${marketingCk}`);
 
-    // axios.post("http://localhost:8080/member/join", body).then((res) => {
-    //   console.log(res.data);
-    // });
+    axios
+      .post("http://localhost:8080/wowmarket/users/join", body)
+      .then((res) => {
+        console.log(res.data);
+        alert("회원가입 성공! 로그인하세요");
 
-    if (true) {
-      //회원가입 성공
-      e.stopPropagation();
-      navigate(`/users`);
-    } else {
-      //회원가입 실패
-      alert("중복된 회원입니다");
-    }
+        e.stopPropagation();
+        navigate(`/users/login`);
+      })
+      .catch((error) => {
+        alert("회원가입 실패! 중복된 회원입니다");
+      });
   };
 
   //입력값 유효성 검사->버튼활성화
