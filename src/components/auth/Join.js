@@ -85,12 +85,13 @@ const Join = () => {
 
   return (
     <div className="Join">
-      <h3>이메일로 회원가입</h3>
+      <div className="title">이메일로 회원가입</div>
 
       <div className="input_body">
         <div className="subtitle">이름</div>
         <input
           placeholder="사용하실 이름을 입력해주세요"
+          className="input_box"
           onChange={(e) => {
             setName(e.target.value);
           }}
@@ -99,13 +100,14 @@ const Join = () => {
         <div className="subtitle">이메일주소</div>
         <input
           placeholder="이메일 주소를 입력해주세요"
+          className="input_box"
           onChange={(e) => {
             setId(e.target.value);
           }}
         />
-        <br />
         <input
           placeholder="이메일 주소를 확인합니다"
+          className="input_box"
           onChange={(e) => {
             setIdCk(e.target.value);
           }}
@@ -114,24 +116,24 @@ const Join = () => {
         <div className="subtitle">비밀번호</div>
         <input
           placeholder="비밀번호를 입력해주세요"
+          className="input_box"
           onChange={(e) => {
             setPw(e.target.value);
           }}
         />
-        <br />
         <input
           placeholder="비밀번호를 확인합니다"
+          className="input_box"
           onChange={(e) => {
             setPwCk(e.target.value);
           }}
         />
 
-        <div>
+        <div className="check_list">
           <label>
             <input type="checkbox" onChange={handleCheckAll} />
             전체 동의
           </label>
-          <br />
           <label>
             <input
               type="checkbox"
@@ -141,7 +143,6 @@ const Join = () => {
             />
             서비스 이용약관 동의
           </label>
-          <br />
           <label>
             <input
               type="checkbox"
@@ -151,7 +152,6 @@ const Join = () => {
             />
             개인정보 수집 및 이용 동의
           </label>
-          <br />
           <label>
             <input
               type="checkbox"
@@ -161,7 +161,6 @@ const Join = () => {
             />
             제3자 개인정보 제공 동의
           </label>
-          <br />
           <label>
             <input
               type="checkbox"
@@ -171,15 +170,14 @@ const Join = () => {
             />
             마케팅 수신 동의
           </label>
-
-          <br />
         </div>
       </div>
-      <button disabled={button} onClick={JoinFunc}>
-        회원가입
-      </button>
-      <br />
-      <button>카카오로 가입하기</button>
+      <div className="input_footer">
+        <button disabled={button} onClick={JoinFunc} className="login_button">
+          회원가입
+        </button>
+        <button className="kakao_button">카카오로 가입하기</button>
+      </div>
     </div>
   );
 };
