@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import GoodsAdd from "../components/GoodsAdd";
@@ -9,7 +9,7 @@ const DemandRegister = () => {
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting, isSubmitted, errors },
+    formState: { isSubmitting, isSubmitted },
   } = useForm();
   //register()로 각 입력란 등록, handleSubmit()로 submit 이벤트 처리
 
@@ -22,40 +22,49 @@ const DemandRegister = () => {
   const submitFunction = (e) => {
     console.log(e);
   };
+  //굿즈 등록 관련 하위 컴포넌트에서 가지고 온 값
+
+  const onSubmit = async (data) => {
+    await new Promise((r) => setTimeout(r, 1000));
+    console.log(data);
+    console.log(Selected);
+    const { pjName, description, thumbnail, image } = data;
+    try {
+      const response = await axios.post("/api/data", data);
+      console.log(response);
+    } catch (error) {
+      alert(error.response.data);
+    }
+  };
 
   return (
     <div className="DemandRegister">
       수요조사 등록폼
       <RegisterFormContainer>
         <form
-          id="post-form"
-          onSubmit={handleSubmit(async (data) => {
-            await new Promise((r) => setTimeout(r, 1000));
-            console.log(data);
-            console.log(Selected);
-          })} //중복 제출 방지 - 시간 지연
+          onSubmit={handleSubmit(onSubmit)} //중복 제출 방지 - 시간 지연
         >
           <InputCell>
             <Label>수요조사 등록명 *</Label>
             <InputRegister
-              name="title"
+              name="pjName"
               placeholder="구매자의 흥미를 불러올 수 있는 이름을 설정해주세요. ex [2차] 한정판 눈송이 x 와우 콜라보 인형 판매"
-              {...register("title")}
+              {...register("pjName")}
             />
           </InputCell>
 
           <InputCell>
             <Label>굿즈 설명 *</Label>
-            <InputRegister name="detail" {...register("detail")} />
+            <InputRegister name="description" {...register("description")} />
           </InputCell>
 
           <InputCell>
             <Label>대표 이미지 *</Label>
             <InputImage
               type="file"
-              name="main_image"
+              name="thumbnail"
               accept="image/*"
-              {...register("main_image")}
+              {...register("thumbnail")}
             />
           </InputCell>
 
@@ -79,11 +88,7 @@ const DemandRegister = () => {
 
           <InputCell>
             <Label>굿즈 소개 첨부 파일 *</Label>
-            <InputImage
-              type="file"
-              name="detail_image"
-              {...register("detail_image")}
-            />
+            <InputImage type="file" name="image" {...register("image")} />
           </InputCell>
 
           <InputCell>
@@ -93,7 +98,7 @@ const DemandRegister = () => {
               <Calendar />
             </Date>
           </InputCell>
-          
+
           <InputCell>
             <label>프로젝트 담당자명 * </label>
             <input name="manager" {...register("manager")} />
@@ -138,5 +143,4 @@ const InputImage = styled.input`
   margin: 10px;
 `;
 
-const Date = styled.div`
-`;
+const Date = styled.div``;
