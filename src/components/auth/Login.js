@@ -32,19 +32,18 @@ const Login = () => {
     };
 
     console.log(`로그인데이터:${id},${pw}`);
-    // axios.post("http://localhost:8080/member/login", body).then((res) => {
-    //   console.log(res.data);
-
-    // });
-
-    if (true) {
-      //로그인 성공
-      e.stopPropagation();
-      navigate(`/?user_id=${id}`);
-    } else {
-      //로그인 실패
-      alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
-    }
+    axios
+      .post("http://localhost:8080/wowmarket/users/login", body)
+      .then((res) => {
+        console.log(res.data);
+        const { accessToken } = res.data.accessToken;
+        axios.defaults.headers.common["X-ACCESS-TOKEN"] = `${accessToken}`;
+        e.stopPropagation();
+        navigate(`/`);
+      })
+      .catch((err) => {
+        alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
+      });
   };
 
   useEffect(() => {
