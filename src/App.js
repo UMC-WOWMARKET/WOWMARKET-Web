@@ -7,7 +7,7 @@ import Register from "./pages/Register";
 import Users from "./pages/Users";
 import Goods from "./pages/Goods";
 import Button from "./components/Button";
-
+import Detail from "./components/Detail";
 function App() {
   return (
     <BrowserRouter>

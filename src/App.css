@@ -30,6 +30,94 @@
   color: white;
 }
 
+/*detail*/
+
+.Detail-box {
+  width: 500px; /* 박스의 너비 설정 (원하는 크기로 조정) */
+  padding: 15px; /* 내부 여백 추가 */
+  float: left; /* 왼쪽에 정렬 */
+}
+
+.Detail-stats {
+  display: flex; /* Flexbox 사용 */
+  justify-content: space-between; /* 요소들 사이의 공간 균등하게 배분 */
+}
+
+.stat-item {
+  flex: 1; /* 각 항목이 동일한 공간을 차지하도록 설정 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  /* 필요하다면 추가 스타일 */
+}
+
+.name {
+  width: 311px;
+  height: 41px;
+  top: 248px;
+  left:197px;
+  overflow: hidden;
+}
+
+.seller {
+  width: 150px;
+  height: 20px;
+  top: 268px;
+  left:544px;
+  overflow: hidden;
+}
+
+.project-img {
+  width: 487px;
+  height: 292px;
+  top: 318px;
+  left:197px;
+  object-fit: cover; /* 이미지가 div 크기에 맞게 조절 */
+}
+
+.introduce {
+  width: 487px;
+  height: 20px;
+  top: 641px;
+  left:197px;
+  overflow: hidden;
+}
+
+.period {
+  width: 350px;
+  height: 20px;
+  top: 681px;
+  left:199px;
+  overflow: hidden;
+}
+
+.achievements {
+  width: 109px;
+  height: 41px;
+  top: 734px;
+  left: 244px;
+  overflow: hidden;
+}
+
+.participants {
+  width: 123px;
+  height: 41px;
+  top: 734px;
+  left: 389px;
+  overflow: hidden;
+}
+
+.left-days {
+  width: 79px;
+  height: 41px;
+  top: 734px;
+  left: 548px;
+  overflow: hidden;
+}
+
+
+
+
+
+
 /*Users*/
 .Users {
   display: flex;

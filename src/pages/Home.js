@@ -1,5 +1,8 @@
+import Detail from "../components/Detail";
 const Home = () => {
-  return <div className="Home">홈/판매/수요조사</div>;
+  return <div className="Home">
+  <Detail/>
+  </div>;
 };
 
 export default Home;
