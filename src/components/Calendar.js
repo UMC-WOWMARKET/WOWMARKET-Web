@@ -6,14 +6,10 @@ function Calendar(){
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(null);
     const onChange = (dates) => {
-      const [start, end] = dates;
-      setStartDate(start);
-      setEndDate(end);
+      const [start_date, end_date] = dates;
+      setStartDate(start_date);
+      setEndDate(end_date);
     };
-
-    console.log(startDate);
-    console.log(endDate);
-    
     return (
       <DatePicker
         selected={startDate}

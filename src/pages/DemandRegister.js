@@ -16,25 +16,23 @@ const DemandRegister = () => {
   const [Selected, setSelected] = useState("");
   const handleSelect = (e) => {
     setSelected(e.target.value);
+    const category_id = Selected;
   };
   //카테고리 선택 관련
 
   const submitFunction = (e) => {
     console.log(e);
   };
-  //굿즈 등록 관련 하위 컴포넌트에서 가지고 온 값
+  //GoodsAdd.js 컴포넌트에서 가지고 온 값
 
   const onSubmit = async (data) => {
     await new Promise((r) => setTimeout(r, 1000));
     console.log(data);
-    console.log(Selected);
-    const { pjName, description, thumbnail, image } = data;
-    try {
-      const response = await axios.post("/api/data", data);
-      console.log(response);
-    } catch (error) {
-      alert(error.response.data);
-    }
+    const formData = new FormData();
+    formData.append(
+      "data",
+      new Blob([JSON.stringify(data)], { type: "application/json" })
+    );
   };
 
   return (
@@ -47,9 +45,9 @@ const DemandRegister = () => {
           <InputCell>
             <Label>수요조사 등록명 *</Label>
             <InputRegister
-              name="pjName"
+              name="project_name"
               placeholder="구매자의 흥미를 불러올 수 있는 이름을 설정해주세요. ex [2차] 한정판 눈송이 x 와우 콜라보 인형 판매"
-              {...register("pjName")}
+              {...register("project_name")}
             />
           </InputCell>
 
@@ -88,7 +86,7 @@ const DemandRegister = () => {
 
           <InputCell>
             <Label>굿즈 소개 첨부 파일 *</Label>
-            <InputImage type="file" name="image" {...register("image")} />
+                <input type="file" name="image" multiple accept="image/*" {..."image"} />
           </InputCell>
 
           <InputCell>
@@ -101,7 +99,7 @@ const DemandRegister = () => {
 
           <InputCell>
             <label>프로젝트 담당자명 * </label>
-            <input name="manager" {...register("manager")} />
+            <input name="nickname" {...register("nickname")} />
           </InputCell>
 
           <input type="submit" disabled={isSubmitting} />

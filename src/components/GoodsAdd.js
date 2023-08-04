@@ -4,11 +4,11 @@ import { useState } from "react";
 
 function GoodsAdd({submitFunction}) {
   const [products, setProducts] = useState([
-    { name: "", price: "", goal: ""},
+    { item_name: "", price: "", goal: ""},
   ]); //굿즈 등록 관련 정보
 
   const handleProductAdd = () => {
-    setProducts([...products, { name: "", price: "", goal: "" }]);
+    setProducts([...products, { item_name: "", price: "", goal: "" }]);
   }; //굿즈 등록란 추가
 
   const handleProductRemove = (index) => {
@@ -32,8 +32,8 @@ function GoodsAdd({submitFunction}) {
           <GoodsName>
             <div>굿즈 이름</div>
             <Input
-              id="pdName"
-              value={item.name}
+              id="item_name"
+              value={item.item_name}
               onChange={(e) => handleChange(index, e)}
             />
           </GoodsName>
@@ -48,7 +48,7 @@ function GoodsAdd({submitFunction}) {
           <Quantity>
             <div>목표 수량</div>
             <Input
-              id="quantity"
+              id="goal"
               value={item.goal}
               onChange={(e) => handleChange(index, e)}
             />
