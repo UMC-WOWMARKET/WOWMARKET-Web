@@ -21,7 +21,7 @@ const Login = () => {
   const handleNavigateToKakaoLogin = useCallback(() => {
     //base url무시하고 카카오 로그인 페이지로 이동
     window.location.href =
-      "https://kauth.kakao.com/oauth/authorize?client_id=394cbd2e5e0ad400adbc202784ad624b&redirect_uri=http://localhost:8080/wowmarket/users/login/kakao&response_type=code";
+      "https://kauth.kakao.com/oauth/authorize?client_id=394cbd2e5e0ad400adbc202784ad624b&redirect_uri=http://localhost:3000/users/kakao&response_type=code";
   }, [navigate]);
 
   const LoginFunc = (e) => {

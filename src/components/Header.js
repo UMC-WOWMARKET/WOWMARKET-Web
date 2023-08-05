@@ -28,6 +28,7 @@ function Header() {
           </NavLink>
         </Menu>
         <MemberMenu>
+          <MemberLink to="/users/UnivCert">학교인증</MemberLink>
           <MemberLink to="/mypage/:user_id">my</MemberLink>
           <MemberLink to="/users/login">로그인</MemberLink>
         </MemberMenu>
