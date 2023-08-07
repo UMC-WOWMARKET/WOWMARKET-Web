@@ -7,23 +7,6 @@ function UnivCert() {
   const [univMail, setUnivMail] = useState("");
   const [certNum, setCertNum] = useState("");
 
-  let body = {
-    univ_name: "홍익대학교",
-    univ_email: "ekdldkaa@g.hongik.ac.kr",
-  };
-
-  let code_body = {
-    univ_name: "홍익대학교",
-    univ_email: "ekdldkaa@g.hongik.ac.kr",
-    code: 1680,
-  };
-
-  const handleChangeState = (e) => {
-    setUnivName({
-      [e.target.name]: e.target.value,
-    });
-  };
-
   const navigate = useNavigate();
 
   const handleNavitgateToReturn = useCallback(() => {
@@ -42,8 +25,13 @@ function UnivCert() {
   );
 
   const submitUnivData = (e) => {
+    const body = {
+      univ_name: univName,
+      univ_email: univMail,
+    };
+    console.log("Submit Univ Data:", body);
     axios
-      .post("http://localhost:8080/wowmarket/users/univCert", body)
+      .post("http://localhost:8080/wowmarket/users/univCert/code", body)
       .then((res) => {
         console.log(res.data);
       })
@@ -51,8 +39,13 @@ function UnivCert() {
   };
 
   const submitCertCode = (e) => {
+    const code_body = {
+      univ_name: univName,
+      univ_email: univMail,
+      code: certNum,
+    };
     axios
-      .post("http://localhost:8080/wowmarket/users/univCert/code", code_body)
+      .post("http://localhost:8080/wowmarket/users/univCert", code_body)
       .then((res) => {
         console.log(res.data);
       })
@@ -65,7 +58,12 @@ function UnivCert() {
 
       <div className="input_body">
         <div className="subtitle">대학명</div>
-        <select className="input_box" onChange={handleChangeState}>
+        <select
+          className="input_box"
+          onChange={(e) => {
+            setUnivName(e.target.value);
+          }}
+        >
           <option value={1}>대학명을 입력해주세요</option>
           <option value={2}>이화여자대학교</option>
           <option value={3}>홍익대학교</option>
@@ -79,7 +77,9 @@ function UnivCert() {
               setUnivMail(e.target.value);
             }}
           />
-          <button className="small_but">인증번호 발송</button>
+          <button className="small_but" onClick={submitUnivData}>
+            인증번호 발송
+          </button>
         </div>
 
         <div className="input_body_small">
