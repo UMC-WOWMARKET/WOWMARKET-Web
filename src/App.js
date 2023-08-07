@@ -11,13 +11,13 @@ import Button from "./components/Button";
 function App() {
   return (
     <BrowserRouter>
-    <Header />
+      <Header />
       <div className="App">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/goods" element={<Home />} />
           <Route path="/users/:page_type" element={<Users />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/detail/:goods_id" element={<Goods />} />
+          <Route path="/goods/detail" element={<Goods />} />
           <Route path="/mypage/:user_id" element={<MyPage />} />
         </Routes>
       </div>
