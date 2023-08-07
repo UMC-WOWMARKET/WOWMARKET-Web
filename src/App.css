@@ -432,3 +432,33 @@
   color: rgba(110, 110, 110, 1);
   padding-left: 10px;
 }
+
+/*Goods*/
+
+.Goods {
+  border: 1px solid red;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-evenly;
+}
+
+.Goods .left_side {
+  border: 1px solid blue;
+  width: 35%;
+}
+.Goods .right_side {
+  border: 1px solid blueviolet;
+  width: 35%;
+}
+
+.GoodsInfo {
+  border: 1px solid red;
+}
+.GoodsBoard {
+}
+.DemandForm {
+}
+.OrderForm {
+}
