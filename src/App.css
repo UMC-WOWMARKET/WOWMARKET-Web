@@ -458,3 +458,15 @@
 .GoodsInfo {
   border: 1px solid red;
 }
+
+/*myPage*/
+.MyPage {
+  border: 1px solid red;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-evenly;
+}
+.MyPage .navigation_bar {
+}

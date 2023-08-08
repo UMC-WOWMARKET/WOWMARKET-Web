@@ -19,7 +19,7 @@ function App() {
           <Route path="/users/:page_type" element={<Users />} />
           <Route path="/register" element={<Register />} />
           <Route path="/goods/detail" element={<Goods />} />
-          <Route path="/mypage/:user_id" element={<MyPage />} />
+          <Route path="/mypage" element={<MyPage />} />
         </Routes>
       </div>
     </BrowserRouter>

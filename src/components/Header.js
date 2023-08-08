@@ -49,7 +49,7 @@ function Header() {
         </Menu>
         <MemberMenu>
           <MemberLink to="/users/univCert">학교인증</MemberLink>
-          {isLogin && <MemberLink to="/mypage/:user_id">my</MemberLink>}
+          {isLogin && <MemberLink to="/mypage">my</MemberLink>}
           {isLogin && <MemberLink onClick={logout}>로그아웃</MemberLink>}
           {!isLogin && <MemberLink to="/users/login">로그인</MemberLink>}
         </MemberMenu>
