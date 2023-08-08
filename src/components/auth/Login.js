@@ -36,8 +36,10 @@ const Login = () => {
       .post("http://localhost:8080/wowmarket/users/login", body)
       .then((res) => {
         console.log(res.data);
-        const { accessToken } = res.data.accessToken;
-        axios.defaults.headers.common["X-ACCESS-TOKEN"] = `${accessToken}`;
+        // local storage에 저장
+        if (res.data.accessToken) {
+          localStorage.setItem("accessToken", res.data.accessToken);
+        }
         e.stopPropagation();
         navigate(`/`);
       })
