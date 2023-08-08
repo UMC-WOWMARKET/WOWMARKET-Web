@@ -7,29 +7,40 @@ function UnivCert() {
   const [univMail, setUnivMail] = useState("");
   const [certNum, setCertNum] = useState("");
 
+  const selectUnivNameHandler = (e) => {
+    setUnivName(e.currentTarget.value);
+  };
+
+  //인증가능대학 하드코딩
+  const dummyOptions = [
+    { key: "홍익대학교", value: "홍익대학교" },
+    { key: "이화여자대학교", value: "이화여자대학교" },
+  ];
+
   const navigate = useNavigate();
 
   const handleNavitgateToReturn = useCallback(() => {
     navigate("/");
   }, [navigate]);
 
-  axios.interceptors.request.use(
-    (config) => {
-      // 요청 직전에 헤더를 확인하고 싶은 경우
-      console.log("Request Headers:", config.headers);
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
-
   const submitUnivData = (e) => {
-    const body = {
+    let body = {
       univ_name: univName,
       univ_email: univMail,
     };
-    console.log("Submit Univ Data:", body);
+    console.log(`${univName},${univMail}`);
+
+    axios.interceptors.request.use((config) => {
+      /* JWT 토큰 */
+      const userAccessToken = localStorage.getItem("accessToken");
+      if (userAccessToken) {
+        console.log(userAccessToken);
+        config.headers["X-ACCESS-TOKEN"] = `${userAccessToken}`;
+      }
+
+      return config;
+    });
+
     axios
       .post("http://localhost:8080/wowmarket/users/univCert/code", body)
       .then((res) => {
@@ -39,11 +50,13 @@ function UnivCert() {
   };
 
   const submitCertCode = (e) => {
-    const code_body = {
+    let code_body = {
       univ_name: univName,
       univ_email: univMail,
       code: certNum,
     };
+    console.log(`인증번호 확인 데이터:${cody_body}`);
+
     axios
       .post("http://localhost:8080/wowmarket/users/univCert", code_body)
       .then((res) => {
@@ -60,13 +73,14 @@ function UnivCert() {
         <div className="subtitle">대학명</div>
         <select
           className="input_box"
-          onChange={(e) => {
-            setUnivName(e.target.value);
-          }}
+          onChange={selectUnivNameHandler}
+          value={univName}
         >
-          <option value={1}>대학명을 입력해주세요</option>
-          <option value={2}>이화여자대학교</option>
-          <option value={3}>홍익대학교</option>
+          {dummyOptions.map((item, index) => (
+            <option key={item.key} value={item.key}>
+              {item.value}
+            </option>
+          ))}
         </select>
         <div className="subtitle">학교 이메일</div>
         <div className="input_body_small">
@@ -97,9 +111,6 @@ function UnivCert() {
       </div>
 
       <div className="input_footer">
-        <button className="login_button" onClick={submitUnivData}>
-          인증하기
-        </button>
         <button className="navigation" onClick={handleNavitgateToReturn}>
           다음에 인증하기
         </button>
