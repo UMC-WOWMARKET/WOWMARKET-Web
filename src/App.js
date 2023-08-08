@@ -1,4 +1,5 @@
 import "./App.css";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import MyPage from "./pages/MyPage";
@@ -11,8 +12,8 @@ import Button from "./components/Button";
 function App() {
   return (
     <BrowserRouter>
-      <Header />
       <div className="App">
+        <Header />
         <Routes>
           <Route path="/goods" element={<Home />} />
           <Route path="/users/:page_type" element={<Users />} />
