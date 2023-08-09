@@ -42,11 +42,18 @@ function UnivCert() {
     });
 
     axios
-      .post("http://localhost:8080/wowmarket/users/univCert/code", body)
+      .post("http://localhost:8080/wowmarket/users/univCert", body)
       .then((res) => {
         console.log(res.data);
+        if (res.data.success) {
+          alert("학교인증코드 발송 성공!");
+        } else {
+          alert("학교인증코드 발송 실패! 이메일 주소를 확인하세요");
+        }
       })
-      .catch((err) => {});
+      .catch((err) => {
+        alert("학교인증코드 발송 실패! 이메일 주소를 확인하세요");
+      });
   };
 
   const submitCertCode = (e) => {
@@ -55,14 +62,22 @@ function UnivCert() {
       univ_email: univMail,
       code: certNum,
     };
-    console.log(`인증번호 확인 데이터:${cody_body}`);
+    console.log(`인증번호 확인 데이터:${code_body}`);
 
     axios
-      .post("http://localhost:8080/wowmarket/users/univCert", code_body)
+      .post("http://localhost:8080/wowmarket/users/univCert/code", code_body)
       .then((res) => {
         console.log(res.data);
+        if (res.data.success) {
+          alert("학교인증 성공!");
+          localStorage.setItem("univCert", univName);
+        } else {
+          alert("학교인증 실패! 인증코드를 확인하세요");
+        }
       })
-      .catch((err) => {});
+      .catch((err) => {
+        alert("학교인증 실패! 인증코드를 확인하세요");
+      });
   };
 
   return (

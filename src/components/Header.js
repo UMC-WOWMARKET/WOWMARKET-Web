@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Dropdown from "./Dropdown";
 import { useState } from "react";
 
 function Header() {
   const [view, setView] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+  const userAccessToken = localStorage.getItem("accessToken");
+
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("accessToken");
+    setIsLogin(false);
+    navigate("/");
+  };
+
+  useEffect(() => {
+    if (userAccessToken) {
+      //로그인된 사용자
+      console.log(`유저토큰존재`);
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, [userAccessToken]);
 
   return (
     <HeaderContainer>
@@ -16,8 +36,8 @@ function Header() {
       <Navigation>
         <Menu>
           <Logo>와우상점</Logo>
-          <NavLink to="/">판매</NavLink>
-          <NavLink to="/">수요조사</NavLink>
+          <NavLink to="/goods?page_type=selling">판매</NavLink>
+          <NavLink to="/goods?page_type=demand">수요조사</NavLink>
           <NavLink
             to="/register"
             onMouseEnter={() => {
@@ -28,9 +48,10 @@ function Header() {
           </NavLink>
         </Menu>
         <MemberMenu>
-          <MemberLink to="/users/UnivCert">학교인증</MemberLink>
-          <MemberLink to="/mypage/:user_id">my</MemberLink>
-          <MemberLink to="/users/login">로그인</MemberLink>
+          <MemberLink to="/users/univCert">학교인증</MemberLink>
+          {isLogin && <MemberLink to="/mypage">my</MemberLink>}
+          {isLogin && <MemberLink onClick={logout}>로그아웃</MemberLink>}
+          {!isLogin && <MemberLink to="/users/login">로그인</MemberLink>}
         </MemberMenu>
       </Navigation>
       <DropdownMenu
