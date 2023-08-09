@@ -27,32 +27,28 @@ function GoodsAdd({submitFunction}) {
 
   return (
     <GoodsAddContainer>
+      <Labels>
+        <Label>굿즈 이름</Label>
+        <Label>판매 금액</Label>
+        <Label>목표 수량</Label>
+      </Labels>
       {products.map((item, index) => (
         <GoodsDetail key={index}>
-          <GoodsName>
-            <div>굿즈 이름</div>
-            <Input
+          <NameInput
               id="item_name"
               value={item.item_name}
               onChange={(e) => handleChange(index, e)}
             />
-          </GoodsName>
-          <GoodsPrice>
-            <div>판매 금액</div>
-            <Input
+          <PriceInput
               id="price"
               value={item.price}
               onChange={(e) => handleChange(index, e)}
             />
-          </GoodsPrice>
-          <Quantity>
-            <div>목표 수량</div>
-            <Input
+          <GoalInput
               id="goal"
               value={item.goal}
               onChange={(e) => handleChange(index, e)}
             />
-          </Quantity>
           {products.length > 1 && (
               <button type="button" onClick={() => handleProductRemove(index)}> - </button>
           )}
@@ -68,27 +64,44 @@ const GoodsAddContainer = styled.div`
   width: 100%;
 `;
 
+const Labels = styled.div`
+  margin: 10px;
+  display: flex;
+`
+const Label = styled.div`
+  margin: 0 20px;
+  width: 30%;
+`
 const GoodsDetail = styled.div`
   width: 100%;
   display: flex;
 `;
 
-const GoodsName = styled.div`
-  display: inline-block;
-  margin: 5px;
-`;
-const GoodsPrice = styled.div`
-  display: inline-block;
-  margin: 5px;
-`;
-const Quantity = styled.div`
-  display: inline-block;
-  margin: 5px;
-`;
-const Input = styled.input`
+const NameInput = styled.input`
+  width: 80%;
   border-radius: 10px;
   border: solid 1px;
   height: 20px;
   margin:5px;
   padding: 5px;
+  display: inline-block;
+  margin: 5px 10px;
+`;
+const PriceInput = styled.input`
+  border-radius: 10px;
+  border: solid 1px;
+  height: 20px;
+  margin:5px;
+  padding: 5px;
+  display: inline-block;
+  margin: 5px 10px;
+`;
+const GoalInput = styled.input`
+  border-radius: 10px;
+  border: solid 1px;
+  height: 20px;
+  margin:5px;
+  padding: 5px;
+  display: inline-block;
+  margin: 5px 10px;
 `
