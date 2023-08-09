@@ -25,13 +25,21 @@ const DemandRegister = () => {
   };
   //GoodsAdd.js 컴포넌트에서 가지고 온 값 -> item 배열로
 
+  const [selectedDates, setSelectedDates] = useState(null);
+  const handleDateSubmit = (dates) => {
+    setSelectedDates(dates);
+  };
+  //Calendar에서 가지고 온 값
+
   const onSubmit = async (data) => {
     await new Promise((r) => setTimeout(r, 1000));
 
     const combinedData = {
       ...data,
-      item
-    };//useform으로 받은 data 말고도 외부 컴포넌트로 받은 데이터도 함께 처리
+      item,
+      selectedDates
+    };
+    //useform으로 받은 data 말고도 외부 컴포넌트로 받은 데이터도 함께 처리
 
     try {
       const response = await fetch('/api/submit', {
@@ -50,7 +58,7 @@ const DemandRegister = () => {
     } catch (error) {
       console.error('Error:', error);
     }
-    console.log(data);
+    console.log(combinedData);
   };
 
   return (
@@ -80,7 +88,7 @@ const DemandRegister = () => {
               type="file"
               name="thumbnail"
               accept="image/*"
-              {...register("thumbnail", { required: true })}
+              {...register("thumbnail")}
             />
           </InputCell>
 
@@ -111,7 +119,7 @@ const DemandRegister = () => {
             <Label>진행 기간 *</Label>
             <Date>
               <label>날짜 선택</label>
-              <Calendar />
+              <Calendar dateSubmitFunction={handleDateSubmit} />
             </Date>
           </InputCell>
 

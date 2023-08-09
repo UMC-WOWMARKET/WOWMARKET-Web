@@ -10,7 +10,7 @@ app.post('/api/submit', (req, res) => {
   const formData = req.body;
   console.log('Received data from client:', formData);
 
-  // 여기서 데이터를 처리하고 응답을 보낼 수 있습니다.
+  // 여기서 데이터를 처리하고 응답
 
   res.json({ message: 'Data received and processed on the server.' });
 });
