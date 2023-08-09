@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import GoodsAdd from "../components/GoodsAdd";
 import Calendar from "../components/Calendar";
-import axios from "axios";
 
 const DemandRegister = () => {
   const {
@@ -19,20 +18,39 @@ const DemandRegister = () => {
     const category_id = Selected;
   };
   //카테고리 선택 관련
-
+  
+  let item = [];
   const submitFunction = (e) => {
-    console.log(e);
+    item = e;
   };
-  //GoodsAdd.js 컴포넌트에서 가지고 온 값
+  //GoodsAdd.js 컴포넌트에서 가지고 온 값 -> item 배열로
 
   const onSubmit = async (data) => {
     await new Promise((r) => setTimeout(r, 1000));
+
+    const combinedData = {
+      ...data,
+      item
+    };//useform으로 받은 data 말고도 외부 컴포넌트로 받은 데이터도 함께 처리
+
+    try {
+      const response = await fetch('/api/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(combinedData),
+      });
+
+      if (response.ok) {
+        console.log('Data submitted successfully!');
+      } else {
+        console.error('Failed to submit data.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
     console.log(data);
-    const formData = new FormData();
-    formData.append(
-      "data",
-      new Blob([JSON.stringify(data)], { type: "application/json" })
-    );
   };
 
   return (
@@ -47,13 +65,13 @@ const DemandRegister = () => {
             <InputRegister
               name="project_name"
               placeholder="구매자의 흥미를 불러올 수 있는 이름을 설정해주세요. ex [2차] 한정판 눈송이 x 와우 콜라보 인형 판매"
-              {...register("project_name")}
+              {...register("project_name", { required: true })}
             />
           </InputCell>
 
           <InputCell>
             <Label>굿즈 설명 *</Label>
-            <InputRegister name="description" {...register("description")} />
+            <InputRegister name="description" {...register("description", { required: true })} />
           </InputCell>
 
           <InputCell>
@@ -62,7 +80,7 @@ const DemandRegister = () => {
               type="file"
               name="thumbnail"
               accept="image/*"
-              {...register("thumbnail")}
+              {...register("thumbnail", { required: true })}
             />
           </InputCell>
 
@@ -99,7 +117,7 @@ const DemandRegister = () => {
 
           <InputCell>
             <label>프로젝트 담당자명 * </label>
-            <input name="nickname" {...register("nickname")} />
+            <input name="nickname" {...register("nickname", { required: true })} />
           </InputCell>
 
           <input type="submit" disabled={isSubmitting} />
