@@ -6,9 +6,10 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Users from "./pages/Users";
 import Goods from "./pages/Goods";
-import Button from "./components/Button";
-import Search from "./pages/Search";
 import Introduce from "./pages/Introduce";
+import Goodslist from "./pages/Goodslist";
+import TextDisplay from "./pages/TextDisplay";
+import Search from "./pages/Search";
 
 function App() {
   const handleSearch = (searchTerm) => {
@@ -27,7 +28,18 @@ function App() {
           <Route path="/mypage/:user_id" element={<MyPage />} />
         </Routes>
       </div>
+      <div className="Search">
+      <Search onSearch={handleSearch} />
+    </div>
       <Introduce/>
+    <div className="Goodslist">
+      <h3>이미지 표시 </h3>
+      <Goodslist />
+    </div>
+    <div className="TextDisplay">
+      <h1>굿즈이름</h1>
+      <TextDisplay />
+    </div>
     </BrowserRouter>
     
   );
