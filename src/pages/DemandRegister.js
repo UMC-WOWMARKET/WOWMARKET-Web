@@ -18,18 +18,22 @@ const DemandRegister = () => {
     const category_id = Selected;
   };
   //카테고리 선택 관련
-  
+
   let item = [];
   const submitFunction = (e) => {
     item = e;
   };
   //GoodsAdd.js 컴포넌트에서 가지고 온 값 -> item 배열로
 
-  const [selectedDates, setSelectedDates] = useState(null);
-  const handleDateSubmit = (dates) => {
-    setSelectedDates(dates);
+  const [start_date, setStartDate] = useState(null);
+  const [end_date, setEndDate] = useState(null);
+  const handleStartDateChange = (date) => {
+    setStartDate(date);
   };
-  //Calendar에서 가지고 온 값
+  const handleEndDateChange = (date) => {
+    setEndDate(date);
+  };
+  //Calander 에서 가지고온 start_date, end_date
 
   const onSubmit = async (data) => {
     await new Promise((r) => setTimeout(r, 1000));
@@ -37,26 +41,27 @@ const DemandRegister = () => {
     const combinedData = {
       ...data,
       item,
-      selectedDates
+      start_date,
+      end_date,
     };
     //useform으로 받은 data 말고도 외부 컴포넌트로 받은 데이터도 함께 처리
 
     try {
-      const response = await fetch('/api/submit', {
-        method: 'POST',
+      const response = await fetch("/api/submit", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(combinedData),
       });
 
       if (response.ok) {
-        console.log('Data submitted successfully!');
+        console.log("Data submitted successfully!");
       } else {
-        console.error('Failed to submit data.');
+        console.error("Failed to submit data.");
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
     console.log(combinedData);
   };
@@ -79,17 +84,15 @@ const DemandRegister = () => {
 
           <InputCell>
             <Label>굿즈 설명 *</Label>
-            <InputRegister name="description" {...register("description", { required: true })} />
+            <InputRegister
+              name="description"
+              {...register("description", { required: true })}
+            />
           </InputCell>
 
           <InputCell>
             <Label>대표 이미지 *</Label>
-            <InputImage
-              type="file"
-              name="thumbnail"
-              accept="image/*"
-              {...register("thumbnail")}
-            />
+            <InputImage type="file" name="thumbnail" accept="image/*" />
           </InputCell>
 
           <InputCell>
@@ -112,20 +115,26 @@ const DemandRegister = () => {
 
           <InputCell>
             <Label>굿즈 소개 첨부 파일 *</Label>
-                <input type="file" name="image" multiple accept="image/*" {..."image"} />
+            <input type="file" name="image" multiple accept="image/*" />
           </InputCell>
 
           <InputCell>
             <Label>진행 기간 *</Label>
             <Date>
               <label>날짜 선택</label>
-              <Calendar dateSubmitFunction={handleDateSubmit} />
+              <Calendar
+                onStartDateChange={handleStartDateChange}
+                onEndDateChange={handleEndDateChange}
+              />
             </Date>
           </InputCell>
 
           <InputCell>
             <label>프로젝트 담당자명 * </label>
-            <input name="nickname" {...register("nickname", { required: true })} />
+            <input
+              name="nickname"
+              {...register("nickname", { required: true })}
+            />
           </InputCell>
 
           <input type="submit" disabled={isSubmitting} />

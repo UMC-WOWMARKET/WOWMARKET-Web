@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function Calendar({ dateSubmitFunction }) {
+function Calendar({ onStartDateChange, onEndDateChange }) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
 
@@ -21,7 +21,8 @@ function Calendar({ dateSubmitFunction }) {
     setEndDate(endDate); //end_date: 종료일
     const start_date = formatDate(startDate);
     const end_date = formatDate(endDate);
-    dateSubmitFunction({ start_date, end_date });
+    onStartDateChange(start_date);
+    onEndDateChange(end_date);
   };
 
   return (
