@@ -19,7 +19,7 @@ function Header() {
                     <NavLink to="/"></NavLink>
                     <NavLink to="/">판매</NavLink>
                     <NavLink to="/">수요조사</NavLink>
-                    <NavLink to="/register" onMouseEnter={() => {setView(true)}}>등록하기</NavLink>
+                    <NavLink onMouseEnter={() => {setView(true)}}>등록하기</NavLink>
                 </Menu>
                 <MemberMenu>
                     <MemberLink to="/mypage/:user_id">my</MemberLink>
@@ -63,7 +63,7 @@ const Insta = styled.img`
 `
 
 const Logo = styled.div`
-    //로고(이미지로)
+    padding: 10px;
 `
 
 const Navigation = styled.nav`
