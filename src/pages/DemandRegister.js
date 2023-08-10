@@ -16,7 +16,7 @@ const DemandRegister = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   useEffect(() => {
-    // Mock 데이터를 가져오는 로직
+    // Mock 데이터를 가져오기
     axios
       .get("/categories.json")
       .then((response) => {
@@ -26,7 +26,6 @@ const DemandRegister = () => {
         console.error("Error fetching categories:", error);
       });
   }, []);
-
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
   };
@@ -59,18 +58,16 @@ const DemandRegister = () => {
     };
     //useform으로 받은 data 말고도 외부 컴포넌트로 받은 데이터도 함께 처리
     try {
-      const response = await fetch("/api/submit", {
-        method: "POST",
+      const response = await axios.post("/api/submit", combinedData, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(combinedData),
       });
-
-      if (response.ok) {
-        console.log("Data submitted successfully!");
+    
+      if (response.status === 200) {
+        console.log("Data submitted successfully using axios!");
       } else {
-        console.error("Failed to submit data.");
+        console.error("Failed to submit data using axios.");
       }
     } catch (error) {
       console.error("Error:", error);
