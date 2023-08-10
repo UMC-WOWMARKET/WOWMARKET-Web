@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import GoodsAdd from "../components/GoodsAdd";
 import Calendar from "../components/Calendar";
+import axios from "axios";
 
 const DemandRegister = () => {
   const {
@@ -12,18 +13,30 @@ const DemandRegister = () => {
   } = useForm();
   //register()로 각 입력란 등록, handleSubmit()로 submit 이벤트 처리
 
-  const [Selected, setSelected] = useState("");
-  const handleSelect = (e) => {
-    setSelected(e.target.value);
-    const category_id = Selected;
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  useEffect(() => {
+    // Mock 데이터를 가져오는 로직
+    axios
+      .get("/categories.json")
+      .then((response) => {
+        setCategories(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching categories:", error);
+      });
+  }, []);
+
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
   };
-  //카테고리 선택 관련
+  //카테고리
 
   let item = [];
   const submitFunction = (e) => {
     item = e;
   };
-  //GoodsAdd.js 컴포넌트에서 가지고 온 값 -> item 배열로
+  //GoodsAdd.js 값 -> item 배열로
 
   const [start_date, setStartDate] = useState(null);
   const [end_date, setEndDate] = useState(null);
@@ -33,19 +46,18 @@ const DemandRegister = () => {
   const handleEndDateChange = (date) => {
     setEndDate(date);
   };
-  //Calander 에서 가지고온 start_date, end_date
+  //Calander -> start_date, end_date
 
   const onSubmit = async (data) => {
     await new Promise((r) => setTimeout(r, 1000));
-
     const combinedData = {
       ...data,
       item,
       start_date,
       end_date,
+      category_id: selectedCategory,
     };
     //useform으로 받은 data 말고도 외부 컴포넌트로 받은 데이터도 함께 처리
-
     try {
       const response = await fetch("/api/submit", {
         method: "POST",
@@ -97,14 +109,13 @@ const DemandRegister = () => {
 
           <InputCell>
             <Label>카테고리 *</Label>
-            <select onChange={handleSelect} value={Selected}>
-              <option>===선택하세요===</option>
-              <option value="clothing">의류</option>
-              <option value="staitonery">문구</option>
-              <option value="sticker">스티커</option>
-              <option value="doll">인형</option>
-              <option value="pinbutton">뱃지</option>
-              <option value="etc">기타</option>
+            <select value={selectedCategory} onChange={handleCategoryChange}>
+              <option value="">===선택===</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
             </select>
           </InputCell>
 
@@ -115,7 +126,12 @@ const DemandRegister = () => {
 
           <InputCell>
             <Label>굿즈 소개 첨부 파일 *</Label>
-            <input type="file" name="image" multiple accept="image/*" />
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              multiple
+            />
           </InputCell>
 
           <InputCell>

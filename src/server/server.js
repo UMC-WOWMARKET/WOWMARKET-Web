@@ -1,4 +1,5 @@
 const express = require('express');
+const aws = require("aws-sdk");
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
@@ -9,10 +10,11 @@ app.use(bodyParser.json());
 app.post('/api/submit', (req, res) => {
   const formData = req.body;
   console.log('Received data from client:', formData);
-
-  // 여기서 데이터를 처리하고 응답
-
   res.json({ message: 'Data received and processed on the server.' });
+});
+
+app.get('/api/submit', (req, res) => {
+  res.json({ message: 'GET request to submit endpoint' });
 });
 
 const PORT = process.env.PORT || 3001;

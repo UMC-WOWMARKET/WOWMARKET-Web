@@ -17,12 +17,11 @@ function Calendar({ onStartDateChange, onEndDateChange }) {
 
   const onChange = (dates) => {
     const [startDate, endDate] = dates;
-    setStartDate(startDate); //start_date: 시작일
-    setEndDate(endDate); //end_date: 종료일
-    const start_date = formatDate(startDate);
-    const end_date = formatDate(endDate);
-    onStartDateChange(start_date);
-    onEndDateChange(end_date);
+    setStartDate(startDate);
+    setEndDate(endDate);
+
+    onStartDateChange(formatDate(startDate));
+    onEndDateChange(formatDate(endDate));
   };
 
   return (
