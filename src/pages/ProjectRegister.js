@@ -3,9 +3,10 @@ import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import GoodsAdd from "../components/GoodsAdd";
 import Calendar from "../components/Calendar";
+import Option from "../components/Option";
 import axios from "axios";
 
-const DemandRegister = () => {
+const ProjectRegister = () => {
   const {
     register,
     handleSubmit,
@@ -47,6 +48,11 @@ const DemandRegister = () => {
   };
   //Calander -> start_date, end_date
 
+  const [recieve_type, setReceiveType] = useState(null);
+  const handleRecieveChange = (e) => {
+    setReceiveType(e);
+  };
+
   const onSubmit = async (data) => {
     await new Promise((r) => setTimeout(r, 1000));
     const combinedData = {
@@ -55,6 +61,7 @@ const DemandRegister = () => {
       item,
       start_date,
       end_date,
+      recieve_type,
     };
     //useform으로 받은 data 말고도 외부 컴포넌트로 받은 데이터도 함께 처리
 
@@ -77,14 +84,14 @@ const DemandRegister = () => {
   };
 
   return (
-    <div className="DemandRegister">
-      수요조사 등록폼
+    <div className="ProjectRegister">
+      판매 등록폼
       <RegisterFormContainer>
         <form
           onSubmit={handleSubmit(onSubmit)} //중복 제출 방지 - 시간 지연
         >
           <InputCell>
-            <Label>수요조사 등록명 *</Label>
+            <Label>프로젝트 등록명 *</Label>
             <InputRegister
               name="project_name"
               placeholder="구매자의 흥미를 불러올 수 있는 이름을 설정해주세요. ex [2차] 한정판 눈송이 x 와우 콜라보 인형 판매"
@@ -144,7 +151,24 @@ const DemandRegister = () => {
           </InputCell>
 
           <InputCell>
-            <label>프로젝트 담당자명 * </label>
+            <Label>수령방법 * </Label>
+            <Option onRecieveChange={handleRecieveChange}/>
+            <br />
+          </InputCell>
+
+          <InputCell>
+            <Label>입금계좌 * </Label>
+            <input name="account" {...register("account", { required: true })}/>
+          </InputCell>
+          
+          <InputCell>
+            <Label>예금주 * </Label>
+            <input name="account_holder_name" {...register("account_holder_name", { required: true })}/>
+            <br />
+          </InputCell>
+        
+          <InputCell>
+            <Label>프로젝트 담당자명 * </Label>
             <input
               name="nickname"
               {...register("nickname", { required: true })}
@@ -158,7 +182,7 @@ const DemandRegister = () => {
   );
 };
 
-export default DemandRegister;
+export default ProjectRegister;
 
 const RegisterFormContainer = styled.div`
   border: solid 0.5px;
