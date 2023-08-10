@@ -94,8 +94,8 @@ const Insta = styled.img`
 `;
 
 const Logo = styled.div`
-  //로고(이미지로)
-`;
+    padding: 10px;
+`
 
 const Navigation = styled.nav`
   position: absoulte;
