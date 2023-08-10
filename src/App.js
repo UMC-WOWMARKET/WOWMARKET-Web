@@ -7,10 +7,9 @@ import Home from "./pages/Home";
 import DemandRegister from "./pages/DemandRegister";
 import Users from "./pages/Users";
 import Goods from "./pages/Goods";
-import Introduce from "./pages/Introduce";
-import Goodslist from "./pages/Goodslist";
-import TextDisplay from "./pages/TextDisplay";
 import Search from "./pages/Search";
+import React, { useState } from 'react';
+
 
 function App() {
   const handleSearch = (searchTerm) => {
@@ -27,24 +26,18 @@ function App() {
           <Route path="/register/demand" element={<DemandRegister />} />
           <Route path="/detail/:goods_id" element={<Goods />} />
           <Route path="/mypage/:user_id" element={<MyPage />} />
-        </Routes>
+        </Routes>       
       </div>
       <div className="Search">
       <Search onSearch={handleSearch} />
     </div>
-      <Introduce/>
-    <div className="Goodslist">
-      <h3>이미지 표시 </h3>
-      <Goodslist />
-    </div>
-    <div className="TextDisplay">
-      <h1>굿즈이름</h1>
-      <TextDisplay />
-    </div>
+
     </BrowserRouter>
+    
     
   );
 }
+
 
 export default App;
 
