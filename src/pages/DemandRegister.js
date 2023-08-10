@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import GoodsAdd from "../components/GoodsAdd";
-import Calendar from "../components/Calendar";
+import GoodsAdd from "../components/register/GoodsAdd";
+import Calendar from "../components/register/Calendar";
 import axios from "axios";
 
 const DemandRegister = () => {
@@ -64,7 +64,7 @@ const DemandRegister = () => {
           "Content-Type": "application/json",
         },
       });
-    
+
       if (response.status === 200) {
         console.log("Data submitted successfully!");
       } else {
@@ -124,12 +124,7 @@ const DemandRegister = () => {
 
           <InputCell>
             <Label>굿즈 소개 첨부 파일 *</Label>
-            <input
-              type="file"
-              name="image"
-              accept="image/*"
-              multiple
-            />
+            <input type="file" name="image" accept="image/*" multiple />
           </InputCell>
 
           <InputCell>

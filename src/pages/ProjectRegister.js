@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import GoodsAdd from "../components/GoodsAdd";
-import Calendar from "../components/Calendar";
-import Option from "../components/Option";
+import GoodsAdd from "../components/register/GoodsAdd";
+import Calendar from "../components/register/Calendar";
+import Option from "../components/register/Option";
 import axios from "axios";
 
 const banks = [

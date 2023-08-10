@@ -1,3 +1,5 @@
+//데이터 처리 확인용 서버 구현(추후에 삭제 예정)
+
 const express = require('express');
 const aws = require("aws-sdk");
 const bodyParser = require('body-parser');
