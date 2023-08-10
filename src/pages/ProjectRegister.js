@@ -6,6 +6,36 @@ import Calendar from "../components/Calendar";
 import Option from "../components/Option";
 import axios from "axios";
 
+const banks = [
+  "KB국민",
+  "IBK기업",
+  "NH농협",
+  "신한",
+  "카카오뱅크",
+  "씨티",
+  "SC제일",
+  "우리",
+  "외환",
+  "케이뱅크",
+  "토스뱅크",
+  "하나",
+  "경남",
+  "광주",
+  "대구",
+  "부산",
+  "KDB산업",
+  "수협",
+  "우체국",
+  "전북",
+  "제주",
+  "새마을금고",
+  "신협",
+  "서울",
+  "농협중앙회",
+  "SBI저축",
+  "저축",
+];
+
 const ProjectRegister = () => {
   const {
     register,
@@ -17,7 +47,7 @@ const ProjectRegister = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   useEffect(() => {
-    // Mock 데이터를 가져오기
+    // Mock 데이터를 가져옴
     axios
       .get("/categories.json")
       .then((response) => {
@@ -52,11 +82,19 @@ const ProjectRegister = () => {
   const handleRecieveChange = (e) => {
     setReceiveType(e);
   };
+  //Option -> 수령방법 가져오기
+
+  const [selectedBank, setSelectedBank] = useState(banks[-1]);
+  const handleOptionChange = (event) => {
+    setSelectedBank(event.target.value);
+  };
+  //은행 선택 관련
 
   const onSubmit = async (data) => {
     await new Promise((r) => setTimeout(r, 1000));
     const combinedData = {
       ...data,
+      bank: selectedBank,
       category_id: selectedCategory,
       item,
       start_date,
@@ -71,7 +109,7 @@ const ProjectRegister = () => {
           "Content-Type": "application/json",
         },
       });
-    
+
       if (response.status === 200) {
         console.log("Data submitted successfully!");
       } else {
@@ -131,12 +169,7 @@ const ProjectRegister = () => {
 
           <InputCell>
             <Label>굿즈 소개 첨부 파일 *</Label>
-            <input
-              type="file"
-              name="image"
-              accept="image/*"
-              multiple
-            />
+            <input type="file" name="image" accept="image/*" multiple />
           </InputCell>
 
           <InputCell>
@@ -152,21 +185,36 @@ const ProjectRegister = () => {
 
           <InputCell>
             <Label>수령방법 * </Label>
-            <Option onRecieveChange={handleRecieveChange}/>
+            <Option onRecieveChange={handleRecieveChange} />
             <br />
           </InputCell>
 
           <InputCell>
             <Label>입금계좌 * </Label>
-            <input name="account" {...register("account", { required: true })}/>
+            <select value={selectedBank} onChange={handleOptionChange}>
+              <option value="">은행</option>
+              {banks.map((option, index) => (
+                <option key={index} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <input
+              name="account"
+              {...register("account", { required: true })}
+            />
           </InputCell>
-          
+
           <InputCell>
             <Label>예금주 * </Label>
-            <input name="account_holder_name" {...register("account_holder_name", { required: true })}/>
+            <></>
+            <input
+              name="account_holder_name"
+              {...register("account_holder_name", { required: true })}
+            />
             <br />
           </InputCell>
-        
+
           <InputCell>
             <Label>프로젝트 담당자명 * </Label>
             <input

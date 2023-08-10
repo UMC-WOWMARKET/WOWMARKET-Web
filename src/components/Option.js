@@ -36,7 +36,7 @@ function Option({ onRecieveChange }) {
         <input
           type="radio"
           name="option"
-          value="option1"
+          value="delivery"
           checked={option1Selected}
           onChange={handleOption1Change}
         />
@@ -46,7 +46,7 @@ function Option({ onRecieveChange }) {
         <input
           type="radio"
           name="option"
-          value="option2"
+          value="venue"
           checked={!option1Selected}
           onChange={handleOption2Change}
         />
