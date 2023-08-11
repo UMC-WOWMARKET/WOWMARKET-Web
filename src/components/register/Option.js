@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-function Option({ onRecieveChange }) {
+function Option({ onRecieveChange, onAddressChange }) {
   const [option1Selected, setOption1Selected] = useState(true);
   const [inputEnabled, setInputEnabled] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -23,11 +23,12 @@ function Option({ onRecieveChange }) {
   // 택배 선택 -> "delivery" 전달
   if (option1Selected) {
     onRecieveChange("delivery");
+    onAddressChange(null);
   }
   // 장소지정 선택 -> 입력받은 장소 전달
   else {
-    console.log(inputValue);
-    onRecieveChange(inputValue);
+    onRecieveChange("pickup");
+    onAddressChange(inputValue);
   }
 
   return (
@@ -57,6 +58,7 @@ function Option({ onRecieveChange }) {
         value={inputValue}
         onChange={handleInputChange}
         disabled={option1Selected}
+        required
       />
     </OptionContainer>
   );

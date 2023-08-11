@@ -79,8 +79,12 @@ const ProjectRegister = () => {
   //Calander -> start_date, end_date
 
   const [recieve_type, setReceiveType] = useState(null);
+  const [address, setAddress] = useState(null);
   const handleRecieveChange = (e) => {
     setReceiveType(e);
+  };
+  const handleAddressChange = (e) => {
+    setAddress(e);
   };
   //Option -> 수령방법 가져오기
 
@@ -102,6 +106,12 @@ const ProjectRegister = () => {
       recieve_type,
     };
     //useform으로 받은 data 말고도 외부 컴포넌트로 받은 데이터도 함께 처리
+
+    if (address !== null) {
+      combinedData.address = address;
+    } else {
+      delete combinedData.address;
+    }//택배 선택시 adress 넘기지 않음 (이미 작성되어있던 내용이 있어도 넘기지 않음 )
 
     try {
       const response = await axios.post("/api/submit", combinedData, {
@@ -185,7 +195,10 @@ const ProjectRegister = () => {
 
           <InputCell>
             <Label>수령방법 * </Label>
-            <Option onRecieveChange={handleRecieveChange} />
+            <Option
+              onRecieveChange={handleRecieveChange}
+              onAddressChange={handleAddressChange}
+            />
             <br />
           </InputCell>
 
