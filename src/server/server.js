@@ -9,6 +9,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+
 app.post('/api/submit', (req, res) => {
   const formData = req.body;
   console.log('Received data from client:', formData);

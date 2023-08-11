@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import GoodsAdd from "../components/register/GoodsAdd";
 import Calendar from "../components/register/Calendar";
 import Option from "../components/register/Option";
+import ImageUploader from "../components/register/ImageUploader";
 import axios from "axios";
 
 const banks = [
@@ -94,6 +95,12 @@ const ProjectRegister = () => {
   };
   //은행 선택 관련
 
+  const [thumbnail, setThumbnail] = useState(null);
+  const handleImageUrlUploaded = (e) => {
+    setThumbnail(e);
+  }
+  //이미지 업로드
+
   const onSubmit = async (data) => {
     await new Promise((r) => setTimeout(r, 1000));
     const combinedData = {
@@ -104,6 +111,7 @@ const ProjectRegister = () => {
       start_date,
       end_date,
       recieve_type,
+      thumbnail,
     };
     //useform으로 받은 data 말고도 외부 컴포넌트로 받은 데이터도 함께 처리
 
@@ -157,7 +165,7 @@ const ProjectRegister = () => {
 
           <InputCell>
             <Label>대표 이미지 *</Label>
-            <InputImage type="file" name="thumbnail" accept="image/*" />
+            <ImageUploader ImageUrlUploaded={handleImageUrlUploaded} />
           </InputCell>
 
           <InputCell>
@@ -269,10 +277,6 @@ const InputRegister = styled.input`
   border: solid 1px;
   width: 100%;
   height: 25px;
-`;
-
-const InputImage = styled.input`
-  margin: 10px;
 `;
 
 const Date = styled.div``;
