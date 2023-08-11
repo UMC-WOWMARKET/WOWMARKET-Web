@@ -7,8 +7,9 @@ import Home from "./pages/Home";
 import DemandRegister from "./pages/DemandRegister";
 import Users from "./pages/Users";
 import Goods from "./pages/Goods";
-import Search from "./pages/Search";
+import Search from "./components/Search";
 import React, { useState } from 'react';
+import Arrangement from "./components/Arrangement";
 
 
 function App() {
@@ -30,8 +31,7 @@ function App() {
       </div>
       <div className="Search">
       <Search onSearch={handleSearch} />
-    </div>
-
+      </div>
     </BrowserRouter>
     
     
