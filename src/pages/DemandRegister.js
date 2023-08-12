@@ -67,10 +67,10 @@ const DemandRegister = () => {
     //useform으로 받은 data 말고도 외부 컴포넌트로 받은 데이터도 함께 처리
 
     try {
-      const response = await axios.post("/api/submit", combinedData, {
+      const response = await axios.post("http://13.125.190.15:8080/wowmarket/register/project", combinedData, {
         headers: {
           "Content-Type": "application/json",
-        },
+        }
       });
 
       if (response.status === 200) {

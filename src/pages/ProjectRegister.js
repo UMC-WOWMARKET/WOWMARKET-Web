@@ -122,7 +122,7 @@ const ProjectRegister = () => {
     }//택배 선택시 adress 넘기지 않음 (이미 작성되어있던 내용이 있어도 넘기지 않음 )
 
     try {
-      const response = await axios.post("/api/submit", combinedData, {
+      const response = await axios.post("http://13.125.190.15:8080/wowmarket/register/project", combinedData, {
         headers: {
           "Content-Type": "application/json",
         },
