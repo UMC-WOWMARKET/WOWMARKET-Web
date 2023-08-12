@@ -1,4 +1,4 @@
-//데이터 처리 확인용 서버 구현(추후에 삭제 예정)
+/* //데이터 처리 확인용 서버 구현(추후에 삭제 예정)
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -19,3 +19,4 @@ app.get('http://13.125.190.15:8080/wowmarket/register/project', (req, res) => {
   res.json({ message: 'GET request to submit endpoint' });
 });
 
+ */

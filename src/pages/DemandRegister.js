@@ -66,8 +66,19 @@ const DemandRegister = () => {
     };
     //useform으로 받은 data 말고도 외부 컴포넌트로 받은 데이터도 함께 처리
 
+    axios.interceptors.request.use((config) => {
+      /* JWT 토큰 */
+      const userAccessToken = localStorage.getItem("accessToken");
+      if (userAccessToken) {
+        console.log(userAccessToken);
+        config.headers["X-ACCESS-TOKEN"] = `${userAccessToken}`;
+      }
+
+      return config;
+    });
+
     try {
-      const response = await axios.post("http://13.125.190.15:8080/wowmarket/register/project", combinedData, {
+      const response = await axios.post("http://13.125.190.15:8080/wowmarket/register/demand", combinedData, {
         headers: {
           "Content-Type": "application/json",
         }

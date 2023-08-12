@@ -121,6 +121,17 @@ const ProjectRegister = () => {
       delete combinedData.address;
     }//택배 선택시 adress 넘기지 않음 (이미 작성되어있던 내용이 있어도 넘기지 않음 )
 
+    axios.interceptors.request.use((config) => {
+      /* JWT 토큰 */
+      const userAccessToken = localStorage.getItem("accessToken");
+      if (userAccessToken) {
+        console.log(userAccessToken);
+        config.headers["X-ACCESS-TOKEN"] = `${userAccessToken}`;
+      }
+
+      return config;
+    });
+
     try {
       const response = await axios.post("http://13.125.190.15:8080/wowmarket/register/project", combinedData, {
         headers: {
