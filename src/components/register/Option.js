@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 function Option({ onRecieveChange, onAddressChange }) {
@@ -10,26 +10,24 @@ function Option({ onRecieveChange, onAddressChange }) {
     setOption1Selected(true);
     setInputEnabled(false);
   };
-
   const handleOption2Change = () => {
     setOption1Selected(false);
     setInputEnabled(true);
   };
-
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
 
-  // 택배 선택 -> "delivery" 전달
-  if (option1Selected) {
-    onRecieveChange("delivery");
-    onAddressChange(null);
-  }
-  // 장소지정 선택 -> 입력받은 장소 전달
-  else {
-    onRecieveChange("pickup");
-    onAddressChange(inputValue);
-  }
+  useEffect(() => {
+    if (option1Selected) {
+      onRecieveChange("delivery");
+      onAddressChange(null);
+    }
+    else {
+      onRecieveChange("pickup");
+      onAddressChange(inputValue);
+    }
+  });
 
   return (
     <OptionContainer>

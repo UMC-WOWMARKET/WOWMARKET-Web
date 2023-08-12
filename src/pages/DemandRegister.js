@@ -16,6 +16,12 @@ const DemandRegister = () => {
 
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [item, setItem] = useState(null);
+  const [start_date, setStartDate] = useState(null);
+  const [end_date, setEndDate] = useState(null);
+  const [thumbnail, setThumbnail] = useState(null);
+
+
   useEffect(() => {
     // Mock 데이터를 가져오기
     axios
@@ -27,32 +33,23 @@ const DemandRegister = () => {
         console.error("Error fetching categories:", error);
       });
   }, []);
+
+
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
   };
-  //카테고리
-
-  let item = [];
-  const submitFunction = (e) => {
-    item = e;
+  const handleGoodsAdd = (e) => {
+    setItem(e);
   };
-  //GoodsAdd.js 값 -> item 배열로
-
-  const [start_date, setStartDate] = useState(null);
-  const [end_date, setEndDate] = useState(null);
   const handleStartDateChange = (date) => {
     setStartDate(date);
   };
   const handleEndDateChange = (date) => {
     setEndDate(date);
   };
-  //Calander -> start_date, end_date
-
-  const [thumbnail, setThumbnail] = useState(null);
   const handleImageUrlUploaded = (e) => {
     setThumbnail(e);
   }
-  //이미지 업로드
 
   const onSubmit = async (data) => {
     await new Promise((r) => setTimeout(r, 1000));
@@ -138,7 +135,7 @@ const DemandRegister = () => {
 
           <InputCell>
             <Label>굿즈 등록 *</Label>
-            <GoodsAdd submitFunction={submitFunction} />
+            <GoodsAdd onGoodsAdd={handleGoodsAdd} />
           </InputCell>
 
           <InputCell>

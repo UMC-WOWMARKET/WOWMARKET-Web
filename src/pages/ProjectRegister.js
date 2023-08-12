@@ -63,9 +63,9 @@ const ProjectRegister = () => {
   };
   //카테고리
 
-  let item = [];
-  const submitFunction = (e) => {
-    item = e;
+  const [item, setItem] = useState(null);
+  const handleGoodsAdd = (e) => {
+    setItem(e);
   };
   //GoodsAdd.js 값 -> item 배열로
 
@@ -193,7 +193,7 @@ const ProjectRegister = () => {
 
           <InputCell>
             <Label>굿즈 등록 *</Label>
-            <GoodsAdd submitFunction={submitFunction} />
+            <GoodsAdd onGoodsAdd={handleGoodsAdd} />
           </InputCell>
 
           <InputCell>
