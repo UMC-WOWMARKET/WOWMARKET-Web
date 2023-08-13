@@ -93,14 +93,13 @@ const DemandRegister = () => {
   };
 
   return (
-    <div className="DemandRegister">
-      수요조사 등록폼
       <RegisterFormContainer>
+        <Title>수요조사 등록폼</Title>
         <form
           onSubmit={handleSubmit(onSubmit)} //중복 제출 방지 - 시간 지연
         >
           <InputCell>
-            <Label>수요조사 등록명 *</Label>
+            <Label>프로젝트 제목 *</Label>
             <InputRegister
               name="project_name"
               placeholder="구매자의 흥미를 불러올 수 있는 이름을 설정해주세요. ex [2차] 한정판 눈송이 x 와우 콜라보 인형 판매"
@@ -164,7 +163,6 @@ const DemandRegister = () => {
           <button type="submit" disabled={isSubmitting}>등록하기</button>
         </form>
       </RegisterFormContainer>
-    </div>
   );
 };
 
@@ -175,8 +173,14 @@ const RegisterFormContainer = styled.div`
   border-radius: 10px;
   margin: 20px;
   padding: 20px;
+  color: #646464;
 `;
-
+const Title = styled.div`
+  border-bottom: 1px solid;
+  width: 80%;
+  padding: 10px;
+  margin: auto;
+`
 const InputCell = styled.div`
   width: 80%;
   margin: auto;
