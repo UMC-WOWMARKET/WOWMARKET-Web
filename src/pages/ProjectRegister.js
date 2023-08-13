@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 import GoodsAdd from "../components/register/GoodsAdd";
 import Calendar from "../components/register/Calendar";
-import Option from "../components/register/Option";
 import ImageUploader from "../components/register/ImageUploader";
-import axios from "axios";
+import ReceiveType from "../components/register/ReceiveType";
 
 const banks = [
   "KB국민",
@@ -47,6 +47,14 @@ const ProjectRegister = () => {
 
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [item, setItem] = useState(null);
+  const [start_date, setStartDate] = useState(null);
+  const [end_date, setEndDate] = useState(null);
+  const [thumbnail, setThumbnail] = useState(null);
+  const [recieve_type, setReceiveType] = useState(null);
+  const [address, setAddress] = useState(null);
+  const [selectedBank, setSelectedBank] = useState(banks[-1]);
+
   useEffect(() => {
     // Mock 데이터를 가져옴
     axios
@@ -58,48 +66,31 @@ const ProjectRegister = () => {
         console.error("Error fetching categories:", error);
       });
   }, []);
-  const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
-  };
-  //카테고리
 
-  const [item, setItem] = useState(null);
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+  };
   const handleGoodsAdd = (e) => {
     setItem(e);
   };
-  //GoodsAdd.js 값 -> item 배열로
-
-  const [start_date, setStartDate] = useState(null);
-  const [end_date, setEndDate] = useState(null);
-  const handleStartDateChange = (date) => {
-    setStartDate(date);
+  const handleStartDateChange = (e) => {
+    setStartDate(e);
   };
-  const handleEndDateChange = (date) => {
-    setEndDate(date);
+  const handleEndDateChange = (e) => {
+    setEndDate(e);
   };
-  //Calander -> start_date, end_date
-
-  const [recieve_type, setReceiveType] = useState(null);
-  const [address, setAddress] = useState(null);
   const handleRecieveChange = (e) => {
     setReceiveType(e);
   };
   const handleAddressChange = (e) => {
     setAddress(e);
   };
-  //Option -> 수령방법 가져오기
-
-  const [selectedBank, setSelectedBank] = useState(banks[-1]);
-  const handleOptionChange = (event) => {
-    setSelectedBank(event.target.value);
+  const handleOptionChange = (e) => {
+    setSelectedBank(e.target.value);
   };
-  //은행 선택 관련
-
-  const [thumbnail, setThumbnail] = useState(null);
   const handleImageUrlUploaded = (e) => {
     setThumbnail(e);
-  }
-  //이미지 업로드
+  };
 
   const onSubmit = async (data) => {
     await new Promise((r) => setTimeout(r, 1000));
@@ -119,7 +110,7 @@ const ProjectRegister = () => {
       combinedData.address = address;
     } else {
       delete combinedData.address;
-    }//택배 선택시 adress 넘기지 않음 (이미 작성되어있던 내용이 있어도 넘기지 않음 )
+    } //택배 선택시 adress 넘기지 않음 (이미 작성되어있던 내용이 있어도 넘기지 않음 )
 
     axios.interceptors.request.use((config) => {
       /* JWT 토큰 */
@@ -133,11 +124,15 @@ const ProjectRegister = () => {
     });
 
     try {
-      const response = await axios.post("http://13.125.190.15:8080/wowmarket/register/project", combinedData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.post(
+        "http://13.125.190.15:8080/wowmarket/register/project",
+        combinedData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response.status === 200) {
         console.log("Data submitted successfully!");
@@ -204,7 +199,6 @@ const ProjectRegister = () => {
           <InputCell>
             <Label>진행 기간 *</Label>
             <Date>
-              <label>날짜 선택</label>
               <Calendar
                 onStartDateChange={handleStartDateChange}
                 onEndDateChange={handleEndDateChange}
@@ -214,7 +208,7 @@ const ProjectRegister = () => {
 
           <InputCell>
             <Label>수령방법 * </Label>
-            <Option
+            <ReceiveType
               onRecieveChange={handleRecieveChange}
               onAddressChange={handleAddressChange}
             />
@@ -254,8 +248,8 @@ const ProjectRegister = () => {
               {...register("nickname", { required: true })}
             />
           </InputCell>
-
-          <input type="submit" disabled={isSubmitting} />
+          <br />
+          <button type="submit" disabled={isSubmitting}>등록하기</button>
         </form>
       </RegisterFormContainer>
     </div>

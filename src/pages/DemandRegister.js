@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 import GoodsAdd from "../components/register/GoodsAdd";
 import Calendar from "../components/register/Calendar";
 import ImageUploader from "../components/register/ImageUploader";
-import axios from "axios";
 
 const DemandRegister = () => {
   const {
@@ -35,17 +35,17 @@ const DemandRegister = () => {
   }, []);
 
 
-  const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
   };
   const handleGoodsAdd = (e) => {
     setItem(e);
   };
-  const handleStartDateChange = (date) => {
-    setStartDate(date);
+  const handleStartDateChange = (e) => {
+    setStartDate(e);
   };
-  const handleEndDateChange = (date) => {
-    setEndDate(date);
+  const handleEndDateChange = (e) => {
+    setEndDate(e);
   };
   const handleImageUrlUploaded = (e) => {
     setThumbnail(e);
@@ -146,7 +146,6 @@ const DemandRegister = () => {
           <InputCell>
             <Label>진행 기간 *</Label>
             <Date>
-              <label>날짜 선택</label>
               <Calendar
                 onStartDateChange={handleStartDateChange}
                 onEndDateChange={handleEndDateChange}
@@ -161,8 +160,8 @@ const DemandRegister = () => {
               {...register("nickname", { required: true })}
             />
           </InputCell>
-
-          <input type="submit" disabled={isSubmitting} />
+          <br />
+          <button type="submit" disabled={isSubmitting}>등록하기</button>
         </form>
       </RegisterFormContainer>
     </div>

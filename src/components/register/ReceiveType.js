@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-function Option({ onRecieveChange, onAddressChange }) {
+function ReceiveType({ onRecieveChange, onAddressChange }) {
   const [option1Selected, setOption1Selected] = useState(true);
   const [inputEnabled, setInputEnabled] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -62,7 +62,7 @@ function Option({ onRecieveChange, onAddressChange }) {
   );
 }
 
-export default Option;
+export default ReceiveType;
 
 const OptionContainer = styled.div`
   float: left;
