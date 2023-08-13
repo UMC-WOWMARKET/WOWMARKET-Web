@@ -1,0 +1,14 @@
+{
+	"deliveryMethod" :[
+		{ "id": 1, "name": "택배", "cost": 3000},
+		{ "id": 2, "name": "직접 수령", "cost":0}
+	],
+	"goodsList" : [
+		{ "id": 1, "name": "상품1", "price": 1000 },
+		{ "id": 2, "name": "상품2", "price": 2000 },
+		{ "id": 3, "name": "상품3", "price": 3000 }
+	],
+	"accountInfo" : [
+		{ "account": "KB국민 0123456789", "holder": "김판매"}
+	]
+}

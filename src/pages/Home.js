@@ -2,6 +2,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import Banner from "../components/Banner";
 import FilterBar from "../components/FilterBar";
 import SearchBar from "../components/SearchBar";
+import Detail from '../components/Detail';
 
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -23,6 +24,7 @@ const Home = () => {
           {page_type === "demand" && "수요조사"}
         </div>
         <div>GoodsList</div>
+				<Detail />
       </div>
     </div>
   );
