@@ -21,7 +21,7 @@ const Login = () => {
   const handleNavigateToKakaoLogin = useCallback(() => {
     //base url무시하고 카카오 로그인 페이지로 이동
     window.location.href =
-      "https://kauth.kakao.com/oauth/authorize?client_id=394cbd2e5e0ad400adbc202784ad624b&redirect_uri=http://localhost:8080/wowmarket/users/login/kakao&response_type=code";
+      "https://kauth.kakao.com/oauth/authorize?client_id=394cbd2e5e0ad400adbc202784ad624b&redirect_uri=http://localhost:3000/users/kakao&response_type=code";
   }, [navigate]);
 
   const LoginFunc = (e) => {
@@ -36,10 +36,18 @@ const Login = () => {
       .post("http://localhost:8080/wowmarket/users/login", body)
       .then((res) => {
         console.log(res.data);
-        const { accessToken } = res.data.accessToken;
-        axios.defaults.headers.common["X-ACCESS-TOKEN"] = `${accessToken}`;
-        e.stopPropagation();
-        navigate(`/`);
+        // local storage에 accessToken 저장
+        if (res.data.accessToken) {
+          localStorage.setItem("accessToken", res.data.accessToken);
+        }
+        // 임시 비밀번호면 resetPW로 넘기기
+        if (res.data.temporaryPw) {
+          console.log("비밀번호 재설정으로");
+          e.stopPropagation();
+          navigate(`/users/TempPw?user_id=${id}`);
+        } else {
+          navigate(`/`);
+        }
       })
       .catch((err) => {
         alert("아이디 혹은 비밀번호가 일치하지 않습니다.");

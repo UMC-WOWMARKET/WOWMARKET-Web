@@ -1,9 +1,12 @@
 import "./App.css";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import MyPage from "./pages/MyPage";
 import Home from "./pages/Home";
-import Register from "./pages/Register";
+//import ProjectRegister from "./pages/ProjectRegister";
+import DemandRegister from "./pages/DemandRegister";
+import ProjectRegister from "./pages/ProjectRegister";
 import Users from "./pages/Users";
 import Goods from "./pages/Goods";
 import Button from "./components/Button";
@@ -11,14 +14,15 @@ import Detail from "./components/Detail";
 function App() {
   return (
     <BrowserRouter>
-    <Header />
       <div className="App">
+        <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/goods" element={<Home />} />
           <Route path="/users/:page_type" element={<Users />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/detail/:goods_id" element={<Goods />} />
-          <Route path="/mypage/:user_id" element={<MyPage />} />
+          <Route path="/register/demand" element={<DemandRegister />} />
+          <Route path="/register/project" element={<ProjectRegister />} />
+          <Route path="/goods/detail" element={<Goods />} />
+          <Route path="/mypage" element={<MyPage />} />
         </Routes>
       </div>
     </BrowserRouter>

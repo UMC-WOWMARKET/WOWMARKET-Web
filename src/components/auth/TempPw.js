@@ -1,25 +1,36 @@
 import { useEffect, useState, useCallback } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 
 const TempPw = () => {
-  const [idRe, setIdRe] = useState("");
   const [pw, setPw] = useState("");
   const [pwCk, setPwCk] = useState("");
 
-  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const user_id = searchParams.get("user_id");
 
-  const handleNavigateToReset = useCallback(() => {
-    navigate("/pages/Home");
-  }, [navigate]);
+  const navigate = useNavigate();
+  let body = {
+    email: user_id,
+    password: pw,
+  };
+
+  const submitResetPw = () => {
+    console.log("임시비밀번호 서버 전송");
+    axios
+      .post(`http://localhost:8080/wowmarket/users/resetPw`, body)
+      .catch((err) => {
+        alert("비밀번호 재설정 실패!");
+      });
+    alert("비밀번호 재설정 성공! 로그인 하세요");
+    navigate("/users/login");
+  };
 
   const [button, setButton] = useState(true);
 
   useEffect(() => {
-    idRe.includes("@") && pw.length >= 5 && pw === pwCk
-      ? setButton(false)
-      : setButton(true);
-  }, [idRe, pw, pwCk]);
+    pw.length >= 5 && pw === pwCk ? setButton(false) : setButton(true);
+  }, [pw, pwCk]);
 
   return (
     <div className="TempPw">
@@ -27,13 +38,7 @@ const TempPw = () => {
 
       <div className="input_body">
         <div className="subtitle">이메일 주소</div>
-        <input
-          placeholder="wow1234@email.com"
-          className="input_box"
-          onChange={(e) => {
-            setIdRe(e.target.value);
-          }}
-        />
+        <div className="input_box">{user_id}</div>
       </div>
 
       <div className="input_tail">
@@ -56,11 +61,7 @@ const TempPw = () => {
       </div>
 
       <div>
-        <button
-          className="resetPw"
-          disabled={button}
-          onClick={handleNavigateToReset}
-        >
+        <button className="resetPw" disabled={button} onClick={submitResetPw}>
           비밀번호 재설정하기
         </button>
       </div>

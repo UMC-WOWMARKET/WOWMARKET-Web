@@ -1,11 +1,18 @@
 import { useParams } from "react-router-dom";
 
 const MyPage = () => {
-  const { user_id } = useParams();
+  /*
+{
+userid: Long
+name: string
+email: string
+}
+*/
+  //axios get해와서 유저 정보 받기
   return (
     <div className="MyPage">
-      <div>{user_id}번 사용자</div>
-      <div>마이페이지</div>
+      <div className="navigation_bar">Navigation</div>
+      <div>Content</div>
     </div>
   );
 };

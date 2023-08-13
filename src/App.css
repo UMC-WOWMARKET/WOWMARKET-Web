@@ -125,6 +125,53 @@
   align-items: center;
 }
 
+.title {
+  font-size: 36px;
+}
+
+.input_body .subtitle {
+  font-size: 20px;
+  color: rgba(110, 110, 110, 1);
+}
+
+.input_body .input_box {
+  height: 40px;
+  width: 432px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(240, 240, 240, 1);
+  color: rgba(110, 110, 110, 1);
+  padding-left: 10px;
+}
+
+.navigation {
+  border: none;
+  background-color: white;
+  color: rgba(110, 110, 110, 1);
+  cursor: pointer;
+
+  padding-top: 10px;
+}
+
+.small_but {
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  background-color: rgba(217, 217, 217, 1);
+
+  border: none;
+}
+
+.input_body_small {
+  width: 432px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 /*Login*/
 
 .Login {
@@ -141,10 +188,6 @@
   padding-top: 30px;
 }
 
-.title {
-  font-size: 36px;
-}
-
 .Login .input_body {
   display: flex;
   flex-direction: column;
@@ -154,21 +197,6 @@
   height: 60%;
 
   padding-left: 50px;
-}
-
-.input_body .subtitle {
-  font-size: 20px;
-  color: rgba(110, 110, 110, 1);
-}
-
-.input_body .input_box {
-  height: 40px;
-  width: 432px;
-  border-radius: 10px;
-  border: none;
-  background-color: rgba(240, 240, 240, 1);
-  color: rgba(110, 110, 110, 1);
-  padding-left: 10px;
 }
 
 .input_footer {
@@ -198,15 +226,6 @@
   background-color: rgba(255, 235, 131, 1);
 
   border: none;
-}
-
-.Login .navigation {
-  border: none;
-  background-color: white;
-  color: rgba(110, 110, 110, 1);
-  cursor: pointer;
-
-  padding-top: 10px;
 }
 
 /*Join*/
@@ -326,7 +345,7 @@
 
 .TempPw {
   width: 545px;
-  height: 503px;
+  height: 500px;
   border: 1px solid rgba(174, 174, 174, 1);
   border-radius: 20px;
 
@@ -334,6 +353,8 @@
   flex-direction: column;
   gap: 40px;
   padding: 50px;
+
+  margin-bottom: 80px;
 }
 
 .TempPw .title {
@@ -418,20 +439,23 @@
 
 .UnivCert {
   width: 545px;
-  height: 581px;
+  height: 450px;
   border: 1px solid rgba(174, 174, 174, 1);
   border-radius: 20px;
 
   display: flex;
   flex-direction: column;
   gap: 40px;
-  padding: 50px;
+
+  padding-bottom: 40px;
+  padding-top: 30px;
+
+  margin-bottom: 70px;
 }
 
 .UnivCert .title {
   text-align: left;
   padding-left: 45px;
-  font-size: 36px;
   color: rgb(77, 75, 75);
   font-weight: 500;
 }
@@ -441,8 +465,9 @@
   flex-direction: column;
 
   align-items: flex-start;
-  height: 50%;
+  height: 60%;
   padding-left: 50px;
+
   gap: 20px;
 }
 
@@ -486,4 +511,50 @@
   background-color: rgba(240, 240, 240, 1);
   color: rgba(110, 110, 110, 1);
   padding-left: 10;
+}
+
+.input_box_small {
+  height: 40px;
+  width: 300px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(240, 240, 240, 1);
+  color: rgba(110, 110, 110, 1);
+  padding-left: 10px;
+}
+
+/*Goods*/
+
+.Goods {
+  border: 1px solid red;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-evenly;
+}
+
+.Goods .left_side {
+  border: 1px solid blue;
+  width: 35%;
+}
+.Goods .right_side {
+  border: 1px solid blueviolet;
+  width: 35%;
+}
+
+.GoodsInfo {
+  border: 1px solid red;
+}
+
+/*myPage*/
+.MyPage {
+  border: 1px solid red;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-evenly;
+}
+.MyPage .navigation_bar {
 }
