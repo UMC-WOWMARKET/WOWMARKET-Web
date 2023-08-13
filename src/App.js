@@ -10,6 +10,9 @@ import ProjectRegister from "./pages/ProjectRegister";
 import Users from "./pages/Users";
 import Goods from "./pages/Goods";
 import Button from "./components/Button";
+import MyOrder from "./components/MyPage/MyOrder";
+import MyProject from "./components/MyPage/MyProject";
+import MyInfo from "./components/MyPage/MyInfo";
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
           <Route path="/register/project" element={<ProjectRegister />} />
           <Route path="/goods/detail" element={<Goods />} />
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/MyOrder" element={<MyOrder />} />
+          <Route path="/MyProject" element={<MyProject />} />
+          <Route path="/MyInfo" element={<MyInfo />} />
         </Routes>
       </div>
     </BrowserRouter>
