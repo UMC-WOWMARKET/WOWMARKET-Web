@@ -1,9 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useParams, Route, Switch, Routes } from "react-router-dom";
 import { Link } from "react-router-dom";
 import React from "react";
 import NavigationBar from "../components/MyPage/NavigationBar";
+import MyInfo from "../components/MyPage/MyInfo";
+import MyOrder from "../components/MyPage/MyOrder";
+import MyProject from "../components/MyPage/MyProject";
 
-const MyPage = (props) => {
+const MyPage = () => {
   /*
 {
 userid: Long
@@ -14,11 +17,14 @@ email: string
   //axios get해와서 유저 정보 받기
   return (
     <div className="MyPage">
-      <div className="title">마이페이지</div>
-      <div className="navigation_bar">
-        <NavigationBar />
+      <div className="content">
+        <Routes>
+          <Route path="/" element={<MyInfo />} />
+          <Route path="/MyInfo" element={<MyInfo />} />
+          <Route path="/MyOrder" element={<MyOrder />} />
+          <Route path="/MyProject" element={<MyProject />} />
+        </Routes>
       </div>
-      <div className="content">{props.children}</div>
     </div>
   );
 };
