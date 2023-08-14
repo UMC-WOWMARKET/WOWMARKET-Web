@@ -64,6 +64,17 @@ function UnivCert() {
     };
     console.log(`인증번호 확인 데이터:${code_body}`);
 
+    axios.interceptors.request.use((config) => {
+      /* JWT 토큰 */
+      const userAccessToken = localStorage.getItem("accessToken");
+      if (userAccessToken) {
+        console.log(userAccessToken);
+        config.headers["X-ACCESS-TOKEN"] = `${userAccessToken}`;
+      }
+
+      return config;
+    });
+
     axios
       .post("http://localhost:8080/wowmarket/users/univCert/code", code_body)
       .then((res) => {

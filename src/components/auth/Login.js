@@ -33,7 +33,7 @@ const Login = () => {
 
     console.log(`로그인데이터:${id},${pw}`);
     axios
-      .post("http://localhost:8080/wowmarket/users/login", body)
+      .post("http://13.125.190.15:8080/wowmarket/users/login", body)
       .then((res) => {
         console.log(res.data);
         // local storage에 accessToken 저장
