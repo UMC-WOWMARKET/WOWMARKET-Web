@@ -2,6 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
 //import ProjectRegister from "./pages/ProjectRegister";
 import DemandRegister from "./pages/DemandRegister";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/myorder" element={<MyOrder />} />
           <Route path="/myproject" element={<MyProject />} />
         </Routes>
+        <Footer />
       </div>
     </BrowserRouter>
   );

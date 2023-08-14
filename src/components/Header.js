@@ -29,13 +29,9 @@ function Header() {
 
   return (
     <HeaderContainer>
-      <Intro>
-        <Adress src="/assets/linklogo.png" />
-        <Insta src="/assets/insta_img.png" />
-      </Intro>
       <Navigation>
         <Menu>
-          <Logo>와우상점</Logo>
+          <Logo src="/assets/wow_logo.png" />
           <NavLink to="/goods?page_type=selling">판매</NavLink>
           <NavLink to="/goods?page_type=demand">수요조사</NavLink>
           <NavLink
@@ -48,8 +44,8 @@ function Header() {
           </NavLink>
         </Menu>
         <MemberMenu>
-          <MemberLink to="/users/univCert">학교인증</MemberLink>
-          {isLogin && <MemberLink to="/mypage">my</MemberLink>}
+          {/* <MemberLink to="/users/univCert">학교인증</MemberLink> */}
+          {isLogin && <MemberLink to="/myinfo">my</MemberLink>}
           {isLogin && <MemberLink onClick={logout}>로그아웃</MemberLink>}
           {!isLogin && <MemberLink to="/users/login">로그인</MemberLink>}
         </MemberMenu>
@@ -68,42 +64,32 @@ function Header() {
 export default Header;
 
 const HeaderContainer = styled.div`
-  //position: fixed;
+  // position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  height: 100px;
-  padding-bottom: 100px;
+
+  margin-bottom: 10%;
+
+  background-color: white;
 `;
 
-const Intro = styled.div`
-  position: absoulte;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: solid 1px;
-  padding: 10px;
+const Logo = styled.img`
+  width: 48px;
+  height: 48px;
 `;
-
-const Adress = styled.img`
-  height: 20px;
-`;
-
-const Insta = styled.img`
-  height: 20px;
-`;
-
-const Logo = styled.div`
-    padding: 10px;
-`
 
 const Navigation = styled.nav`
-  position: absoulte;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: solid 1px;
-  height: 50px;
+  width: 90%;
+  height: 100px;
+
+  padding-left: 5%;
+  padding-right: 5%;
 `;
 const Menu = styled.div`
   display: flex;
@@ -127,11 +113,11 @@ const MemberMenu = styled.div``;
 
 const MemberLink = styled(Link)`
   text-decoration: none;
-  color: inherit;
+  color: white;
   border-radius: 10px;
   margin: 5px;
   padding: 5px;
-  background-color: grey;
+  background-color: rgba(0, 36, 114, 1);
   &:visited {
     text-decoration: none;
   }
