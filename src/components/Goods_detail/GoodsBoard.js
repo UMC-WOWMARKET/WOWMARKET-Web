@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Intro from "./Intro"
-import NoticeList from "./NoticeList"
-import QuestionList from "./QuestionList"
+import NoticeList from "./Notice"
+import QuestionList from "./Question"
 import axios from "axios";
 
 const GoodsBoard = () => {
