@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import dummy from '../../db/data.json';
+import dummy from '../db/data.json';
 
 const SelectGoods = ({ id, name, price, onChangeQuantity}) => {
 	const [quantity, setQuantity] = useState(0);
