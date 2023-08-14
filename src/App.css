@@ -462,7 +462,8 @@
 /*NavigationBar*/
 
 .NavigationBar .title {
-  font-size: 36px;
+  font-size: 32px;
+  font-weight: 600;
   color: rgba(110, 110, 110, 1);
   display: flex;
   align-items: flex-start;
@@ -486,29 +487,87 @@
   text-decoration: none;
   color: rgba(110, 110, 110, 1);
   font-size: 20px;
+  border-radius: 10px;
 }
-
+.myInfo.active,
+.myOrder.active,
+.myProject.active {
+  background-color: darkblue;
+  color: white; /* 글자 색상 변경 */
+}
 /*MyInfo*/
+
 .MyInfo {
   display: flex;
-  align-items: flex-start;
 }
 
 .MyInfo .MyInfoContent {
-  padding-left: 160px;
-  padding-top: 60px;
+  padding-left: 80px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
 }
 
 .MyInfo .MyInfoContent .title {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
   color: rgba(110, 110, 110, 1);
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+.MyInfo .MyInfoContent .title::before {
+  content: "";
+  position: absolute;
+  bottom: 250px; /* 간격을 조절할 값 */
+  left: 70px;
+  width: 1000px;
+  border-bottom: 1px solid #ccc;
 }
 
 .MyInfo .MyInfoContent .info_space {
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
   padding: 20px; /* 필요한 경우 패딩 조절 */
-  width: 929px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  font-size: 20px;
+}
+
+.check_space {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  color: rgba(110, 110, 110, 1);
+  margin-top: 20px;
+  align-items: flex-start;
+  width: 100px;
+  margin-left: 10px;
+}
+
+.name_subtitle,
+.mail_subtitle,
+.univ_subtitle {
+  margin-bottom: 40px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  color: rgba(110, 110, 110, 1);
+  margin-left: 10px;
+  margin-top: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-left: 10px;
+}
+
+.info .name,
+.info .email,
+.info .univ {
+  margin-bottom: 40px;
+  margin-left: 0px;
+  font-weight: bold;
 }
