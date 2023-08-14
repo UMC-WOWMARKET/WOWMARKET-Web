@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-function Option({ onRecieveChange }) {
+function ReceiveType({ onRecieveChange, onAddressChange }) {
   const [option1Selected, setOption1Selected] = useState(true);
   const [inputEnabled, setInputEnabled] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -10,25 +10,24 @@ function Option({ onRecieveChange }) {
     setOption1Selected(true);
     setInputEnabled(false);
   };
-
   const handleOption2Change = () => {
     setOption1Selected(false);
     setInputEnabled(true);
   };
-
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
 
-  // 택배 선택 -> "delivery" 전달
-  if (option1Selected) {
-    onRecieveChange("delivery");
-  }
-  // 장소지정 선택 -> 입력받은 장소 전달
-  else {
-    console.log(inputValue);
-    onRecieveChange(inputValue);
-  }
+  useEffect(() => {
+    if (option1Selected) {
+      onRecieveChange("delivery");
+      onAddressChange(null);
+    }
+    else {
+      onRecieveChange("pickup");
+      onAddressChange(inputValue);
+    }
+  });
 
   return (
     <OptionContainer>
@@ -57,12 +56,13 @@ function Option({ onRecieveChange }) {
         value={inputValue}
         onChange={handleInputChange}
         disabled={option1Selected}
+        required
       />
     </OptionContainer>
   );
 }
 
-export default Option;
+export default ReceiveType;
 
 const OptionContainer = styled.div`
   float: left;
