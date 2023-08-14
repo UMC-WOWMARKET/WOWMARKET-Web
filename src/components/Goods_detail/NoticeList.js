@@ -19,13 +19,11 @@ const NoticeList = () => {
         <NoticeForm onSubmit={handleAddPost} /> //showForm이 true면 PostForm 렌더링
       ) : (		//false면 글 목록
         <div>
-          <ul>
-            {posts.map((post, index) => (
-              <li key={index}>
-                <span>{index + 1} </span> | {post.title}
-              </li>
-            ))}
-          </ul>
+          {posts.map((post, index) => (
+            <ul key={index}>
+              <span>{index + 1} </span> | {post.title}
+            </ul>
+          ))}
           <button onClick={() => setShowForm(true)}>등록하기</button>
         </div>
       )}
