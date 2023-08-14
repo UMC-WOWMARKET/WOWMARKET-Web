@@ -1,6 +1,5 @@
-import MyPage from "../../pages/MyPage";
 import React from "react";
-import NavigationBar from "./NavigationBar";
+import NavigationBar from "../components/MyPage/NavigationBar";
 
 const MyOrder = () => {
   return (
