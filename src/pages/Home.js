@@ -5,6 +5,14 @@ import FilterBar from "../components/FilterBar";
 import SearchBar from "../components/SearchBar";
 import GoodsCard from "../components/Goods_list/GoodsCard"; // GoodsCard 컴포넌트의 경로를 적절하게 수정해주세요.
 import axios from "axios";
+import React from "react";
+import { Link } from "react-router-dom";
+
+import "../styles/Home.css";
+import styled from "styled-components";
+
+import Search from "../components/Goods_list/Search";
+import Arrangement from "../components/Goods_list/Arrangement";
 
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -14,6 +22,11 @@ const Home = () => {
   const [orderBy, setOrderBy] = useState("view"); // endDate, view, startDate
   const [univ, setUniv] = useState("allUniv"); // myUniv, allUniv
   const [projectList, setProjectList] = useState([]); // 프로젝트 목록 상태 추가
+
+  const handleSearch = (searchTerm) => {
+    // 여기서 검색어를 이용하여 검색 기능을 구현하거나 다른 원하는 작업을 수행합니다.
+    console.log("검색어:", searchTerm);
+  };
 
   console.log(`${page_type} 굿즈 리스트 페이지 렌더링`);
 
@@ -35,12 +48,17 @@ const Home = () => {
   }, [pageNo, orderBy, univ, page_type]);
 
   return (
-    <div className="Home">
-      <div className="GoodsList_header">
-        <SearchBar />
-        <Banner />
-        <FilterBar />
+    <div className="main">
+      <div className="SearchBox">
+        <Search onSearch={handleSearch} />
       </div>
+      <div className="visual">
+        <img src="assets/logo.png" alt="배너이미지" />
+      </div>
+      <div>
+        <Arrangement />
+      </div>
+
       <div className="GoodsList_body">
         <div className="title">
           {page_type === "selling" && "판매"}
