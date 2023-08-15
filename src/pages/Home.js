@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Search from "../components/Search";
 
 
+
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const page_type = searchParams.get("page_type");
@@ -54,13 +55,8 @@ const Home = () => {
       </div>
     );
   };
-        <Banner />
-        <FilterBar />
-      </div>
-     
-      </div>
-    </div>
-  );
 };
+   
+
 
 export default Home;
