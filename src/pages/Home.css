@@ -1,31 +1,27 @@
-.visual img {
-    width: 100%;
-  }
-  .product {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .product h2 {
-    padding-bottom: 40px;
-  }
-  .product ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .product ul li {
-    width: 25%;
-    /* border: 1px solid #ddd; */
-    padding-bottom: 20px;
-  }
-  .product ul li img {
-    width: 100%;
-  }
-  .product ul li h3 {
-    padding: 10px;
-  }
-  .product ul li p {
-    padding: 0 10px;
-  }
-  
+#SearchBar{
+  width: 200px;
+  height: 30px;
+  margin-top: 20px;
+  float: right;
+
+  border: 1px solid #8f8f8f;
+  border-right: none;
+  border-radius: 2px 0 0 2px;
+}
+
+#Search{
+  float: right;
+
+  color: black;
+  width: 30px;
+  height: 33.5px;
+  right: 144px;
+  margin-top: 20px;
+  margin-right: 144px;
+  border: 1px solid #8f8f8f;
+  border-left: none;
+  border-radius: 0 2px 2px 0;
+}
+#Search:active{
+	background-color: red;
+}

@@ -1,5 +1,8 @@
 
 import React, { useState } from 'react';
+import { BiSearch } from "react-icons/bi";
+import "../pages/Home.css";
+
 
 function Search({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -14,15 +17,17 @@ function Search({ onSearch }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
+    <form  onSubmit={handleSubmit}>
+            <button id="Search"><BiSearch size="20" /></button>
       <input
-        type="text"
+        id="SearchBar"
         placeholder="판매중인 굿즈를 검색해보세요!"
         value={searchTerm}
         onChange={handleInputChange}
       />
-      <button type="submit">검색</button>
     </form>
+    </div>
   );
 }
 

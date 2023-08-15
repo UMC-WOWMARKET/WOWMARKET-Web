@@ -1,67 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import GoodsItem from "./GoodsItem";
+import axios from "axios";
 
-const ProductList = () => {
-  const [products, setProducts] = useState([]);
-  const [hasMore, setHasMore] = useState(true);
+const GoodsListBlock = styled.div`
+  box-sizing: border-box;
+  padding-bottom: 3rem;
+  width: 768px;
+  margin: 0 auto;
+  margin-top: 2rem;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+`;
 
-  const fetchMoreData = () => {
-    // 실제로는 서버에서 데이터를 가져오는 로직을 구현해야 합니다.
-    // 예제에서는 임의의 가짜 데이터를 생성합니다.
-    const newProducts = Array.from({ length: 9 }, (_, index) => ({
-      seller: `판매자 ${index + products.length + 1}`,
-      productName: `상품 ${index + products.length + 1}`,
-    }));
-
-    if (newProducts.length === 0) {
-      setHasMore(false);
-      return;
-    }
-
-    setProducts([...products, ...newProducts]);
-  };
+const NewsList = () => {
+  const [articles, setArticles] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // 초기 데이터 로딩을 위해 fetchMoreData를 호출합니다.
-    fetchMoreData();
-  }, []); // 빈 배열을 전달하여 최초 렌더링 시에만 호출하도록 합니다.
+    // async를 사용하는 함수 따로 선언
+      const fetchData = async () => {
+          setLoading(true);
+          try {
+              const response = await axios.get(
+                "http:/wowmarket/demand/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}"
+              );
+              setArticles(response.data.articles);
+          } catch (e) {
+              console.log(e);
+          }
+          setLoading(false);
+      }
+      fetchData();
+  }, []);
 
-  const renderProductsGrid = () => {
-    const rows = [];
-    for (let i = 0; i < products.length; i += 3) {
-      const row = (
-        <div key={i} style={{ display: 'flex', marginBottom: '20px' }}>
-          {products.slice(i, i + 3).map((product, index) => (
-            <div key={index} style={{ marginRight: '20px' }}>
-              <strong>판매자: </strong>
-              {product.seller}
-              <br />
-              <strong>상품 이름: </strong>
-              {product.productName}
-            </div>
-          ))}
-        </div>
-      );
-      rows.push(row);
-    }
-    return rows;
-  };
+  // 대기 중일 때
+  if (loading) {
+    return <NewsListBlock>대기 중...</NewsListBlock>;
+  }
 
+  // 아직 articles 값이 설정되지 않았을 때
+  if (!articles) {
+    return null;
+  }
+  // articles 값이 유효할 때
   return (
-    <div>
-      <h1>무한 스크롤 상품 목록</h1>
-      {/* 초기 데이터 로딩 시에도 무한 스크롤 컴포넌트가 보이도록 합니다. */}
-      <InfiniteScroll
-        dataLength={products.length}
-        next={fetchMoreData}
-        hasMore={hasMore}
-        loader={<h4>Loading...</h4>}
-        initialScrollY={0} // 초기 스크롤 위치를 맨 위로 설정합니다.
-      >
-        {renderProductsGrid()}
-      </InfiniteScroll>
-    </div>
+    <NewsListBlock>
+      {articles.map((article) => (
+        <NewsItem key={article.url} article={article} />
+      ))}
+    </NewsListBlock>
   );
 };
 
-export default ProductList;
+export default NewsList;
