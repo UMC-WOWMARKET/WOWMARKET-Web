@@ -598,7 +598,7 @@
 .MyOrder .MyOrderContent .title::before {
   content: "";
   position: absolute;
-  bottom: 260px; /* 간격을 조절할 값 */
+  bottom: 200px; /* 간격을 조절할 값 */
   left: 78px;
   width: 920px;
   border-bottom: 1px solid #ccc;
