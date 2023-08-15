@@ -7,7 +7,8 @@ const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const page_type = searchParams.get("page_type");
 
-  // url : /goods?page_type=selling
+  //url1   /sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}
+  //url2   /demand/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}
   console.log(`${page_type} 굿즈 리스트 페이지 렌더링`);
 
   return (
@@ -17,6 +18,7 @@ const Home = () => {
         <Banner />
         <FilterBar />
       </div>
+
       <div className="GoodsList_body">
         <div>
           {page_type === "selling" && "판매"}

@@ -4,14 +4,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
-//import ProjectRegister from "./pages/ProjectRegister";
 import DemandRegister from "./pages/DemandRegister";
 import ProjectRegister from "./pages/ProjectRegister";
 import Users from "./pages/Users";
 import Goods from "./pages/Goods";
-
 import Button from "./components/Button";
-
 import MyOrder from "./pages/MyOrder";
 import MyProject from "./pages/MyProject";
 import MyInfo from "./pages/MyInfo";
@@ -34,6 +31,7 @@ function App() {
         </Routes>
         <Footer />
       </div>
+      <Footer />
     </BrowserRouter>
   );
 }
