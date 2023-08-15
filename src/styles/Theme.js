@@ -4,16 +4,10 @@ const componentSize = {
 
 const fontSizes = {
   headline1: "32px",
-  headline2: "32px",
-  headline3: "24px",
-  headline4: "20px",
-  headline5: "20px",
-  subtitle: "24px",
-  body1: "20px",
-  body2: "16px",
-  body3: "16px",
-  body4: "16px",
-  body5: "12px",
+  headline2: "24px",
+  headline3: "20px",
+  body1: "16px",
+  body2: "12px",
 };
 
 const colors = {

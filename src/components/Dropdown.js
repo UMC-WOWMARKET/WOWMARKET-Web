@@ -1,36 +1,40 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 import theme from "../styles/Theme";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-function Dropdown(){
-    return(
-        <DropdownContainer>
-            <NavLink to="/register/project">판매</NavLink>
-            <NavLink to="/register/demand">수요조사</NavLink>
-        </DropdownContainer>
-    )
+function Dropdown() {
+  return (
+    <DropdownContainer>
+      <NavLink to="/register/project">판매</NavLink>
+      <NavLink to="/register/demand">수요조사</NavLink>
+    </DropdownContainer>
+  );
 }
 
-export default Dropdown
+export default Dropdown;
 
 const DropdownContainer = styled.div`
   position: fixed;
-  left: 450px;
-  margin: 24px;
-  margin-top: 100px;
-`
+  width: 100%;
+  top: 100px;
+  padding: 24px 0 ;
+  background-color: ${theme.colors.white};
+`;
 
 const NavLink = styled(Link)`
-    top: 200px;
+  font-family: "Pretendard";
+  font-size: 18px;
+  left: 300px;
+  top: 200px;
+  text-decoration: none;
+  font-weight: 500;
+  color: ${theme.colors.darkgrey};
+  margin: 24px;
+  &:visited {
     text-decoration: none;
-    font-weight: 500;
-    color: ${theme.colors.darkgrey};
-    margin: 24px;
-    &:visited{
-        text-decoration: none;
-    }
-    &:hover {
+  }
+  &:hover {
     color: ${theme.colors.primaryColor};
   }
-`
+`;

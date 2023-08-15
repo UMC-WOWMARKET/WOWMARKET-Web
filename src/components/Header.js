@@ -16,6 +16,10 @@ function Header() {
     setIsLogin(false);
     navigate("/");
   };
+  
+  const changeImage = (event) => {
+    event.target.src = "/assets/mypage_hover.png";
+  }; //마이페이지 마우스오버 시 변화
 
   useEffect(() => {
     if (userAccessToken) {
@@ -47,8 +51,9 @@ function Header() {
             <Link to="/mypage">
               <StyledImage
                 src="/assets/mypage_default.png"
-                srcHover="/assets/mypage_hover.png" // 이미지 hover 시 보여줄 이미지 경로
                 alt="마이페이지"
+                onMouseEnter={changeImage}
+                onMouseLeave={(event) => (event.target.src = "/assets/mypage_default.png")}
               />
             </Link>
           )}
@@ -70,15 +75,19 @@ function Header() {
 export default Header;
 
 const HeaderContainer = styled.div`
-  //position: fixed;
+  position: fixed;
+  top: 0;
+  left: 0;
   font-family: "Pretendard";
   font-weight: 700;
-  font-size: ${theme.fontSizes.headline4};
+  font-size: ${theme.fontSizes.headline3};
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: ${theme.componentSize.maxWidth};
   height: 100px;
+  z-index: 1000;
+  background-color: ${theme.colors.white};
 `;
 
 const Logo = styled.img`
@@ -105,7 +114,7 @@ const Menu = styled.div`
 const NavLink = styled(Link)`
   text-decoration: none;
   color: ${theme.colors.darkgrey};
-  padding: 40px 30px 40px;
+  padding: 37px 30px 37px;
   &:visited {
     text-decoration: none;
   }
@@ -138,15 +147,11 @@ const MemberLink = styled(Link)`
 const DropdownMenu = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
   margin: 10px;
   position: absolute;
   top: 100px;
-  left: 180px;
+  left: 0;
 `;
 
 const StyledImage = styled.img`
-  &:hover {
-    content: url("${props => props.srcHover}"); /* hover 시 이미지 변경 */
-  }
 `;
