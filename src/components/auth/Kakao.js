@@ -11,7 +11,7 @@ function Kakao() {
   console.log(code);
 
   axios
-    .post(`http://localhost:8080/wowmarket/users/kakao/login?code=${code}`, {})
+    .post(`https://www.wowmkt.kr/users/kakao/login?code=${code}`, {})
     .then((res) => {
       console.log(res.data);
       const { accessToken } = res.data.accessToken;

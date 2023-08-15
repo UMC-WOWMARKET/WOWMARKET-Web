@@ -42,7 +42,7 @@ function UnivCert() {
     });
 
     axios
-      .post("http://localhost:8080/wowmarket/users/univCert", body)
+      .post("https://www.wowmkt.kr/users/univCert", body)
       .then((res) => {
         console.log(res.data);
         if (res.data.success) {
