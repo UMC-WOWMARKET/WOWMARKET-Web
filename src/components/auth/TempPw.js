@@ -17,11 +17,9 @@ const TempPw = () => {
 
   const submitResetPw = () => {
     console.log("임시비밀번호 서버 전송");
-    axios
-      .post(`http://localhost:8080/wowmarket/users/resetPw`, body)
-      .catch((err) => {
-        alert("비밀번호 재설정 실패!");
-      });
+    axios.post(`https://www.wowmkt.kr/users/resetPw`, body).catch((err) => {
+      alert("비밀번호 재설정 실패!");
+    });
     alert("비밀번호 재설정 성공! 로그인 하세요");
     navigate("/users/login");
   };
