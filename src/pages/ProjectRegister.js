@@ -5,8 +5,39 @@ import axios from "axios";
 import GoodsAdd from "../components/register/GoodsAdd";
 import Calendar from "../components/register/Calendar";
 import ImageUploader from "../components/register/ImageUploader";
+import ReceiveType from "../components/register/ReceiveType";
 
-const DemandRegister = () => {
+const banks = [
+  "KB국민",
+  "IBK기업",
+  "NH농협",
+  "신한",
+  "카카오뱅크",
+  "씨티",
+  "SC제일",
+  "우리",
+  "외환",
+  "케이뱅크",
+  "토스뱅크",
+  "하나",
+  "경남",
+  "광주",
+  "대구",
+  "부산",
+  "KDB산업",
+  "수협",
+  "우체국",
+  "전북",
+  "제주",
+  "새마을금고",
+  "신협",
+  "서울",
+  "농협중앙회",
+  "SBI저축",
+  "저축",
+];
+
+const ProjectRegister = () => {
   const {
     register,
     handleSubmit,
@@ -20,10 +51,12 @@ const DemandRegister = () => {
   const [start_date, setStartDate] = useState(null);
   const [end_date, setEndDate] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
-
+  const [recieve_type, setReceiveType] = useState(null);
+  const [address, setAddress] = useState(null);
+  const [selectedBank, setSelectedBank] = useState(banks[-1]);
 
   useEffect(() => {
-    // Mock 데이터를 가져오기
+    // Mock 데이터를 가져옴
     axios
       .get("/categories.json")
       .then((response) => {
@@ -33,7 +66,6 @@ const DemandRegister = () => {
         console.error("Error fetching categories:", error);
       });
   }, []);
-
 
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
@@ -47,21 +79,38 @@ const DemandRegister = () => {
   const handleEndDateChange = (e) => {
     setEndDate(e);
   };
+  const handleRecieveChange = (e) => {
+    setReceiveType(e);
+  };
+  const handleAddressChange = (e) => {
+    setAddress(e);
+  };
+  const handleOptionChange = (e) => {
+    setSelectedBank(e.target.value);
+  };
   const handleImageUrlUploaded = (e) => {
     setThumbnail(e);
-  }
+  };
 
   const onSubmit = async (data) => {
     await new Promise((r) => setTimeout(r, 1000));
     const combinedData = {
       ...data,
+      bank: selectedBank,
       category_id: selectedCategory,
       item,
       start_date,
       end_date,
+      recieve_type,
       thumbnail,
     };
     //useform으로 받은 data 말고도 외부 컴포넌트로 받은 데이터도 함께 처리
+
+    if (address !== null) {
+      combinedData.address = address;
+    } else {
+      delete combinedData.address;
+    } //택배 선택시 adress 넘기지 않음 (이미 작성되어있던 내용이 있어도 넘기지 않음 )
 
     axios.interceptors.request.use((config) => {
       /* JWT 토큰 */
@@ -75,11 +124,15 @@ const DemandRegister = () => {
     });
 
     try {
-      const response = await axios.post("http://13.125.190.15:8080/wowmarket/register/demand", combinedData, {
-        headers: {
-          "Content-Type": "application/json",
+      const response = await axios.post(
+        "http://13.125.190.15:8080/wowmarket/register/project",
+        combinedData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      });
+      );
 
       if (response.status === 200) {
         console.log("Data submitted successfully!");
@@ -94,7 +147,7 @@ const DemandRegister = () => {
 
   return (
       <RegisterFormContainer>
-        <Title>수요조사 등록폼</Title>
+      <Title>판매 등록폼</Title>
         <form
           onSubmit={handleSubmit(onSubmit)} //중복 제출 방지 - 시간 지연
         >
@@ -153,7 +206,42 @@ const DemandRegister = () => {
           </InputCell>
 
           <InputCell>
-            <label>프로젝트 담당자명 * </label>
+            <Label>수령방법 * </Label>
+            <ReceiveType
+              onRecieveChange={handleRecieveChange}
+              onAddressChange={handleAddressChange}
+            />
+            <br />
+          </InputCell>
+
+          <InputCell>
+            <Label>입금계좌 * </Label>
+            <select value={selectedBank} onChange={handleOptionChange}>
+              <option value="">은행</option>
+              {banks.map((option, index) => (
+                <option key={index} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <input
+              name="account"
+              {...register("account", { required: true })}
+            />
+          </InputCell>
+
+          <InputCell>
+            <Label>예금주 * </Label>
+            <></>
+            <input
+              name="account_holder_name"
+              {...register("account_holder_name", { required: true })}
+            />
+            <br />
+          </InputCell>
+
+          <InputCell>
+            <Label>프로젝트 담당자명 * </Label>
             <input
               name="nickname"
               {...register("nickname", { required: true })}
@@ -166,7 +254,7 @@ const DemandRegister = () => {
   );
 };
 
-export default DemandRegister;
+export default ProjectRegister;
 
 const RegisterFormContainer = styled.div`
   border: solid 0.5px;
@@ -176,12 +264,14 @@ const RegisterFormContainer = styled.div`
   margin-top: 205px;
   color: #646464;
 `;
+
 const Title = styled.div`
   border-bottom: 1px solid;
   width: 80%;
   padding: 10px;
   margin: auto;
-`
+`;
+
 const InputCell = styled.div`
   width: 80%;
   margin: auto;

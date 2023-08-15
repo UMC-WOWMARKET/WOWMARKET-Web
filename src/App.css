@@ -1,7 +1,13 @@
-.App {
-  text-align: center;
+html, body {
+  height: 100%;
 }
 
+.App {
+  text-align: center;
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 300px;
+}
 /*Button*/
 
 .Button {
@@ -35,6 +41,54 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 205px;
+}
+
+.title {
+  font-size: 36px;
+}
+
+.input_body .subtitle {
+  font-size: 20px;
+  color: rgba(110, 110, 110, 1);
+}
+
+.input_body .input_box {
+  height: 40px;
+  width: 432px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(240, 240, 240, 1);
+  color: rgba(110, 110, 110, 1);
+  padding-left: 10px;
+}
+
+.navigation {
+  border: none;
+  background-color: white;
+  color: rgba(110, 110, 110, 1);
+  cursor: pointer;
+
+  padding-top: 10px;
+}
+
+.small_but {
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  background-color: rgba(217, 217, 217, 1);
+
+  border: none;
+}
+
+.input_body_small {
+  width: 432px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 /*Login*/
@@ -53,10 +107,6 @@
   padding-top: 30px;
 }
 
-.title {
-  font-size: 36px;
-}
-
 .Login .input_body {
   display: flex;
   flex-direction: column;
@@ -66,21 +116,6 @@
   height: 60%;
 
   padding-left: 50px;
-}
-
-.input_body .subtitle {
-  font-size: 20px;
-  color: rgba(110, 110, 110, 1);
-}
-
-.input_body .input_box {
-  height: 40px;
-  width: 432px;
-  border-radius: 10px;
-  border: none;
-  background-color: rgba(240, 240, 240, 1);
-  color: rgba(110, 110, 110, 1);
-  padding-left: 10px;
 }
 
 .input_footer {
@@ -110,15 +145,6 @@
   background-color: rgba(255, 235, 131, 1);
 
   border: none;
-}
-
-.Login .navigation {
-  border: none;
-  background-color: white;
-  color: rgba(110, 110, 110, 1);
-  cursor: pointer;
-
-  padding-top: 10px;
 }
 
 /*Join*/
@@ -238,7 +264,7 @@
 
 .TempPw {
   width: 545px;
-  height: 503px;
+  height: 500px;
   border: 1px solid rgba(174, 174, 174, 1);
   border-radius: 20px;
 
@@ -246,6 +272,8 @@
   flex-direction: column;
   gap: 40px;
   padding: 50px;
+
+  margin-bottom: 80px;
 }
 
 .TempPw .title {
@@ -330,20 +358,23 @@
 
 .UnivCert {
   width: 545px;
-  height: 581px;
+  height: 450px;
   border: 1px solid rgba(174, 174, 174, 1);
   border-radius: 20px;
 
   display: flex;
   flex-direction: column;
   gap: 40px;
-  padding: 50px;
+
+  padding-bottom: 40px;
+  padding-top: 30px;
+
+  margin-bottom: 70px;
 }
 
 .UnivCert .title {
   text-align: left;
   padding-left: 45px;
-  font-size: 36px;
   color: rgb(77, 75, 75);
   font-weight: 500;
 }
@@ -353,8 +384,9 @@
   flex-direction: column;
 
   align-items: flex-start;
-  height: 50%;
+  height: 60%;
   padding-left: 50px;
+
   gap: 20px;
 }
 
@@ -400,4 +432,269 @@
   padding-left: 10;
 }
 
+.input_box_small {
+  height: 40px;
+  width: 300px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(240, 240, 240, 1);
+  color: rgba(110, 110, 110, 1);
+  padding-left: 10px;
+}
 
+/*Goods*/
+
+.Goods {
+  border: 1px solid red;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-evenly;
+}
+
+.Goods .left_side {
+  border: 1px solid blue;
+  width: 35%;
+}
+.Goods .right_side {
+  border: 1px solid blueviolet;
+  width: 35%;
+}
+
+.GoodsInfo {
+  border: 1px solid red;
+}
+
+/*NavigationBar*/
+
+.NavigationBar .title {
+  font-size: 32px;
+  font-weight: 600;
+  color: rgba(110, 110, 110, 1);
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 50px;
+  padding-left: 163px;
+}
+
+.NavigationBar .nav_box {
+  display: flex;
+  padding-left: 160px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.nav_box .myInfo,
+.nav_box .myOrder,
+.nav_box .myProject {
+  display: block;
+  margin: 8px 0; /* 요소 간의 상하 간격 조절 */
+  padding: 10px;
+  text-decoration: none;
+  color: rgba(110, 110, 110, 1);
+  font-size: 20px;
+  border-radius: 10px;
+}
+.myInfo.active,
+.myOrder.active,
+.myProject.active {
+  background-color: darkblue;
+  color: white; /* 글자 색상 변경 */
+}
+
+/*MyInfo*/
+
+.MyInfo {
+  display: flex;
+}
+
+.MyInfo .MyInfoContent {
+  padding-left: 80px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.MyInfo .MyInfoContent .title {
+  font-size: 24px;
+  font-weight: bold;
+  color: rgba(110, 110, 110, 1);
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+.MyInfo .MyInfoContent .title::before {
+  content: "";
+  position: absolute;
+  bottom: 250px; /* 간격을 조절할 값 */
+  left: 70px;
+  width: 1000px;
+  border-bottom: 1px solid #ccc;
+}
+
+.MyInfo .MyInfoContent .info_space {
+  padding: 20px; /* 필요한 경우 패딩 조절 */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  font-size: 20px;
+}
+
+.check_space {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  color: rgba(110, 110, 110, 1);
+  margin-top: 20px;
+  align-items: flex-start;
+  width: 100px;
+  margin-left: 10px;
+}
+
+.name_subtitle,
+.mail_subtitle,
+.univ_subtitle {
+  margin-bottom: 40px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  color: rgba(110, 110, 110, 1);
+  margin-left: 10px;
+  margin-top: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-left: 10px;
+}
+
+.info .name,
+.info .email,
+.info .univ {
+  margin-bottom: 40px;
+  margin-left: 0px;
+  font-weight: bold;
+}
+
+/*MyOrder*/
+.MyOrder {
+  display: flex;
+}
+
+.MyOrder .MyOrderContent {
+  padding-left: 80px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.MyOrder .MyOrderContent .title {
+  font-size: 24px;
+  font-weight: bold;
+  color: rgba(110, 110, 110, 1);
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+.MyOrder .MyOrderContent .title::before {
+  content: "";
+  position: absolute;
+  bottom: 260px; /* 간격을 조절할 값 */
+  left: 78px;
+  width: 920px;
+  border-bottom: 1px solid #ccc;
+}
+
+.MyOrder .MyOrderContent .footer {
+  font-size: 12px;
+  margin-top: 30px;
+  color: rgba(110, 110, 110, 1);
+  background-color: #f0f0f0; /* 회색 배경색 설정 */
+  padding: 5px; /* 내용과의 간격을 위한 패딩 설정 */
+  width: 900px;
+}
+.footer div {
+  display: flex; /* 동그라미 말머리표를 위한 Flex 레이아웃 */
+  align-items: center; /* 세로 중앙 정렬 */
+  margin-left: 15px;
+}
+
+.footer div::before {
+  content: "\2022"; /* 동그라미 말머리표 (유니코드 코드포인트) */
+  margin-right: 5px; /* 말머리표와 텍스트 간 간격 */
+  color: rgba(110, 110, 110, 1); /* 말머리표 색상 */
+  font-size: 1.5rem; /* 말머리표 크기 */
+}
+
+.order_space {
+  border: 1px solid #ccc; /* 회색 네모 테두리 설정 */
+  padding: 10px; /* 내용과의 간격을 위한 패딩 설정 */
+  width: 900px;
+  background-color: #fff; /* 배경색 설정 */
+  margin-top: 20px;
+  font-size: 16px;
+  color: rgba(110, 110, 110, 1);
+}
+
+.MyOrder .MyOrderContent .order_space .header {
+  display: flex; /* 수평 정렬을 위한 Flex 레이아웃 */
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: space-between; /* 아이템 사이 간격을 최대화하여 수평 간격 조절 */
+  margin-bottom: 3px;
+  padding-bottom: 5px 0;
+}
+
+.header > div {
+  flex: 1; /* 동일한 너비를 가진 Flex 아이템으로 설정 */
+  text-align: center; /* 텍스트 가운데 정렬 */
+  margin: 10px 0;
+}
+
+.MyOrder .MyOrderContent .order_space .header .first,
+.MyOrder .MyOrderContent .order_space .header .last,
+.MyOrder .MyOrderContent .order_space .header .third {
+  margin: 10px; /* 기본 마진을 제거하여 끝쪽으로 위치 */
+  padding-right: 25px;
+  padding-left: 10px;
+  flex: 0 0 auto;
+}
+
+.MyOrder .MyOrderContent .order_space .header .third {
+  padding-right: 45px;
+}
+.MyOrder .MyOrderContent .order_space .header .second {
+  padding-right: 120px;
+}
+.MyOrder .MyOrderContent .order_space .content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0px;
+  margin-top: 10px 0;
+  border-top: 1px solid #ccc;
+}
+
+.content > div {
+  flex: 1;
+  text-align: center;
+  margin: 25px 0;
+}
+
+.MyOrder .MyOrderContent .order_space .content .order_num,
+.MyOrder .MyOrderContent .order_space .content .order_date,
+.MyOrder .MyOrderContent .order_space .content .order_memo {
+  margin: 10px; /* 기본 마진을 제거하여 끝쪽으로 위치 */
+  padding-right: 5px;
+  padding-left: 20px;
+  flex: 0 0 auto;
+}
+
+.MyOrder .MyOrderContent .order_space .content .order_title {
+  padding-right: 380px;
+}

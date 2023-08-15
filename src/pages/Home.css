@@ -1,27 +1,46 @@
 #SearchBar{
-  width: 200px;
+  padding-left: 10px;
+  width: 300px;
   height: 30px;
-  margin-top: 20px;
+  margin-top: 120px;
+  margin-bottom: 10px;
   float: right;
-
-  border: 1px solid #8f8f8f;
+  border: 1px solid #F0F0F0;
   border-right: none;
-  border-radius: 2px 0 0 2px;
+  border-radius: 5px 0 0 5px;
 }
 
 #Search{
   float: right;
-
-  color: black;
+  background-color: transparent;
+  color: #DDDDDD;
   width: 30px;
   height: 33.5px;
   right: 144px;
-  margin-top: 20px;
-  margin-right: 144px;
-  border: 1px solid #8f8f8f;
+  margin-top: 120px;
+  margin-right: 200px;
+  border: 1px solid #F0F0F0;
   border-left: none;
-  border-radius: 0 2px 2px 0;
+  border-radius: 0 5px 5px 0;
 }
 #Search:active{
-	background-color: red;
+	background-color: #DDDDDD;
 }
+#SearchBar::placeholder {
+  color: r#CFCFCF;
+}
+
+/*배너이미지*/
+.visual {
+  width: 100%;
+  /* 뷰포트의 전체 높이 */
+ 
+  align-items: center; /* 세로 중앙 정렬 */
+}
+
+.visual img {
+  width: 100%; /* 이미지를 가로로 꽉 채움 */
+  height: 100%; /* 이미지를 세로로 꽉 채움 */
+  object-fit: cover; /* 이미지의 비율을 유지하면서 채우도록 설정 */
+}
+
