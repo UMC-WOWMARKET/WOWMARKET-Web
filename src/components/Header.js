@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import Dropdown from "./Dropdown";
 import { useState } from "react";
+import theme from "../styles/Theme";
 
 function Header() {
   const [view, setView] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const userAccessToken = localStorage.getItem("accessToken");
-
   const navigate = useNavigate();
 
   const logout = () => {
@@ -29,17 +29,12 @@ function Header() {
 
   return (
     <HeaderContainer>
-      <Intro>
-        <Adress src="/assets/linklogo.png" />
-        <Insta src="/assets/insta_img.png" />
-      </Intro>
       <Navigation>
         <Menu>
-          <Logo>와우상점</Logo>
+          <Logo src="/assets/weblogo.png " />
           <NavLink to="/goods?page_type=selling">판매</NavLink>
           <NavLink to="/goods?page_type=demand">수요조사</NavLink>
           <NavLink
-            to="/register"
             onMouseEnter={() => {
               setView(true);
             }}
@@ -48,8 +43,15 @@ function Header() {
           </NavLink>
         </Menu>
         <MemberMenu>
-          <MemberLink to="/users/univCert">학교인증</MemberLink>
-          {isLogin && <MemberLink to="/mypage">my</MemberLink>}
+          {isLogin && (
+            <Link to="/mypage">
+              <StyledImage
+                src="/assets/mypage_default.png"
+                srcHover="/assets/mypage_hover.png" // 이미지 hover 시 보여줄 이미지 경로
+                alt="마이페이지"
+              />
+            </Link>
+          )}
           {isLogin && <MemberLink onClick={logout}>로그아웃</MemberLink>}
           {!isLogin && <MemberLink to="/users/login">로그인</MemberLink>}
         </MemberMenu>
@@ -69,42 +71,31 @@ export default Header;
 
 const HeaderContainer = styled.div`
   //position: fixed;
+  font-family: "Pretendard";
+  font-weight: 700;
+  font-size: ${theme.fontSizes.headline4};
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
+  width: ${theme.componentSize.maxWidth};
   height: 100px;
-  padding-bottom: 100px;
 `;
 
-const Intro = styled.div`
-  position: absoulte;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: solid 1px;
-  padding: 10px;
+const Logo = styled.img`
+  width: 48px;
+  margin-right: 37px;
 `;
-
-const Adress = styled.img`
-  height: 20px;
-`;
-
-const Insta = styled.img`
-  height: 20px;
-`;
-
-const Logo = styled.div`
-    padding: 10px;
-`
 
 const Navigation = styled.nav`
   position: absoulte;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: solid 1px;
-  height: 50px;
+  border-bottom: ${theme.colors.lightgrey} solid 2px;
+  height: 100px;
+  padding: 0 144px;
 `;
+
 const Menu = styled.div`
   display: flex;
   justify-content: space-between;
@@ -113,25 +104,33 @@ const Menu = styled.div`
 
 const NavLink = styled(Link)`
   text-decoration: none;
-  color: inherit;
-  padding: 13px 10px 13px;
+  color: ${theme.colors.darkgrey};
+  padding: 40px 30px 40px;
   &:visited {
     text-decoration: none;
   }
   &:hover {
-    border-bottom: solid 3px;
+    color: ${theme.colors.primaryColor};
+    border-bottom: ${theme.colors.primaryColor} solid 5px;
   }
 `;
 
-const MemberMenu = styled.div``;
+const MemberMenu = styled.div`
+  height: 45px;
+  display: flex;
+`;
 
 const MemberLink = styled(Link)`
   text-decoration: none;
-  color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 117px;
+  height: 45px;
+  margin-left: 36px;
+  color: ${theme.colors.darkgrey};
   border-radius: 10px;
-  margin: 5px;
-  padding: 5px;
-  background-color: grey;
+  background-color: ${theme.colors.secondaryColor};
   &:visited {
     text-decoration: none;
   }
@@ -144,4 +143,10 @@ const DropdownMenu = styled.div`
   position: absolute;
   top: 100px;
   left: 180px;
+`;
+
+const StyledImage = styled.img`
+  &:hover {
+    content: url("${props => props.srcHover}"); /* hover 시 이미지 변경 */
+  }
 `;

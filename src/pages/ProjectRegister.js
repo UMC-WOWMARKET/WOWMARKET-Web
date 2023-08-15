@@ -261,6 +261,7 @@ const RegisterFormContainer = styled.div`
   border-radius: 10px;
   margin: 20px;
   padding: 20px;
+  margin-top: 105px;
   color: #646464;
 `;
 
