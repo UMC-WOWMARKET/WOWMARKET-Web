@@ -26,11 +26,24 @@ const Home = () => {
         },
         {…}
     ]
-}
-*/
+  }
+  */
 
   // url2 : /sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}
   console.log(`${page_type} 굿즈 리스트 페이지 렌더링`);
+
+  const dummy_project_list = [
+    {
+      project_id: 1,
+      project_name: "와우",
+      seller_name: "와우걸",
+      start_date: "2023-08-15",
+      end_date: "2023-08-18",
+      thumbnail: String,
+      achived: 100,
+      goal: 500,
+    },
+  ];
 
   if (page_type === "selling") {
     //판매 굿즈리스트 데이터 받기
