@@ -173,6 +173,7 @@ const RegisterFormContainer = styled.div`
   border-radius: 10px;
   margin: 20px;
   padding: 20px;
+  margin-top: 205px;
   color: #646464;
 `;
 const Title = styled.div`
