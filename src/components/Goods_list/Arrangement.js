@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "./Theme";
 
+
 const Arrangement = () => {
   const [selected, setSelected] = useState("");
 
@@ -65,37 +66,73 @@ const Sharp = styled.div`
 
 const CustomButton1 = styled.button`
   ${(props) => props.theme.buttons.primary};
-  height: 30px;
-  width: 80px;
+  height: 40px;
+  width: 90px;
   color: #646464;
   border: solid 2px #f0f0f0;
   border-radius: 5px 5px;
   margin-right: 20px;
   font-family: Pretendard;
   font-weight: 600;
+  font-size: 16px;
+
+  &:active {
+    background-color: #002472; 
+    color: #ffffff; 
+    border-color: #002472; 
+  }
+
+  /*로그인하기 전 띄워져야하는 화면
+  &[url = /goods?page_type=selling] {
+    background-color: #002472; 
+    color: #ffffff; 
+    border-color: #002472; 
+  }
+ */
+ 
+  
 `;
 
 const CustomButton2 = styled.button`
   ${(props) => props.theme.buttons.primary};
-  height: 30px;
-  width: 80px;
+  height: 40px;
+  width: 90px;
   color: #646464;
   border: solid 2px #f0f0f0;
   border-radius: 5px 5px;
   background-color: none;
   font-family: Pretendard;
   font-weight: 600;
-`;
+  font-size: 16px;
 
-// 새로운 스타일드 컴포넌트를 생성하여 option의 스타일링을 적용
+
+  &:active {
+    background-color: #002472; 
+    color: #ffffff; 
+    border-color: #002472; 
+  }
+
+  /*로그인하고 선택가능한 화면
+  &[url = /goods?page_type=selling] {
+    background-color: #002472; 
+    color: #ffffff; 
+    border-color: #002472; 
+  }
+*/
+`
+
+// 마감임박순/인기순/등록순
 const StyledSelect = styled.select`
   margin-top: 5px;
-  height: 30px;
-  width: 95px;
+  height: 40px;
+  width: 110px;
+  padding: 5px;
   border: solid 2px #f0f0f0;
   border-radius: 5px 5px;
   background-color: none;
   font-family: Pretendard;
+  font-weight: 400;
+  font-size: 15px;
   color : #646464;
 `;
 

@@ -42,14 +42,26 @@
   align-items: center; /* 세로 중앙 정렬 */
 }
 
-.visual img {
+.banner_back img {
+  position: relative;
   width: 100%; /* 이미지를 가로로 꽉 채움 */
   height: 100%; /* 이미지를 세로로 꽉 채움 */
   object-fit: cover; /* 이미지의 비율을 유지하면서 채우도록 설정 */
 }
+.banner_logo img{
+  
+  width: 700px;
+  position: absolute; /* 절대 위치로 설정 */
+  top: 10.58%; /* 부모 요소의 중간으로 수직 정렬 */
+  left: 2%; /* 부모 요소의 가운데로 수평 정렬 */
+
+  z-index: 1; /* 더 위에 레이어가 있도록 설정 */
+
+}
 
 /* Home.css (또는 원하는 스타일 파일에 추가) */
 .goods-card-container {
+  margin-left: 110px;
   display: flex;
   flex-wrap: wrap;
   gap: 20px; /* 간격 조절 */
@@ -63,8 +75,9 @@
 .GoodsList_body{
   position: absolute;
   margin-left: 144px;
-  margin-top: 10px;
+  margin-top: 15px;
   font-size: 32px;
   font-family: Pretendard;
+  font-weight: 600;
   color: #646464;
 }

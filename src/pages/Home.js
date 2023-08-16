@@ -8,9 +8,9 @@ import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
+import banner_logo from "./banner_logo.svg";
 import "../styles/Home.css";
-import banner from "./banner.svg";
+
 import Search from "../components/Goods_list/Search";
 import Arrangement from "../components/Goods_list/Arrangement";
 
@@ -59,26 +59,24 @@ const Home = () => {
 
   return (
     <div className="main">
-      <div className="SearchBox">
-        <Search onSearch={handleSearch} />
+      <div className="SearchBox"> 
+        <Search onSearch={handleSearch} /> 
       </div>
-      <div className="visual">
-        <img src={banner} />
+      <div className="banner_back">
+        <img src='../assets/banner_back.png' />
       </div>
-      
+      <div className="banner_logo">
+      <img src={banner_logo} alt="Banner Logo" />
+      </div>
       <div>
         <Arrangement />
       </div>
-
-
 <div className="GoodsList_body">
-
         <div>
           {page_type === "selling" && "판매"}
           {page_type === "demand" && "수요조사"}
         </div>
 </div>
-
   <div className="goods-card-container">
     {chunkArray(projectList, 1).map((group, groupIndex) => (     //여기서 보이는 굿즈카드의 개수를 조절합니다.
       <div key={groupIndex} className="goods-card-group">
