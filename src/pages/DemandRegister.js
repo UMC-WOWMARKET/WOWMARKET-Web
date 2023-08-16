@@ -130,7 +130,7 @@ const DemandRegister = () => {
         <InputSpanCell>
           <Label>카테고리 *</Label>
           <br />
-          <Select value={selectedCategory} onChange={handleCategoryChange}>
+          <Select value={selectedCategory} onChange={handleCategoryChange} required>
             <option value="">====선택====</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
@@ -154,7 +154,7 @@ const DemandRegister = () => {
         </InputCell>
 
         <InputCell>
-          <Label>진행 기간 *</Label>
+          <Label>진행 기간 *<span>2달 이내의 기간을 선택해주세요</span></Label>
           <Date>
             <Calendar
               onStartDateChange={handleStartDateChange}

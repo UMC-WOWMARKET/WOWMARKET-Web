@@ -54,7 +54,9 @@ const ProjectRegister = () => {
   const [thumbnail, setThumbnail] = useState(null);
   const [recieve_type, setReceiveType] = useState(null);
   const [address, setAddress] = useState(null);
+  const [delivery_fee, setDeliveryFee] = useState(null);
   const [selectedBank, setSelectedBank] = useState(banks[-1]);
+
 
   useEffect(() => {
     // Mock 데이터를 가져옴
@@ -86,6 +88,9 @@ const ProjectRegister = () => {
   const handleAddressChange = (e) => {
     setAddress(e);
   };
+  const handleDeliveryFeeChange = (e) => {
+    setDeliveryFee(e);
+  };
   const handleOptionChange = (e) => {
     setSelectedBank(e.target.value);
   };
@@ -112,6 +117,12 @@ const ProjectRegister = () => {
     } else {
       delete combinedData.address;
     } //택배 선택시 adress 넘기지 않음 (이미 작성되어있던 내용이 있어도 넘기지 않음 )
+
+    if (delivery_fee !== null){
+      combinedData.delivery_fee = delivery_fee;
+    } else {
+      delete combinedData.delivery_fee;
+    } //장소 지정 선택시 delivery_fee 넘기지 않음 (이미 작성되어있던 내용이 있어도 넘기지 않음 )
 
     axios.interceptors.request.use((config) => {
       /* JWT 토큰 */
@@ -183,7 +194,7 @@ const ProjectRegister = () => {
         <InputSpanCell>
           <Label>카테고리 *</Label>
           <br />
-          <Select value={selectedCategory} onChange={handleCategoryChange}>
+          <Select value={selectedCategory} onChange={handleCategoryChange} required>
             <option value="">====선택====</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
@@ -207,7 +218,7 @@ const ProjectRegister = () => {
         </InputCell>
 
         <InputCell>
-          <Label>진행 기간 *</Label>
+          <Label>진행 기간 *<span>2달 이내의 기간을 선택해주세요</span></Label>
           <Date>
             <Calendar
               onStartDateChange={handleStartDateChange}
@@ -221,6 +232,7 @@ const ProjectRegister = () => {
           <ReceiveType
             onRecieveChange={handleRecieveChange}
             onAddressChange={handleAddressChange}
+            onDeliveryFeeChange={handleDeliveryFeeChange}
           />
           <br />
         </InputSpanCell>
@@ -228,7 +240,7 @@ const ProjectRegister = () => {
         <InputSpanCell>
           <br />
           <LabelSpan>입금계좌 * </LabelSpan>
-          <Select value={selectedBank} onChange={handleOptionChange}>
+          <Select value={selectedBank} onChange={handleOptionChange} required>
             <Option value="">은행</Option>
             {banks.map((option, index) => (
               <Option key={index} value={option}>
@@ -282,7 +294,7 @@ const ProjectRegister = () => {
               type="checkbox"
               required
             />
-            판메지 유의사항 동의 (필수)
+            판매자 유의사항 동의 (필수)
           </Label>
           <ScrollableContainer>
             <p>{TermsContent2}</p>

@@ -4,7 +4,7 @@ import DatePicker, { CalendarContainer } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import theme from "../../styles/Theme";
 
-function Calendar({ onStartDateChange, onEndDateChange }) {
+function Calendar({ onStartDateChange, onEndDateChange, dateError }) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
@@ -34,6 +34,7 @@ function Calendar({ onStartDateChange, onEndDateChange }) {
 
   return (
     <CustomCalendarContainer>
+      {dateError && <ErrorMessage>시작 날짜와 종료 날짜를 선택하세요.</ErrorMessage>}
       <DateBox>
         {formatDate(startDate)} ~ {formatDate(endDate)}
       </DateBox>
@@ -72,3 +73,5 @@ const DateBox = styled.div`
 `
 const StyledDatePicker = styled(DatePicker)`
 `;
+
+const ErrorMessage =styled.div``;
