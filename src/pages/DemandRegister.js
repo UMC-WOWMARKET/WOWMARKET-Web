@@ -21,7 +21,6 @@ const DemandRegister = () => {
   const [start_date, setStartDate] = useState(null);
   const [end_date, setEndDate] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
-  const [isAgreed, setIsAgreed] = useState(false);
 
   useEffect(() => {
     // Mock 데이터를 가져오기
@@ -49,9 +48,6 @@ const DemandRegister = () => {
   };
   const handleImageUrlUploaded = (e) => {
     setThumbnail(e);
-  };
-  const handleCheckboxChange = () => {
-    setIsAgreed(!isAgreed);
   };
 
   const onSubmit = async (data) => {
@@ -110,16 +106,18 @@ const DemandRegister = () => {
           <InputRegister
             name="project_name"
             placeholder="프로젝트 제목을 작성해주세요 ex. 한정판) oo대 터줏대감 학사모 와움이 인형"
+            maxLength={20}
             {...register("project_name", { required: true })}
           />
         </InputCell>
 
         <InputCell>
           <Label>
-            굿즈 설명 *<span>공백포함 20자 이내</span>
+            굿즈 설명 *<span>공백포함 60자 이내</span>
           </Label>
           <InputRegister
             name="description"
+            maxLength={60}
             {...register("description", { required: true })}
           />
         </InputCell>
@@ -178,8 +176,6 @@ const DemandRegister = () => {
             {" "}
             <Checkbox
               type="checkbox"
-              checked={isAgreed}
-              onChange={handleCheckboxChange}
               required
             />
             수요조사 등록 유의사항 동의 (필수)

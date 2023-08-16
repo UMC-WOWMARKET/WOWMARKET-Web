@@ -40,16 +40,20 @@ const GoodsAdd = ({ onGoodsAdd }) => {
             id="item_name"
             value={item.item_name}
             onChange={(e) => handleChange(index, e)}
+            maxLength={12}
+            required
           />
           <PriceInput
             id="price"
             value={item.price}
             onChange={(e) => handleChange(index, e)}
+            required
           />
           <GoalInput
             id="goal"
             value={item.goal}
             onChange={(e) => handleChange(index, e)}
+            required
           />
           {products.length > 1 && (
             <DeleteButton type="button" onClick={() => handleProductRemove(index)}>
@@ -92,7 +96,7 @@ const LabelName = styled.div`
 
 const LabelPrice = styled.div`
   width: 120px;
-  margin-right: 12px;
+  margin-right: 1px;
 `;
 
 const LabelGoal = styled.div`
@@ -108,32 +112,35 @@ const GoodsDetail = styled.div`
 const NameInput = styled.input`
   width: 320px;
   border-radius: 5px;
-  border: solid 1px;
+  border: solid 1px ${theme.colors.lightgrey};
   height: 40px;
   display: inline-block;
   margin-right: 12px;
   margin-bottom: 12px;
-  color: ${theme.colors.lightgrey};
+  padding-left: 15px;
+  color: ${theme.colors.darkgrey};
 `;
 const PriceInput = styled.input`
   border-radius: 5px;
-  border: solid 1px;
+  border: solid 1px ${theme.colors.lightgrey};
   height: 40px;
   width: 120px;
   margin-right: 12px;
   margin-bottom: 12px;
   display: inline-block;
-  color: ${theme.colors.lightgrey};
+  padding-left: 15px;
+  color: ${theme.colors.darkgrey};
 `;
 const GoalInput = styled.input`
   border-radius: 5px;
-  border: solid 1px;
+  border: solid 1px ${theme.colors.lightgrey};
   height: 40px;
   width: 120px;
   margin-right: 12px;
   margin-bottom: 12px;
   display: inline-block;
-  color: ${theme.colors.lightgrey};
+  padding-left: 15px;
+  color: ${theme.colors.darkgrey};
 `;
 
 const DeleteButton = styled.button`

@@ -55,7 +55,6 @@ const ProjectRegister = () => {
   const [recieve_type, setReceiveType] = useState(null);
   const [address, setAddress] = useState(null);
   const [selectedBank, setSelectedBank] = useState(banks[-1]);
-  const [isAgreed, setIsAgreed] = useState(false);
 
   useEffect(() => {
     // Mock 데이터를 가져옴
@@ -92,9 +91,6 @@ const ProjectRegister = () => {
   };
   const handleImageUrlUploaded = (e) => {
     setThumbnail(e);
-  };
-  const handleCheckboxChange = () => {
-    setIsAgreed(!isAgreed);
   };
 
   const onSubmit = async (data) => {
@@ -163,6 +159,7 @@ const ProjectRegister = () => {
           <InputRegister
             name="project_name"
             placeholder="프로젝트 제목을 작성해주세요 ex. 한정판) oo대 터줏대감 학사모 와움이 인형"
+            maxLength={20}
             {...register("project_name", { required: true })}
           />
         </InputCell>
@@ -173,6 +170,7 @@ const ProjectRegister = () => {
           </Label>
           <InputRegister
             name="description"
+            maxLength={60}
             {...register("description", { required: true })}
           />
         </InputCell>
@@ -268,8 +266,6 @@ const ProjectRegister = () => {
             {" "}
             <Checkbox
               type="checkbox"
-              checked={isAgreed}
-              onChange={handleCheckboxChange}
               required
             />
             개인정보 수집 및 이용 동의 (필수)
@@ -284,8 +280,6 @@ const ProjectRegister = () => {
             {" "}
             <Checkbox
               type="checkbox"
-              checked={isAgreed}
-              onChange={handleCheckboxChange}
               required
             />
             판메지 유의사항 동의 (필수)
