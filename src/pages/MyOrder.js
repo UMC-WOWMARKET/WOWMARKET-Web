@@ -5,6 +5,7 @@ import axios from "axios";
 
 const MyOrder = () => {
   const [orderList, setOrderList] = useState([]); // 주문 데이터를 저장할 상태
+  const page = 1;
   useEffect(() => {
     axios.interceptors.request.use((config) => {
       const userAccessToken = localStorage.getItem("accessToken");
@@ -16,7 +17,7 @@ const MyOrder = () => {
     });
 
     axios
-      .get("https://www.wowmkt.kr/wowmarket/mypage/myorder?page=${page}")
+      .get(`https://www.wowmkt.kr/mypage/myorder?page=${page}`)
       .then((res) => {
         const responseData = res.data;
         setOrderList(responseData.orderList);
@@ -37,27 +38,21 @@ const MyOrder = () => {
             <div className="third">제출일</div>
             <div className="last">비고</div>
           </div>
-          {orderList.map((order, index) => (
-            <div className="content" key={order.orderid}>
-              <div className="order_num">{index + 1}</div>
-              <div className="order_title">{order.name}</div>
-              <div className="order_date">{order.createdtime}</div>
-              <div className="order_memo">
-                {order.is_del
-                  ? "취소완료"
-                  : order.status === 0
-                  ? "확정대기"
-                  : order.status === 1
-                  ? "주문확정"
-                  : order.status === 2
-                  ? "배송중"
-                  : order.status === 3
-                  ? "배송완료"
-                  : ""}
+          {orderList.map((order, index) => {
+            const orderDate = new Date(order.createdtime);
+            const formattedDate = orderDate.toISOString().split("T")[0];
+
+            return (
+              <div className="content" key={order.orderid}>
+                <div className="order_num">{index + 1}</div>
+                <div className="order_title">{order.name}</div>
+                <div className="order_date">{formattedDate}</div>
+                <div className="order_memo">{order.status}</div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
+
         <div className="footer">
           <div> 프로젝트 제목을 클릭하면 주문폼 내용을 확인할 수 있습니다.</div>
           <div> 확정 대기 상태에서는 주문폼 수정 및 주문취소가 가능합니다.</div>
