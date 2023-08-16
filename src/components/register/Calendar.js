@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import DatePicker, { CalendarContainer } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import theme from "../../styles/Theme";
 
 function Calendar({ onStartDateChange, onEndDateChange }) {
   const [startDate, setStartDate] = useState(null);
@@ -32,12 +33,12 @@ function Calendar({ onStartDateChange, onEndDateChange }) {
   };
 
   return (
-    <CalendarContainer>
+    <CustomCalendarContainer>
       <DateBox>
         {formatDate(startDate)} ~ {formatDate(endDate)}
       </DateBox>
       <br />
-      <DatePicker
+      <StyledDatePicker
         selected={startDate}
         onChange={onChange}
         minDate={new Date()}
@@ -49,18 +50,25 @@ function Calendar({ onStartDateChange, onEndDateChange }) {
         inline
         showDisabledMonthNavigation
       />
-    </CalendarContainer>
+    </CustomCalendarContainer>
   );
 }
 
 export default Calendar;
 
+const CustomCalendarContainer = styled(CalendarContainer)`
+  padding: 10px 0;
+  text-align: left;
+`;
+
 const DateBox = styled.div`
   padding: 4px;
-  border: 0.5px solid;
   border-radius: 5px;
-  width: 240px;
-  margin:0 auto; 
-  font-size: 13px;
-  color: #646464;
+  width: 230px;
+  font-size: 14px;
+  color: ${theme.colors.darkgrey};
+  border: 0.5px solid ${theme.colors.lightgrey};
+  text-align: center;
 `
+const StyledDatePicker = styled(DatePicker)`
+`;
