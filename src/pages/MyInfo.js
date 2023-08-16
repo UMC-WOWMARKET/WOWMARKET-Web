@@ -20,7 +20,7 @@ const MyInfo = () => {
     });
 
     axios
-      .get("https://www.wowmkt.kr/wowmarket/mypage")
+      .get("https://www.wowmkt.kr/mypage/myinfo")
       .then((res) => {
         const data = res.data; // 예시: { name: "김와우", email: "wow1234@mail.com", univ: "와우대학교" }
         setUserInfo(data); // 상태 업데이트
