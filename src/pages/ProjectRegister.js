@@ -6,6 +6,7 @@ import GoodsAdd from "../components/register/GoodsAdd";
 import Calendar from "../components/register/Calendar";
 import ImageUploader from "../components/register/ImageUploader";
 import ReceiveType from "../components/register/ReceiveType";
+import theme from "../styles/Theme";
 
 const banks = [
   "KB국민",
@@ -152,16 +153,18 @@ const ProjectRegister = () => {
           onSubmit={handleSubmit(onSubmit)} //중복 제출 방지 - 시간 지연
         >
           <InputCell>
-            <Label>프로젝트 제목 *</Label>
+            <Label>프로젝트 제목 *
+              <span>공백포함 20자 이내</span>
+            </Label>
             <InputRegister
               name="project_name"
-              placeholder="구매자의 흥미를 불러올 수 있는 이름을 설정해주세요. ex [2차] 한정판 눈송이 x 와우 콜라보 인형 판매"
+              placeholder="프로젝트 제목을 작성해주세요 ex. 한정판) oo대 터줏대감 학사모 와움이 인형"
               {...register("project_name", { required: true })}
             />
           </InputCell>
 
           <InputCell>
-            <Label>굿즈 설명 *</Label>
+            <Label>굿즈 설명 *<span>공백포함 60자 이내</span></Label>
             <InputRegister
               name="description"
               {...register("description", { required: true })}
@@ -191,7 +194,7 @@ const ProjectRegister = () => {
           </InputCell>
 
           <InputCell>
-            <Label>굿즈 소개 첨부 파일 *</Label>
+            <Label>굿즈 소개 첨부 파일 *<span>최대 3개 첨부 가능</span></Label>
             <input type="file" name="image" accept="image/*" multiple />
           </InputCell>
 
@@ -258,18 +261,23 @@ export default ProjectRegister;
 
 const RegisterFormContainer = styled.div`
   border: solid 0.5px;
-  border-radius: 10px;
-  margin: 20px;
-  padding: 20px;
+  width: 920px;
+  margin: 0 260px;
+  padding: 60px;
   margin-top: 205px;
-  color: #646464;
+  color: ${theme.colors.lightgrey};
+  font-family: "Pretendard";
 `;
 
 const Title = styled.div`
-  border-bottom: 1px solid;
+  border-bottom: 1px solid ${theme.colors.lightgrey};
   width: 80%;
-  padding: 10px;
+  padding-bottom: 25px;
   margin: auto;
+  font-weight: 600;
+  font-size: ${theme.fontSizes.headline1};
+  text-align: left;
+  color: ${theme.colors.darkgrey};
 `;
 
 const InputCell = styled.div`
@@ -279,16 +287,30 @@ const InputCell = styled.div`
 
 const Label = styled.div`
   text-align: left;
-  margin: 10px;
+  margin-top: 28px;
+  font-weight: 500;
+  font-size: 16px;
+  color: ${theme.colors.darkgrey};
+  span {
+    font-weight: 400;
+    color: ${theme.colors.grey};
+    margin-left: 8px;
+    font-size: 12px;
+  }
 `;
 
 const InputRegister = styled.input`
-  margin: 10px;
-  padding: 5px;
-  border-radius: 10px;
+  margin-top: 12px;
+  padding-left: 15px;
+  border-radius: 5px;
   border: solid 1px;
   width: 100%;
-  height: 25px;
+  height: 40px;
+  font-size: 16px;
+  color: ${theme.colors.lightgrey};
+  ::placeholder{
+    color: ${theme.colors.grey};
+  };
 `;
 
 const Date = styled.div``;
