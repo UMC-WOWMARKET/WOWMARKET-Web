@@ -17,23 +17,23 @@ const Arrangement = () => {
           <InputCell>
             <div className="input">
               <StyledSelect onChange={handleSelect} value={selected}>
-                <StyledOption type="dating" value="dating">
+                <StyledOption value="endDate">
                   마감임박순
                 </StyledOption>
-                <StyledOption type="popular" value="populr">
+                <StyledOption type="popular" value="view">
                   인기순
                 </StyledOption>
-                <StyledOption type="regist" value="regist">
+                <StyledOption type="regist" value="startDate">
                   등록순
                 </StyledOption>
               </StyledSelect>
             </div>
           </InputCell>
           <Sharp>
-            <CustomButton1 onClick={() => console.log("#우리학교 선택됨")}>
+            <CustomButton1 value="myUinv" onClick={() => console.log("#우리학교 선택됨")}>
               #우리학교
             </CustomButton1>
-            <CustomButton2 onClick={() => console.log("#전체학교 선택됨")}>
+            <CustomButton2 value="allUniv" onClick={() => console.log("#전체학교 선택됨")}>
               #전체학교
             </CustomButton2>
           </Sharp>
@@ -60,26 +60,31 @@ const InputCell = styled.div`
 const Sharp = styled.div`
   background-color: transparent;
   margin: 10px;
+
 `;
 
 const CustomButton1 = styled.button`
   ${(props) => props.theme.buttons.primary};
   height: 30px;
-  width: 90px;
+  width: 80px;
   color: #646464;
   border: solid 2px #f0f0f0;
   border-radius: 5px 5px;
   margin-right: 20px;
+  font-family: Pretendard;
+  font-weight: 600;
 `;
 
 const CustomButton2 = styled.button`
   ${(props) => props.theme.buttons.primary};
   height: 30px;
-  width: 90px;
+  width: 80px;
   color: #646464;
   border: solid 2px #f0f0f0;
   border-radius: 5px 5px;
   background-color: none;
+  font-family: Pretendard;
+  font-weight: 600;
 `;
 
 // 새로운 스타일드 컴포넌트를 생성하여 option의 스타일링을 적용
@@ -90,9 +95,12 @@ const StyledSelect = styled.select`
   border: solid 2px #f0f0f0;
   border-radius: 5px 5px;
   background-color: none;
+  font-family: Pretendard;
+  color : #646464;
 `;
 
 const StyledOption = styled.option`
+
   height: 30px;
   width: 100px;
 `;
