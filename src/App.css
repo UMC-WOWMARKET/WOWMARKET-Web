@@ -607,7 +607,7 @@ body {
 .MyOrder .MyOrderContent .title::before {
   content: "";
   position: absolute;
-  bottom: 200px; /* 간격을 조절할 값 */
+  bottom: 330px; /* 간격을 조절할 값 */
   left: 78px;
   width: 920px;
   border-bottom: 1px solid #ccc;
@@ -692,11 +692,16 @@ body {
 .MyOrder .MyOrderContent .order_space .content .order_date,
 .MyOrder .MyOrderContent .order_space .content .order_memo {
   margin: 10px; /* 기본 마진을 제거하여 끝쪽으로 위치 */
-  padding-right: 5px;
+  padding-right: 30px;
   padding-left: 20px;
   flex: 0 0 auto;
 }
 
 .MyOrder .MyOrderContent .order_space .content .order_title {
   padding-right: 380px;
+  text-align: left;
+}
+
+.MyOrder .MyOrderContent .order_space .content .order_date {
+  padding-right: 23px;
 }
