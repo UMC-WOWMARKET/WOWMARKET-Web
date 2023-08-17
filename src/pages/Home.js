@@ -70,7 +70,13 @@ const Home = () => {
         setProjectList(fetchedProjectList); // 프로젝트 목록 업데이트
       })
       .catch((err) => {});
-  }, [pageNo, orderBy, univ, page_type, searchTerm]);
+  }, [orderBy, univ, page_type, searchTerm]);
+
+  useEffect(() => {
+    ///무한스크롤
+    //axios로 데이터 받기
+    //받은 데이터를 이미 있는 페이지 밑에 붙이기
+  }, [pageNo]);
 
   return (
     <div className="main">
