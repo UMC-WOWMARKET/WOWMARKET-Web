@@ -1,7 +1,7 @@
-
 import styled from "styled-components";
 
 const GoodsCard = ({
+  key,
   projectName,
   sellerName,
   goal,
@@ -20,30 +20,26 @@ const GoodsCard = ({
 
   console.log(univ);
   return (
-  
     <GoodsList>
-      <div >
-      <RemainingDays>D - {remainingDays}</RemainingDays>
-      <img 
-        src={imgUrl}
-        style={{ 
-          width: "350px", 
-          height: "207px",
-          border: "solid 2px transparent", // 테두리 스타일 추가
-          borderRadius: "10px", // 테두리 둥글기 설정 
-         }}
-      />
-     
+      <div>
+        <RemainingDays>D - {remainingDays}</RemainingDays>
+        <img
+          src={imgUrl}
+          style={{
+            width: "350px",
+            height: "207px",
+            border: "solid 2px transparent", // 테두리 스타일 추가
+            borderRadius: "10px", // 테두리 둥글기 설정
+          }}
+        />
       </div>
-      
-        <div>
-          <ProjectName>{projectName}</ProjectName>
-          <AchievePer>{achievedPer}%달성</AchievePer>
-          <SellerName>제작 {sellerName}</SellerName>
-         
-       </div>   
+
+      <div>
+        <ProjectName>{projectName}</ProjectName>
+        <AchievePer>{achievedPer}%달성</AchievePer>
+        <SellerName>제작 {sellerName}</SellerName>
+      </div>
     </GoodsList>
-    
   );
 };
 
@@ -53,14 +49,14 @@ const GoodsList = styled.div`
   margin-left: 45px;
   margin-top: 90px;
   font-family: Pretendard;
-`
+`;
 
 const ProjectName = styled.div`
   font-size: 18px;
   font-weight: 600;
   position: absolute;
   color: #646464;
-  `
+`;
 
 const AchievePer = styled.div`
   position: absolute;
@@ -68,19 +64,18 @@ const AchievePer = styled.div`
   font-weight: 700;
   color: blue;
   margin-top: 30px;
-  color: #4051E7A3;
-`
+  color: #4051e7a3;
+`;
 
 const SellerName = styled.div`
   float: right;
-  color: #A0A0A0;
+  color: #a0a0a0;
   font-size: 16px;
   font-weight: 400px;
-  `
-
+`;
 
 const RemainingDays = styled.div`
-  background-color: #4051E7A3;
+  background-color: #4051e7a3;
   color: white;
   width: 58px;
   height: 32px;
@@ -91,5 +86,5 @@ const RemainingDays = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  box-shadow: 0px 3px 4px -1px rgba(0,0,0,0.64);
-`
+  box-shadow: 0px 3px 4px -1px rgba(0, 0, 0, 0.64);
+`;
