@@ -7,12 +7,22 @@ import GoodsCard from "../components/Goods_list/GoodsCard"; // GoodsCard 컴포�
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
-
-import "../styles/Home.css";
 import styled from "styled-components";
+import banner_logo from "./banner_logo.svg";
+import "../styles/Home.css";
 
 import Search from "../components/Goods_list/Search";
 import Arrangement from "../components/Goods_list/Arrangement";
+
+//굿즈가 3개씩 보일 수 있도록 조절
+function chunkArray(arr, size) {
+  const chunkedArr = [];
+  for (let i = 0; i < arr.length; i += size)  {
+    chunkedArr.push(arr.slice(i, i + size));
+  }
+  return chunkedArr;
+}
+
 
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -49,38 +59,47 @@ const Home = () => {
 
   return (
     <div className="main">
-      <div className="SearchBox">
-        <Search onSearch={handleSearch} />
+      <div className="SearchBox"> 
+        <Search onSearch={handleSearch} /> 
       </div>
-      <div className="visual">
-        <img src="assets/logo.png" alt="배너이미지" />
+      <div className="banner_back">
+        <img src='../assets/banner_back.png' />
+      </div>
+      <div className="banner_logo">
+      <img src={banner_logo} alt="Banner Logo" />
       </div>
       <div>
         <Arrangement />
       </div>
-
-      <div className="GoodsList_body">
-        <div className="title">
+<div className="GoodsList_body">
+        <div>
           {page_type === "selling" && "판매"}
           {page_type === "demand" && "수요조사"}
         </div>
-        <div style={{ display: "inline-block", width: "100%", height: "100%" }}>
-          {projectList.map((project) => (
-            <GoodsCard
-              key={project.project_id}
-              projectName={project.project_name}
-              sellerName={project.seller_name}
-              goal={project.goal}
-              achieved={project.achieved}
-              endDate={project.end_date}
-              startDate={project.start_date}
-              imgUrl={project.thumbnail}
-            />
-          ))}
-        </div>
+</div>
+  <div className="goods-card-container">
+    {chunkArray(projectList, 1).map((group, groupIndex) => (     //여기서 보이는 굿즈카드의 개수를 조절합니다.
+      <div key={groupIndex} className="goods-card-group">
+        {group.map((project) => (
+          <GoodsCard
+            key={project.project_id}
+            projectName={project.project_name}
+            sellerName={project.seller_name}
+            goal={project.goal}
+            achieved={project.achieved}
+            endDate={project.end_date}
+            startDate={project.start_date}
+            imgUrl={project.thumbnail}
+          />
+        ))}
       </div>
-    </div>
+    ))}
+  </div>
+</div>
+
+
   );
 };
 
 export default Home;
+
