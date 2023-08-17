@@ -33,7 +33,7 @@ const Home = () => {
   const [projectList, setProjectList] = useState([]); // 프로젝트 목록 상태 추가
   const [searchTerm, setSearchTerm] = useState("");
 
-  let url = `https://www.wowmkt.kr/demand/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
+  let url = `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
 
   const handleSearch = (searchTerm) => {
     // 여기서 검색어를 이용하여 검색 기능을 구현하거나 다른 원하는 작업을 수행합니다.
@@ -43,20 +43,20 @@ const Home = () => {
   console.log(`${page_type} 굿즈 리스트 페이지 렌더링`);
 
   useEffect(() => {
-    if (page_type === "selling") {
-      url = `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
+    url = `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
+    if (page_type === "demand") {
+      url = `https://www.wowmkt.kr/demand/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
     }
-
     if (searchTerm) {
       url = `https://www.wowmkt.kr/sale?search=${searchTerm}&pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
     }
+
     console.log(`url : ${url}`);
 
     axios.interceptors.request.use((config) => {
       /* JWT 토큰 */
       const userAccessToken = localStorage.getItem("accessToken");
       if (userAccessToken) {
-        console.log(userAccessToken);
         config.headers["X-ACCESS-TOKEN"] = `${userAccessToken}`;
       }
       return config;
@@ -65,7 +65,6 @@ const Home = () => {
     axios
       .get(url, {})
       .then((res) => {
-        console.log(res.data);
         console.log(res.data.project_list);
         const fetchedProjectList = res.data.project_list;
         setProjectList(fetchedProjectList); // 프로젝트 목록 업데이트
