@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "./Theme";
 
-const Arrangement = () => {
-  const [selected, setSelected] = useState("");
 
-  const handleSelect = (e) => {
-    setSelected(e.target.value);
-    const category_id = e.target.value;
-  };
+
+const Arrangement = ({ orderBy, setOrderBy, univ, setUniv }) => {
+  // const [orderBy, setOrderBy] = useState("");
+  // const [univ, setUniv] = useState("");
 
   return (
     <ThemeProvider theme={theme}>
@@ -16,32 +14,32 @@ const Arrangement = () => {
         <ArrangementContainer>
           <InputCell>
             <div className="input">
-              <StyledSelect onChange={handleSelect} value={selected}>
-              <StyledOption value="endDate">
-                  마감임박순
-                </StyledOption>
-                <StyledOption type="popular" value="view">
-                  인기순
-                </StyledOption>
-                <StyledOption type="regist" value="startDate">
-                  등록순
-                </StyledOption>
-
+            <StyledSelect
+                onChange={(e) => {
+                  setOrderBy(e.target.value);
+                }}
+                value={orderBy}
+              >
+                <StyledOption value="endDate">마감임박순</StyledOption>
+                <StyledOption value="view">인기순</StyledOption>
+                <StyledOption value="startDate">등록순</StyledOption>
               </StyledSelect>
             </div>
           </InputCell>
           <Sharp>
-            <CustomButton1
+          <CustomButton1
               value="myUinv"
-              onClick={() => setSelected("myUinv")} // 값만 변경
-              isActive={selected === "myUinv"} // isActive 변수를 사용하여 버튼 스타일 설정
+              onClick={(e) => {
+                setUniv(e.target.value);
+              }}
             >
               #우리학교
             </CustomButton1>
             <CustomButton2
               value="allUniv"
-              onClick={() => setSelected("allUniv")} // 값만 변경
-              isActive={selected === "allUniv"} // isActive 변수를 사용하여 버튼 스타일 설정
+              onClick={(e) => {
+                setUniv(e.target.value);
+              }}
             >
               #전체학교
             </CustomButton2>
