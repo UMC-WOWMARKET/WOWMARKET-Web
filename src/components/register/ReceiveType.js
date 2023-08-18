@@ -38,7 +38,7 @@ function ReceiveType({ onRecieveChange, onAddressChange, onDeliveryFeeChange }) 
   return (
     <OptionContainer>
       <label>
-        <input
+        <Radio
           type="radio"
           name="option"
           value="delivery"
@@ -56,7 +56,7 @@ function ReceiveType({ onRecieveChange, onAddressChange, onDeliveryFeeChange }) 
         required
       />
       <label>
-        <input
+        <Radio
           type="radio"
           name="option"
           value="venue"
@@ -80,6 +80,10 @@ function ReceiveType({ onRecieveChange, onAddressChange, onDeliveryFeeChange }) 
 export default ReceiveType;
 
 const OptionContainer = styled.span`
+`;
+
+const Radio = styled.input`
+  accent-color: ${theme.colors.skyblue};
 `;
 
 const Input = styled.input`

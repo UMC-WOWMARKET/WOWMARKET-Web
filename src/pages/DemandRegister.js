@@ -4,10 +4,10 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import GoodsAdd from "../components/register/GoodsAdd";
 import Calendar from "../components/register/Calendar";
-import ImageUploader from "../components/register/ImageUploader";
+import useImageUploader from "../\bhooks/useImageUploader";
 import theme from "../styles/Theme";
 
-const DemandRegister = () => {
+const DemandRegister = ({ ImageUrlUploaded }) => {
   const {
     register,
     handleSubmit,
@@ -20,7 +20,7 @@ const DemandRegister = () => {
   const [item, setItem] = useState(null);
   const [start_date, setStartDate] = useState(null);
   const [end_date, setEndDate] = useState(null);
-  const [thumbnail, setThumbnail] = useState(null);
+  //const [thumbnail, setThumbnail] = useState(null);
 
   useEffect(() => {
     // Mock 데이터를 가져오기
@@ -46,9 +46,13 @@ const DemandRegister = () => {
   const handleEndDateChange = (e) => {
     setEndDate(e);
   };
-  const handleImageUrlUploaded = (e) => {
-    setThumbnail(e);
-  };
+
+  const { getPresignedUrl, uploadImage, uploaded, desiredUrl } = useImageUploader();
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    getPresignedUrl(selectedFile);
+    uploadImage(selectedFile);
+  }; // 이미지 파일 선택, presignedUrl 불러오기
 
   const onSubmit = async (data) => {
     await new Promise((r) => setTimeout(r, 1000));
@@ -58,7 +62,7 @@ const DemandRegister = () => {
       item,
       start_date,
       end_date,
-      thumbnail,
+      //thumbnail,
     };
     //useform으로 받은 data 말고도 외부 컴포넌트로 받은 데이터도 함께 처리
 
@@ -75,7 +79,7 @@ const DemandRegister = () => {
 
     try {
       const response = await axios.post(
-        "http://13.125.190.15:8080/wowmarket/register/demand",
+        "https://www.wowmkt.kr/register/demand",
         combinedData,
         {
           headers: {
@@ -86,8 +90,10 @@ const DemandRegister = () => {
 
       if (response.status === 200) {
         console.log("Data submitted successfully!");
+        window.alert("성공적으로 등록되었습니다.");
       } else {
         console.error("Failed to submit data.");
+        window.alert("등록에 실패하였습니다.");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -124,13 +130,22 @@ const DemandRegister = () => {
 
         <InputCell>
           <Label>대표 이미지 *</Label>
-          <ImageUploader ImageUrlUploaded={handleImageUrlUploaded} />
+          <StyledFileInput
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+          />
+          <br />
         </InputCell>
 
         <InputSpanCell>
           <Label>카테고리 *</Label>
           <br />
-          <Select value={selectedCategory} onChange={handleCategoryChange} required>
+          <Select
+            value={selectedCategory}
+            onChange={handleCategoryChange}
+            required
+          >
             <option value="">====선택====</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
@@ -154,7 +169,9 @@ const DemandRegister = () => {
         </InputCell>
 
         <InputCell>
-          <Label>진행 기간 *<span>2달 이내의 기간을 선택해주세요</span></Label>
+          <Label>
+            진행 기간 *<span>2달 이내의 기간을 선택해주세요</span>
+          </Label>
           <Date>
             <Calendar
               onStartDateChange={handleStartDateChange}
@@ -174,14 +191,11 @@ const DemandRegister = () => {
         <InputCell>
           <Label>
             {" "}
-            <Checkbox
-              type="checkbox"
-              required
-            />
+            <Checkbox type="checkbox" required />
             수요조사 등록 유의사항 동의 (필수)
           </Label>
           <ScrollableContainer>
-          <p>{TermsContent}</p>
+            <p>{TermsContent}</p>
           </ScrollableContainer>
         </InputCell>
       </RegisterFormContainer>
@@ -280,6 +294,11 @@ const InputSmall = styled.input`
   color: ${theme.colors.darkgrey};
 `;
 
+const StyledFileInput = styled.input`
+  float: left;
+  margin: 12px 0;
+`;
+
 const Date = styled.div`
   margin-top: 10px;
 `;
@@ -313,6 +332,7 @@ const SubmitButton = styled.button`
 
 const Checkbox = styled.input`
   margin-right: 8px;
+  accent-color: ${theme.colors.primaryColor};
 `;
 
 const ScrollableContainer = styled.div`

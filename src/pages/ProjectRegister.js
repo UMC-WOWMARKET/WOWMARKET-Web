@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import GoodsAdd from "../components/register/GoodsAdd";
 import Calendar from "../components/register/Calendar";
-import ImageUploader from "../components/register/ImageUploader";
+//import ImageUploader from "../components/register/ImageUploader";
 import ReceiveType from "../components/register/ReceiveType";
 import theme from "../styles/Theme";
 
@@ -188,7 +188,8 @@ const ProjectRegister = () => {
 
         <InputCell>
           <Label>대표 이미지 *</Label>
-          <ImageUploader ImageUrlUploaded={handleImageUrlUploaded} />
+{/*           <ImageUploader ImageUrlUploaded={handleImageUrlUploaded} /> */}
+          <br />
         </InputCell>
 
         <InputSpanCell>
@@ -429,6 +430,7 @@ const SubmitButton = styled.button`
 
 const Checkbox = styled.input`
   margin-right: 8px;
+  accent-color: ${theme.colors.primaryColor};
 `;
 
 const ScrollableContainer = styled.div`

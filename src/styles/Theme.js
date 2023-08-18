@@ -18,6 +18,7 @@ const colors = {
   lightgrey: "#dddddd",
   white: "#ffffff",
   black: "#000000",
+  skyblue: "#4051E7A3",
 };
 
 const theme = {
