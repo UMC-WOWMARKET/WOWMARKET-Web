@@ -86,9 +86,11 @@ const Home = () => {
       <div className="banner_back">
         <img src="../assets/banner_back.png" />
       </div>
+      <div>
       <div className="banner_logo">
         <img src={banner_logo} alt="Banner Logo" />
       </div>
+    </div>
       <div>
         <Arrangement
           orderBy={orderBy}

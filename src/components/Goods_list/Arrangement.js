@@ -4,9 +4,12 @@ import theme from "./Theme";
 
 
 
+
 const Arrangement = ({ orderBy, setOrderBy, univ, setUniv }) => {
   // const [orderBy, setOrderBy] = useState("");
   // const [univ, setUniv] = useState("");
+
+  const [selected, setSelected] = useState("");
 
   return (
     <ThemeProvider theme={theme}>
@@ -30,16 +33,21 @@ const Arrangement = ({ orderBy, setOrderBy, univ, setUniv }) => {
           <CustomButton1
               value="myUinv"
               onClick={(e) => {
+                setSelected(e.target.value);
                 setUniv(e.target.value);
+                
               }}
+              isActive={selected === "myUinv"}
             >
               #우리학교
             </CustomButton1>
             <CustomButton2
               value="allUniv"
               onClick={(e) => {
+                setSelected(e.target.value);
                 setUniv(e.target.value);
               }}
+              isActive={selected === "allUniv"}
             >
               #전체학교
             </CustomButton2>
