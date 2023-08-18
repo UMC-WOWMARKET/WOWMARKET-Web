@@ -22,6 +22,7 @@ const Intro = () => {
 			setImage1(response.data.image1);
 			setImage2(response.data.image2);
 			setImage3(response.data.image3);
+			console.log(image3);
 		} catch (error) {
 			console.error('Error:', error);
 		}
@@ -32,10 +33,9 @@ const Intro = () => {
 	return (
 		<div>
 			<div>
-				console.log(userAccessToken);
-				<img src={image1}/>
-				<img src={image2}/>
-				<img src={image3}/>
+				<img src={image1} style={{maxWidth:'100%'}}/>
+				<img src={image2} style={{maxWidth:'100%'}}/>
+				<img src={image3} style={{maxWidth:'100%'}}/>
 			</div>
 		</div>
 	);
