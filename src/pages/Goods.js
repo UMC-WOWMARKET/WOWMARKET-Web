@@ -1,8 +1,8 @@
 import { useParams, useSearchParams } from "react-router-dom";
-import GoodsInfo from "../components/Goods_detail/GoodsInfo";
-import GoodsBoard from "../components/Goods_detail/GoodsBoard";
-import OrderForm from "../components/Goods_detail/OrderForm";
-import DemandForm from "../components/Goods_detail/DemandForm";
+import GoodsInfo from "../components/goods_detail/GoodsInfo";
+import GoodsBoard from "../components/goods_detail/GoodsBoard";
+import OrderForm from "../components/OrderForm";
+import DemandForm from "../components/goods_detail/DemandForm";
 
 const Goods = () => {
   const [searchParams, setSearchParams] = useSearchParams();

@@ -6,6 +6,8 @@ import SearchBar from "../components/SearchBar";
 import GoodsCard from "../components/Goods_list/GoodsCard"; // GoodsCard 컴포넌트의 경로를 적절하게 수정해주세요.
 import axios from "axios";
 
+import Goods from './Goods';
+
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const page_type = searchParams.get("page_type");
@@ -60,6 +62,7 @@ const Home = () => {
             />
           ))}
         </div>
+				<Goods />
       </div>
     </div>
   );
