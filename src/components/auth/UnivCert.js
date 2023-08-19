@@ -42,7 +42,7 @@ function UnivCert() {
     });
 
     axios
-      .post("http://localhost:8080/wowmarket/users/univCert", body)
+      .post("https://www.wowmkt.kr/users/univCert", body)
       .then((res) => {
         console.log(res.data);
         if (res.data.success) {
@@ -65,7 +65,7 @@ function UnivCert() {
     console.log(`인증번호 확인 데이터:${code_body}`);
 
     axios
-      .post("http://localhost:8080/wowmarket/users/univCert/code", code_body)
+      .post("https://www.wowmkt.kr/users/univCert/code", code_body)
       .then((res) => {
         console.log(res.data);
         if (res.data.success) {

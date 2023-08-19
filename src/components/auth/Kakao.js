@@ -7,15 +7,15 @@ function Kakao() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const code = searchParams.get("code");
+  const navigate = useNavigate();
   console.log(code);
 
   axios
-    .post(`http://localhost:8080/wowmarket/users/kakao/login?code=${code}`, {})
+    .post(`https://www.wowmkt.kr/users/kakao/login?code=${code}`, {})
     .then((res) => {
       console.log(res.data);
       const { accessToken } = res.data.accessToken;
       axios.defaults.headers.common["X-ACCESS-TOKEN"] = `${accessToken}`;
-      e.stopPropagation();
       navigate(`/`);
     })
     .catch((err) => {

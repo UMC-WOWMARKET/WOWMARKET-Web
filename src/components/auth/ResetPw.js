@@ -13,10 +13,7 @@ const ResetPw = () => {
     if (mailId.includes("@")) {
       console.log("이메일주소 유효");
       axios
-        .post(
-          `http://localhost:8080/wowmarket/users/sendTempPw?email=${mailId}`,
-          {}
-        )
+        .post(`https://www.wowmkt.kr/users/sendTempPw?email=${mailId}`, {})
         .catch((err) => {
           alert("비밀번호 재설정 실패! 이메일 주소를 확인해주세요");
           navigate(`/users/resetPw`);

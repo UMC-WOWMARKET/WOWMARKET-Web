@@ -2,17 +2,16 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-import MyPage from "./pages/MyPage";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
-//import ProjectRegister from "./pages/ProjectRegister";
 import DemandRegister from "./pages/DemandRegister";
 import ProjectRegister from "./pages/ProjectRegister";
 import Users from "./pages/Users";
 import Goods from "./pages/Goods";
 import Button from "./components/Button";
-import MyOrder from "./components/MyPage/MyOrder";
-import MyProject from "./components/MyPage/MyProject";
-import MyInfo from "./components/MyPage/MyInfo";
+import MyOrder from "./pages/MyOrder";
+import MyProject from "./pages/MyProject";
+import MyInfo from "./pages/MyInfo";
 
 function App() {
   return (
@@ -24,13 +23,14 @@ function App() {
           <Route path="/users/:page_type" element={<Users />} />
           <Route path="/register/demand" element={<DemandRegister />} />
           <Route path="/register/project" element={<ProjectRegister />} />
-          <Route path="/goods/detail" element={<Goods />} />
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/MyOrder" element={<MyOrder />} />
-          <Route path="/MyProject" element={<MyProject />} />
-          <Route path="/MyInfo" element={<MyInfo />} />
+          <Route path="/goods/detail" element={<Goods />} ad />
+
+          <Route path="/myinfo" element={<MyInfo />} />
+          <Route path="/myorder" element={<MyOrder />} />
+          <Route path="/myproject" element={<MyProject />} />
         </Routes>
       </div>
+      <Footer />
     </BrowserRouter>
   );
 }

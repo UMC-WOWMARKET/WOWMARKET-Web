@@ -33,12 +33,12 @@ const Login = () => {
 
     console.log(`로그인데이터:${id},${pw}`);
     axios
-      .post("http://localhost:8080/wowmarket/users/login", body)
+      .post("https://www.wowmkt.kr/users/login", body)
       .then((res) => {
         console.log(res.data);
-        // local storage에 accessToken 저장
-        if (res.data.accessToken) {
-          localStorage.setItem("accessToken", res.data.accessToken);
+        //accessToken 저장
+        if (res.data.jwtAccessToken) {
+          localStorage.setItem("accessToken", res.data.jwtAccessToken);
         }
         // 임시 비밀번호면 resetPW로 넘기기
         if (res.data.temporaryPw) {
@@ -47,6 +47,10 @@ const Login = () => {
           navigate(`/users/TempPw?user_id=${id}`);
         } else {
           navigate(`/`);
+        }
+        //univ데이터 저장
+        if (res.data.univ) {
+          localStorage.setItem("univ", res.data.univ);
         }
       })
       .catch((err) => {

@@ -58,7 +58,7 @@ const Join = () => {
     console.log(`회원가입데이터:${name},${id},${pw},${marketingCk}`);
 
     axios
-      .post("http://localhost:8080/wowmarket/users/join", body)
+      .post("https://www.wowmkt.kr/users/join", body)
       .then((res) => {
         console.log(res.data);
         alert("회원가입 성공! 로그인하세요");
