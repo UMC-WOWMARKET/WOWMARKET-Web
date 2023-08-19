@@ -14,13 +14,13 @@ const DemandRegister = ({ ImageUrlUploaded }) => {
     formState: { isSubmitting },
   } = useForm();
   //register()로 각 입력란 등록, handleSubmit()로 submit 이벤트 처리
-
+  
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [item, setItem] = useState(null);
   const [start_date, setStartDate] = useState(null);
   const [end_date, setEndDate] = useState(null);
-  //const [thumbnail, setThumbnail] = useState(null);
+  const thumbnail = "test";
 
   useEffect(() => {
     // Mock 데이터를 가져오기
@@ -47,12 +47,14 @@ const DemandRegister = ({ ImageUrlUploaded }) => {
     setEndDate(e);
   };
 
-  const { getPresignedUrl, uploadImage, uploaded, desiredUrl } = useImageUploader();
-  const handleFileChange = (event) => {
+  const { handleImageUpload, uploaded, desiredUrl } = useImageUploader();
+
+  const handleImageSubmit = async (event) => {
+    event.preventDefault();
     const selectedFile = event.target.files[0];
-    getPresignedUrl(selectedFile);
-    uploadImage(selectedFile);
-  }; // 이미지 파일 선택, presignedUrl 불러오기
+    await handleImageUpload(selectedFile);
+    console.log(desiredUrl);
+  };
 
   const onSubmit = async (data) => {
     await new Promise((r) => setTimeout(r, 1000));
@@ -62,7 +64,7 @@ const DemandRegister = ({ ImageUrlUploaded }) => {
       item,
       start_date,
       end_date,
-      //thumbnail,
+      thumbnail,
     };
     //useform으로 받은 data 말고도 외부 컴포넌트로 받은 데이터도 함께 처리
 
@@ -133,7 +135,7 @@ const DemandRegister = ({ ImageUrlUploaded }) => {
           <StyledFileInput
             type="file"
             accept="image/*"
-            onChange={handleFileChange}
+            onChange={handleImageSubmit}
           />
           <br />
         </InputCell>
@@ -165,10 +167,17 @@ const DemandRegister = ({ ImageUrlUploaded }) => {
           <Label>
             굿즈 소개 첨부 파일 *<span>최대 3개 첨부 가능</span>
           </Label>
-          <input type="file" name="image" accept="image/*" multiple />
+          <StyledFileInput
+            type="file"
+            accept="image/*"
+            onChange={handleImageSubmit}
+            multiple
+          />
+          <br />
         </InputCell>
 
         <InputCell>
+          <br />
           <Label>
             진행 기간 *<span>2달 이내의 기간을 선택해주세요</span>
           </Label>

@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import GoodsAdd from "../components/register/GoodsAdd";
 import Calendar from "../components/register/Calendar";
-//import ImageUploader from "../components/register/ImageUploader";
+import useImageUploader from "../\bhooks/useImageUploader";
 import ReceiveType from "../components/register/ReceiveType";
 import theme from "../styles/Theme";
 
@@ -94,9 +94,15 @@ const ProjectRegister = () => {
   const handleOptionChange = (e) => {
     setSelectedBank(e.target.value);
   };
-  const handleImageUrlUploaded = (e) => {
-    setThumbnail(e);
+  const { handleImageUpload, uploaded, desiredUrl } = useImageUploader();
+
+  const handleImageSubmit = async (event) => {
+    event.preventDefault();
+    const selectedFile = event.target.files[0];
+    await handleImageUpload(selectedFile);
+    console.log(desiredUrl);
   };
+
 
   const onSubmit = async (data) => {
     await new Promise((r) => setTimeout(r, 1000));
@@ -188,7 +194,11 @@ const ProjectRegister = () => {
 
         <InputCell>
           <Label>대표 이미지 *</Label>
-{/*           <ImageUploader ImageUrlUploaded={handleImageUrlUploaded} /> */}
+          <StyledFileInput
+            type="file"
+            accept="image/*"
+            onChange={handleImageSubmit}
+          />
           <br />
         </InputCell>
 
@@ -215,10 +225,17 @@ const ProjectRegister = () => {
           <Label>
             굿즈 소개 첨부 파일 *<span>최대 3개 첨부 가능</span>
           </Label>
-          <input type="file" name="image" accept="image/*" multiple />
+          <StyledFileInput
+            type="file"
+            accept="image/*"
+            onChange={handleImageSubmit}
+            multiple
+          />
+          <br />
         </InputCell>
 
         <InputCell>
+          <br />
           <Label>진행 기간 *<span>2달 이내의 기간을 선택해주세요</span></Label>
           <Date>
             <Calendar
@@ -383,6 +400,11 @@ const InputRegister = styled.input`
   ::placeholder {
     color: ${theme.colors.lightgrey};
   }
+`;
+
+const StyledFileInput = styled.input`
+  float: left;
+  margin: 12px 0;
 `;
 
 const Date = styled.div`
