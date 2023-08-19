@@ -28,7 +28,7 @@ const GoodsCard = ({
           style={{
             width: "350px",
             height: "207px",
-            border: "solid 2px transparent", // 테두리 스타일 추가
+            border: "solid 2px black", // 테두리 스타일 추가
             borderRadius: "10px", // 테두리 둥글기 설정
           }}
         />
@@ -46,7 +46,8 @@ const GoodsCard = ({
 export default GoodsCard;
 
 const GoodsList = styled.div`
-  margin-left: 45px;
+  margin-left: 44px;
+  margin-right: 20px;
   margin-top: 90px;
   font-family: Pretendard;
 `;
