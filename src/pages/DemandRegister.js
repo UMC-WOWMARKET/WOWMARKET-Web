@@ -20,7 +20,8 @@ const DemandRegister = ({ ImageUrlUploaded }) => {
   const [item, setItem] = useState(null);
   const [start_date, setStartDate] = useState(null);
   const [end_date, setEndDate] = useState(null);
-  const thumbnail = "test";
+  const thumbnail = "testthumbnail";
+  const image1 = "testimage1"
 
   useEffect(() => {
     // Mock 데이터를 가져오기
@@ -65,6 +66,7 @@ const DemandRegister = ({ ImageUrlUploaded }) => {
       start_date,
       end_date,
       thumbnail,
+      image1,
     };
     //useform으로 받은 data 말고도 외부 컴포넌트로 받은 데이터도 함께 처리
 
@@ -220,7 +222,7 @@ export default DemandRegister;
 const RegisterFormContainer = styled.div`
   border: solid 0.5px ${theme.colors.lightgrey};
   width: 800px;
-  margin: 0 260px;
+  margin: 0 auto;
   padding: 60px;
   margin-top: 205px;
   color: ${theme.colors.darkgrey};

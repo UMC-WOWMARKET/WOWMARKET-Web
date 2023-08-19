@@ -331,7 +331,7 @@ export default ProjectRegister;
 const RegisterFormContainer = styled.div`
   border: solid 0.5px ${theme.colors.lightgrey};
   width: 800px;
-  margin: 0 260px;
+  margin: 0 auto;
   padding: 60px;
   margin-top: 205px;
   color: ${theme.colors.darkgrey};
