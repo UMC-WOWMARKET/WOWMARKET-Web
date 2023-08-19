@@ -509,6 +509,7 @@ body {
 
 .MyInfo {
   display: flex;
+  padding-top: 100px;
 }
 
 .MyInfo .MyInfoContent {
@@ -585,6 +586,7 @@ body {
 /*MyOrder*/
 .MyOrder {
   display: flex;
+  padding-top: 100px;
 }
 
 .MyOrder .MyOrderContent {
