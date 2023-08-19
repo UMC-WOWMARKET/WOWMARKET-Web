@@ -1,4 +1,7 @@
+import styled from "styled-components";
+
 const GoodsCard = ({
+  key,
   projectName,
   sellerName,
   goal,
@@ -17,24 +20,71 @@ const GoodsCard = ({
 
   console.log(univ);
   return (
-    <div className="GoodsCard" style={{ width: "368px" }}>
-      <img
-        src={imgUrl}
-        style={{ width: "368px", height: "207px", borderRadius: "10px" }}
-      />
-      <div className="info">
-        <div>
-          <div>{projectName}</div>
-          <div>{achievedPer}%</div>
-        </div>
-
-        <div>
-          <div>제작 {sellerName}</div>
-        </div>
-        <div>D - {remainingDays}</div>
+    <GoodsList>
+      <div>
+        <RemainingDays>D - {remainingDays}</RemainingDays>
+        <img
+          src={imgUrl}
+          style={{
+            width: "350px",
+            height: "207px",
+            border: "solid 2px transparent", // 테두리 스타일 추가
+            borderRadius: "10px", // 테두리 둥글기 설정
+          }}
+        />
       </div>
-    </div>
+
+      <div>
+        <ProjectName>{projectName}</ProjectName>
+        <AchievePer>{achievedPer}%달성</AchievePer>
+        <SellerName>제작 {sellerName}</SellerName>
+      </div>
+    </GoodsList>
   );
 };
 
 export default GoodsCard;
+
+const GoodsList = styled.div`
+  margin-left: 45px;
+  margin-top: 90px;
+  font-family: Pretendard;
+`;
+
+const ProjectName = styled.div`
+  font-size: 18px;
+  font-weight: 600;
+  position: absolute;
+  color: #646464;
+`;
+
+const AchievePer = styled.div`
+  position: absolute;
+  font-size: 15px;
+  font-weight: 700;
+  color: blue;
+  margin-top: 30px;
+  color: #4051e7a3;
+`;
+
+const SellerName = styled.div`
+  float: right;
+  color: #a0a0a0;
+  font-size: 16px;
+  font-weight: 400px;
+`;
+
+const RemainingDays = styled.div`
+  background-color: #4051e7a3;
+  color: white;
+  width: 58px;
+  height: 32px;
+  position: absolute;
+  margin-left: 280px;
+  margin-top: 163px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0px 3px 4px -1px rgba(0, 0, 0, 0.64);
+`;

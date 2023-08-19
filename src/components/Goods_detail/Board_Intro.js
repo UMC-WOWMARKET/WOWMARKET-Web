@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Intro = () => {
+const Intro = ({ goods_id }) => {
 	const [image1, setImage1] = useState("");
 	const [image2, setImage2] = useState("");
 	const [image3, setImage3] = useState("");
 
-	axios.interceptors.request.use((config) => {
-		/* JWT 토큰 */
-		const userAccessToken = localStorage.getItem("accessToken");
-		if (userAccessToken) {
-			console.log(userAccessToken);
-			config.headers["X-ACCESS-TOKEN"] = `${userAccessToken}`;
-		}
-		return config;
-	});
-
 	const fetchData = async () => {
 		try {
-			const response = await axios.get('http://www.wowmkt.kr/project/1/img');
+			const response = await axios.get(`http://www.wowmkt.kr/project/${goods_id}/img`);
 			setImage1(response.data.image1);
 			setImage2(response.data.image2);
 			setImage3(response.data.image3);

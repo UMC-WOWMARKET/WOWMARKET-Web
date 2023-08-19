@@ -4,19 +4,19 @@ import NoticeList from "./Board_Notice"
 import QuestionList from "./Board_Question"
 import axios from "axios";
 
-const GoodsBoard = () => {
-	const [view, setView] = useState('default');
+const GoodsBoard = ({ goods_id }) => {
+	const [view, setView] = useState('굿즈소개');
 	const handleButtonClick = (buttonType) => {
 		setView(buttonType);
 	};
 
   return (
 		<div className="BoardView">
-					<button onClick={() => handleButtonClick('굿즈소개')}>굿즈소개</button>
-					<button onClick={() => handleButtonClick('공지')}>공지</button>
-					<button onClick={() => handleButtonClick('문의')}>문의</button>
+					<div onClick={() => handleButtonClick('굿즈소개')}>굿즈소개</div><br></br>
+					<div onClick={() => handleButtonClick('공지')}>공지</div><br></br>
+					<div onClick={() => handleButtonClick('문의')}>문의</div><br></br>
 					<div className='BoardContent'>
-						{view === '굿즈소개' && <Intro />}
+						{view === '굿즈소개' && <Intro goods_id={goods_id}/>}
 						{view === '공지' && <NoticeList />}
 						{view === '문의' && <QuestionList />}
 					</div>
@@ -34,6 +34,6 @@ export default GoodsBoard;
 // }
 
 // .BoardContent {
-//   width: 80%; /* 조절하고자 하는 크기를 설정하세요 */
+//   width: 80%;
 //   margin: 20px auto;
 // }

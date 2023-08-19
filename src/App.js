@@ -12,6 +12,17 @@ import Button from "./components/Button";
 import MyOrder from "./pages/MyOrder";
 import MyProject from "./pages/MyProject";
 import MyInfo from "./pages/MyInfo";
+import axios from 'axios';
+
+axios.interceptors.request.use((config) => {
+	/* JWT 토큰 */
+	const userAccessToken = localStorage.getItem("accessToken");
+	if (userAccessToken) {
+		console.log(userAccessToken);
+		config.headers["X-ACCESS-TOKEN"] = `${userAccessToken}`;
+	}
+	return config;
+});
 
 function App() {
   return (
