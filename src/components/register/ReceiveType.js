@@ -1,38 +1,44 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import theme from "../../styles/Theme";
 
-function ReceiveType({ onRecieveChange, onAddressChange }) {
+function ReceiveType({ onRecieveChange, onAddressChange, onDeliveryFeeChange }) {
   const [option1Selected, setOption1Selected] = useState(true);
-  const [inputEnabled, setInputEnabled] = useState(false);
-  const [inputValue, setInputValue] = useState("");
+  const [inputPrice, setInputPrice] = useState("");
+  const [inputAdress, setInputAdress] = useState("");
 
   const handleOption1Change = () => {
     setOption1Selected(true);
-    setInputEnabled(false);
+    setInputAdress("");
   };
   const handleOption2Change = () => {
     setOption1Selected(false);
-    setInputEnabled(true);
+    setInputPrice("");
   };
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+  const handlePriceInputChange = (event) => {
+    setInputPrice(event.target.value);
+  };
+  const handleAdressInputChange = (event) => {
+    setInputAdress(event.target.value);
   };
 
   useEffect(() => {
     if (option1Selected) {
       onRecieveChange("delivery");
       onAddressChange(null);
+      onDeliveryFeeChange(inputPrice);
     }
     else {
       onRecieveChange("pickup");
-      onAddressChange(inputValue);
+      onAddressChange(inputAdress);
+      onDeliveryFeeChange(null);
     }
   });
 
   return (
     <OptionContainer>
       <label>
-        <input
+        <Radio
           type="radio"
           name="option"
           value="delivery"
@@ -41,8 +47,16 @@ function ReceiveType({ onRecieveChange, onAddressChange }) {
         />
         택배
       </label>
+      <Input
+        type="text"
+        value={inputPrice}
+        onChange={handlePriceInputChange}
+        disabled={!option1Selected}
+        placeholder="택배비 입력(단위: 원)"
+        required
+      />
       <label>
-        <input
+        <Radio
           type="radio"
           name="option"
           value="venue"
@@ -51,11 +65,12 @@ function ReceiveType({ onRecieveChange, onAddressChange }) {
         />
         장소 지정
       </label>
-      <input
+      <Input
         type="text"
-        value={inputValue}
-        onChange={handleInputChange}
+        value={inputAdress}
+        onChange={handleAdressInputChange}
         disabled={option1Selected}
+        placeholder="수령장소 입력"
         required
       />
     </OptionContainer>
@@ -64,6 +79,23 @@ function ReceiveType({ onRecieveChange, onAddressChange }) {
 
 export default ReceiveType;
 
-const OptionContainer = styled.div`
-  float: left;
+const OptionContainer = styled.span`
+`;
+
+const Radio = styled.input`
+  accent-color: ${theme.colors.skyblue};
+`;
+
+const Input = styled.input`
+  margin-top: 12px;
+  padding-left: 15px;
+  margin: 0 15px;
+  border-radius: 5px;
+  border: solid 1px ${theme.colors.lightgrey};
+  height: 40px;
+  font-size: 16px;
+  color: ${theme.colors.darkgrey};
+  ::placeholder{
+    color: ${theme.colors.lightgrey};
+  };
 `;

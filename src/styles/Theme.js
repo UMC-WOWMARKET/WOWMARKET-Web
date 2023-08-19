@@ -14,10 +14,11 @@ const colors = {
   primaryColor: "#002472",
   secondaryColor: "#F0F0F0",
   darkgrey: "#646464",
-  grey: "a0a0a0",
+  grey: "#a0a0a0",
   lightgrey: "#dddddd",
   white: "#ffffff",
   black: "#000000",
+  skyblue: "#4051E7A3",
 };
 
 const theme = {
