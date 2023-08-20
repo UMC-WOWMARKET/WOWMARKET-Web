@@ -12,7 +12,7 @@ import bannerBack from "./banner_back.png";
 import Search from "../components/Goods_list/Search";
 import Arrangement from "../components/Goods_list/Arrangement";
 import GoodsBoard from '../components/Goods_detail/GoodsBoard';
-import Goods from '../pages/Goods';
+import Goods from './Goods';
 
 //굿즈가 3개씩 보일 수 있도록 조절
 function chunkArray(arr, size) {
