@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import GoodsAdd from "../components/register/GoodsAdd";
 import Calendar from "../components/register/Calendar";
-import useImageUploader from "../\bhooks/useImageUploader";
+import useImageUploader from "../hooks/useImageUploader";
 import theme from "../styles/Theme";
 
 const DemandRegister = ({ ImageUrlUploaded }) => {
