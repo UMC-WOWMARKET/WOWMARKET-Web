@@ -17,7 +17,7 @@ axios.interceptors.request.use((config) => {
 });
 
 const Goods = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const goods_id = searchParams.get("id");
   const page_type = searchParams.get("page_type");
 
