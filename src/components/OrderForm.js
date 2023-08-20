@@ -106,12 +106,14 @@ const OrderForm = ({ goods_id }) => {
 	const fetchData = async () => {
 		try {
 			const response = await axios.get(`http://www.wowmkt.kr/project/${goods_id}/item`)
+
 			setReceiveType(response.data.receive_type);
 			setDeliveryFee(response.data.delivery_fee);
 			setItemList(response.data.itemResponseDtoList);
 			setSellerBank(response.data.bank);
 			setSellerAccount(response.data.account);
 			setSellerAccountHolder(response.data.account_holder_name);
+
 			console.log("OrderForm Get Success");
 		} catch (error) {
 		console.log("OrderForm GET Error", error);
