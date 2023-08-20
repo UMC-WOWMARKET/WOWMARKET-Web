@@ -15,6 +15,7 @@ import MyInfo from "./pages/MyInfo";
 import MySaleForm from "./pages/MySaleForm";
 import MyOrderForm from "./pages/MyOrderForm";
 import MyDemandForm from "./pages/MyDemandForm";
+import MyPage from "./pages/MyPage";
 
 function App() {
   return (
@@ -27,9 +28,9 @@ function App() {
           <Route path="/users/:page_type" element={<Users />} />
           <Route path="/register/demand" element={<DemandRegister />} />
           <Route path="/register/project" element={<ProjectRegister />} />
-          <Route path="/goods/detail" element={<Goods />} ad />
+          <Route path="/goods/detail" element={<Goods />} />
 
-          <Route path="/mypage" element={<MyInfo />} />
+          <Route path="/mypage" element={<MyPage />} />
           <Route path="/myinfo" element={<MyInfo />} />
           <Route path="/myorder" element={<MyOrder />} />
           <Route path="/myproject" element={<MyProject />} />

@@ -1,38 +1,79 @@
 import { useParams } from "react-router-dom";
 import { Link, Route, Switch } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react"; // useState를 추가
 import { useLocation } from "react-router-dom";
 
-const NavigationBar = () => {
-  const location = useLocation();
+const NavigationBar = ({ pageType, setPageType }) => {
+  const [showDropdown, setShowDropdown] = useState(false); // 드롭다운 메뉴의 상태 추가
+
   return (
     <div className="NavigationBar">
       <div className="title">마이페이지</div>
       <div className="nav_box">
-        <Link
-          className={`myInfo ${
-            location.pathname === "/myinfo" ? "active" : ""
-          }`}
-          to={"/myinfo"}
+        <button
+          className={`myInfo ${pageType === "info" ? "active" : ""}`}
+          onClick={() => {
+            setPageType("info");
+          }}
         >
           나의 정보
-        </Link>
-        <Link
-          className={`myOrder ${
-            location.pathname === "/myorder" ? "active" : ""
-          }`}
-          to={"/myorder"}
+        </button>
+        <button
+          className={`myOrder ${pageType === "order" ? "active" : ""}`}
+          onClick={() => {
+            setPageType("order");
+          }}
         >
           나의 주문폼
-        </Link>
-        <Link
-          className={`myProject ${
-            location.pathname === "/mysaleform" ? "active" : ""
-          }`}
-          to={"/mysaleform"}
+        </button>
+        <div
+          onMouseEnter={() => setShowDropdown(true)}
+          onMouseLeave={() => setShowDropdown(false)}
         >
-          나의 프로젝트
-        </Link>
+          <button
+            className={`myProject ${
+              pageType === "project" ||
+              pageType === "project_selling_register" ||
+              pageType === "project_selling_order" ||
+              pageType === "project_demand_order"
+                ? "active"
+                : ""
+            }`}
+            onClick={() => {
+              setPageType("project");
+            }}
+          >
+            나의 프로젝트
+          </button>
+          {showDropdown && (
+            <div className="dropdown-menu">
+              <button
+                onClick={() => {
+                  setPageType("project_selling_register");
+                }}
+                className="dropdown-content"
+              >
+                판매 등록폼 관리
+              </button>
+              <button
+                onClick={() => {
+                  setPageType("project_selling_order");
+                }}
+                className="dropdown-content"
+              >
+                판매 주문폼 관리
+              </button>
+              <button
+                onClick={() => {
+                  setPageType("project_demand_order");
+                }}
+                className="dropdown-content"
+              >
+                수요조사 등록폼 관리
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

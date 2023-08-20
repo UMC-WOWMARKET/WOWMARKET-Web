@@ -497,12 +497,26 @@ body {
   color: rgba(110, 110, 110, 1);
   font-size: 20px;
   border-radius: 10px;
+  border: none;
+  background-color: white;
+  cursor: pointer;
 }
 .myInfo.active,
 .myOrder.active,
 .myProject.active {
   background-color: darkblue;
   color: white; /* 글자 색상 변경 */
+}
+
+.nav_box .dropdown-content {
+  padding: 5px;
+  text-decoration: none;
+  color: rgba(110, 110, 110, 1);
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: white;
+  cursor: pointer;
 }
 
 /*MyInfo*/
@@ -706,4 +720,17 @@ body {
 
 .MyOrder .MyOrderContent .order_space .content .order_date {
   padding-right: 23px;
+}
+
+/*MySaleForm*/
+
+.MySaleForm {
+  display: flex;
+  padding-top: 100px;
+}
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 20px;
 }
