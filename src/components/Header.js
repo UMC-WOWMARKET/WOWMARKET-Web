@@ -48,7 +48,7 @@ function Header() {
         </Menu>
         <MemberMenu>
           {isLogin && (
-            <Link to="/mypage">
+            <Link to="/myinfo">
               <StyledImage
                 src="/assets/mypage_default.png"
                 alt="마이페이지"
