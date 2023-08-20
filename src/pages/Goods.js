@@ -4,16 +4,16 @@ import GoodsBoard from "../components/Goods_detail/GoodsBoard";
 import OrderForm from "../components/OrderForm";
 import DemandForm from "../components/Goods_detail/DemandForm";
 
-import axios from 'axios';
+import axios from "axios";
 
 axios.interceptors.request.use((config) => {
-	/* JWT 토큰 */
-	const userAccessToken = localStorage.getItem("accessToken");
-	if (userAccessToken) {
-		console.log(userAccessToken);
-		config.headers["X-ACCESS-TOKEN"] = `${userAccessToken}`;
-	}
-	return config;
+  /* JWT 토큰 */
+  const userAccessToken = localStorage.getItem("accessToken");
+  if (userAccessToken) {
+    console.log(userAccessToken);
+    config.headers["X-ACCESS-TOKEN"] = `${userAccessToken}`;
+  }
+  return config;
 });
 
 const Goods = () => {
@@ -30,12 +30,12 @@ const Goods = () => {
   return (
     <div className="Goods">
       <div className="left_side">
-        <GoodsInfo goods_id='3'/>
-        <GoodsBoard goods_id='4'/>
+        <GoodsInfo goods_id={goods_id} />
+        <GoodsBoard goods_id={goods_id} />
       </div>
       <div className="right_side">
-        {page_type === "selling" && <OrderForm goods_id='3'/>}
-        {page_type === "demand" && <DemandForm />}
+        {page_type === "selling" && <OrderForm goods_id={goods_id} />}
+        {page_type === "demand" && <DemandForm goods_id={goods_id} />}
       </div>
     </div>
   );

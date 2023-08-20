@@ -22,12 +22,14 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/goods" element={<Home />} />
           <Route path="/users/:page_type" element={<Users />} />
           <Route path="/register/demand" element={<DemandRegister />} />
           <Route path="/register/project" element={<ProjectRegister />} />
           <Route path="/goods/detail" element={<Goods />} ad />
 
+          <Route path="/mypage" element={<MyInfo />} />
           <Route path="/myinfo" element={<MyInfo />} />
           <Route path="/myorder" element={<MyOrder />} />
           <Route path="/myproject" element={<MyProject />} />
