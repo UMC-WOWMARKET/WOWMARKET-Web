@@ -1,0 +1,173 @@
+/* 공통 적용 */
+.OrderForm {
+	color: #646464;
+	border: 1px solid #DDDDDD;
+	width: 488px;
+	max-height: 1512px;
+	flex-shrink: 0;
+	overflow-y: scroll;
+	padding-left: 34px;
+}
+
+.common-box {
+	border: 1px solid #DDDDDD;
+	display: flex;
+	align-items: center;
+}
+
+/* 수령 방법 */
+.deliveryMethod {
+	display: flex;
+  flex-direction: column;
+}
+
+.deliveryMethod .section1 {
+  display: flex;
+  flex-direction: row;
+	align-items: center;
+}
+
+.deliveryMethod .section2 {
+  display: flex;
+  flex-direction: row;
+	gap: 19px;
+}
+
+.deliveryMethod .common-box.selected {
+	border: 1px solid #002472;
+}
+
+.deliveryMethod .flex-column {
+	margin: 17px 0 19px 16px;
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+}
+
+/* 상품 선택 */
+.selectItem .flex-column{
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.selectItem .button {
+	width: 36px;
+	height: 36px;
+	display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selectItem .common-box {
+	color: #646464;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	text-transform: capitalize;
+}
+
+/* 주문 정보 */
+.orderInfo .common-box {
+	flex-direction: column;
+	/* padding: 18px 27px 17px 29px; */
+	gap: 12px;
+}
+
+.orderInfo .flex-row {
+	display: flex;
+	flex-direction: row;
+	text-align: left;
+}
+
+/*배송 정보*/
+
+.deliveryInfo input{
+	border-radius: 5px;
+	border: 1px solid rgba(221, 221, 221, 0.87);
+}
+
+.deliveryInfo select{
+	border-radius: 5px;
+	border: 1px solid rgba(221, 221, 221, 0.87);
+}
+
+.gray-box {
+	width: 420px;
+	height: 60px;
+	flex-shrink: 0;
+	background: #F2F2F2;
+}
+
+
+/*입금 정보*/
+.depositInfo input {
+	border-radius: 5px;
+	border: 1px solid #DDD;
+}
+
+.refundAccount input {
+	border-radius: 5px;
+	border: 1px solid #DDD;
+}
+
+
+/* 텍스트 스타일 */
+h3 {
+	color: #646464;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+	text-transform: capitalize;
+	text-align: left;
+}
+
+h4 {
+	color: #646464;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+	text-transform: capitalize;
+	text-align: left;
+	margin: 32px auto 8px auto;
+}
+
+.redText {
+	color: #F00;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	text-transform: capitalize;
+}
+
+.text1 { /*택배배송, 직접수령*/
+	color: #002472;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	text-transform: capitalize;
+	margin: 0 0 11px 0;
+}
+
+.text2 { /*수령방법 커멘트*/
+	color: #646464;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	text-transform: capitalize;
+}
+
+.text3 {
+	color: #646464;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	text-transform: capitalize;
+}
