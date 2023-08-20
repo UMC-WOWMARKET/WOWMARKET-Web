@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import dummy from '../db/data.json';
 import '../styles/OrderForm.css'
 import axios from 'axios';
 
 //상품 컴포넌트
-const SelectGoods = ({ id, index, name, price, onChangeQuantity}) => {
+const SelectItem = ({ id, index, name, price, onChangeQuantity}) => {
 	const [quantity, setQuantity] = useState(0);
 
 	const handleDecrease = () => {
@@ -61,23 +60,39 @@ const OrderForm = ({ goods_id }) => {
 	const [deliveryMessage, setDeliveryMessage] = useState('미리 연락 바랍니다.');
 
 	//상품별 수량 저장
+	const [orderList, setOrderList] = useState([]);
 	// 상품 선택 - 상품별 수량 저장
-	const [goodsQuantities, setGoodsQuantities] = useState({});
+	const [itemQuantities, setItemQuantities] = useState({});
 	//우선 id를 인덱스로 하여 수량 저장했는데, 가능할 지 모르겠음 ->.수정하자
-	const handleGoodsQuantityChange = (goodsId, newQuantity) => {
-		setGoodsQuantities((prevQuantities) => ({
-			...prevQuantities,
-			[goodsId]: newQuantity,
-		}));
-	};
+	// const handleGoodsQuantityChange = (goodsId, newQuantity) => {
+	// 	setitemQuantities((prevQuantities) => ({
+	// 		...prevQuantities,
+	// 		[goodsId]: newQuantity,
+	// 	}));
+	// };
 	//총 수량
-	const totalQuantity = Object.values(goodsQuantities).reduce((total, quantity) => total + quantity, 0);
+	const totalQuantity = Object.values(itemQuantities).reduce((total, quantity) => total + quantity, 0);
 	//총 상품 금액
-	const totalPrice = dummy.goodsList.reduce((total, goods) => {
-		const quantity = goodsQuantities[goods.id] || 0;
+	const totalPrice = itemList.reduce((total, goods) => {
+		const quantity = itemQuantities[goods.id] || 0;
 		return total + goods.price * quantity;
 	}, 0);
 
+	const handleAddToOrder = (itemId, quantity) => {
+		const existingOrderIndex = orderList.findIndex(order => order.itemId === itemId);
+
+		if (existingOrderIndex !== -1) {
+			const updatedOrderList = [...orderList];
+			updatedOrderList[existingOrderIndex].quantity = quantity;
+			setOrderList(updatedOrderList);
+		} else {
+			setOrderList([...orderList, { itemId, quantity }]);
+		}
+		setItemQuantities((prevQuantities) => ({
+			...prevQuantities,
+			[itemId]: quantity,
+		}));
+	};
 	// const searchPostcode = () => {
 	// 	// 다음 우편번호 검색 API 호출
 	// 	// axios.get(...)을 이용하여 API 호출하고 결과 처리
@@ -101,6 +116,17 @@ const OrderForm = ({ goods_id }) => {
 		} catch (error) {
 		console.log("OrderForm GET Error", error);
 	}
+	}
+
+	useEffect (() => { fetchData(); }, []);
+
+	const handleSubmit = async (e) => {
+		try {
+			console.log({ receiver, zipcode, address, detailAddress, phoneNumber, depositor, depositTime, refundBank, refundAccount, totalPrice, deliveryMessage, orderList });
+			await axios.post(`http://www.wowmkt.kr/project/${goods_id}/item`, { receiver, zipcode, address, detailAddress, phoneNumber, depositor, depositTime, refundBank, refundAccount, totalPrice, deliveryMessage, orderList });
+		} catch(error){
+			console.error('OrderForm Post Error')
+		}
 	}
 
 	useEffect (() => { fetchData(); }, []);
@@ -135,17 +161,17 @@ const OrderForm = ({ goods_id }) => {
 			</div>
 
 			{/* 상품 선택  -> 회색 버튼 css 수정?*/}
-			<div className='selectGoods'>
+			<div className='selectItem'>
 				<h4>상품 선택</h4>
 				<div className='flex-column'>
 					{itemList.map((item, index) =>(
-						<SelectGoods
+						<SelectItem
 							key={item.id}
 							id={item.id}
 							name={item.name}
 							price={item.price}
 							index={index+1}
-							onChangeQuantity={handleGoodsQuantityChange}/>
+							onChangeQuantity={handleAddToOrder}/>
 					))}
 				</div>
 			</div>
@@ -158,8 +184,8 @@ const OrderForm = ({ goods_id }) => {
 					{itemList.map((item) => (
 						<div key={item.id} className='flex-row'>
 							<span>{item.name} --- </span>
-							<span>{goodsQuantities[item.id] || 0}개---</span>
-							<span>{item.price * (goodsQuantities[item.id] || 0)}원</span>
+							<span>{itemQuantities[item.id] || 0}개---</span>
+							<span>{item.price * (itemQuantities[item.id] || 0)}원</span>
 						</div>
 					))}
 				</div>
@@ -274,6 +300,10 @@ const OrderForm = ({ goods_id }) => {
 				/>
 			</div>
 
+			{/* 폼 제출하기 */}
+			<div className='submitForm'>
+        <button onClick={handleSubmit}>폼 제출하기</button>
+      </div>
 		</div>
 	);
 }

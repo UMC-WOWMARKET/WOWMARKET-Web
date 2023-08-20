@@ -80,21 +80,13 @@ const NoticeList = () => {
 		useEffect(() => { fetchData() }, []); //GET
 
 		const handleAddPost = async (title, content) => { //POST
-			const postData = {
-				title: title,
-				content: content
-			};
-
-			console.log(postData);
+			console.log({title, content})
 			try {
-				await axios.post('http://www.wowmkt.kr/project/3/notice', postData, { 		headers: {
-						'Content-Type': 'application/json'
-					},
-				});
+				await axios.post('http://www.wowmkt.kr/project/3/notice', { title, content });
 				fetchData();
 				console.log('POST Success');
 			} catch (error) {
-				console.error('POST Error:', error);
+				console.error('Notice POST Error:', error);
 			}
 			setShowForm(false);
 		};

@@ -45,13 +45,13 @@
 }
 
 /* 상품 선택 */
-.selectGoods .flex-column{
+.selectItem .flex-column{
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
 }
 
-.selectGoods .button {
+.selectItem .button {
 	width: 36px;
 	height: 36px;
 	display: flex;
@@ -59,7 +59,7 @@
   justify-content: center;
 }
 
-.selectGoods .common-box {
+.selectItem .common-box {
 	color: #646464;
 	font-size: 16px;
 	font-style: normal;
