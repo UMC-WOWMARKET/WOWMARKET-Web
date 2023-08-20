@@ -63,13 +63,6 @@ const OrderForm = ({ goods_id }) => {
 	const [orderList, setOrderList] = useState([]);
 	// 상품 선택 - 상품별 수량 저장
 	const [itemQuantities, setItemQuantities] = useState({});
-	//우선 id를 인덱스로 하여 수량 저장했는데, 가능할 지 모르겠음 ->.수정하자
-	// const handleGoodsQuantityChange = (goodsId, newQuantity) => {
-	// 	setitemQuantities((prevQuantities) => ({
-	// 		...prevQuantities,
-	// 		[goodsId]: newQuantity,
-	// 	}));
-	// };
 	//총 수량
 	const totalQuantity = Object.values(itemQuantities).reduce((total, quantity) => total + quantity, 0);
 	//총 상품 금액
@@ -106,12 +99,14 @@ const OrderForm = ({ goods_id }) => {
 	const fetchData = async () => {
 		try {
 			const response = await axios.get(`http://www.wowmkt.kr/project/${goods_id}/item`)
+
 			setReceiveType(response.data.receive_type);
 			setDeliveryFee(response.data.delivery_fee);
 			setItemList(response.data.itemResponseDtoList);
 			setSellerBank(response.data.bank);
 			setSellerAccount(response.data.account);
 			setSellerAccountHolder(response.data.account_holder_name);
+
 			console.log("OrderForm Get Success");
 		} catch (error) {
 		console.log("OrderForm GET Error", error);

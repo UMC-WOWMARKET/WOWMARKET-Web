@@ -105,7 +105,7 @@ body {
   margin-top: 250px; /*위로부터의 위치 지정*/
   padding-bottom: 30px;
   padding-top: 30px;
-  
+
 }
 
 .Login .input_body {
@@ -141,7 +141,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 20px;
-  
+
 }
 
 .input_footer .login_button {
@@ -167,7 +167,7 @@ body {
   color : black;
   background-color: #FEE500;
   border: none;
-  
+
 }
 
 .Login .title{ /*이메일로 로그인*/
@@ -185,13 +185,13 @@ body {
   font-family: Pretendard;
   font-size: 16px;
   color: #646464;
-  margin-top: 20px; 
+  margin-top: 20px;
 }
 .Login .subtitle1{ /*이메일*/
   font-family: Pretendard;
   font-size: 16px;
   color: #646464;
-  margin-top: 20px; 
+  margin-top: 20px;
 }
 .Login .navigation {
   font-family: Pretendard;
@@ -201,7 +201,7 @@ body {
 /*Join*/
 .Join {
   width: 480px;
-  height: 1539px; 
+  height: 1539px;
   border: 1px solid #DDDDDD;
   border-radius: 5px;
   display: flex;
@@ -219,7 +219,7 @@ body {
   color: #646464;
   display: flex;
   margin-left: 30px;
-  
+
 }
 .Join .input_body {
   display: flex;
@@ -233,8 +233,8 @@ body {
 .Join .input_body .subtitle1{
   color: #646464;
   font-size: 16px;
-  font-weight: 400;  
-  
+  font-weight: 400;
+
 }
 .Join .input_body .subtitle2{
   padding-top: 30px;
@@ -268,11 +268,11 @@ body {
 
 }
 .Join .terms { /*이용약관*/
-  width: 401px; 
-  height: 124px; 
+  width: 401px;
+  height: 124px;
   overflow: auto; /* 내용이 넘칠 경우 스크롤 적용 */
   border: 1px solid #DDDDDD; /* 선택사항: 테두리 추가 */
-  padding: 10px; 
+  padding: 10px;
   font-size: 15px;
 }
 
@@ -280,7 +280,7 @@ body {
 .check_list label input[type="checkbox"] { /*체크박스*/
   width: 25px; /* 원하는 너비 */
   height: 25px; /* 원하는 높이 */
-  
+
   /* 다양한 스타일링을 원하신다면 추가적인 속성을 설정할 수 있습니다 */
 
 }
@@ -431,7 +431,7 @@ body {
   font-size: 20px;
   font-weight: 400;
   background-color: transparent;
-  
+
 
 }
 
@@ -603,9 +603,9 @@ body {
   width: 35%;
 } */
 
-.GoodsInfo {
+/* .GoodsInfo {
   border: 1px solid red;
-}
+} */
 
 /*NavigationBar*/
 

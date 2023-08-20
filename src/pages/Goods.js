@@ -1,8 +1,9 @@
-import { useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import GoodsInfo from "../components/Goods_detail/GoodsInfo";
 import GoodsBoard from "../components/Goods_detail/GoodsBoard";
 import OrderForm from "../components/OrderForm";
 import DemandForm from "../components/Goods_detail/DemandForm";
+import Search from "../components/Goods_list/Search";
 
 import axios from "axios";
 
@@ -17,7 +18,7 @@ axios.interceptors.request.use((config) => {
 });
 
 const Goods = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const goods_id = searchParams.get("id");
   const page_type = searchParams.get("page_type");
 
@@ -29,7 +30,7 @@ const Goods = () => {
 
   return (
     <div className="Goods">
-      <div className="left_side">
+      <div className="left_side" style={{width:'600px'}}>
         <GoodsInfo goods_id={goods_id} />
         <GoodsBoard goods_id={goods_id} />
       </div>
