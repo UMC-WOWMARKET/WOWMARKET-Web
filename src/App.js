@@ -8,13 +8,6 @@ import DemandRegister from "./pages/DemandRegister";
 import ProjectRegister from "./pages/ProjectRegister";
 import Users from "./pages/Users";
 import Goods from "./pages/Goods";
-import Button from "./components/Button";
-import MyOrder from "./pages/MyOrder";
-import MyProject from "./pages/MyProject";
-import MyInfo from "./pages/MyInfo";
-import MySaleForm from "./pages/MySaleForm";
-import MyOrderForm from "./pages/MyOrderForm";
-import MyDemandForm from "./pages/MyDemandForm";
 import MyPage from "./pages/MyPage";
 
 function App() {

@@ -10,7 +10,6 @@ axios.interceptors.request.use((config) => {
   /* JWT 토큰 */
   const userAccessToken = localStorage.getItem("accessToken");
   if (userAccessToken) {
-    console.log(userAccessToken);
     config.headers["X-ACCESS-TOKEN"] = `${userAccessToken}`;
   }
   return config;
