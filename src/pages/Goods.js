@@ -30,11 +30,11 @@ const Goods = () => {
   return (
     <div className="Goods">
       <div className="left_side">
-        <GoodsInfo goods_id='3'/>
+        <GoodsInfo goods_id='4'/>
         <GoodsBoard goods_id='4'/>
       </div>
       <div className="right_side">
-        {page_type === "selling" && <OrderForm goods_id='3'/>}
+        {page_type === "selling" && <OrderForm goods_id='4'/>}
         {page_type === "demand" && <DemandForm />}
       </div>
     </div>
