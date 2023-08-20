@@ -12,6 +12,9 @@ import Button from "./components/Button";
 import MyOrder from "./pages/MyOrder";
 import MyProject from "./pages/MyProject";
 import MyInfo from "./pages/MyInfo";
+import MySaleForm from "./pages/MySaleForm";
+import MyOrderForm from "./pages/MyOrderForm";
+import MyDemandForm from "./pages/MyDemandForm";
 
 function App() {
   return (
@@ -28,6 +31,10 @@ function App() {
           <Route path="/myinfo" element={<MyInfo />} />
           <Route path="/myorder" element={<MyOrder />} />
           <Route path="/myproject" element={<MyProject />} />
+
+          <Route path="/mysaleform" element={<MySaleForm />} />
+          <Route path="/myorderform" element={<MyOrderForm />} />
+          <Route path="/mydemandform" element={<MyDemandForm />} />
         </Routes>
       </div>
       <Footer />
