@@ -17,8 +17,8 @@ const GoodsBoard = ({ goods_id }) => {
 					<div onClick={() => handleButtonClick('문의')}>문의</div><br></br>
 					<div className='BoardContent'>
 						{view === '굿즈소개' && <Intro goods_id={goods_id}/>}
-						{view === '공지' && <NoticeList />}
-						{view === '문의' && <QuestionList />}
+						{view === '공지' && <NoticeList goods_id={goods_id}/>}
+						{view === '문의' && <QuestionList goods_id={goods_id}/>}
 					</div>
 		</div>
 	);

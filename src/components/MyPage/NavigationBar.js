@@ -27,9 +27,9 @@ const NavigationBar = () => {
         </Link>
         <Link
           className={`myProject ${
-            location.pathname === "/myproject" ? "active" : ""
+            location.pathname === "/mysaleform" ? "active" : ""
           }`}
-          to={"/myproject"}
+          to={"/mysaleform"}
         >
           나의 프로젝트
         </Link>

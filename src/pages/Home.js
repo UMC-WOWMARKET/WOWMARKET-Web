@@ -1,8 +1,5 @@
 import { useParams, useSearchParams } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
-import Banner from "../components/Banner";
-import FilterBar from "../components/FilterBar";
-import SearchBar from "../components/SearchBar";
 import GoodsCard from "../components/Goods_list/GoodsCard"; // GoodsCard 컴포넌트의 경로를 적절하게 수정해주세요.
 import axios from "axios";
 import React from "react";
@@ -10,7 +7,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import banner_logo from "./banner_logo.svg";
 import "../styles/Home.css";
-import Goods from './Goods';
+import bannerBack from "./banner_back.png";
 
 import Search from "../components/Goods_list/Search";
 import Arrangement from "../components/Goods_list/Arrangement";
@@ -86,12 +83,12 @@ const Home = () => {
       <div className="SearchBox">
         <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </div>
-      <div className="banner_back">
-        <img src="../assets/banner_back.png" />
-      </div>
+
+
       <div className="banner_logo">
-        <img src={banner_logo} alt="Banner Logo" />
+        <img src={banner_logo} alt="Banner" />
       </div>
+
       <div>
         <Arrangement
           orderBy={orderBy}
@@ -129,13 +126,6 @@ const Home = () => {
           )
         )}
       </div>
-
-			<div>
-				<br></br>
-				<br></br>
-				<br></br>
-				<Goods />
-			</div>
     </div>
   );
 };

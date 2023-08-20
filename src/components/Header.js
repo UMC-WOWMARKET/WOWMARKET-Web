@@ -78,6 +78,7 @@ const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  
   font-family: "Pretendard";
   font-weight: 700;
   font-size: ${theme.fontSizes.headline3};
@@ -88,6 +89,8 @@ const HeaderContainer = styled.div`
   height: 100px;
   z-index: 1000;
   background-color: ${theme.colors.white};
+  width: 100%;
+  border-bottom: ${theme.colors.lightgrey} solid 2px;
 `;
 
 const Logo = styled.img`
@@ -100,7 +103,8 @@ const Navigation = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: ${theme.colors.lightgrey} solid 2px;
+ 
+  
   height: 100px;
   padding: 0 144px;
 `;
@@ -127,6 +131,7 @@ const NavLink = styled(Link)`
 const MemberMenu = styled.div`
   height: 45px;
   display: flex;
+  
 `;
 
 const MemberLink = styled(Link)`

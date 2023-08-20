@@ -121,9 +121,24 @@ const OrderForm = ({ goods_id }) => {
 	useEffect (() => { fetchData(); }, []);
 
 	const handleSubmit = async (e) => {
+		const postData = {
+			receiver: receiver,
+			zipcode: zipcode,
+			address: address,
+			address_detail: detailAddress,
+			phone: phoneNumber,
+			depositor: depositor,
+			depositTime: depositTime,
+			bank: refundBank,
+			account: refundAccount,
+			total_price: totalPrice,
+			delivery_msg: deliveryMessage,
+			orderRequestDtoList: orderList
+		}
 		try {
-			console.log({ receiver, zipcode, address, detailAddress, phoneNumber, depositor, depositTime, refundBank, refundAccount, totalPrice, deliveryMessage, orderList });
-			await axios.post(`http://www.wowmkt.kr/project/${goods_id}/item`, { receiver, zipcode, address, detailAddress, phoneNumber, depositor, depositTime, refundBank, refundAccount, totalPrice, deliveryMessage, orderList });
+			console.log(postData);
+			await axios.post(`http://www.wowmkt.kr/project/${goods_id}`, postData);
+			console.log('OrderForm Post Success');
 		} catch(error){
 			console.error('OrderForm Post Error')
 		}

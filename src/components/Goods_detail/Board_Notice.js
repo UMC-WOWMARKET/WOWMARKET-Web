@@ -54,7 +54,7 @@ const NoticeItem = ({ key, index, title, content, time }) => {
 };
 
 // 공지 목록 컴포넌트
-const NoticeList = () => {
+const NoticeList = ({goods_id}) => {
 		// const [title, setTitle] = useState('');
 		// const [content, setContent] = useState('');
 		const [showForm, setShowForm] = useState(false);
@@ -68,7 +68,7 @@ const NoticeList = () => {
 
 		const fetchData = async () => {
 			try {
-				const response = await axios.get('http://www.wowmkt.kr/project/3/notice');
+				const response = await axios.get(`http://www.wowmkt.kr/project/${goods_id}/notice`);
 				setPosts(response.data);
 				console.log('GET Success');
 				console.log(response.data)
@@ -80,9 +80,13 @@ const NoticeList = () => {
 		useEffect(() => { fetchData() }, []); //GET
 
 		const handleAddPost = async (title, content) => { //POST
-			console.log({title, content})
+			const postData = {
+				title: title,
+				content: content
+			};
+			console.log(postData);
 			try {
-				await axios.post('http://www.wowmkt.kr/project/3/notice', { title, content });
+				await axios.post(`http://www.wowmkt.kr/project/${goods_id}/notice`, postData);
 				fetchData();
 				console.log('POST Success');
 			} catch (error) {
