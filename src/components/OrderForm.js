@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/OrderForm.css'
+import styled from "styled-components";
+
 import axios from 'axios';
 
 //상품 컴포넌트
@@ -34,8 +36,8 @@ const OrderForm = ({ goods_id }) => {
 	// GET DATA
 	//수령 방법
 	const [receiveType, setReceiveType] = useState(""); //수령방법
-	const [deliveryFee, setDeliveryFee] = useState(); //택배배송일 때 - 택배비
-	const [receiveAddress, setReceiveAddress] = useState(null); //직접수령일 때 - 픽업장소
+	const [deliveryFee, setDeliveryFee] = useState(" "); //택배배송일 때 - 택배비
+	const [receiveAddress, setReceiveAddress] = useState(" "); //직접수령일 때 - 픽업장소
 	//상품리스트
 	const [itemList, setItemList] = useState([]);
 	//판매자 계좌 정보
@@ -102,6 +104,7 @@ const OrderForm = ({ goods_id }) => {
 
 			setReceiveType(response.data.receive_type);
 			setDeliveryFee(response.data.delivery_fee);
+			setReceiveAddress(response.data.receive_address);
 			setItemList(response.data.itemResponseDtoList);
 			setSellerBank(response.data.bank);
 			setSellerAccount(response.data.account);
@@ -142,6 +145,7 @@ const OrderForm = ({ goods_id }) => {
 	useEffect (() => { fetchData(); }, []);
 
 	return (
+		<div>
 		<div className="OrderForm">
 			<h3 style={{margin:'37px 0 25px 0'}}>주문폼</h3>
 			<div className='common-box' style={{width:'420px', height:'0px'}}></div>
@@ -155,7 +159,7 @@ const OrderForm = ({ goods_id }) => {
 				<div className='section2'>
 					<div
 						className={`common-box ${receiveType === 'delivery' ? 'selected' : ''}`}
-						style={{ width: '200px', height : '80px' }}
+						style={{ width: '200px', height : '80px'}}
 					>
 						<div className='text1'>택배배송</div>
 						{receiveType === 'delivery' && <div className='text2'>택배비 {deliveryFee}원</div>}
@@ -221,7 +225,7 @@ const OrderForm = ({ goods_id }) => {
 			{/* 배송 정보 */}
 			<div className='deliveryInfo'>
 				<h4>배송 정보</h4>
-				<div className='common-box'>
+				<div className='common-box' style={{width:'420px'}}>
 					<form>
 						<label htmlFor="receiver">수취인명</label>
 						<input type="text" id="receiver" value={receiver} onChange={e => setReceiver(e.target.value)} required /><br></br>
@@ -255,41 +259,45 @@ const OrderForm = ({ goods_id }) => {
 			{/* 판매자 계좌 정보 */}
 			<div className='sellerAccountInfo'>
 				<h4>판매자 계좌 정보</h4>
-				<div className='common-box'>
-					입금계좌 {sellerBank} {sellerAccount} <br></br>
-					예금주 {sellerAccountHolder}
+				<div className='common-box' style={{width:'420px', height:'92px'}}>
+					<div>
+						<div style={{marginRight:'24px'}}>입금계좌</div>
+						<div>{sellerBank} {sellerAccount}</div>
+					</div>
+					<div>
+						<div style={{marginRight:'38px'}}>예금주</div>
+						<div>{sellerAccountHolder}</div>
+					</div>
 				</div>
 			</div>
 
 
-			<div className='gray-box'>
+			<div className='gray-box' style={{width:'420px', height:'60px', marginTop:'32px'}}>
 				판매자의 계좌로 최종 금액을 송금한 후 아래 내용을 작성해주세요.
 			</div>
 
 			{/* 입금 정보 */}
 			<div className='depositInfo'>
 				<h4>입금 정보</h4>
-				<div className='common-box'>
-					<form>
-						<div>
-							<label>입금자명</label>
-							<input
-								type="text"
-								name="depositor"
-								value={depositor}
-								onChange={e => setDepositor(e.target.value)}
-							/>
-						</div>
-						<div>
-							<label>입금시간</label>
-							<input
-								type="text"
-								name="depositTime"
-								value={depositTime}
-								onChange={e => setDepositTime(e.target.value)}
-							/>
-						</div>
-					</form>
+				<div className='common-box' style={{width:'420px', height:'92px'}}>
+					<div>
+						<label>입금자명</label>
+						<input
+							type="text"
+							name="depositor"
+							value={depositor}
+							onChange={e => setDepositor(e.target.value)}
+						/>
+					</div>
+					<div>
+						<label>입금시간</label>
+						<input
+							type="text"
+							name="depositTime"
+							value={depositTime}
+							onChange={e => setDepositTime(e.target.value)}
+						/>
+					</div>
 				</div>
 			</div>
 
@@ -301,21 +309,33 @@ const OrderForm = ({ goods_id }) => {
 					name="refundBank"
 					value={refundBank}
 					onChange={e => setRefundBank(e.target.value)}
+					style={{width:'96px', height:'26px'}}
+					className='common-input'
 				/>
 				<input
 					type="text"
 					name="refundAccount"
 					value={refundAccount}
 					onChange={e => setRefundAccount(e.target.value)}
+					style={{width:'148px', height:'26px'}}
+					className='common-input'
 				/>
 			</div>
+			<div className='redText' style={{margin:'39px 0 18px 9px'}}>환불이 필요한 경우 입력해주신 계좌로 진행됩니다.</div>
 
-			{/* 폼 제출하기 */}
-			<div className='submitForm'>
-        <button onClick={handleSubmit}>폼 제출하기</button>
-      </div>
 		</div>
+		{/* 폼 제출하기 */}
+		<div className='submitForm'>
+		<button onClick={handleSubmit}>폼 제출하기</button>
+	</div>
+	</div>
 	);
 }
 
 export default OrderForm;
+
+const Input = styled.input`
+	border-radius: 30px;
+	border: 1px solid rgba(221, 221, 221, 0.87);
+	border-color: #000000;
+`;

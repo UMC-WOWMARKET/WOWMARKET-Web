@@ -3,16 +3,23 @@
 	color: #646464;
 	border: 1px solid #DDDDDD;
 	width: 488px;
-	height: 630px; /*수정 예정*/
+	height: 600px; /*수정 예정*/
 	flex-shrink: 0;
 	overflow-y: scroll;
 	padding-left: 34px;
+	margin-left: 48px;
 }
 
 .common-box {
+	box-sizing: border-box;
 	border: 1px solid #DDDDDD;
 	display: flex;
 	align-items: center;
+}
+
+.common-input {
+	border-radius: 5px;
+	border: 1px solid #DDD;
 }
 
 /* 수령 방법 */
@@ -31,6 +38,13 @@
   display: flex;
   flex-direction: row;
 	gap: 19px;
+}
+
+.deliveryMethod .common-box {
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	padding-left: 16px;
 }
 
 .deliveryMethod .common-box.selected {
@@ -94,17 +108,53 @@
 }
 
 .gray-box {
+	display: flex;
 	width: 420px;
 	height: 60px;
-	flex-shrink: 0;
 	background: #F2F2F2;
+	border:1px solid #F2F2F2;
+	justify-content: center;
+	align-items: center;
 }
 
+
+/*판매자 계좌 정보*/
+.sellerAccountInfo div {
+	display: flex;
+}
+
+.sellerAccountInfo .common-box {
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	padding-left: 31px;
+	gap: 16px;
+}
 
 /*입금 정보*/
 .depositInfo input {
 	border-radius: 5px;
 	border: 1px solid #DDD;
+	margin-left: 20px;
+}
+
+.depositInfo .common-box {
+	padding-left: 31px;
+	gap: 19px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+}
+.depositInfo div {
+	display: flex;
+}
+
+/*환불 정보 */
+.refundAccount {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 }
 
 .refundAccount input {

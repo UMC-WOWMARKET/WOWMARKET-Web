@@ -586,18 +586,18 @@ body {
 /*Goods*/
 
 .Goods {
-  border: 1px solid red;
-
+  /* border: 1px solid red; */
+	margin: 115px;
   display: flex;
   flex-direction: row;
 
   justify-content: space-evenly;
 }
 
-.Goods .left_side {
+/* .Goods .left_side {
   border: 1px solid blue;
   width: 35%;
-}
+} */
 /* .Goods .right_side {
   border: 1px solid blueviolet;
   width: 35%;
