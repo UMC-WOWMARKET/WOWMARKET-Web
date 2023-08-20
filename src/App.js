@@ -30,14 +30,7 @@ function App() {
           <Route path="/register/project" element={<ProjectRegister />} />
           <Route path="/goods/detail" element={<Goods />} />
 
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/myinfo" element={<MyInfo />} />
-          <Route path="/myorder" element={<MyOrder />} />
-          <Route path="/myproject" element={<MyProject />} />
-
-          <Route path="/mysaleform" element={<MySaleForm />} />
-          <Route path="/myorderform" element={<MyOrderForm />} />
-          <Route path="/mydemandform" element={<MyDemandForm />} />
+          <Route path="/myinfo" element={<MyPage />} />
         </Routes>
       </div>
       <Footer />

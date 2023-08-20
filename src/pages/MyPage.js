@@ -5,6 +5,9 @@ import NavigationBar from "../components/MyPage/NavigationBar";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { keyboard } from "@testing-library/user-event/dist/keyboard";
+import InfoContent from "../components/MyPage/InfoCotent";
+import OrderContent from "../components/MyPage/OrderCotent";
+import ProjectContent from "../components/MyPage/ProjectContent";
 
 const MyPage = () => {
   const [pageType, setPageType] = useState("info");
@@ -14,6 +17,9 @@ const MyPage = () => {
   return (
     <div className="MyPage">
       <NavigationBar pageType={pageType} setPageType={setPageType} />
+      {pageType === "info" && <InfoContent />}
+      {pageType === "order" && <OrderContent />}
+      {pageType === "project" && <ProjectContent />}
     </div>
   );
 };

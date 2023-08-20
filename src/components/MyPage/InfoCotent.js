@@ -1,9 +1,8 @@
 import React from "react";
-import NavigationBar from "../components/MyPage/NavigationBar";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const MyInfo = () => {
+const InfoContent = () => {
   const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
@@ -23,6 +22,7 @@ const MyInfo = () => {
       .get("https://www.wowmkt.kr/mypage/myinfo")
       .then((res) => {
         const data = res.data; // 예시: { name: "김와우", email: "wow1234@mail.com", univ: "와우대학교" }
+        console.log(`나의정보${data}`);
         setUserInfo(data); // 상태 업데이트
       })
       .catch((err) => {
@@ -32,19 +32,20 @@ const MyInfo = () => {
 
   return (
     <div className="MyInfo">
-      <NavigationBar />
-      <div className="MyInfoContent">
-        <div className="title">나의 정보</div>
-        <div className="info_space">
-          <div className="check_space">
-            <div className="name_subtitle">이름</div>
-            <div className="mail_subtitle">이메일</div>
-            <div className="univ_subtitle">소속학교</div>
-          </div>
-          <div className="info">
-            <div className="name">{userInfo.name}</div>
-            <div className="email">{userInfo.email}</div>
-            <div className="univ">{userInfo.univ}</div>
+      <div className="InfoContent">
+        <div className="MyInfoContent">
+          <div className="title">나의 정보</div>
+          <div className="info_space">
+            <div className="check_space">
+              <div className="name_subtitle">이름</div>
+              <div className="mail_subtitle">이메일</div>
+              <div className="univ_subtitle">소속학교</div>
+            </div>
+            <div className="info">
+              <div className="name">{userInfo.name}</div>
+              <div className="email">{userInfo.email}</div>
+              <div className="univ">{userInfo.univ}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -52,4 +53,4 @@ const MyInfo = () => {
   );
 };
 
-export default MyInfo;
+export default InfoContent;

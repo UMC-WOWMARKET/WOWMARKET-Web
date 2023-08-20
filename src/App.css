@@ -521,11 +521,6 @@ body {
 
 /*MyInfo*/
 
-.MyInfo {
-  display: flex;
-  padding-top: 100px;
-}
-
 .MyInfo .MyInfoContent {
   padding-left: 80px;
   padding-top: 10px;
@@ -598,10 +593,6 @@ body {
 }
 
 /*MyOrder*/
-.MyOrder {
-  display: flex;
-  padding-top: 100px;
-}
 
 .MyOrder .MyOrderContent {
   padding-left: 80px;
@@ -620,6 +611,7 @@ body {
   display: flex;
   align-items: center;
 }
+
 .MyOrder .MyOrderContent .title::before {
   content: "";
   position: absolute;
@@ -720,17 +712,4 @@ body {
 
 .MyOrder .MyOrderContent .order_space .content .order_date {
   padding-right: 23px;
-}
-
-/*MySaleForm*/
-
-.MySaleForm {
-  display: flex;
-  padding-top: 100px;
-}
-.dropdown-menu {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding-top: 20px;
 }

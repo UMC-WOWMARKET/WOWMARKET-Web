@@ -45,7 +45,7 @@ const NavigationBar = ({ pageType, setPageType }) => {
           >
             나의 프로젝트
           </button>
-          {showDropdown && (
+          {/* {showDropdown && (
             <div className="dropdown-menu">
               <button
                 onClick={() => {
@@ -72,7 +72,7 @@ const NavigationBar = ({ pageType, setPageType }) => {
                 수요조사 등록폼 관리
               </button>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>
