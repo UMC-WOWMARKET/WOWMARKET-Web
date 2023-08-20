@@ -59,9 +59,17 @@ const NoticeItem = ({ key, goods_id, notice_id, index, title, time }) => {
 			setShowContent(!showContent);
 		}
 
+		function formatDate(dateString) {
+			const date = new Date(dateString);
+			const year = date.getFullYear();
+			const month = String(date.getMonth() + 1).padStart(2, '0');
+			const day = String(date.getDate()).padStart(2, '0');
+			return `${year}-${month}-${day}`;
+		}
+
 		return (
 			<div key={key} onClick={handleToggleContent} style={{cursor:'pointer'}}>
-				<span>{index + 1} | {title} | {time} </span>
+				<span>{index + 1} | {title} | {formatDate(time)} </span>
 				{showContent && <p>{content}</p>}
 			</div>
 		)
@@ -84,7 +92,7 @@ const NoticeList = ({goods_id}) => {
 			}
 		}
 
-		useEffect(() => { getList() }, []); //GET
+		useEffect(() => { getList() }, [goods_id]); //GET
 
 		const handleAddPost = async (title, content) => { //POST
 			const postData = {

@@ -3,7 +3,6 @@ import GoodsInfo from "../components/Goods_detail/GoodsInfo";
 import GoodsBoard from "../components/Goods_detail/GoodsBoard";
 import OrderForm from "../components/OrderForm";
 import DemandForm from "../components/Goods_detail/DemandForm";
-
 import axios from 'axios';
 
 axios.interceptors.request.use((config) => {

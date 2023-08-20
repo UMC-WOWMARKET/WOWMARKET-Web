@@ -40,6 +40,10 @@ const GoodsInfo = ({goods_id}) => {
 	useEffect (() => { getData(); }, []);
 
 	const achievedRate = (achieved === 0 || goal === 0 ? 0 : (achieved / goal) * 100);
+  const startDateParsed = new Date(startDate);
+  const endDateParsed = new Date(endDate);
+  const timeDifference = endDateParsed - startDateParsed; // Difference in milliseconds
+  const remainingDays = Math.ceil(timeDifference / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
 
 	return (
 		<div className="GoodsInfo">
@@ -52,6 +56,7 @@ const GoodsInfo = ({goods_id}) => {
 			<div>기간 {startDate} ~ {endDate}</div>
 			<div>{achievedRate}% 달성</div>
 			<div>{participant}명 참여</div>
+			<div>{remainingDays}일 남음</div>
 		</div>
 	);
 };
