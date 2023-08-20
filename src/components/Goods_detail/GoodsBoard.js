@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import Intro from "./Board_Intro"
-import NoticeList from "./Board_Notice"
-import QuestionList from "./Board_Question"
+import NoticeList from "./Board_Notice";
+import QuestionList from "./Board_Question";
 import axios from "axios";
+import '../../styles/OrderForm.css';
+import '../../styles/GoodsBoard.css';
 
 const GoodsBoard = ({ goods_id }) => {
 	const [view, setView] = useState('굿즈소개');
@@ -11,15 +13,26 @@ const GoodsBoard = ({ goods_id }) => {
 	};
 
   return (
-		<div className="BoardView">
-					<div onClick={() => handleButtonClick('굿즈소개')}>굿즈소개</div><br></br>
-					<div onClick={() => handleButtonClick('공지')}>공지</div><br></br>
-					<div onClick={() => handleButtonClick('문의')}>문의</div><br></br>
-					<div className='BoardContent'>
-						{view === '굿즈소개' && <Intro goods_id={goods_id}/>}
-						{view === '공지' && <NoticeList goods_id={goods_id}/>}
-						{view === '문의' && <QuestionList goods_id={goods_id}/>}
-					</div>
+		<div>
+			<div className="BoardView" style={{display:'flex', justifyContent:'space-around'}}>
+				<div onClick={() => handleButtonClick('굿즈소개')} className={view === '굿즈소개' ? 'selected' : ''}>
+					굿즈소개
+				</div>
+				<div onClick={() => handleButtonClick('공지')} className={view === '공지' ? 'selected' : ''}>
+					공지
+				</div>
+				<div onClick={() => handleButtonClick('문의')} className={view === '문의' ? 'selected' : ''}>
+					문의
+				</div>
+			</div>
+
+			<div className='common-box' style={{margin:'18px 0 38px 0', width:'600px'}}></div>
+
+			<div className='BoardContent' style={{fontSize:'20px', fontWeight:'400', color:'#646464'}}>
+				{view === '굿즈소개' && <Intro goods_id={goods_id}/>}
+				{view === '공지' && <NoticeList goods_id={goods_id}/>}
+				{view === '문의' && <QuestionList goods_id={goods_id}/>}
+			</div>
 		</div>
 	);
 };

@@ -96,17 +96,16 @@ body {
 /*Login*/
 
 .Login {
-  width: 545px;
-  height: 400px;
+  width: 480px;
+  height: 520px;
   border: 1px solid rgba(174, 174, 174, 1);
-  border-radius: 20px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-
+  border-radius: 5px;
+  font-family: Pretendard;
+  position: absolute;
+  margin-top: 250px; /*위로부터의 위치 지정*/
   padding-bottom: 30px;
   padding-top: 30px;
+
 }
 
 .Login .input_body {
@@ -114,126 +113,242 @@ body {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
-
-  height: 60%;
-
+  height: 40%;
   padding-left: 50px;
-}
 
+}
+.Login ::placeholder {
+  color: #A0A0A0;
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 20px;
+}
+.Login .input_box{ /*이메일,비번 입력시*/
+  height: 45px;
+  width: 370px;
+  background-color: transparent;
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 20px;
+  color : #646464;
+  margin-top: 10px;
+}
 .input_footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
+
 }
 
 .input_footer .login_button {
-  width: 432px;
-  height: 40px;
+  width: 388px;
+  height: 60px;
   border-radius: 10px;
   cursor: pointer;
-
-  background-color: rgba(217, 217, 217, 1);
-
+  font-size: 20px;
+  font-family: Pretendard;
+  color : white;
+  background-color: #002472;
   border: none;
+  margin-top: 40px;
 }
 
 .input_footer .kakao_button {
-  width: 432px;
-  height: 40px;
+  width: 388px;
+  height: 60px;
   border-radius: 10px;
   cursor: pointer;
-  background-color: rgba(255, 235, 131, 1);
-
+  font-size: 20px;
+  font-family: Pretendard;
+  color : black;
+  background-color: #FEE500;
   border: none;
+
 }
 
+.Login .title{ /*이메일로 로그인*/
+   font-weight: 700;
+   color: #646464;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+   align-items: flex-start;
+   padding-left: 50px;
+   padding-top: 10px;
+   padding-bottom: 35px;
+}
+.Login .subtitle2{ /*비밀번호*/
+  font-family: Pretendard;
+  font-size: 16px;
+  color: #646464;
+  margin-top: 20px;
+}
+.Login .subtitle1{ /*이메일*/
+  font-family: Pretendard;
+  font-size: 16px;
+  color: #646464;
+  margin-top: 20px;
+}
+.Login .navigation {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+}
 /*Join*/
 .Join {
-  width: 545px;
-  height: 850px;
-  border: 1px solid rgba(174, 174, 174, 1);
-  border-radius: 20px;
-
+  width: 480px;
+  height: 1539px;
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  margin-bottom: 150px;
-}
+  font-family: Pretendard;
+  position: absolute;
+  top: 130px;
 
+}
+.Join .title {
+  display: flex;
+  font-size: 32px;
+  font-weight: 700;
+  color: #646464;
+  display: flex;
+  margin-left: 30px;
+
+}
 .Join .input_body {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
-  height: 70%;
 
-  padding-left: 50px;
+  padding-left: 30px;
+}
+
+.Join .input_body .subtitle1{
+  color: #646464;
+  font-size: 16px;
+  font-weight: 400;
+
+}
+.Join .input_body .subtitle2{
+  padding-top: 30px;
+  color: #646464;
+  font-size: 16px;
+  font-weight: 400;
+}
+.Join .input_body .subtitle3{
+  padding-top: 30px;
+  color: #646464;
+  font-size: 16px;
+  font-weight: 400;
+}
+.Join ::placeholder {
+  color: #A0A0A0;
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 20px;
+}
+.Join .input_body .input_box{
+  width: 401px;
+  height: 45px;
+  background-color: transparent;
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-family: Pretedard;
+  color:#646464;
+  font-weight: 500;
+  font-size: 20px;
+
+}
+.Join .terms { /*이용약관*/
+  width: 401px;
+  height: 124px;
+  overflow: auto; /* 내용이 넘칠 경우 스크롤 적용 */
+  border: 1px solid #DDDDDD; /* 선택사항: 테두리 추가 */
+  padding: 10px;
+  font-size: 15px;
+}
+
+
+.check_list label input[type="checkbox"] { /*체크박스*/
+  width: 25px; /* 원하는 너비 */
+  height: 25px; /* 원하는 높이 */
+
+  /* 다양한 스타일링을 원하신다면 추가적인 속성을 설정할 수 있습니다 */
+
 }
 
 .check_list {
   display: flex;
   flex-direction: column;
-
   justify-content: center;
   align-items: flex-start;
 
-  font-size: 15px;
-  color: rgba(110, 110, 110, 1);
+  font-size: 20px;
+  color:#646464;
 
   gap: 10px;
-  padding-top: 10px;
+  padding-top: 20px;
 }
+.check_list  .all{
+ font-weight: 700;
+}
+
 
 /*ResetPw*/
 
 .ResetPw {
-  width: 545px;
-  height: 350px;
+  width: 480px;
+  height: 400px;
   border: 1px solid rgba(174, 174, 174, 1);
-  border-radius: 20px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  padding: 50px;
+  border-radius: 5px;
+  font-family: Pretendard;
+  position: absolute;
+  margin-top: 60px;
 }
 
+
 .ResetPw .title {
-  font-size: 36px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #646464;
   text-align: left;
   padding-left: 45px;
+  margin-top: 56px;
 }
 
 .ResetPw .input_body {
   display: flex;
   flex-direction: column;
-
   align-items: flex-start;
-
-  height: 50%;
-
-  padding-left: 50px;
+  width: 400px;
+  padding-left: 45px;
   gap: 20px;
 }
 
-.ResetPw .input_body .subtitle {
-  font-size: 20px;
+.ResetPw .input_body .subtitle {/*이메일주소*/
+  font-size: 16px;
   color: rgba(110, 110, 110, 1);
 }
 
 .ResetPw .subtitle {
-  font-size: 20px;
-  color: rgba(110, 110, 110, 1);
+  margin-top: 47px;
+  font-size: 16px;
+  color: #646464;
 }
 
-.ResetPw .input_body .address {
-  height: 40px;
-  width: 432px;
-  border-radius: 10px;
-  border: none;
-  background-color: rgba(240, 240, 240, 1);
+.ResetPw .input_body .address { /*가입하신 이메일 주소를 입력해주세요*/
+  height: 48px;
+  width: 380px;
+  border-radius: 5px;
+  border: #DDDDDD 1px solid;
   color: rgba(110, 110, 110, 1);
   padding-left: 10px;
 }
@@ -244,69 +359,80 @@ body {
   justify-content: center;
   align-items: center;
   gap: 20px;
+
 }
 
-.ResetPw .temp_pw .temp_pw_button {
-  width: 432px;
-  height: 40px;
-  border-radius: 10px;
-  cursor: pointer;
-  color: rgba(110, 110, 110, 1);
-  background-color: rgba(217, 217, 217, 1);
-
+.ResetPw .temp_pw .temp_pw_button { /*임시번호받기*/
+  width: 395px;
+  height: 48px;
+  border-radius: 5px;
+  color: white;
+  background-color:#002472;
   border: none;
+  margin-top: 35px;
 }
 
-.ResetPw .tail {
+.ResetPw .tail {/*이메일로 전송된*/
   font-size: 16px;
-  color: rgba(110, 110, 110, 1);
+  font-weight: 400;
+  color: #646464;
+  margin-top: 10px;
+  float: left;
+  margin-left: 40px;
 }
 
-/*TempPw*/
+/*비밀번호재설정*/
 
 .TempPw {
-  width: 545px;
-  height: 500px;
-  border: 1px solid rgba(174, 174, 174, 1);
-  border-radius: 20px;
-
+  width: 400px;
+  height: 470px;
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  position: absolute;
+  margin-top: 240px;
+  gap: 50px;
   padding: 50px;
-
-  margin-bottom: 80px;
+  font-family: Pretendard;
 }
 
 .TempPw .title {
   text-align: left;
-  padding-left: 45px;
-  font-size: 36px;
+  padding-left: 10px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #646464;
 }
 
 .TempPw .input_body {
   display: flex;
   flex-direction: column;
-
   align-items: flex-start;
   height: 50%;
-  padding-left: 50px;
+  padding-left: 10px;
   gap: 20px;
 }
 
 .TempPw .input_body .subtitle {
-  font-size: 20px;
-  color: rgba(110, 110, 110, 1);
+  font-size: 16px;
+  color:#646464;
 }
 
 .TempPw .input_body .input_box {
-  height: 40px;
-  width: 432px;
-  border-radius: 10px;
-  border: none;
-  background-color: rgba(240, 240, 240, 1);
-  color: rgba(110, 110, 110, 1);
-  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  height: 48px;
+  width: 370px;
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;
+  color: #646464;
+  font-size: 20px;
+  font-weight: 400;
+  background-color: transparent;
+
+
 }
 
 .TempPw .input_tail {
@@ -316,42 +442,55 @@ body {
 
   height: 50%;
 
-  padding-left: 50px;
+  padding-left: 10px;
   gap: 3px;
 }
 
 .TempPw .input_tail .subtitle {
-  font-size: 20px;
-  color: rgba(110, 110, 110, 1);
+  font-size: 16px;
+  color: #A0A0A0;
   padding-bottom: 10px;
 }
 
 .TempPw .input_tail .input_box {
-  height: 40px;
-  width: 432px;
-  border-radius: 10px;
-  border: none;
-  background-color: rgba(240, 240, 240, 1);
-  color: rgba(110, 110, 110, 1);
-  padding-left: 10px;
+  height: 48px;
+  width: 370px;
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;
+  background-color: transparent;
+
+  font-size: 20px;
+  font-family: Pretendard;
+  font-weight: 400;
+  color: #646464;
+
+  padding-left: 20px;
 }
 .TempPw .input_tail .input_check {
-  height: 40px;
-  width: 432px;
-  border-radius: 10px;
-  border: none;
-  background-color: rgba(240, 240, 240, 1);
-  color: rgba(110, 110, 110, 1);
-  padding-left: 10px;
+  height: 48px;
+  width: 370px;
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;;
+  background-color: transparent;
+
+  font-size: 20px;
+  font-family: Pretendard;
+  font-weight: 400;
+  color: #646464;
+
+  padding-left: 20px;
 }
 
-.TempPw .resetPw {
-  width: 432px;
-  height: 40px;
-  border-radius: 10px;
+.TempPw .resetPw { /*비밀번호재설정하기*/
+  width: 380px;
+  height: 48px;
+  border-radius: 5px;
   cursor: pointer;
-  color: rgba(110, 110, 110, 1);
-  background-color: rgba(217, 217, 217, 1);
+  font-size: 20px;
+  font-weight: 400;
+  font-family: Pretendard;
+  color: white;
+  background-color: #002472;
   padding-left: 10px;
   border: none;
 }
@@ -464,9 +603,9 @@ body {
   width: 35%;
 } */
 
-.GoodsInfo {
+/* .GoodsInfo {
   border: 1px solid red;
-}
+} */
 
 /*NavigationBar*/
 

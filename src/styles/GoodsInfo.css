@@ -1,0 +1,20 @@
+.line {
+	display: flex;
+	align-items: center;
+}
+
+.line div {
+	display: flex;
+}
+
+.text1 {
+	font-size: 32px;
+	font-style: normal;
+	font-weight: 700;
+}
+
+.text2 {
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+}

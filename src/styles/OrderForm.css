@@ -3,7 +3,7 @@
 	color: #646464;
 	border: 1px solid #DDDDDD;
 	width: 488px;
-	max-height: 1512px;
+	height: 630px; /*수정 예정*/
 	flex-shrink: 0;
 	overflow-y: scroll;
 	padding-left: 34px;
