@@ -16,7 +16,7 @@ function Header() {
     setIsLogin(false);
     navigate("/");
   };
-  
+
   const changeImage = (event) => {
     event.target.src = "/assets/mypage_hover.png";
   }; //마이페이지 마우스오버 시 변화
@@ -50,12 +50,14 @@ function Header() {
         </Menu>
         <MemberMenu>
           {isLogin && (
-            <Link to="/mypage">
+            <Link to="/myinfo">
               <StyledImage
                 src="/assets/mypage_default.png"
                 alt="마이페이지"
                 onMouseEnter={changeImage}
-                onMouseLeave={(event) => (event.target.src = "/assets/mypage_default.png")}
+                onMouseLeave={(event) =>
+                  (event.target.src = "/assets/mypage_default.png")
+                }
               />
             </Link>
           )}
@@ -80,7 +82,7 @@ const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  
+
   font-family: "Pretendard";
   font-weight: 700;
   font-size: ${theme.fontSizes.headline3};
@@ -132,7 +134,6 @@ const NavLink = styled(Link)`
 const MemberMenu = styled.div`
   height: 45px;
   display: flex;
-  
 `;
 
 const MemberLink = styled(Link)`
@@ -159,5 +160,4 @@ const DropdownMenu = styled.div`
   left: 0;
 `;
 
-const StyledImage = styled.img`
-`;
+const StyledImage = styled.img``;

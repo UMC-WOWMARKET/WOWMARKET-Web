@@ -636,6 +636,9 @@ body {
   color: rgba(110, 110, 110, 1);
   font-size: 20px;
   border-radius: 10px;
+  border: none;
+  background-color: white;
+  cursor: pointer;
 }
 .myInfo.active,
 .myOrder.active,
@@ -644,12 +647,18 @@ body {
   color: white; /* 글자 색상 변경 */
 }
 
-/*MyInfo*/
-
-.MyInfo {
-  display: flex;
-  padding-top: 100px;
+.nav_box .dropdown-content {
+  padding: 5px;
+  text-decoration: none;
+  color: rgba(110, 110, 110, 1);
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: white;
+  cursor: pointer;
 }
+
+/*MyInfo*/
 
 .MyInfo .MyInfoContent {
   padding-left: 80px;
@@ -723,10 +732,6 @@ body {
 }
 
 /*MyOrder*/
-.MyOrder {
-  display: flex;
-  padding-top: 100px;
-}
 
 .MyOrder .MyOrderContent {
   padding-left: 80px;
@@ -745,6 +750,7 @@ body {
   display: flex;
   align-items: center;
 }
+
 .MyOrder .MyOrderContent .title::before {
   content: "";
   position: absolute;
