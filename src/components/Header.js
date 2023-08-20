@@ -35,7 +35,9 @@ function Header() {
     <HeaderContainer>
       <Navigation>
         <Menu>
-          <Logo src="/assets/weblogo.png " />
+        <Link to="/goods?page_type=selling">
+            <Logo src="/assets/weblogo.png" />
+          </Link>
           <NavLink to="/goods?page_type=selling">판매</NavLink>
           <NavLink to="/goods?page_type=demand">수요조사</NavLink>
           <NavLink
@@ -103,8 +105,6 @@ const Navigation = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
- 
-  
   height: 100px;
   padding: 0 144px;
 `;
@@ -116,6 +116,7 @@ const Menu = styled.div`
 `;
 
 const NavLink = styled(Link)`
+  margin-right: 13px;
   text-decoration: none;
   color: ${theme.colors.darkgrey};
   padding: 37px 30px 37px;

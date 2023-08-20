@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import kakao from "./kakao.svg";
 
 const Login = () => {
   const [id, setId] = useState("");
@@ -68,7 +69,7 @@ const Login = () => {
       <div className="title">이메일로 로그인</div>
 
       <div className="input_body">
-        <div className="subtitle">이메일 주소</div>
+        <div className="subtitle1">이메일 주소</div>
         <input
           placeholder="이메일 주소를 입력해주세요"
           className="input_box"
@@ -76,7 +77,7 @@ const Login = () => {
             setId(e.target.value);
           }}
         />
-        <div className="subtitle">비밀번호</div>
+        <div className="subtitle2">비밀번호</div>
         <input
           type="password"
           placeholder="비밀번호를 입력해주세요"
@@ -98,7 +99,13 @@ const Login = () => {
         </button>
 
         <button className="kakao_button" onClick={handleNavigateToKakaoLogin}>
-          카카오로 로그인
+        <img src={kakao}
+        style={{ 
+          position: "absolute",
+          top: "465px",
+          left: "70px"
+         }}/> 
+        카카오 로그인
         </button>
       </div>
 
@@ -109,6 +116,7 @@ const Login = () => {
         <button className="navigation" onClick={handleNavigateToResetPw}>
           비밀번호 재설정
         </button>
+
       </div>
     </div>
   );

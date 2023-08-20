@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import banner_logo from "./banner_logo.svg";
 import "../styles/Home.css";
-import bannerBack from "./banner_back.png";
+
 
 import Search from "../components/Goods_list/Search";
 import Arrangement from "../components/Goods_list/Arrangement";
