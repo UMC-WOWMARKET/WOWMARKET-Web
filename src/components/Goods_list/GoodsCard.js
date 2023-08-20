@@ -1,7 +1,8 @@
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 
 const GoodsCard = ({
-  key,
+  id,
   projectName,
   sellerName,
   goal,
@@ -10,6 +11,7 @@ const GoodsCard = ({
   startDate,
   imgUrl,
   univ,
+  page_type,
 }) => {
   const achievedPer = ((achieved / goal) * 100).toFixed(2);
 
@@ -18,9 +20,21 @@ const GoodsCard = ({
   const timeDifference = endDateParsed - startDateParsed; // Difference in milliseconds
   const remainingDays = Math.ceil(timeDifference / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
 
+  const navigate = useNavigate();
+
+  //상세페이지 이동 함수
+  const handleCardClick = (id) => {
+    console.log(`${id} 굿즈 클릭`);
+    navigate(`/goods/detail?page_type=${page_type}&id=${id}`);
+  };
+
   console.log(univ);
   return (
-    <GoodsList>
+    <GoodsList
+      onClick={() => {
+        handleCardClick(id);
+      }}
+    >
       <div>
         <RemainingDays>D - {remainingDays}</RemainingDays>
         <img
