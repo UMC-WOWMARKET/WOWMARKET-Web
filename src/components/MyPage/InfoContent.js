@@ -21,13 +21,12 @@ const InfoContent = () => {
       .get("https://www.wowmkt.kr/mypage/myinfo")
       .then((res) => {
         const data = res.data; // 예시: { name: "김와우", email: "wow1234@mail.com", univ: "와우대학교" }
-        console.log(`나의정보${data}`);
         setUserInfo(data); // 상태 업데이트
       })
       .catch((err) => {
         alert("마이페이지 로딩 실패!");
       });
-  });
+  }, []);
 
   return (
     <div className="MyInfo">
