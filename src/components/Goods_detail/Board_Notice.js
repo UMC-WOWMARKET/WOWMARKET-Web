@@ -20,21 +20,26 @@ const NoticeForm = ({onSubmit}) => {
 		};
 
 	return (
-		<div>
+		<div className='noticeForm'>
 			<input
 				type="text"
 				id="title"
 				placeholder="제목을 입력해주세요"
 				value={title}
 				onChange={(e) => setTitle(e.target.value)}
+				style={{height:'52px'}}
 			/>
 			<textarea
 				id="content"
 				placeholder="공지 내용을 작성해주세요"
 				value={content}
 				onChange={(e) => setContent(e.target.value)}
+				style={{height:'145px', marginTop:'11px'}}
 			/>
-			<button onClick={handleSubmit}>작성완료</button>
+			{/* <button onClick={handleSubmit}>작성완료</button> */}
+			<div style={{display:'flex', justifyContent:'flex-end', marginTop:'20px'}}>
+				<div className='submitButton' onClick={handleSubmit}>등록하기</div>
+			</div>
 		</div>
 	);
 };
@@ -72,12 +77,12 @@ const NoticeItem = ({ key, goods_id, notice_id, index, title, time }) => {
 		return (
 			<div>
 				<div className='noticeItem' key={key} onClick={handleToggleContent} style={{cursor:'pointer', margin:'13px 35px 13px 35px'}}>
-					<div>{index + 1}</div>
-					<div>{title}</div>
-					<div>{formatDate(time)}</div>
+					<div style={{display:'flex', flex:1}}>{index + 1}</div>
+					<div style={{display:'flex', flex:2}}>{title}</div>
+					<div style={{display:'flex', flex:1}}>{formatDate(time)}</div>
 				</div>
+				{showContent && (<div className='content'>{content}</div>)}
 				<div className='common-box' style={{width:'560px', height:'0px'}}></div>
-				{showContent && <p>{content}</p>}
 			</div>
 		)
 };
@@ -88,20 +93,23 @@ const NoticeList = ({goods_id}) => {
 		const [showButton, setShowButton] = useState(false);
 		//for GET
 		const [posts, setPosts] = useState([]);
-		const [userId, setUserId] = useState(0);
-		const [sellerId, setSellerId] = useState(0);
 
 		const getList = async () => {
 			try {
 				const response = await axios.get(`http://www.wowmkt.kr/project/${goods_id}/notice`);
 				setPosts(response.data.noticeLists);
 				console.log(response.data);
-				// setUserId(response.data.user_id);
-				// setSellerId(response.data.seller_id);
 
-				// if (userId === sellerId) {
-				// 	setShowButton(true);
-				// }
+				const fetchedUserId = response.data.user_id;
+				const fetchedSellerId = response.data.seller_id;
+				console.log(fetchedUserId);
+				console.log(fetchedSellerId);
+
+				if (fetchedUserId && fetchedSellerId && fetchedUserId === fetchedSellerId) {
+					setShowButton(true);
+				} else {
+					setShowButton(false);
+				}
 
 				console.log('notice GET Success');
 				console.log(posts)
@@ -129,19 +137,17 @@ const NoticeList = ({goods_id}) => {
 		};
 
 		return (//GET
-		<div>
+		<div className='Notice'>
 			<div>
 				{showForm ? (
-					<div className='common-box' style={{flexDirection:'column'}}>
 						<NoticeForm onSubmit={handleAddPost} />
-					</div>
 				) : (
 					<div>
-						<div className='common-box' style={{flexDirection:'column'}}>
-							<div className='flex-row' style={{}}>
-								<div>번호</div>
-								<div>제목</div>
-								<div>작성일</div>
+						<div className='common-box' style={{flexDirection:'column', paddingBottom:'20px'}}>
+							<div className='flex-row'>
+								<div style={{display:'flex', flex:1}}>번호</div>
+								<div style={{display:'flex', flex:2}}>제목</div>
+								<div style={{display:'flex', flex:1}}>작성일</div>
 							</div>
 							<div className='common-box' style={{width:'560px', height:'0px'}}></div>
 							{posts.map((post, index) => (
@@ -155,7 +161,7 @@ const NoticeList = ({goods_id}) => {
 								/>
 							))}
 						</div>
-						<div style={{display:'flex', justifyContent:'flex-end'}}>
+						<div style={{display:'flex', justifyContent:'flex-end', marginTop:'20px'}}>
 							{showButton && <div className='submitButton' onClick={() => setShowForm(true)}>등록하기</div>}
 						</div>
 					</div>
@@ -166,4 +172,3 @@ const NoticeList = ({goods_id}) => {
 };
 
 export default NoticeList;
-

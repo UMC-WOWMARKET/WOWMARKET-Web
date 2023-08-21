@@ -1,7 +1,11 @@
-.selected {
+.BoardView div {
+	color: #646464;
+	font-size: 20px;
+	font-weight: 400;
+}
+.BoardView div.selected {
 	font-weight: 700;
 }
-
 /*notice & question*/
 .common-box {
 	box-sizing: border-box;
@@ -16,17 +20,19 @@
 }
 
 .flex-row {
+	box-sizing: border-box;
+	width: 560px;
 	display: flex;
-	justify-content: space-between;
-	gap:200px;
+	justify-content: flex-start;
+	align-items: center;
 	margin: 16px 30px 16px 30px;
+	padding-left: 26px;
 }
 
 .flex-row div {
 	color: #646464;
 	font-size: 16px;
 	font-weight: 400;
-
 }
 
 .submitButton {
@@ -46,6 +52,36 @@
 
 .noticeItem {
 	display: flex;
-	justify-content: space-between;
-	gap:10px;
+}
+
+.noticeItem div {
+	color: #646464;
+	font-size: 16px;
+	font-weight: 400;
+}
+
+.content {
+	color: #646464;
+	font-size: 16px;
+	font-weight: 400;
+	display: flex;
+	margin: 22px 40px 22px 40px;
+	text-align: left;
+}
+
+.noticeForm {
+	display: flex;
+	flex-direction: column;
+}
+
+.noticeForm input {
+	border-radius: 5px;
+	border: 1px solid #DDD;
+	font-size: 20px;
+}
+
+.noticeForm textarea {
+	border-radius: 5px;
+	border: 1px solid #DDD;
+	font-size: 20px;
 }
