@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Intro from "./Board_Intro"
 import NoticeList from "./Board_Notice";
 import QuestionList from "./Board_Question";
-import axios from "axios";
 import '../../styles/OrderForm.css';
 import '../../styles/GoodsBoard.css';
 
 const GoodsBoard = ({ goods_id }) => {
+	const [searchParams] = useSearchParams();
+  const page_type = searchParams.get("page_type");
+
 	const [view, setView] = useState('굿즈소개');
 	const handleButtonClick = (buttonType) => {
 		setView(buttonType);
@@ -18,12 +21,18 @@ const GoodsBoard = ({ goods_id }) => {
 				<div onClick={() => handleButtonClick('굿즈소개')} className={view === '굿즈소개' ? 'selected' : ''}>
 					굿즈소개
 				</div>
-				<div onClick={() => handleButtonClick('공지')} className={view === '공지' ? 'selected' : ''}>
-					공지
-				</div>
-				<div onClick={() => handleButtonClick('문의')} className={view === '문의' ? 'selected' : ''}>
-					문의
-				</div>
+
+				{page_type === 'selling' &&
+					<div onClick={() => handleButtonClick('공지')} className={view === '공지' ? 'selected' : ''}>
+						공지
+					</div>
+				}
+
+				{page_type === 'selling' &&
+					<div onClick={() => handleButtonClick('문의')} className={view === '문의' ? 'selected' : ''}>
+						문의
+					</div>
+				}
 			</div>
 
 			<div className='common-box' style={{margin:'18px 0 38px 0', width:'600px'}}></div>

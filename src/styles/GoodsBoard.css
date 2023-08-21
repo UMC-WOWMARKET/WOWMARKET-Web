@@ -1,3 +1,51 @@
 .selected {
 	font-weight: 700;
 }
+
+/*notice & question*/
+.common-box {
+	box-sizing: border-box;
+	border: 1px solid #DDDDDD;
+	display: flex;
+	align-items: center;
+}
+
+.common-input {
+	border-radius: 5px;
+	border: 1px solid #DDD;
+}
+
+.flex-row {
+	display: flex;
+	justify-content: space-between;
+	gap:200px;
+	margin: 16px 30px 16px 30px;
+}
+
+.flex-row div {
+	color: #646464;
+	font-size: 16px;
+	font-weight: 400;
+
+}
+
+.submitButton {
+	width: 100px;
+	height: 40px;
+	flex-shrink: 0;
+	border-radius: 5px;
+	border: 1px solid rgba(64, 81, 231, 0.64);
+	background: #FFF;
+	color: rgba(64, 81, 231, 0.64);
+	font-size: 20px;
+	font-weight: 400;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.noticeItem {
+	display: flex;
+	justify-content: space-between;
+	gap:10px;
+}

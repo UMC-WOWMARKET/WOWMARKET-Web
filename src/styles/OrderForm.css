@@ -1,4 +1,10 @@
 /* 공통 적용 */
+#OrderForm {
+	border: 5px solid red;
+	/* margin-left: 144px; */
+
+}
+
 .OrderForm {
 	color: #646464;
 	border: 1px solid #DDDDDD;
@@ -7,7 +13,6 @@
 	flex-shrink: 0;
 	overflow-y: scroll;
 	padding-left: 34px;
-	margin-left: 48px;
 }
 
 .common-box {

@@ -3,9 +3,9 @@ import GoodsInfo from "../components/Goods_detail/GoodsInfo";
 import GoodsBoard from "../components/Goods_detail/GoodsBoard";
 import OrderForm from "../components/OrderForm";
 import DemandForm from "../components/Goods_detail/DemandForm";
-import Search from "../components/Goods_list/Search";
 
 import axios from "axios";
+import "../styles/Goods.css";
 
 axios.interceptors.request.use((config) => {
   /* JWT 토큰 */
