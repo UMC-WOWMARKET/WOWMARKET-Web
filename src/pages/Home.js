@@ -7,10 +7,12 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import banner_logo from "./banner_logo.svg";
 import "../styles/Home.css";
-import bannerBack from "./banner_back.png";
+
 
 import Search from "../components/Goods_list/Search";
 import Arrangement from "../components/Goods_list/Arrangement";
+
+import Goods from "../pages/Goods";
 
 //굿즈가 3개씩 보일 수 있도록 조절
 function chunkArray(arr, size) {
@@ -81,8 +83,7 @@ const Home = () => {
       <div className="SearchBox">
         <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </div>
-           
-    
+
       <div className="banner_logo">
         <img src={banner_logo} alt="Banner" />
       </div>
@@ -110,7 +111,7 @@ const Home = () => {
             <div key={groupIndex} className="goods-card-group">
               {group.map((project) => (
                 <GoodsCard
-                  key={project.project_id}
+                  id={project.project_id}
                   projectName={project.project_name}
                   sellerName={project.seller_name}
                   goal={project.goal}
@@ -118,6 +119,7 @@ const Home = () => {
                   endDate={project.end_date}
                   startDate={project.start_date}
                   imgUrl={project.thumbnail}
+                  page_type={page_type}
                 />
               ))}
             </div>

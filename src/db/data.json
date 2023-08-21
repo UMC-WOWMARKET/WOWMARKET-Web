@@ -1,0 +1,19 @@
+{
+	"GoodsInfo" :[
+		{
+		}
+	],
+
+	"deliveryMethod" :[
+		{ "id": 1, "name": "택배 배송", "comment": "택배비 3,000원", "cost": 3000},
+		{ "id": 2, "name": "직접 수령","comment": "장소 홍대입구역 8번출구", "cost":0}
+	],
+	"goodsList" : [
+		{ "id": 1, "name": "상품1", "price": 1000 },
+		{ "id": 2, "name": "상품2", "price": 2000 },
+		{ "id": 3, "name": "상품3", "price": 3000 }
+	],
+	"accountInfo" : [
+		{ "account": "KB국민 0123456789", "holder": "김판매"}
+	]
+}

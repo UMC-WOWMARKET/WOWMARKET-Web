@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "./Theme";
 
-
-
-
 const Arrangement = ({ orderBy, setOrderBy, univ, setUniv }) => {
   // const [orderBy, setOrderBy] = useState("");
   // const [univ, setUniv] = useState("");
@@ -17,7 +14,7 @@ const Arrangement = ({ orderBy, setOrderBy, univ, setUniv }) => {
         <ArrangementContainer>
           <InputCell>
             <div className="input">
-            <StyledSelect
+              <StyledSelect
                 onChange={(e) => {
                   setOrderBy(e.target.value);
                 }}
@@ -30,14 +27,13 @@ const Arrangement = ({ orderBy, setOrderBy, univ, setUniv }) => {
             </div>
           </InputCell>
           <Sharp>
-          <CustomButton1
-              value="myUinv"
+            <CustomButton1
+              value="myUniv"
               onClick={(e) => {
                 setSelected(e.target.value);
                 setUniv(e.target.value);
-                
               }}
-              isActive={selected === "myUinv"}
+              isActive={selected === "myUniv"}
             >
               #우리학교
             </CustomButton1>
@@ -71,7 +67,6 @@ const CustomButton = styled.button`
   font-size: 16px;
   margin-right: 10px;
 `;
-
 
 const CustomButton1 = styled(CustomButton)`
   &:active {

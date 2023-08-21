@@ -1,7 +1,7 @@
 #SearchBar {
   padding-left: 10px;
   width: 300px;
-  height: 30px;
+  height: 38px;
   font-family: Pretendard;
   color: #646464;
   font-weight: 400;
@@ -17,11 +17,11 @@
   float: right;
   background-color: transparent;
   color: #646464;
-  width: 30px;
-  height: 33.5px;
+  width: 40px;
+  height: 41.5px;
   right: 144px;
   margin-top: 25px;
-  margin-right: 200px;
+  margin-right: 144px;
   border: 1px solid #f0f0f0;
   border-left: none;
   border-radius: 0 5px 5px 0;

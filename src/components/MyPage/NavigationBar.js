@@ -1,100 +1,78 @@
 import { useParams } from "react-router-dom";
 import { Link, Route, Switch } from "react-router-dom";
-import React, { useState, useRef, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState } from "react"; // useState를 추가
+import { useLocation } from "react-router-dom";
 
-const NavigationBar = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef(null);
-
-  useEffect(() => {
-    function handleOutsideClick(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    }
-
-    window.addEventListener("click", handleOutsideClick);
-
-    return () => {
-      window.removeEventListener("click", handleOutsideClick);
-    };
-  }, []);
-
-  useEffect(() => {
-    setIsOpen(location.pathname.includes("/myproject"));
-  }, [location.pathname]);
-
-  const handleDropdownClick = (event) => {
-    event.stopPropagation();
-    setIsOpen(!isOpen);
-  };
+const NavigationBar = ({ pageType, setPageType }) => {
+  const [showDropdown, setShowDropdown] = useState(false); // 드롭다운 메뉴의 상태 추가
 
   return (
     <div className="NavigationBar">
       <div className="title">마이페이지</div>
       <div className="nav_box">
-        <Link
-          className={`myInfo ${
-            location.pathname === "/myinfo" ? "active" : ""
-          }`}
-          to={"/myinfo"}
+        <button
+          className={`myInfo ${pageType === "info" ? "active" : ""}`}
+          onClick={() => {
+            setPageType("info");
+          }}
         >
           나의 정보
-        </Link>
-        <Link
-          className={`myOrder ${
-            location.pathname === "/myorder" ? "active" : ""
-          }`}
-          to={"/myorder"}
+        </button>
+        <button
+          className={`myOrder ${pageType === "order" ? "active" : ""}`}
+          onClick={() => {
+            setPageType("order");
+          }}
         >
           나의 주문폼
-        </Link>
-        <div className="myProjectDropdown" ref={dropdownRef}>
-          <Link
+        </button>
+        <div
+          onMouseEnter={() => setShowDropdown(true)}
+          onMouseLeave={() => setShowDropdown(false)}
+        >
+          <button
             className={`myProject ${
-              location.pathname.includes("/myproject") ? "active" : ""
+              pageType === "project" ||
+              pageType === "project_selling_register" ||
+              pageType === "project_selling_order" ||
+              pageType === "project_demand_order"
+                ? "active"
+                : ""
             }`}
-            //to="/myproject"
-            onClick={(event) => {
-              handleDropdownClick(event);
-              navigate("/myproject");
+            onClick={() => {
+              setPageType("project");
             }}
           >
             나의 프로젝트
-          </Link>
-          {isOpen && (
+          </button>
+          {/* {showDropdown && (
             <div className="dropdown-menu">
-              <Link
-                className={`MyprojectMenu ${
-                  location.pathname === "/myproject" ? "active" : ""
-                }`}
-                to="/myproject"
+              <button
+                onClick={() => {
+                  setPageType("project_selling_register");
+                }}
+                className="dropdown-content"
               >
                 판매 등록폼 관리
-              </Link>
-              <br />
-              <Link
-                className={`MyprojectMenu" ${
-                  location.pathname === "/myproject/order" ? "active" : ""
-                }`}
-                to="/myproject/order"
+              </button>
+              <button
+                onClick={() => {
+                  setPageType("project_selling_order");
+                }}
+                className="dropdown-content"
               >
                 판매 주문폼 관리
-              </Link>
-              <br />
-              <Link
-                className={`MyprojectMenu" ${
-                  location.pathname === "/myproject/demand" ? "active" : ""
-                }`}
-                to="/myproject/demand"
+              </button>
+              <button
+                onClick={() => {
+                  setPageType("project_demand_order");
+                }}
+                className="dropdown-content"
               >
                 수요조사 등록폼 관리
-              </Link>
+              </button>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

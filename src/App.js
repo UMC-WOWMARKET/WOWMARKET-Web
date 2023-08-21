@@ -8,12 +8,7 @@ import DemandRegister from "./pages/DemandRegister";
 import ProjectRegister from "./pages/ProjectRegister";
 import Users from "./pages/Users";
 import Goods from "./pages/Goods";
-import Button from "./components/Button";
-import MyOrder from "./pages/MyOrder";
-import MyProject from "./pages/MyProject/MyProject";
-import MyProjectOrder from "./pages/MyProject/MyProjectOrder";
-import MyProjectDemand from "./pages/MyProject/MyProjectDemand";
-import MyInfo from "./pages/MyInfo";
+import MyPage from "./pages/MyPage";
 
 function App() {
   return (
@@ -21,17 +16,13 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/goods" element={<Home />} />
           <Route path="/users/:page_type" element={<Users />} />
           <Route path="/register/demand" element={<DemandRegister />} />
           <Route path="/register/project" element={<ProjectRegister />} />
-          <Route path="/goods/detail" element={<Goods />} ad />
-
-          <Route path="/myinfo" element={<MyInfo />} />
-          <Route path="/myorder" element={<MyOrder />} />
-          <Route path="/myproject" element={<MyProject />} />
-          <Route path="/myproject/order" element={<MyProjectOrder />} />
-          <Route path="/myproject/demand" element={<MyProjectDemand />} />
+          <Route path="/goods/detail" element={<Goods />} />
+          <Route path="/myinfo" element={<MyPage />} />
         </Routes>
       </div>
       <Footer />
