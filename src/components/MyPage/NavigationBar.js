@@ -32,15 +32,14 @@ const NavigationBar = ({ pageType, setPageType }) => {
         >
           <button
             className={`myProject ${
-              pageType === "project" ||
-              pageType === "project_selling_register" ||
-              pageType === "project_selling_order" ||
-              pageType === "project_demand_order"
+              pageType === "selling_register" ||
+              pageType === "selling_order" ||
+              pageType === "demand_order"
                 ? "active"
                 : ""
             }`}
             onClick={() => {
-              setPageType("project");
+              setPageType("selling_register");
             }}
           >
             나의 프로젝트

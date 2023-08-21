@@ -18,7 +18,6 @@ const Arrangement = ({ orderBy, setOrderBy, univ, setUniv }) => {
                 onChange={(e) => {
                   setOrderBy(e.target.value);
                 }}
-                value={orderBy}
               >
                 <StyledOption value="endDate">마감임박순</StyledOption>
                 <StyledOption value="view">인기순</StyledOption>
