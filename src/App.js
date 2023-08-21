@@ -10,7 +10,9 @@ import Users from "./pages/Users";
 import Goods from "./pages/Goods";
 import Button from "./components/Button";
 import MyOrder from "./pages/MyOrder";
-import MyProject from "./pages/MyProject";
+import MyProject from "./pages/MyProject/MyProject";
+import MyProjectOrder from "./pages/MyProject/MyProjectOrder";
+import MyProjectDemand from "./pages/MyProject/MyProjectDemand";
 import MyInfo from "./pages/MyInfo";
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
           <Route path="/myinfo" element={<MyInfo />} />
           <Route path="/myorder" element={<MyOrder />} />
           <Route path="/myproject" element={<MyProject />} />
+          <Route path="/myproject/order" element={<MyProjectOrder />} />
+          <Route path="/myproject/demand" element={<MyProjectDemand />} />
         </Routes>
       </div>
       <Footer />
