@@ -82,6 +82,24 @@
 	text-transform: capitalize;
 }
 
+.selectItem .item1 {
+	display: flex;
+	margin-left: 22px;
+	flex-basis: 150px;
+	flex-wrap: wrap;
+}
+
+.selectItem .item2 {
+	display: flex;
+	flex-basis: 200px;
+	justify-content: flex-end;
+}
+
+.selectItem .item3 {
+	display: flex;
+	flex-basis: 100px;
+	justify-content: flex-end;
+}
 /* 주문 정보 */
 .orderInfo .common-box {
 	flex-direction: column;
@@ -92,7 +110,33 @@
 .orderInfo .flex-row {
 	display: flex;
 	flex-direction: row;
-	text-align: left;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.orderInfo .item1 {
+	display: flex;
+	margin-left: 22px;
+	flex-basis: 150px;
+	flex-wrap: wrap;
+}
+
+.orderInfo .item2 {
+	display: flex;
+	flex-basis: 200px;
+	justify-content: flex-end;
+}
+
+.orderInfo .item3 {
+	display: flex;
+	flex-basis: 100px;
+	justify-content: flex-end;
+}
+
+.orderInfo .no-box {
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
 }
 
 /*배송 정보*/
@@ -133,35 +177,55 @@
 
 /*입금 정보*/
 .depositInfo input {
-	border-radius: 5px;
-	border: 1px solid #DDD;
 	margin-left: 20px;
+	width: 92px;
+	height: 22px;
 }
 
 .depositInfo .common-box {
 	padding-left: 31px;
-	gap: 19px;
+	gap: 13px;
 	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
 }
+
 .depositInfo div {
 	display: flex;
+}
+
+.deliveryInfo label {
+	font-size: 16px;
 }
 
 /*환불 정보 */
 .refundAccount {
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
 	align-items: center;
+	margin-top: 24px;
 }
 
 .refundAccount input {
 	border-radius: 5px;
 	border: 1px solid #DDD;
+	padding-left: 31px;
 }
 
+.submitForm {
+	width: 401px;
+	height: 60px;
+	flex-shrink: 0;
+	border-radius: 5px;
+	background: #002472;
+	margin-top: 20px;
+	color: #FFF;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
 /* 텍스트 스타일 */
 h3 {

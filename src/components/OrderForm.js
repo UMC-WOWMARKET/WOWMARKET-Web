@@ -22,11 +22,13 @@ const SelectItem = ({ id, index, name, price, onChangeQuantity}) => {
 
 	return  (
 	<div className="common-box text3" style={{width:'420px', height:'60px'}}>
-		<span style={{marginLeft:'22px'}}>{index}. {name} ---- </span>
-		<span>{price}원</span>
-		<div className="common-box button" onClick={handleDecrease} style={{margin:'auto 0 auto 12px'}}>-</div>
-		<div className="common-box button" style={{margin:'auto 0 auto 0'}}>{quantity}</div>
-		<div className="common-box button" onClick={handleIncrease} style={{margin:'auto 27px auto 0'}}>+</div>
+		<div className='item1'>{index}. {name}</div>
+		<div className='item2'>{price}원</div>
+		<div className='item3'>
+			<div className="common-box button" onClick={handleDecrease} style={{margin:'auto 0 auto 12px'}}>-</div>
+			<div className="common-box button" style={{margin:'auto 0 auto 0'}}>{quantity}</div>
+			<div className="common-box button" onClick={handleIncrease} style={{margin:'auto 27px auto 0'}}>+</div>
+		</div>
 	</div>
 	);
 }
@@ -145,7 +147,7 @@ const OrderForm = ({ goods_id }) => {
 	useEffect (() => { fetchData(); }, []);
 
 	return (
-		<div>
+		<div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
 		<div className="OrderForm">
 			<h3 style={{margin:'37px 0 25px 0'}}>주문폼</h3>
 			<div className='common-box' style={{width:'420px', height:'0px'}}></div>
@@ -197,26 +199,29 @@ const OrderForm = ({ goods_id }) => {
 				<div className='common-box text3' style={{width:'420px'}}>
 					{itemList.map((item) => (
 						<div key={item.id} className='flex-row'>
-							<span>{item.name} --- </span>
-							<span>{itemQuantities[item.id] || 0}개---</span>
-							<span>{item.price * (itemQuantities[item.id] || 0)}원</span>
+							<div className='item1'>{item.name}</div>
+							<div className='item2'>{itemQuantities[item.id] || 0}개</div>
+							<div className='item3'>{item.price * (itemQuantities[item.id] || 0)}원</div>
 						</div>
 					))}
 				</div>
 				<div className='no-box'>
-					<div>
-						<span>총 상품 금액 --</span>
-						<span>총 수량 {totalQuantity}개 -- </span>
-						<span>{totalPrice}원</span>
+					<div className='flex-row'>
+						<div className='item1'>총 상품 금액</div>
+						<div className='item2'>총 수량 {totalQuantity}개</div>
+						<div className='item3'>{totalPrice}원</div>
 					</div>
+
 					<div>
-						<span>배송비</span>
-						<span>{deliveryFee ? deliveryFee : 0}원</span>
+						<div className='item1'>배송비</div>
+						<div className='item3'>{deliveryFee ? deliveryFee : 0}원</div>
 					</div>
+
 					<div className='common-box' style={{width:'366px', height:'0px'}}></div>
+
 					<div>
-						<span>최종 금액</span>
-						<span>{deliveryFee ? deliveryFee + totalPrice: totalPrice}원</span>
+						<div className='item1'>최종 금액</div>
+						<div className='item3'>{deliveryFee ? deliveryFee + totalPrice: totalPrice}원</div>
 					</div>
 				</div>
 			</div>
@@ -261,18 +266,18 @@ const OrderForm = ({ goods_id }) => {
 				<h4>판매자 계좌 정보</h4>
 				<div className='common-box' style={{width:'420px', height:'92px'}}>
 					<div>
-						<div style={{marginRight:'24px'}}>입금계좌</div>
-						<div>{sellerBank} {sellerAccount}</div>
+						<div className='text3' style={{marginRight:'24px'}}>입금계좌</div>
+						<div style={{fontWeight:'500'}}>{sellerBank} {sellerAccount}</div>
 					</div>
 					<div>
-						<div style={{marginRight:'38px'}}>예금주</div>
-						<div>{sellerAccountHolder}</div>
+						<div  className='text3' style={{marginRight:'38px'}}>예금주</div>
+						<div style={{fontWeight:'500'}}>{sellerAccountHolder}</div>
 					</div>
 				</div>
 			</div>
 
 
-			<div className='gray-box' style={{width:'420px', height:'60px', marginTop:'32px'}}>
+			<div className='gray-box' style={{width:'420px', height:'60px', marginTop:'32px', color:'#000', fontSize:'14px'}}>
 				판매자의 계좌로 최종 금액을 송금한 후 아래 내용을 작성해주세요.
 			</div>
 
@@ -280,54 +285,59 @@ const OrderForm = ({ goods_id }) => {
 			<div className='depositInfo'>
 				<h4>입금 정보</h4>
 				<div className='common-box' style={{width:'420px', height:'92px'}}>
-					<div>
+					<div style={{display:'flex', alignItems:'center'}}>
 						<label>입금자명</label>
 						<input
 							type="text"
 							name="depositor"
 							value={depositor}
 							onChange={e => setDepositor(e.target.value)}
+							className='common-input'
 						/>
 					</div>
-					<div>
+					<div style={{display:'flex', alignItems:'center'}}>
 						<label>입금시간</label>
 						<input
 							type="text"
 							name="depositTime"
 							value={depositTime}
 							onChange={e => setDepositTime(e.target.value)}
+							className='common-input'
 						/>
 					</div>
 				</div>
 			</div>
 
 			{/* 환불 계좌 */}
-			<div className='refundAccount'>
-				<h4>환불 계좌</h4>
-				<input
-					type="text"
-					name="refundBank"
-					value={refundBank}
-					onChange={e => setRefundBank(e.target.value)}
-					style={{width:'96px', height:'26px'}}
-					className='common-input'
-				/>
-				<input
-					type="text"
-					name="refundAccount"
-					value={refundAccount}
-					onChange={e => setRefundAccount(e.target.value)}
-					style={{width:'148px', height:'26px'}}
-					className='common-input'
-				/>
+			<div className='refundAccount'  style={{}}>
+				<div style={{display:'flex', alignItems:'center'}}>
+					<h4 style={{display:'flex'}}>환불 계좌</h4>
+				</div>
+				<div>
+					<input
+						type="text"
+						name="refundBank"
+						value={refundBank}
+						onChange={e => setRefundBank(e.target.value)}
+						style={{width:'92px', height:'22px', marginLeft:'20px'}}
+						className='common-input'
+					/>
+					<input
+						type="text"
+						name="refundAccount"
+						value={refundAccount}
+						onChange={e => setRefundAccount(e.target.value)}
+						style={{width:'144px', height:'22px', marginLeft:'4px'}}
+						className='common-input'
+					/>
+				</div>
 			</div>
-			<div className='redText' style={{margin:'39px 0 18px 9px'}}>환불이 필요한 경우 입력해주신 계좌로 진행됩니다.</div>
-
+			<div className='redText' style={{}}>환불이 필요한 경우 입력해주신 계좌로 진행됩니다.</div>
 		</div>
 		{/* 폼 제출하기 */}
 		<div className='submitForm'>
-		<button onClick={handleSubmit}>폼 제출하기</button>
-	</div>
+			<div onClick={handleSubmit}>폼 제출하기</div>
+		</div>
 	</div>
 	);
 }
