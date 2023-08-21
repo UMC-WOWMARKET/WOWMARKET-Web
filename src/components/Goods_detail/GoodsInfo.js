@@ -1,8 +1,12 @@
+import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from 'react';
 import '../../styles/GoodsInfo.css'
 
 const GoodsInfo = ({goods_id}) => {
+	const [searchParams] = useSearchParams();
+  const page_type = searchParams.get("page_type");
+
 	const [thumbnail, setThumbnail] = useState("");
 	const [category, setCategory] = useState("");
 	const [name, setName] = useState("");
@@ -17,7 +21,12 @@ const GoodsInfo = ({goods_id}) => {
 
 	const getData = async () => {
 		try {
-			const response = await axios.get(`http://www.wowmkt.kr/project/${goods_id}`)
+			let response;
+			if (page_type === 'selling'){
+				response = await axios.get(`http://www.wowmkt.kr/project/${goods_id}`)
+			} else {
+				response = await axios.get(`http://www.wowmkt.kr/demand_project/${goods_id}`)
+			}
 			const data = response.data;
 
 			setThumbnail(data.thumbnail);

@@ -147,7 +147,7 @@ const OrderForm = ({ goods_id }) => {
 	useEffect (() => { fetchData(); }, []);
 
 	return (
-		<div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+		<div id="OrderForm" style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
 		<div className="OrderForm">
 			<h3 style={{margin:'37px 0 25px 0'}}>주문폼</h3>
 			<div className='common-box' style={{width:'420px', height:'0px'}}></div>
@@ -176,7 +176,7 @@ const OrderForm = ({ goods_id }) => {
 				</div>
 			</div>
 
-			{/* 상품 선택  -> 회색 버튼 css 수정?*/}
+			{/* 상품 선택 */}
 			<div className='selectItem'>
 				<h4>상품 선택</h4>
 				<div className='flex-column'>

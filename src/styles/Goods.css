@@ -1,0 +1,10 @@
+.left_side {
+	/* margin: 115px auto auto 144px; */
+	border: 5px solid blue;
+	margin: 0 0 0 0;
+}
+
+.Goods {
+	border: 5px solid purple;
+	margin: 100px 144px auto 144px;
+}
