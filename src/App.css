@@ -754,9 +754,9 @@ body {
 .MyOrder .MyOrderContent .title::before {
   content: "";
   position: absolute;
-  bottom: 330px; /* 간격을 조절할 값 */
   left: 78px;
   width: 920px;
+  padding: 10px;
   border-bottom: 1px solid #ccc;
 }
 
@@ -768,6 +768,7 @@ body {
   padding: 5px; /* 내용과의 간격을 위한 패딩 설정 */
   width: 900px;
 }
+
 .footer div {
   display: flex; /* 동그라미 말머리표를 위한 Flex 레이아웃 */
   align-items: center; /* 세로 중앙 정렬 */

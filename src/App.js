@@ -22,7 +22,6 @@ function App() {
           <Route path="/register/demand" element={<DemandRegister />} />
           <Route path="/register/project" element={<ProjectRegister />} />
           <Route path="/goods/detail" element={<Goods />} />
-
           <Route path="/myinfo" element={<MyPage />} />
         </Routes>
       </div>
