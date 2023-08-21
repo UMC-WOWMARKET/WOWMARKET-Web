@@ -22,7 +22,7 @@ const Intro = ({ goods_id }) => {
 
 	return (
 		<div>
-			<div>
+			<div style={{display:'flex', flexDirection:'column'}}>
 				<img src={image1} style={{maxWidth:'100%'}}/>
 				<img src={image2} style={{maxWidth:'100%'}}/>
 				<img src={image3} style={{maxWidth:'100%'}}/>
