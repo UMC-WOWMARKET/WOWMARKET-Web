@@ -10,7 +10,7 @@ import OrderContent from "../components/MyPage/OrderCotent";
 import ProjectContent from "../components/MyPage/ProjectContent";
 
 const MyPage = () => {
-  const [pageType, setPageType] = useState("info");
+  const [pageType, setPageType] = useState("info"); //info, order, selling_register, selling_order, demand_register
   useEffect(() => {
     console.log(`pageType: ${pageType}`);
   }, [pageType]);
@@ -19,7 +19,11 @@ const MyPage = () => {
       <NavigationBar pageType={pageType} setPageType={setPageType} />
       {pageType === "info" && <InfoContent />}
       {pageType === "order" && <OrderContent />}
-      {pageType === "project" && <ProjectContent />}
+      {(pageType === "selling_register" ||
+        pageType === "selling_order" ||
+        pageType === "demand_register") && (
+        <ProjectContent pageType={pageType} setPageType={setPageType} />
+      )}
     </div>
   );
 };
