@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import GoodsAdd from "../components/register/GoodsAdd";
 import Calendar from "../components/register/Calendar";
-import useImageUploader from "../\bhooks/useImageUploader";
+import useImageUploader from "../hooks/useImageUploader";
 import ReceiveType from "../components/register/ReceiveType";
 import theme from "../styles/Theme";
 
@@ -51,11 +51,12 @@ const ProjectRegister = () => {
   const [item, setItem] = useState(null);
   const [start_date, setStartDate] = useState(null);
   const [end_date, setEndDate] = useState(null);
-  const [thumbnail, setThumbnail] = useState(null);
   const [recieve_type, setReceiveType] = useState(null);
   const [address, setAddress] = useState(null);
   const [delivery_fee, setDeliveryFee] = useState(null);
   const [selectedBank, setSelectedBank] = useState(banks[-1]);
+  const thumbnail = "thumbnail";
+  const image1 = "image1";
 
 
   useEffect(() => {
@@ -115,6 +116,7 @@ const ProjectRegister = () => {
       end_date,
       recieve_type,
       thumbnail,
+      image1,
     };
     //useform으로 받은 data 말고도 외부 컴포넌트로 받은 데이터도 함께 처리
 
@@ -143,7 +145,7 @@ const ProjectRegister = () => {
 
     try {
       const response = await axios.post(
-        "http://13.125.190.15:8080/wowmarket/register/project",
+        "https://www.wowmkt.kr/register/project",
         combinedData,
         {
           headers: {
