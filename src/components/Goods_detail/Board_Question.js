@@ -62,22 +62,34 @@ const QuestionItem = ({key, goods_id, question_id, index, title, writer, time}) 
 	const [showContent, setShowContent] = useState(false);
 	const [answer, setAnswer] = useState(null);
 	const [answerText, setAnswerText] = useState("");
+	const [isSeller, setIsSeller] = useState(false);
 
 	const getContent = async () => {
 		try {
 			const response = await axios.get(`http://www.wowmkt.kr/project/${goods_id}/question/${question_id}`);
 			setContent(response.data.content);
 
-			const answerContents = response.data.answerResponseDto;
-			let answerContent = null;
+			const userId = response.data.user_id;
+			const sellerId = response.data.seller_id;
+			console.log("user: " + userId);
+			console.log("seller: " + sellerId);
 
-			if (answerContents !== null) {
-				answerContent = answerContents.content;
-				setAnswer(answerContent);
+			if (userId && sellerId && userId === sellerId){
+				setIsSeller(true);
 			}
 
-			setAnswer(answerContent);
-			console.log(answer);
+			if (userId != null && sellerId != null) {
+				const answerContents = response.data.answerResponseDto;
+				let answerContent = null;
+
+				if (answerContents !== null) {
+					answerContent = answerContents.content;
+					setAnswer(answerContent);
+				}
+
+				setAnswer(answerContent);
+				console.log(answer);
+			}
 
 			console.log('question content GET Success');
 		} catch (error) {
@@ -127,7 +139,7 @@ const QuestionItem = ({key, goods_id, question_id, index, title, writer, time}) 
 			{showContent && (
 				<div>
 					<div className='content'>{content}</div>
-					{answer !== null ? <div className='answer'>{answer}</div> : (
+					{answer !== null ? <div className='answer'>{answer}</div> : (isSeller &&
 						<div>
 							<textarea
 								rows="4"
