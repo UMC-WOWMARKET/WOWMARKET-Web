@@ -5,8 +5,8 @@ import NavigationBar from "../components/MyPage/NavigationBar";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { keyboard } from "@testing-library/user-event/dist/keyboard";
-import InfoContent from "../components/MyPage/InfoCotent";
-import OrderContent from "../components/MyPage/OrderCotent";
+import InfoContent from "../components/MyPage/InfoContent";
+import OrderContent from "../components/MyPage/OrderContent";
 import ProjectContent from "../components/MyPage/ProjectContent";
 
 const MyPage = () => {

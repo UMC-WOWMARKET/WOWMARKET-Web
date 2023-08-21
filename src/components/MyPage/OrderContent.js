@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import NavigationBar from "../components/MyPage/NavigationBar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import NavigationBar from "./NavigationBar";
+import List from "./List";
 
 const MyOrder = () => {
   const [orderList, setOrderList] = useState([]); // 주문 데이터를 저장할 상태
@@ -28,29 +29,11 @@ const MyOrder = () => {
   }, []);
   return (
     <div className="MyOrder">
-      <NavigationBar />
       <div className="MyOrderContent">
         <div className="title">나의 주문폼</div>
-        <div className="order_space">
-          <div className="header">
-            <div className="first">번호</div>
-            <div className="second">프로젝트 제목</div>
-            <div className="third">제출일</div>
-            <div className="last">비고</div>
-          </div>
-          {orderList.map((order, index) => {
-            const orderDate = new Date(order.createdtime);
-            const formattedDate = orderDate.toISOString().split("T")[0];
 
-            return (
-              <div className="content" key={order.orderid}>
-                <div className="order_num">{index + 1}</div>
-                <div className="order_title">{order.name}</div>
-                <div className="order_date">{formattedDate}</div>
-                <div className="order_memo">{order.status}</div>
-              </div>
-            );
-          })}
+        <div className="order_space">
+          <List orderList={orderList} />
         </div>
 
         <div className="footer">
