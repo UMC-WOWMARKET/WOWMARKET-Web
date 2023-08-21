@@ -114,7 +114,7 @@ const OrderForm = ({ goods_id }) => {
 
 			console.log("OrderForm Get Success");
 		} catch (error) {
-		console.log("OrderForm GET Error", error);
+		console.error("OrderForm GET Error", error);
 	}
 	}
 

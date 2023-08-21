@@ -28,7 +28,7 @@ const GoodsInfo = ({goods_id}) => {
 				response = await axios.get(`http://www.wowmkt.kr/demand_project/${goods_id}`)
 			}
 			const data = response.data;
-
+			console.log(data);
 			setThumbnail(data.thumbnail);
 			setCategory(data.category);
 			setName(data.name);
