@@ -84,9 +84,10 @@ const DemandForm = ({ goods_id }) => {
 	useEffect (() => { fetchData(); }, []);
 
 	const handleSubmit = async (e) => {
-		const postData = {
-			orderList
-		}
+		const postData = [
+			{'demandItemId':1, 'count':1},
+			{'demandItemId':2, 'count':3}
+		];
 		console.log(postData);
 
 		try {
@@ -105,6 +106,11 @@ const DemandForm = ({ goods_id }) => {
 		<div className="OrderForm">
 			<h3 style={{margin:'37px 0 25px 0'}}>참여폼</h3>
 			<div className='common-box' style={{width:'420px', height:'0px'}}></div>
+
+
+			<div className='gray-box' style={{width:'420px', height:'60px', marginTop:'32px', color:'#000', fontSize:'14px'}}>
+				정확한 수요 예측을 위해, 실제 구매를 원하는 분만 참여해주세요!
+			</div>
 
 			{/* 상품 선택  -> 회색 버튼 css 수정?*/}
 			<div className='selectItem'>
@@ -150,16 +156,6 @@ const DemandForm = ({ goods_id }) => {
 					</div>
 				</div>
 			</div>
-
-
-
-
-
-			<div className='gray-box' style={{width:'420px', height:'60px', marginTop:'32px', color:'#000', fontSize:'14px'}}>
-				판매자의 계좌로 최종 금액을 송금한 후 아래 내용을 작성해주세요.
-			</div>
-
-
 		</div>
 		{/* 폼 제출하기 */}
 		<div className='submitForm'>
