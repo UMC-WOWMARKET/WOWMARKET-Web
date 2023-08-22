@@ -132,16 +132,17 @@ const Join = () => {
         />
 
         <div className="check_list">
-          <label className="all">
-            <input type="checkbox" onChange={handleCheckAll} />
-            전체 동의
-          </label>
-          <label>
+        <label style={{ display: 'flex', alignItems: 'center' }}>
+        <input type="checkbox" onChange={handleCheckAll} style={{ marginRight: '10px' }} />
+        <span className="all">전체 동의</span>
+        </label>
+            <label style={{ display: 'flex', alignItems: 'center' }}>
             <input
               type="checkbox"
               name="serviceCk"
               checked={serviceCk}
               onChange={handleCheckboxChange}
+              style={{ marginRight: '10px' }}
             />
             서비스 이용약관 동의(필수)
           </label>
@@ -312,15 +313,17 @@ const Join = () => {
 
 이 약관은 23.07.27 부터 시행합니다.
           </div>
-          <label>
+          <label style={{ display: 'flex', alignItems: 'center' }}>
             <input
               type="checkbox"
               name="personalInfoCk"
               checked={personalInfoCk}
               onChange={handleCheckboxChange}
+              style={{ marginRight: '10px' }}
             />
             개인정보 수집 및 이용 동의(필수)
           </label>
+
           <div className="terms">
           제1조 목적
 
@@ -487,15 +490,17 @@ const Join = () => {
 
 이 약관은 23.07.27 부터 시행합니다.
           </div>
-          <label>
+          <label style={{ display: 'flex', alignItems: 'center' }}>
             <input
               type="checkbox"
               name="provisionCk"
               checked={provisionCk}
               onChange={handleCheckboxChange}
+              style={{ marginRight: '10px' }}
             />
             제3자 개인정보 제공 동의(필수)
           </label>
+          
           <div className="terms">
           제1조 목적
 
@@ -662,12 +667,13 @@ const Join = () => {
 
 이 약관은 23.07.27 부터 시행합니다.
           </div>
-          <label>
+          <label style={{ display: 'flex', alignItems: 'center' }}>
             <input
               type="checkbox"
               name="marketingCk"
               checked={marketingCk}
               onChange={handleCheckboxChange}
+              style={{ marginRight: '10px' }}
             />
             마케팅 수신 동의(선택)
           </label>

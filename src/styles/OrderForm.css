@@ -2,14 +2,14 @@
 #OrderForm {
 	border: 5px solid red;
 	/* margin-left: 144px; */
-
+	font-family: Pretendard;
 }
 
 .OrderForm {
 	color: #646464;
 	border: 1px solid #DDDDDD;
-	width: 488px;
-	height: 600px; /*수정 예정*/
+	width: 470px;
+	height: 400px; /*수정 예정*/
 	flex-shrink: 0;
 	overflow-y: scroll;
 	padding-left: 34px;
@@ -18,7 +18,7 @@
 .common-box {
 	box-sizing: border-box;
 	border: 1px solid #DDDDDD;
-	display: flex;
+
 	align-items: center;
 }
 
@@ -77,6 +77,19 @@
   align-items: center;
   justify-content: center;
 }
+.selectItem .button:active{
+background-color: #DDDDDD;
+}
+
+.quantity-button{
+	width: 35px;
+	height: 34px;
+	display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #DDDDDD;
+}
+
 
 .selectItem .common-box {
 	color: #646464;
@@ -90,7 +103,7 @@
 .selectItem .item1 {
 	display: flex;
 	margin-left: 22px;
-	flex-basis: 150px;
+	width: 300px;
 	flex-wrap: wrap;
 }
 
@@ -108,22 +121,19 @@
 /* 주문 정보 */
 .orderInfo .common-box {
 	flex-direction: column;
-	/* padding: 18px 27px 17px 29px; */
-	gap: 12px;
+	align-items: center;
+	display: flex;
+
 }
 
-.orderInfo .flex-row {
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-	align-items: center;
-}
 
 .orderInfo .item1 {
-	display: flex;
 	margin-left: 22px;
 	flex-basis: 150px;
 	flex-wrap: wrap;
+	background-color: red;
+	align-items: center; 
+	width: 200px;
 }
 
 .orderInfo .item2 {
@@ -146,9 +156,10 @@
 
 /*배송 정보*/
 
-.deliveryInfo input{
+.deliveryInfo .text{
 	border-radius: 5px;
 	border: 1px solid rgba(221, 221, 221, 0.87);
+	margin-right: 30px;
 }
 
 .deliveryInfo select{
@@ -156,29 +167,68 @@
 	border: 1px solid rgba(221, 221, 221, 0.87);
 }
 
-.gray-box {
+.deliveryInfo .little-box1{
+	width: 96px;
+	height: 26px;
+	border: 1px solid #DDDDDDDD;
+	border-radius: 5px;
+	margin-right: 170px;
+	margin-top: 18px;
+}
+.deliveryInfo .little-box2{
+	width: 96px;
+	height: 26px;
+	border: 1px solid #DDDDDDDD;
+	border-radius: 5px;
+	margin-top: 18px;
+	margin-left: 30px;
+}
+.deliveryInfo .label{
+	font-size: 16px;
+	color:#646464;
+	float:left;
+	margin-left:35px;
+	margin-top: 20px;
+	height: 26px;
 	display: flex;
-	width: 420px;
-	height: 60px;
-	background: #F2F2F2;
-	border:1px solid #F2F2F2;
-	justify-content: center;
 	align-items: center;
 }
-
-
-/*판매자 계좌 정보*/
-.sellerAccountInfo div {
-	display: flex;
+.deliveryInfo .big-box{
+	width:250px;
+	height: 26px;
+	border: 1px solid #DDDDDDDD;
+	border-radius: 5px;
+	margin-right: 70px;
+	margin-top: 18px;
+	float: right;
+	margin-right: 40px;
 }
 
-.sellerAccountInfo .common-box {
-	flex-direction: column;
-	justify-content: center;
-	align-items: flex-start;
-	padding-left: 31px;
-	gap: 16px;
+.deliveryInfo .delivbox{
+	width:255px;
+	height: 28px;
+	border: 1px solid #DDDDDDDD;
+	border-radius: 5px;
+	margin-right: 70px;
+	margin-top: 18px;
+	float: right;
+	margin-right: 40px;
 }
+
+.deliveryInfo .button{ /*우편번호검색*/
+ margin-top: 18px;
+ margin-left: 10px;
+ width: 110px;
+ height: 30px;
+ border: 1px solid #A0A0A0;
+ border-radius: 5px;
+ background-color: transparent;
+ font-family: Pretendard;
+ font-size: 16px;
+ color: #646464;
+}
+
+/* 판매자 계좌 정보 */
 
 /*입금 정보*/
 .depositInfo input {
@@ -199,9 +249,6 @@
 	display: flex;
 }
 
-.deliveryInfo label {
-	font-size: 16px;
-}
 
 /*환불 정보 */
 .refundAccount {
@@ -230,6 +277,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin-left: 55px;
 }
 
 /* 텍스트 스타일 */

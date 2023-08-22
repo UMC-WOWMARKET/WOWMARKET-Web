@@ -6,7 +6,7 @@ body {
 .App {
   text-align: center;
   position: relative;
-  min-height: 100vh;
+  min-height: 200vh;
   padding-bottom: 300px;
   padding-top: 100px;
 }
@@ -293,7 +293,7 @@ body {
   gap: 10px;
   padding-top: 20px;
 }
-.check_list .all {
+.check_list .all { /*전체동의*/
   font-weight: 700;
 }
 
@@ -494,91 +494,107 @@ body {
 /*UnivCert*/
 
 .UnivCert {
-  width: 545px;
-  height: 450px;
-  border: 1px solid rgba(174, 174, 174, 1);
-  border-radius: 20px;
+  width: 480px;
+  height: 488px;
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;
 
   display: flex;
   flex-direction: column;
-  gap: 40px;
-
-  padding-bottom: 40px;
-  padding-top: 30px;
-
+  
   margin-bottom: 70px;
+  position: absolute;
+  margin-top: 220px;
+  font-family: Pretendard;
 }
 
 .UnivCert .title {
   text-align: left;
   padding-left: 45px;
-  color: rgb(77, 75, 75);
-  font-weight: 500;
+  color: #646464;
+  font-weight: 700;
+  font-size: 32px;
+  margin-top: 50px;
 }
 
-.UnivCert .input_body {
+.UnivCert .input_body { /*큰 박스*/
   display: flex;
   flex-direction: column;
 
   align-items: flex-start;
-  height: 60%;
-  padding-left: 50px;
+
+  padding-left: 40px;
 
   gap: 20px;
 }
 
-.UnivCert .input_body .subtitle {
-  font-size: 20px;
-  color: rgba(110, 110, 110, 1);
+.UnivCert .input_body .input_box{ /*대학명 선택 박스*/
+  width: 401px;
+  height: 48px;
+  background-color:transparent ;
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;
 }
 
-.UnivCert .input_tail {
-  flex-direction: column;
-  align-items: flex-start;
 
-  height: 50%;
-
-  padding-left: 50px;
-  gap: 30px;
+.UnivCert .input_body .subtitle1 { /*대학명*/
+  font-size: 16px;
+  color: #646464;
+  font-weight: 400;
+  margin-top: 50px;
 }
-
-.UnivCert .input_tail .subtitle {
-  font-size: 20px;
-  color: rgba(110, 110, 110, 1);
-  padding-bottom: 10px;
-  display: flex;
+.UnivCert .input_body .subtitle2 { /*학교이메일*/
+  font-size: 16px;
+  color: #646464;
+  font-weight: 400;
+  margin-top: 15px;
 }
-
-.UnivCert .input_tail .univMail {
-  height: 40px;
-  width: 300px;
-  border-radius: 10px;
-  border: none;
-  background-color: rgba(240, 240, 240, 1);
-  color: rgba(110, 110, 110, 1);
-  padding-left: 10;
-}
-
-.UnivCert .input_tail .univMailButton {
-  height: 40px;
-  width: 131px;
-  border-radius: 10px;
-  border: none;
-  background-color: rgba(240, 240, 240, 1);
-  color: rgba(110, 110, 110, 1);
-  padding-left: 10;
-}
-
-.input_box_small {
-  height: 40px;
-  width: 300px;
-  border-radius: 10px;
-  border: none;
-  background-color: rgba(240, 240, 240, 1);
-  color: rgba(110, 110, 110, 1);
+.UnivCert .input_box_small { /*학교이메일 입력, 인증번호*/
+  height: 48px;
+  width: 260px;
+  border-radius: 5px;
+  border: 1px solid #DDDDDD;
+  background-color: transparent;
+  color: #646464; /*입력시 폰트색*/
+  font-size: 18px;
+  font-weight:400 ;
   padding-left: 10px;
 }
-
+.UnivCert .small_but1{ /*인증번호 발송*/
+  width: 110px;
+  height: 48px;
+  margin-right: 32px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background-color: #002472;
+  font-size: 17px;
+  font-weight: 500;
+  font-family: Pretendard;
+  color: white;
+}
+.UnivCert .small_but2{ /*인증번호 확인*/
+  width: 110px;
+  height: 48px;
+  margin-right: 32px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background-color: #DDDDDD;
+  font-size: 17px;
+  font-weight: 500;
+  font-family: Pretendard;
+  color: white;
+}
+.UnivCert ::placeholder {
+  color: #A0A0A0;
+  font-family: Pretendard;
+}
+.UnivCert .navigation{
+  font-family: Pretendard;
+  font-size: 15px;
+  font-weight: 400;
+  color: #646464;
+  margin-top: 10px;
+}
 /*Goods*/
 
 .Goods {
