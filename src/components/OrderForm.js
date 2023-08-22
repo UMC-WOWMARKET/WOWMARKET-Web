@@ -3,6 +3,7 @@ import '../styles/OrderForm.css'
 import styled from "styled-components";
 
 import axios from 'axios';
+import { Backup } from 'aws-sdk';
 
 //상품 컴포넌트
 const SelectItem = ({ id, index, name, price, onChangeQuantity}) => {
@@ -25,8 +26,8 @@ const SelectItem = ({ id, index, name, price, onChangeQuantity}) => {
 		<div className='item1'>{index}. {name}</div>
 		<div className='item2'>{price}원</div>
 		<div className='item3'>
-			<div className="common-box button" onClick={handleDecrease} style={{margin:'auto 0 auto 12px'}}>-</div>
-			<div className="common-box button" style={{margin:'auto 0 auto 0'}}>{quantity}</div>
+			<div className="common-box button" onClick={handleDecrease} style={{margin:'auto 0 auto 12px' }}>-</div>
+			<div className="quantity-button" style={{margin:'auto 0 auto 0'}}>{quantity}</div>
 			<div className="common-box button" onClick={handleIncrease} style={{margin:'auto 27px auto 0'}}>+</div>
 		</div>
 	</div>
@@ -147,7 +148,7 @@ const OrderForm = ({ goods_id }) => {
 	useEffect (() => { fetchData(); }, []);
 
 	return (
-		<div id="OrderForm" style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+		<div id="OrderForm">
 		<div className="OrderForm">
 			<h3 style={{margin:'37px 0 25px 0'}}>주문폼</h3>
 			<div className='common-box' style={{width:'420px', height:'0px'}}></div>
@@ -196,32 +197,46 @@ const OrderForm = ({ goods_id }) => {
 			{/* 주문 정보 */}
 			<div className='orderInfo'>
 				<h4>주문 정보</h4>
-				<div className='common-box text3' style={{width:'420px'}}>
+				<div className='orderInfoBox' 
+					style={{width:'420px',
+					height:'auto',
+					border: '1px solid #DDDDDD '}}>
 					{itemList.map((item) => (
-						<div key={item.id} className='flex-row'>
-							<div className='item1'>{item.name}</div>
-							<div className='item2'>{itemQuantities[item.id] || 0}개</div>
-							<div className='item3'>{item.price * (itemQuantities[item.id] || 0)}원</div>
+						<div key={item.id}
+						style={{width:'420px',
+								height:'42px',
+								display: 'flex', 
+								justifyContent: 'center',
+								alignItems: 'center', 
+								
+								}}>
+							<Info1>{item.name}</Info1>
+							<Info2>{itemQuantities[item.id] || 0}개</Info2>
+							<Info3>{item.price * (itemQuantities[item.id] || 0)}원</Info3>
 						</div>
 					))}
 				</div>
-				<div className='no-box'>
-					<div className='flex-row'>
-						<div className='item1'>총 상품 금액</div>
-						<div className='item2'>총 수량 {totalQuantity}개</div>
-						<div className='item3'>{totalPrice}원</div>
+				<div >
+					<div style={{
+							display: 'flex', 
+							marginTop:'15px',
+							justifyContent: 'center',
+							alignItems: 'center' }}>
+						<TotalSubtitle>총 상품 금액</TotalSubtitle>
+						<TotalQuan>총 수량 {totalQuantity}개</TotalQuan>
+						<TotalSum>{totalPrice}원</TotalSum>
 					</div>
 
-					<div>
-						<div className='item1'>배송비</div>
-						<div className='item3'>{deliveryFee ? deliveryFee : 0}원</div>
+					<div style={{marginTop: '15px'}}>
+						<DelivSubtitle>배송비</DelivSubtitle>
+						<DelivSum>{deliveryFee ? deliveryFee : 0}원</DelivSum>
 					</div>
 
-					<div className='common-box' style={{width:'366px', height:'0px'}}></div>
+					<Line></Line>
 
 					<div>
-						<div className='item1'>최종 금액</div>
-						<div className='item3'>{deliveryFee ? deliveryFee + totalPrice: totalPrice}원</div>
+						<FinalSubtitle>최종 금액</FinalSubtitle>
+						<FinalSum>{deliveryFee ? deliveryFee + totalPrice: totalPrice}원</FinalSum>
 					</div>
 				</div>
 			</div>
@@ -232,25 +247,30 @@ const OrderForm = ({ goods_id }) => {
 				<h4>배송 정보</h4>
 				<div className='common-box' style={{width:'420px'}}>
 					<form>
-						<label htmlFor="receiver">수취인명</label>
-						<input type="text" id="receiver" value={receiver} onChange={e => setReceiver(e.target.value)} required /><br></br>
+						<label htmlFor="receiver" className='label'>
+								수취인명</label>
+						<input className="little-box1" type="text" id="receiver" value={receiver} onChange={e => setReceiver(e.target.value)} required /><br></br>
 
-						<label htmlFor="zipcode">우편번호</label>
-						<input type="text" id="zipcode" value={zipcode} onChange={e => setZipcode(e.target.value)} />
-						{/* <button type="button" onClick={searchPostcode}>우편번호 검색</button>*/}<br /><br />
+					 <div style={{display:'flex'}}>
+						<label htmlFor="zipcode" className='label'>
+						우편번호 </label>
+						<input className="little-box2" type="text" id="zipcode" value={zipcode} onChange={e => setZipcode(e.target.value)}></input>
+						<button className='button'>우편번호 검색</button>
+					 </div>
+						<label className='label' htmlFor="address">주소</label>
+						<input className='big-box' type="text" id="address" value={address} onChange={e => setAddress(e.target.value)} />
+						
 
-						<label htmlFor="address">주소</label>
-						<input type="text" id="address" value={address} onChange={e => setAddress(e.target.value)} />
-						<br /><br />
+						<label className='label' htmlFor="detailAddress">상세주소</label>
+						<input className='big-box' type="text" id="detailAddress" value={detailAddress} onChange={e => setDetailAddress(e.target.value)} />
 
-						<label htmlFor="detailAddress">상세주소</label>
-						<input type="text" id="detailAddress" value={detailAddress} onChange={e => setDetailAddress(e.target.value)} /><br /><br />
+						<label className='label' htmlFor="phoneNumber">전화번호</label>
+						<input className='big-box' type="text" id="phoneNumber" value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} />
 
-						<label htmlFor="phoneNumber">전화번호</label>
-						<input type="text" id="phoneNumber" value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} /><br /><br />
-
-						<label htmlFor="deliveryMessage">배송메시지</label>
-						<select id="deliveryMessage" value={deliveryMessage} onChange={e => setDeliveryMessage(e.target.value)}>
+						<label className='label' htmlFor="deliveryMessage">배송메시지</label>
+						<select className='delivbox' 
+								style={{marginBottom:'20px', fontFamily:'Pretendard', color:'#646464'}}
+						id="deliveryMessage" value={deliveryMessage} onChange={e => setDeliveryMessage(e.target.value)}>
 							<option value="미리 연락 바랍니다.">미리 연락 바랍니다.</option>
 							<option value="부재시 경비실에 맡겨 주세요.">부재시 경비실에 맡겨 주세요.</option>
 							<option value="부재시 전화 주시거나 문자 남겨 주세요.">부재시 전화 주시거나 문자 남겨 주세요.</option>
@@ -264,21 +284,32 @@ const OrderForm = ({ goods_id }) => {
 			{/* 판매자 계좌 정보 */}
 			<div className='sellerAccountInfo'>
 				<h4>판매자 계좌 정보</h4>
-				<div className='common-box' style={{width:'420px', height:'92px'}}>
-					<div>
-						<div className='text3' style={{marginRight:'24px'}}>입금계좌</div>
-						<div style={{fontWeight:'500'}}>{sellerBank} {sellerAccount}</div>
+				<div className='common-box' style={{width:'420px', height:'98px',flexDirection:'column'}}>
+					<div style={{display:'flex', marginRight: '50px'}}>
+						<Account>입금계좌</Account>
+						<Bank>{sellerBank}</Bank>
+						<AccountNo>{sellerAccount}</AccountNo>
 					</div>
-					<div>
-						<div  className='text3' style={{marginRight:'38px'}}>예금주</div>
-						<div style={{fontWeight:'500'}}>{sellerAccountHolder}</div>
+					<div style={{display:'flex', marginRight: '150px'}}>
+						<Seller>예금주</Seller>
+						<SellerName>{sellerAccountHolder}</SellerName>
 					</div>
 				</div>
 			</div>
 
 
-			<div className='gray-box' style={{width:'420px', height:'60px', marginTop:'32px', color:'#000', fontSize:'14px'}}>
-				판매자의 계좌로 최종 금액을 송금한 후 아래 내용을 작성해주세요.
+			<div className='gray-box' 
+				 style={{
+					width:'420px', 
+				 	height:'45px', 
+					marginTop:'32px', 
+					color:'#000', 
+					fontSize:'14px', 
+					backgroundColor:'#F2F2F2',
+					display:'flex',
+					justifyContent: 'center',
+					alignItems: 'center'}}>
+				· 판매자의 계좌로 최종 금액을 송금한 후 아래 내용을 작성해주세요.
 			</div>
 
 			{/* 입금 정보 */}
@@ -292,7 +323,7 @@ const OrderForm = ({ goods_id }) => {
 							name="depositor"
 							value={depositor}
 							onChange={e => setDepositor(e.target.value)}
-							className='common-input'
+							style={{color:'#646464', fontFamily:'Pretendard', border: '1px solid #DDDDDD', borderRadius:'5px'}}
 						/>
 					</div>
 					<div style={{display:'flex', alignItems:'center'}}>
@@ -302,7 +333,7 @@ const OrderForm = ({ goods_id }) => {
 							name="depositTime"
 							value={depositTime}
 							onChange={e => setDepositTime(e.target.value)}
-							className='common-input'
+							style={{color:'#646464', fontFamily:'Pretendard', border: '1px solid #DDDDDD', borderRadius:'5px'}}
 						/>
 					</div>
 				</div>
@@ -311,7 +342,7 @@ const OrderForm = ({ goods_id }) => {
 			{/* 환불 계좌 */}
 			<div className='refundAccount'  style={{}}>
 				<div style={{display:'flex', alignItems:'center'}}>
-					<h4 style={{display:'flex'}}>환불 계좌</h4>
+					<Refund>환불 계좌</Refund>
 				</div>
 				<div>
 					<input
@@ -319,7 +350,7 @@ const OrderForm = ({ goods_id }) => {
 						name="refundBank"
 						value={refundBank}
 						onChange={e => setRefundBank(e.target.value)}
-						style={{width:'92px', height:'22px', marginLeft:'20px'}}
+						style={{width:'70px', height:'22px', marginLeft:'20px', fontFamily:'Pretendard', color:'#646464'}}
 						className='common-input'
 					/>
 					<input
@@ -327,13 +358,16 @@ const OrderForm = ({ goods_id }) => {
 						name="refundAccount"
 						value={refundAccount}
 						onChange={e => setRefundAccount(e.target.value)}
-						style={{width:'144px', height:'22px', marginLeft:'4px'}}
+						style={{width:'144px', height:'22px', marginLeft:'4px',  fontFamily:'Pretendard', color:'#646464'}}
 						className='common-input'
 					/>
 				</div>
 			</div>
-			<div className='redText' style={{}}>환불이 필요한 경우 입력해주신 계좌로 진행됩니다.</div>
+			<div className='redText' style={{margin:'10px 54px 30px 0', fontSize: '12px'}}>환불이 필요한 경우 입력해주신 계좌로 진행됩니다.</div>
 		</div>
+		
+
+		
 		{/* 폼 제출하기 */}
 		<div className='submitForm'>
 			<div onClick={handleSubmit}>폼 제출하기</div>
@@ -344,8 +378,126 @@ const OrderForm = ({ goods_id }) => {
 
 export default OrderForm;
 
-const Input = styled.input`
-	border-radius: 30px;
-	border: 1px solid rgba(221, 221, 221, 0.87);
-	border-color: #000000;
-`;
+
+const Info1 = styled.div`
+ width: 220px;
+ display: inline;
+ font-weight: 400;
+ font-size: 16px;
+ color: #646464;
+ text-align: left;
+ margin-left: 20px;
+`
+
+
+const Info2 = styled.div`
+display: inline;
+width: 50px;
+padding-left: 10px;
+font-size: 16px;
+color: #9A9A9A;
+`
+
+
+const Info3 = styled.div`
+display: inline;
+width: 100px;
+font-size: 16px;
+color: #9A9A9A;
+
+`
+
+const TotalSubtitle = styled.div`
+ display: inline;
+ font-size: 16px;
+ color:#646464;
+ color: #646464;
+ margin-right: 100px;
+`
+
+const TotalQuan =styled.div`
+ display: inline;
+ width: 110px;
+ color: #9A9A9A;
+ font-size: 16px;
+`
+
+const TotalSum =styled.div`
+	display: inline;
+	width: 100px;
+	margin-right:10px;
+	color:#646464;
+	font-size: 20px;
+	font-weight: 600;
+	`
+
+const DelivSubtitle = styled.div`
+	margin-right: 240px;
+	margin-left: 20px;
+	display: inline;
+	color: #646464;
+	font-size: 16px;
+
+`
+
+const DelivSum = styled.div`
+	display: inline;
+	color: #646464;
+	font-size: 20px;
+	font-weight: 600;
+	margin-right: px;
+`
+const Line = styled.div`
+	height: 2px;
+	width: 420px;
+	background-color: #DDDDDD;
+	margin-top: 20px;
+	margin-bottom: 20px;
+`
+
+const FinalSubtitle =styled.div`
+	margin-right: 225px;
+	margin-left: 25px;
+	display: inline;
+	font-size: 16px;
+	color: #646464;
+	align-items: flex-start;
+`
+
+const FinalSum =styled.div`
+	display: inline;
+	margin-right: 20px;
+	color: #646464;
+	font-weight: 600;
+	font-size: 20px;
+	width: 150px;
+`
+
+const Account = styled.div`
+	margin: 20px;
+
+`
+const Bank =styled.div`
+	margin: 20px 20px 20px 25px;
+	width: 50px;
+	text-align: left;
+`
+const AccountNo =styled.div`
+	margin: 20px 20px 20px 0;
+	width: 150px;
+	text-align: left;
+`
+const Seller =styled.div`
+	margin-right: 55px;
+	margin-left: 5px;
+	`
+
+const SellerName =styled.div`
+	width: 120px;
+	text-align: left;
+`
+const Refund =styled.div`
+	font-size: 16px;
+	font-weight: 500;
+	color: #646464;
+`

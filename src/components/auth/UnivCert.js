@@ -85,7 +85,7 @@ function UnivCert() {
       <div className="title">학교 인증</div>
 
       <div className="input_body">
-        <div className="subtitle">대학명</div>
+        <div className="subtitle1">대학명</div>
         <select
           className="input_box"
           onChange={selectUnivNameHandler}
@@ -97,7 +97,7 @@ function UnivCert() {
             </option>
           ))}
         </select>
-        <div className="subtitle">학교 이메일</div>
+        <div className="subtitle2">학교 이메일</div>
         <div className="input_body_small">
           <input
             placeholder="학교 이메일을 입력해주세요"
@@ -106,7 +106,7 @@ function UnivCert() {
               setUnivMail(e.target.value);
             }}
           />
-          <button className="small_but" onClick={submitUnivData}>
+          <button className="small_but1" onClick={submitUnivData}>
             인증번호 발송
           </button>
         </div>
@@ -119,7 +119,7 @@ function UnivCert() {
               setCertNum(e.target.value);
             }}
           />
-          <button className="small_but" onClick={submitCertCode}>
+          <button className="small_but2" onClick={submitCertCode}>
             인증번호 확인
           </button>
         </div>
@@ -127,7 +127,7 @@ function UnivCert() {
 
       <div className="input_footer">
         <button className="navigation" onClick={handleNavitgateToReturn}>
-          다음에 인증하기
+          > 다음에 인증하기
         </button>
       </div>
     </div>

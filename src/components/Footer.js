@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <PageContainer>
+   
     <FooterContainer>
       <FooterContent>
         <span>
@@ -35,17 +35,12 @@ function Footer() {
         <StyledLink to="privacy-policy">개인정보 처리방침</StyledLink>
       </DetailLink>
     </FooterContainer>
-    </PageContainer>
+    
   );
 }
 
 export default Footer;
 
-
-const PageContainer = styled.div`
-  position: relative; /* FooterContainer의 기준으로 설정 */
-  min-height: 120vh; /* 최소 화면 높이를 100vh로 설정하여 Footer가 항상 화면 하단에 표시되도록 함 */
-`;
 
 const FooterContainer = styled.div`
   background-color: ${theme.colors.primaryColor};
@@ -55,7 +50,7 @@ const FooterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
+  position: relative;
   bottom: 0;
 `;
 

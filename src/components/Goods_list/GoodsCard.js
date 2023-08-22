@@ -40,7 +40,7 @@ const GoodsCard = ({
         <img
           src={imgUrl}
           style={{
-            width: "350px",
+            width: "360px",
             height: "207px",
             border: "solid 2px transparent", // 테두리 스타일 추가
             borderRadius: "10px", // 테두리 둥글기 설정
@@ -61,7 +61,7 @@ export default GoodsCard;
 
 const GoodsList = styled.div`
   margin-left: 44px;
-  margin-right: 20px;
+  margin-right: 10px;
   margin-top: 90px;
   font-family: Pretendard;
 `;
@@ -71,6 +71,7 @@ const ProjectName = styled.div`
   font-weight: 600;
   position: absolute;
   color: #646464;
+  margin-top: 15px;
 `;
 
 const AchievePer = styled.div`
@@ -78,7 +79,7 @@ const AchievePer = styled.div`
   font-size: 15px;
   font-weight: 700;
   color: blue;
-  margin-top: 30px;
+  margin-top: 45px;
   color: #4051e7a3;
 `;
 
@@ -87,6 +88,8 @@ const SellerName = styled.div`
   color: #a0a0a0;
   font-size: 16px;
   font-weight: 400px;
+  
+  margin-top: 15px;
 `;
 
 const RemainingDays = styled.div`
