@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ProjectList from "./ProjectList";
 
-const ProjectContent = ({ pageType, setPageType }) => {
+const ProjectContent = ({ pageType, setPageType, onProjectClick }) => {
   //axios연동
   const [projectList, setProjectList] = useState([]); // 주문 데이터를 저장할 상태
   const [pageNo, setPageNo] = useState("1");
@@ -75,6 +75,7 @@ const ProjectContent = ({ pageType, setPageType }) => {
             list={projectList}
             pageType={pageType}
             setPageType={setPageType}
+            onProjectClick={onProjectClick}
           />
         </div>
         <div className="footer">

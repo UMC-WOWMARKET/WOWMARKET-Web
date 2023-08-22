@@ -9,8 +9,6 @@ import ProjectRegister from "./pages/ProjectRegister";
 import Users from "./pages/Users";
 import Goods from "./pages/Goods";
 import MyPage from "./pages/MyPage";
-import ProjectDetail from "./components/MyPage/ProjectDetail";
-import DemandDetail from "./components/MyPage/DemandDetail"
 
 function App() {
   return (
@@ -25,8 +23,6 @@ function App() {
           <Route path="/register/project" element={<ProjectRegister />} />
           <Route path="/goods/detail" element={<Goods />} />
           <Route path="/myinfo" element={<MyPage />} />
-          <Route path="/myinfo/myproject/detail/:id" element={<ProjectDetail />}  />
-          <Route path="/myinfo/mydemand/detail/:id" element={<ProjectDetail />}  />
         </Routes>
       </div>
       <Footer />

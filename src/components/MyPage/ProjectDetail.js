@@ -5,9 +5,7 @@ import styled from "styled-components";
 import theme from "../../styles/Theme";
 import { CalendarContainer } from "react-datepicker";
 
-const ProjectDetail = () => {
-  const { id } = useParams();
-  const project_id = id.match(/\d+/)[0];
+const ProjectDetail = ({ project_id, handleProjectClick, onGoBack }) => {
   const [projectData, setProjectData] = useState(null); // 프로젝트 데이터 상태
 
   //토큰
@@ -30,7 +28,6 @@ const ProjectDetail = () => {
         console.error("데이터 불러오기 실패", error);
       });
   }, [project_id]);
-  console.log(projectData);
 
   return (
     <div>
@@ -210,6 +207,7 @@ const ProjectDetail = () => {
               </ScrollableContainer>
             </InputCell>
           </RegisterFormContainer>
+          <button onClick={onGoBack}>목록</button>
         </div>
       ) : (
         <div>Loading...</div>
@@ -223,9 +221,8 @@ export default ProjectDetail;
 const RegisterFormContainer = styled.div`
   border: solid 0.5px ${theme.colors.lightgrey};
   width: 800px;
-  margin: 0 auto;
+  margin-left: 100px;
   padding: 60px;
-  margin-top: 205px;
   color: ${theme.colors.darkgrey};
   font-family: "Pretendard";
 `;
