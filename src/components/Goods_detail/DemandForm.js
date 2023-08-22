@@ -84,10 +84,9 @@ const DemandForm = ({ goods_id }) => {
 	useEffect (() => { fetchData(); }, []);
 
 	const handleSubmit = async (e) => {
-		const postData = [
-			{'demandItemId':1, 'count':1},
-			{'demandItemId':2, 'count':3}
-		];
+		e.preventDefault();
+
+		const postData = orderList;
 		console.log(postData);
 
 		try {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../../styles/GoodsBoard.css';
+import secretImage from '../../images/secret.png'
 
 const QuestionForm = ({ onSubmit }) => {
 	const [title, setTitle] = useState('');
@@ -22,33 +23,32 @@ const QuestionForm = ({ onSubmit }) => {
 
 	return (
 		<div className='noticeForm'>
-			<div>
+			<div className='questionTitle'>
 				<input
-					type="text"
-					id="title"
-					placeholder="제목을 입력해주세요"
-					value={title}
-					onChange={(e) => setTitle(e.target.value)}
-					style={{height:'52px'}}
-				/>
+						type="text"
+						id="title"
+						placeholder="제목을 입력해주세요"
+						value={title}
+						onChange={(e) => setTitle(e.target.value)}
+						style={{height:'52px', width:'460px', marginRight:'27px', paddingLeft:'15px'}}
+					/>
+				<div className='questionTitle'>
+					<input
+						type="checkbox"
+						checked={secret}
+						onChange={(e) => setSecret(e.target.checked)}
+						style={{borderRadius:'5px', width:'24px', height:'24px', marginRight:'10px'}}
+						/>
+					<div style={{fontSize:'20px'}}>비밀글</div>
+				</div>
 			</div>
-			<div>
-				<textarea
-					id="content"
-					placeholder="문의 내용을 작성해주세요"
-					value={content}
-					onChange={(e) => setContent(e.target.value)}
-					style={{height:'145px', marginTop:'11px'}}
-				/>
-			</div>
-			<label>
-				<input
-					type="checkbox"
-					checked={secret}
-					onChange={(e) => setSecret(e.target.checked)}
-				/>{' '}
-				비밀글
-			</label>
+			<textarea
+				id="content"
+				placeholder="문의 내용을 작성해주세요"
+				value={content}
+				onChange={(e) => setContent(e.target.value)}
+				style={{height:'145px', marginTop:'11px', paddingLeft:'15px', paddingTop:'15px'}}
+			/>
 			<div style={{display:'flex', justifyContent:'flex-end', marginTop:'20px'}}>
 				<div className='submitButton' onClick={handleSubmit}>등록하기</div>
 			</div>
@@ -57,7 +57,7 @@ const QuestionForm = ({ onSubmit }) => {
 };
 
 //문의 아이템
-const QuestionItem = ({key, goods_id, question_id, index, title, writer, time}) => {
+const QuestionItem = ({key, goods_id, question_id, index, title, writer, secret, time}) => {
 	const [content, setContent] = useState("");
 	const [showContent, setShowContent] = useState(false);
 	const [answer, setAnswer] = useState(null);
@@ -91,6 +91,7 @@ const QuestionItem = ({key, goods_id, question_id, index, title, writer, time}) 
 				console.log(answer);
 			}
 
+			console.log(question_id,response.data.content);
 			console.log('question content GET Success');
 		} catch (error) {
 			console.error('question content GET Error:', error);
@@ -101,7 +102,12 @@ const QuestionItem = ({key, goods_id, question_id, index, title, writer, time}) 
 	useEffect(() => { getContent() }, [goods_id]); //GET
 
 	const handleToggleContent = () => {
-		setShowContent(!showContent);
+		if (content === undefined) {
+			window.alert("비밀글입니다");
+		} else {
+			setShowContent(!showContent);
+
+		}
 	}
 
 	function formatDate(dateString) {
@@ -129,25 +135,33 @@ const QuestionItem = ({key, goods_id, question_id, index, title, writer, time}) 
 	};
 
 	return (
-		<div>
+		<div style={{maxWidth:'100%'}}>
 			<div className='noticeItem' key={key} onClick={handleToggleContent} style={{cursor:'pointer', margin:'13px 35px 13px 35px'}}>
-				<div style={{display:'flex', flex:1}}>{index + 1}</div>
-				<div style={{display:'flex', flex:2, flexWrap:'wrap'}}>{title}</div>
-				<div style={{display:'flex', flex:1}}>{writer}</div>
-				<div style={{display:'flex', flex:1}}>{formatDate(time)}</div>
+				<div style={{display:'flex', width:'80px'}}>{index + 1}</div>
+				<div style={{display:'flex', width:'250px'}}>
+					<div className="longTitle" style={{maxWidth:'200px', textAlign:'left'}}>{title}</div>
+					{secret && <img src={secretImage} style={{width:'16px', height:'16px'}}/>}
+				</div>
+
+				<div style={{display:'flex', width:'80px'}}>{writer}</div>
+				<div style={{display:'flex', }}>{formatDate(time)}</div>
 			</div>
 			{showContent && (
 				<div>
 					<div className='content'>{content}</div>
-					{answer !== null ? <div className='answer'>{answer}</div> : (isSeller &&
-						<div>
+					{answer !== null
+					? <div className='content'>{answer}</div>
+					: (isSeller &&
+						<div style={{display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'20px'}}>
 							<textarea
 								rows="4"
 								cols="50"
 								value={answerText}
+								placeholder="답변을 입력해주세요"
 								onChange={handleAnswerChange}
+								style={{width:'400px', height:'52px', resize:'none'}}
 							/>
-							<button onClick={handleSubmitAnswer}>답변 제출</button>
+							<div className='answerButton' onClick={handleSubmitAnswer} style={{}}>답변</div>
 						</div>
 					)}
 				</div>
@@ -202,12 +216,15 @@ const QuestionList = ({goods_id}) => {
 	) : (
 		<div>
 			<div className='common-box' style={{flexDirection:'column', paddingBottom:'20px'}}>
-				<div className='flex-row'>
-					<div style={{display:'flex', flex:1}}>번호</div>
-					<div style={{display:'flex', flex:2}}>제목</div>
-					<div style={{display:'flex', flex:1}}>작성자</div>
-					<div style={{display:'flex', flex:1}}>작성일</div>
+				<div style={{width:'560px'}}>
+					<div className='flex-row' style={{width:'560px'}}>
+						<div style={{display:'flex',  width:'80px'}}>번호</div>
+						<div style={{display:'flex',  width:'250px'}}>제목</div>
+						<div style={{display:'flex',  width:'80px'}}>작성자</div>
+						<div style={{display:'flex', }}>작성일</div>
+					</div>
 				</div>
+
 				<div className='common-box' style={{width:'560px', height:'0px'}}></div>
 				{posts.map((post, index) => (
 					<QuestionItem

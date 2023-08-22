@@ -27,14 +27,14 @@ const NoticeForm = ({onSubmit}) => {
 				placeholder="제목을 입력해주세요"
 				value={title}
 				onChange={(e) => setTitle(e.target.value)}
-				style={{height:'52px'}}
+				style={{height:'52px', paddingLeft:'15px'}}
 			/>
 			<textarea
 				id="content"
 				placeholder="공지 내용을 작성해주세요"
 				value={content}
 				onChange={(e) => setContent(e.target.value)}
-				style={{height:'145px', marginTop:'11px'}}
+				style={{height:'145px', marginTop:'11px', paddingLeft:'15px', paddingTop:'15px'}}
 			/>
 			{/* <button onClick={handleSubmit}>작성완료</button> */}
 			<div style={{display:'flex', justifyContent:'flex-end', marginTop:'20px'}}>
@@ -77,9 +77,9 @@ const NoticeItem = ({ key, goods_id, notice_id, index, title, time }) => {
 		return (
 			<div>
 				<div className='noticeItem' key={key} onClick={handleToggleContent} style={{cursor:'pointer', margin:'13px 35px 13px 35px'}}>
-					<div style={{display:'flex', flex:1}}>{index + 1}</div>
-					<div style={{display:'flex', flex:2}}>{title}</div>
-					<div style={{display:'flex', flex:1}}>{formatDate(time)}</div>
+					<div style={{display:'flex', width:'80px'}}>{index + 1}</div>
+					<div style={{display:'flex', width:'320px'}}>{title}</div>
+					<div style={{display:'flex'}}>{formatDate(time)}</div>
 				</div>
 				{showContent && (<div className='content'>{content}</div>)}
 				<div className='common-box' style={{width:'560px', height:'0px'}}></div>
@@ -144,11 +144,14 @@ const NoticeList = ({goods_id}) => {
 				) : (
 					<div>
 						<div className='common-box' style={{flexDirection:'column', paddingBottom:'20px'}}>
-							<div className='flex-row'>
-								<div style={{display:'flex', flex:1}}>번호</div>
-								<div style={{display:'flex', flex:2}}>제목</div>
-								<div style={{display:'flex', flex:1}}>작성일</div>
+							<div style={{width:'560px'}}>
+								<div className='flex-row'>
+									<div style={{display:'flex', width:'80px'}}>번호</div>
+									<div style={{display:'flex', width:'320px'}}>제목</div>
+									<div style={{display:'flex'}}>작성일</div>
+								</div>
 							</div>
+
 							<div className='common-box' style={{width:'560px', height:'0px'}}></div>
 							{posts.map((post, index) => (
 								<NoticeItem
