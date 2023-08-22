@@ -1,67 +1,98 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import '../../styles/GoodsBoard.css';
+import secretImage from '../../images/secret.png'
 
 const QuestionForm = ({ onSubmit }) => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+	const [title, setTitle] = useState('');
+	const [content, setContent] = useState('');
 	const [secret, setSecret] = useState(false);
 
-  const handleSubmit = (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
 
-    if (title && content) {
+		if (title && content) {
 			onSubmit(title, content, secret);
 			setTitle('');
 			setContent('');
 			setSecret(false);
-    } else {
+		} else {
 			window.alert("제목과 내용을 입력하세요.");
 		}
-  };
+	};
 
-  return (
-    <div>
-      <div>
-        <input
-          type="text"
-          id="title"
-					placeholder="제목을 입력해주세요"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-      </div>
-      <div>
-        <textarea
-          id="content"
-					placeholder="문의 내용을 작성해주세요"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
-      </div>
-			<label>
-        <input
-          type="checkbox"
-          checked={secret}
-          onChange={(e) => setSecret(e.target.checked)}
-        />{' '}
-        비밀글
-      </label>
-      <button onClick={handleSubmit}>작성완료</button>
-    </div>
-  );
+	return (
+		<div className='noticeForm'>
+			<div className='questionTitle'>
+				<input
+						type="text"
+						id="title"
+						placeholder="제목을 입력해주세요"
+						value={title}
+						onChange={(e) => setTitle(e.target.value)}
+						style={{height:'52px', width:'460px', marginRight:'27px', paddingLeft:'15px'}}
+					/>
+				<div className='questionTitle'>
+					<input
+						type="checkbox"
+						checked={secret}
+						onChange={(e) => setSecret(e.target.checked)}
+						style={{borderRadius:'5px', width:'24px', height:'24px', marginRight:'10px'}}
+						/>
+					<div style={{fontSize:'20px'}}>비밀글</div>
+				</div>
+			</div>
+			<textarea
+				id="content"
+				placeholder="문의 내용을 작성해주세요"
+				value={content}
+				onChange={(e) => setContent(e.target.value)}
+				style={{height:'145px', marginTop:'11px', paddingLeft:'15px', paddingTop:'15px'}}
+			/>
+			<div style={{display:'flex', justifyContent:'flex-end', marginTop:'20px'}}>
+				<div className='submitButton' onClick={handleSubmit}>등록하기</div>
+			</div>
+		</div>
+	);
 };
 
 //문의 아이템
-const QuestionItem = ({key, goods_id, question_id, index, title, time}) => {
+const QuestionItem = ({key, goods_id, question_id, index, title, writer, secret, time}) => {
 	const [content, setContent] = useState("");
 	const [showContent, setShowContent] = useState(false);
+	const [answer, setAnswer] = useState(null);
+	const [answerText, setAnswerText] = useState("");
+	const [isSeller, setIsSeller] = useState(false);
 
 	const getContent = async () => {
 		try {
 			const response = await axios.get(`http://www.wowmkt.kr/project/${goods_id}/question/${question_id}`);
 			setContent(response.data.content);
+
+			const userId = response.data.user_id;
+			const sellerId = response.data.seller_id;
+			console.log("user: " + userId);
+			console.log("seller: " + sellerId);
+
+			if (userId && sellerId && userId === sellerId){
+				setIsSeller(true);
+			}
+
+			if (userId != null && sellerId != null) {
+				const answerContents = response.data.answerResponseDto;
+				let answerContent = null;
+
+				if (answerContents !== null) {
+					answerContent = answerContents.content;
+					setAnswer(answerContent);
+				}
+
+				setAnswer(answerContent);
+				console.log(answer);
+			}
+
+			console.log(question_id,response.data.content);
 			console.log('question content GET Success');
-			console.log(content)
 		} catch (error) {
 			console.error('question content GET Error:', error);
 
@@ -69,8 +100,14 @@ const QuestionItem = ({key, goods_id, question_id, index, title, time}) => {
 	}
 
 	useEffect(() => { getContent() }, [goods_id]); //GET
+
 	const handleToggleContent = () => {
-		setShowContent(!showContent);
+		if (content === undefined) {
+			window.alert("비밀글입니다");
+		} else {
+			setShowContent(!showContent);
+
+		}
 	}
 
 	function formatDate(dateString) {
@@ -81,12 +118,57 @@ const QuestionItem = ({key, goods_id, question_id, index, title, time}) => {
 		return `${year}-${month}-${day}`;
 	}
 
-	return (
-		<div key={key} onClick={handleToggleContent} style={{cursor:'pointer'}}>
-			<span>{index + 1} | {title} | {formatDate(time)} </span>
-			{showContent && <p>{content}</p>}
+	const handleAnswerChange = (event) => {
+		setAnswerText(event.target.value);
+	};
 
-		</div>
+	const handleSubmitAnswer =  async (e) => {
+		e.preventDefault();
+
+		try {
+			const response = await axios.post(`http://www.wowmkt.kr/project/${goods_id}/question/${question_id}`, {content:answerText});
+			setAnswer(response.data.content);
+			setAnswerText("");
+		} catch (error) {
+			console.error('Answer submission error:', error);
+		}
+	};
+
+	return (
+		<div style={{maxWidth:'100%'}}>
+			<div className='noticeItem' key={key} onClick={handleToggleContent} style={{cursor:'pointer', margin:'13px 35px 13px 35px'}}>
+				<div style={{display:'flex', width:'80px'}}>{index + 1}</div>
+				<div style={{display:'flex', width:'250px'}}>
+					<div className="longTitle" style={{maxWidth:'200px', textAlign:'left'}}>{title}</div>
+					{secret && <img src={secretImage} style={{width:'16px', height:'16px'}}/>}
+				</div>
+
+				<div style={{display:'flex', width:'80px'}}>{writer}</div>
+				<div style={{display:'flex', }}>{formatDate(time)}</div>
+			</div>
+			{showContent && (
+				<div>
+					<div className='content'>{content}</div>
+					{answer !== null
+					? <div className='content'>{answer}</div>
+					: (isSeller &&
+						<div style={{display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'20px'}}>
+							<textarea
+								rows="4"
+								cols="50"
+								value={answerText}
+								placeholder="답변을 입력해주세요"
+								onChange={handleAnswerChange}
+								style={{width:'400px', height:'52px', resize:'none'}}
+							/>
+							<div className='answerButton' onClick={handleSubmitAnswer} style={{}}>답변</div>
+						</div>
+					)}
+				</div>
+			)}
+			<div className='common-box' style={{width:'560px', height:'0px'}}></div>
+
+	</div>
 	)
 }
 
@@ -127,27 +209,43 @@ const QuestionList = ({goods_id}) => {
 	};
 
 	return (
+		<div className='Question'>
+<div>
+	{showForm ? (
+			<QuestionForm onSubmit={handleAddPost} />
+	) : (
 		<div>
-			<div>
-				<span>번호</span> | <span>제목</span> | <span>작성일</span>
-			</div>
-			{showForm ? (
-				<QuestionForm onSubmit={handleAddPost} /> //showForm이 true면 PostForm 렌더링
-			) : (		//false면 글 목록
-				<div>
-					{posts.map((post, index) => (
-						<QuestionItem
+			<div className='common-box' style={{flexDirection:'column', paddingBottom:'20px'}}>
+				<div style={{width:'560px'}}>
+					<div className='flex-row' style={{width:'560px'}}>
+						<div style={{display:'flex',  width:'80px'}}>번호</div>
+						<div style={{display:'flex',  width:'250px'}}>제목</div>
+						<div style={{display:'flex',  width:'80px'}}>작성자</div>
+						<div style={{display:'flex', }}>작성일</div>
+					</div>
+				</div>
+
+				<div className='common-box' style={{width:'560px', height:'0px'}}></div>
+				{posts.map((post, index) => (
+					<QuestionItem
 						key={post.id}
 						goods_id={goods_id}
 						question_id={post.id}
 						index={index}
 						title={post.title}
-						time={post.createdTime} />
-					))}
-					<button onClick={() => setShowForm(true)}>등록하기</button>
-				</div>
-			)}
+						writer={post.writer}
+						secret={post.secret}
+						time={post.createdTime}
+					/>
+				))}
+			</div>
+			<div style={{display:'flex', justifyContent:'flex-end', marginTop:'20px'}}>
+				<div className='submitButton' onClick={() => setShowForm(true)}>등록하기</div>
+			</div>
 		</div>
+	)}
+</div>
+</div>
 	);
 };
 

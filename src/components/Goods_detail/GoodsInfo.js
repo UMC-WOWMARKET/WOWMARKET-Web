@@ -28,7 +28,7 @@ const GoodsInfo = ({goods_id}) => {
 				response = await axios.get(`http://www.wowmkt.kr/demand_project/${goods_id}`)
 			}
 			const data = response.data;
-
+			console.log(data);
 			setThumbnail(data.thumbnail);
 			setCategory(data.category);
 			setName(data.name);
@@ -49,7 +49,7 @@ const GoodsInfo = ({goods_id}) => {
 
 	useEffect (() => { getData(); }, []);
 
-	const achievedRate = (achieved === 0 || goal === 0 ? 0 : (achieved / goal) * 100);
+	const achievedRate = (achieved === 0 || goal === 0 ? "0.00" : ((achieved / goal) * 100).toFixed(2));
   const startDateParsed = new Date(startDate);
   const endDateParsed = new Date(endDate);
   const timeDifference = endDateParsed - startDateParsed; // Difference in milliseconds
@@ -79,17 +79,16 @@ const GoodsInfo = ({goods_id}) => {
 
 			<div className='line' style={{justifyContent:'space-around', marginBottom:'80px'}}>
 				<div className='line'>
-					<div className='text1' style={{color:'rgba(64, 81, 231, 0.64)'
-}}>{achievedRate}</div>
+					<div className='text1' style={{color:'rgba(64, 81, 231, 0.64)'}}>{achievedRate}</div>
 					<div className='text2' style={{color:'rgba(64, 81, 231, 0.64)'}}>% 달성</div>
 				</div>
-				<div>
-					<div className='text1'>{participant}</div>
-					<div className='text2'>명 참여</div>
+				<div className='line'>
+					<div className='text1' style={{color:'#646464'}}>{participant}</div>
+					<div className='text2' style={{color:'#646464'}}>명 참여</div>
 				</div>
-				<div>
-					<div className='text1'>{remainingDays}</div>
-					<div className='text2'>일 남음</div>
+				<div className='line'>
+					<div className='text1' style={{color:'#646464'}}>{remainingDays}</div>
+					<div className='text2' style={{color:'#646464'}}>일 남음</div>
 				</div>
 			</div>
 		</div>
