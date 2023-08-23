@@ -38,7 +38,6 @@ const GoodsCard = ({
     navigate(`/goods/detail?page_type=${page_type}&id=${id}`);
   };
 
-  console.log(univ);
   return (
     <GoodsList
       onClick={() => {

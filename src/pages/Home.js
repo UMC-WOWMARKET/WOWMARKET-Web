@@ -42,15 +42,35 @@ const Home = () => {
     setUrl(
       `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
     );
-    if (page_type === "demand" && !searchTerm) {
+    if (page_type === "demand" && searchTerm === "") {
       setUrl(
         `https://www.wowmkt.kr/demand/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
       );
-    } else if (page_type === "demand" && searchTerm) {
+    } else if (page_type === "demand" && searchTerm !== "") {
       setUrl(
         `https://www.wowmkt.kr/demand?search=${searchTerm}&pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
       );
-    } else if (page_type === "selling" && searchTerm) {
+    } else if (page_type === "selling" && searchTerm !== "") {
+      setUrl(
+        `https://www.wowmkt.kr/sell?search=${searchTerm}&pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
+      );
+    }
+    console.log(`url : ${url}`);
+  }, []);
+
+  useEffect(() => {
+    setUrl(
+      `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
+    );
+    if (page_type === "demand" && searchTerm === "") {
+      setUrl(
+        `https://www.wowmkt.kr/demand/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
+      );
+    } else if (page_type === "demand" && searchTerm !== "") {
+      setUrl(
+        `https://www.wowmkt.kr/demand?search=${searchTerm}&pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
+      );
+    } else if (page_type === "selling" && searchTerm !== "") {
       setUrl(
         `https://www.wowmkt.kr/sell?search=${searchTerm}&pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
       );
@@ -76,7 +96,7 @@ const Home = () => {
         setProjectList(fetchedProjectList); // 프로젝트 목록 업데이트
       })
       .catch((err) => {});
-  }, [orderBy, univ, page_type, searchTerm, pageNo]);
+  }, [orderBy, univ, page_type, searchTerm, pageNo, url]);
 
   return (
     <div className="main">
