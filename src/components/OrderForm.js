@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/OrderForm.css'
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 import { Backup } from 'aws-sdk';
@@ -36,6 +37,8 @@ const SelectItem = ({ id, index, name, price, onChangeQuantity}) => {
 
 //주문폼 컴포넌트
 const OrderForm = ({ goods_id }) => {
+	const navigate = useNavigate();
+
 	// GET DATA
 	//수령 방법
 	const [receiveType, setReceiveType] = useState(""); //수령방법
@@ -136,13 +139,24 @@ const OrderForm = ({ goods_id }) => {
 			delivery_msg: deliveryMessage,
 			orderRequestDtoList: orderList
 		}
-		try {
-			console.log(postData);
-			await axios.post(`http://www.wowmkt.kr/project/${goods_id}`, postData);
-			console.log('OrderForm Post Success');
-		} catch(error){
-			console.error('OrderForm Post Error');
-			window.alert("주문폼을 제출할 수 없습니다");
+
+		if (localStorage.getItem("accessToken") === null){
+			alert("로그인이 필요해요!");
+			navigate("/users/login");
+		} else if (localStorage.getItem("univ") === null){
+			alert("학교 인증이 필요해요!");
+			navigate("/users/UnivCert");
+		} else {
+			try {
+				console.log(postData);
+				await axios.post(`http://www.wowmkt.kr/project/${goods_id}`, postData);
+				alert("주문폼을 제출하였습니다!")
+				console.log('OrderForm Post Success');
+				navigate("/");
+			} catch(error){
+				console.error('OrderForm Post Error');
+				alert("같은 학교 굿즈만 주문할 수 있습니다!");
+			}
 		}
 	}
 
