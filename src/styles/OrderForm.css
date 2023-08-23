@@ -1,9 +1,5 @@
 /* 공통 적용 */
-#OrderForm {
-	border: 5px solid red;
-	/* margin-left: 144px; */
-	font-family: Pretendard;
-}
+
 
 .OrderForm {
 	color: #646464;
@@ -12,6 +8,7 @@
 	height: 400px; /*수정 예정*/
 	flex-shrink: 0;
 	overflow-y: scroll;
+	position: fixed;
 	padding-left: 34px;
 }
 
@@ -257,16 +254,10 @@ background-color: #DDDDDD;
 	margin-top: 24px;
 }
 
-.refundAccount input {
-	border-radius: 5px;
-	border: 1px solid #DDD;
-	padding-left: 31px;
-}
 
-.submitForm {
+.submitbutton {
 	width: 401px;
 	height: 60px;
-	flex-shrink: 0;
 	border-radius: 5px;
 	background: #002472;
 	margin-top: 20px;
@@ -277,8 +268,14 @@ background-color: #DDDDDD;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-left: 55px;
-}
+	margin-left: 50px;
+	position: fixed;
+  }
+
+  .submitbutton:active{
+	background-color: #030066;
+	color: black;
+  }
 
 /* 텍스트 스타일 */
 h3 {
