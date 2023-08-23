@@ -240,6 +240,7 @@ const DemandRegister = ({ ImageUrlUploaded }) => {
       if (response.status === 200) {
         console.log("Data submitted successfully!");
         window.alert("성공적으로 등록되었습니다.");
+        window.location.href = "/goods?page_type=demand";
       } else {
         console.error("Failed to submit data.");
         window.alert("등록에 실패하였습니다.");
