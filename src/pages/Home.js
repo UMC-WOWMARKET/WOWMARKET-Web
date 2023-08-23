@@ -46,6 +46,9 @@ const Home = () => {
     url = `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
     if (page_type === "demand") {
       url = `https://www.wowmkt.kr/demand/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
+      if (searchTerm) {
+        url = `https://www.wowmkt.kr/demand?search=${searchTerm}&pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
+      }
     }
     if (searchTerm) {
       url = `https://www.wowmkt.kr/sale?search=${searchTerm}&pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
@@ -73,6 +76,7 @@ const Home = () => {
   }, [orderBy, univ, page_type, searchTerm, pageNo]);
 
   useEffect(() => {
+    console.log(projectList.length);
     if (projectList.length < 9) {
       //마지막페이지
       alert("마지막 페이지 입니다");
