@@ -25,40 +25,33 @@ function chunkArray(arr, size) {
 
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  let page_type = searchParams.get("page_type");
+  const page_type = searchParams.get("page_type");
   // 필터링 값
   const [pageNo, setPageNo] = useState(1);
   const [orderBy, setOrderBy] = useState("view"); // endDate, view, startDate
   const [univ, setUniv] = useState("allUniv"); // myUniv, allUniv
   const [projectList, setProjectList] = useState([]); // 프로젝트 목록 상태 추가
   const [searchTerm, setSearchTerm] = useState("");
-  const [isLast, setIsLast] = useState(false);
-  const [url, setUrl] = useState(
-    `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
-  );
+
+  let url = `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
+
+  const handleSearch = (searchTerm) => {
+    // 여기서 검색어를 이용하여 검색 기능을 구현하거나 다른 원하는 작업을 수행합니다.
+    console.log("검색어:", searchTerm);
+  };
 
   console.log(`${page_type} 굿즈 리스트 페이지 렌더링`);
 
   useEffect(() => {
-    setUrl(
-      `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
-    );
-    if (page_type === "demand" && searchTerm === "") {
-      setUrl(
-        `https://www.wowmkt.kr/demand/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
-      );
-    } else if (page_type === "demand" && searchTerm !== "") {
-      setUrl(
-        `https://www.wowmkt.kr/demand?search=${searchTerm}&pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
-      );
-    } else if (page_type === "selling" && searchTerm !== "") {
-      setUrl(
-        `https://www.wowmkt.kr/sell?search=${searchTerm}&pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
-      );
+    url = `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
+    if (page_type === "demand") {
+      url = `https://www.wowmkt.kr/demand/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
     }
-    console.log(`url : ${url}`);
+    if (searchTerm) {
+      url = `https://www.wowmkt.kr/sale?search=${searchTerm}&pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
+    }
 
-    setIsLast(false);
+    console.log(`url : ${url}`);
 
     axios.interceptors.request.use((config) => {
       /* JWT 토큰 */
@@ -79,18 +72,13 @@ const Home = () => {
       .catch((err) => {});
   }, [orderBy, univ, page_type, searchTerm, pageNo]);
 
-  useEffect(() => {
-    setIsLast(false);
-    setPageNo(1);
-  }, [page_type]);
-
   return (
     <div className="main">
       <div className="SearchBox">
         <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </div>
 
-      <div className="banner_logo">
+<div className="banner_logo">
         {page_type === "selling" && <img src={banner_logo} alt="Banner" />}
         {page_type === "demand" && <img src={banner_demand} alt="Banner" />}
       </div>
@@ -136,15 +124,8 @@ const Home = () => {
       <button
         className="nextBut"
         onClick={() => {
-          if (projectList.length < 9) {
-            //마지막페이지
-            setIsLast(true);
-            alert("마지막 페이지 입니다");
-          } else {
-            setPageNo((prevPageNo) => prevPageNo + 1);
-          }
+          setPageNo((prevPageNo) => prevPageNo + 1);
         }}
-        disabled={isLast}
       >
         Next
       </button>
