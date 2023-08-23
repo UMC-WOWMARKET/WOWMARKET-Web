@@ -21,6 +21,16 @@ const GoodsCard = ({
   const remainingDays = Math.ceil(timeDifference / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
 
   const navigate = useNavigate();
+  let daysState = false;
+  let todayState = false;
+
+  //남은 날짜에 따른 style변경
+  if (remainingDays <= 6) {
+    daysState = true;
+    if (remainingDays === 0) {
+      todayState = true;
+    }
+  }
 
   //상세페이지 이동 함수
   const handleCardClick = (id) => {
@@ -36,7 +46,12 @@ const GoodsCard = ({
       }}
     >
       <div>
-        <RemainingDays>D - {remainingDays}</RemainingDays>
+        {daysState && !todayState && (
+          <RemainingDaysHot>D - {remainingDays}</RemainingDaysHot>
+        )}
+        {!daysState && <RemainingDays>D - {remainingDays}</RemainingDays>}
+        {todayState && <RemainingDaysHot>오늘 마감</RemainingDaysHot>}
+
         <img
           src={imgUrl}
           style={{
@@ -88,14 +103,28 @@ const SellerName = styled.div`
   color: #a0a0a0;
   font-size: 16px;
   font-weight: 400px;
-  
+
   margin-top: 15px;
 `;
 
 const RemainingDays = styled.div`
   background-color: #4051e7a3;
   color: white;
-  width: 58px;
+  width: 70px;
+  height: 32px;
+  position: absolute;
+  margin-left: 280px;
+  margin-top: 163px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0px 3px 4px -1px rgba(0, 0, 0, 0.64);
+`;
+const RemainingDaysHot = styled.div`
+  background-color: #e74040a3;
+  color: white;
+  width: 70px;
   height: 32px;
   position: absolute;
   margin-left: 280px;
