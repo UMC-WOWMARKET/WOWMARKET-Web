@@ -32,27 +32,23 @@ const Home = () => {
   const [univ, setUniv] = useState("allUniv"); // myUniv, allUniv
   const [projectList, setProjectList] = useState([]); // 프로젝트 목록 상태 추가
   const [searchTerm, setSearchTerm] = useState("");
-
+  const [isLast, setIsLast] = useState(false);
   let url = `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
-
-  const handleSearch = (searchTerm) => {
-    // 여기서 검색어를 이용하여 검색 기능을 구현하거나 다른 원하는 작업을 수행합니다.
-    console.log("검색어:", searchTerm);
-  };
 
   console.log(`${page_type} 굿즈 리스트 페이지 렌더링`);
 
   useEffect(() => {
-    url = `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
-    if (page_type === "demand") {
+    if (page_type === "demand" && searchTerm === "") {
       url = `https://www.wowmkt.kr/demand/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
-    }
-    if (searchTerm) {
+    } else if (page_type === "demand" && searchTerm !== "") {
+      url = `https://www.wowmkt.kr/demand?search=${searchTerm}&pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
+    } else if (page_type === "selling" && searchTerm !== "") {
       url = `https://www.wowmkt.kr/sale?search=${searchTerm}&pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
+    } else if (page_type === "selling" && searchTerm === "") {
+      url = `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
+
     }
-
-    console.log(`url : ${url}`);
-
+    
     axios.interceptors.request.use((config) => {
       /* JWT 토큰 */
       const userAccessToken = localStorage.getItem("accessToken");
@@ -71,6 +67,12 @@ const Home = () => {
       })
       .catch((err) => {});
   }, [orderBy, univ, page_type, searchTerm, pageNo]);
+
+  useEffect(() => {
+    setIsLast(false);
+    setPageNo(1);
+    setSearchTerm("");
+  }, [page_type]);
 
   return (
     <div className="main">
