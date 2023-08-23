@@ -44,34 +44,6 @@ const NavigationBar = ({ pageType, setPageType }) => {
           >
             나의 프로젝트
           </button>
-          {/* {showDropdown && (
-            <div className="dropdown-menu">
-              <button
-                onClick={() => {
-                  setPageType("project_selling_register");
-                }}
-                className="dropdown-content"
-              >
-                판매 등록폼 관리
-              </button>
-              <button
-                onClick={() => {
-                  setPageType("project_selling_order");
-                }}
-                className="dropdown-content"
-              >
-                판매 주문폼 관리
-              </button>
-              <button
-                onClick={() => {
-                  setPageType("project_demand_order");
-                }}
-                className="dropdown-content"
-              >
-                수요조사 등록폼 관리
-              </button>
-            </div>
-          )} */}
         </div>
       </div>
     </div>

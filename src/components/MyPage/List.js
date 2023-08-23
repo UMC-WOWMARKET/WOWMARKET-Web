@@ -10,7 +10,7 @@ const List = ({ orderList }) => {
     } else if (pageType === "order" || pageType === "selling") {
       return "제출일";
     } else {
-      return "---"; // 기본값 설정
+      return "제출일"; // 기본값 설정
     }
   };
 
@@ -32,7 +32,7 @@ const List = ({ orderList }) => {
               <div className="order_num">{index + 1}</div>
               <div className="order_title">{order.name}</div>
               <div className="order_date">{formattedDate}</div>
-              <div className="order_memo">{order.status}</div>
+              <div className="order_memo">확정대기</div>
             </div>
           );
         })}

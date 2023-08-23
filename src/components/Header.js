@@ -13,6 +13,7 @@ function Header() {
 
   const logout = () => {
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("univ");
     setIsLogin(false);
     navigate("/");
   };
@@ -35,7 +36,7 @@ function Header() {
     <HeaderContainer>
       <Navigation>
         <Menu>
-        <Link to="/goods?page_type=selling">
+          <Link to="/goods?page_type=selling">
             <Logo src="/assets/weblogo.png" />
           </Link>
           <NavLink to="/goods?page_type=selling">판매</NavLink>

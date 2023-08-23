@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "./Theme";
+import { useNavigate } from "react-router";
 
 const Arrangement = ({ orderBy, setOrderBy, univ, setUniv }) => {
   // const [orderBy, setOrderBy] = useState("");
   // const [univ, setUniv] = useState("");
 
   const [selected, setSelected] = useState("");
+  const navigate = useNavigate();
 
   return (
     <ThemeProvider theme={theme}>
@@ -31,11 +33,19 @@ const Arrangement = ({ orderBy, setOrderBy, univ, setUniv }) => {
               onClick={(e) => {
                 setSelected(e.target.value);
                 setUniv(e.target.value);
+                if (localStorage.getItem("accessToken") === null) {
+                  alert("로그인이 필요해요!");
+                  navigate("/users/login");
+                } else if (localStorage.getItem("univ") === null) {
+                  alert("학교인증이 필요해요!");
+                  navigate("/users/UnivCert");
+                }
               }}
               isActive={selected === "myUniv"}
             >
               #우리학교
             </CustomButton1>
+
             <CustomButton2
               value="allUniv"
               onClick={(e) => {
