@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/OrderForm.css";
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
 
 import axios from "axios";
 import { Backup } from "aws-sdk";
@@ -55,17 +56,19 @@ const SelectItem = ({ id, index, name, price, onChangeQuantity }) => {
 
 //주문폼 컴포넌트
 const OrderForm = ({ goods_id }) => {
-  // GET DATA
-  //수령 방법
-  const [receiveType, setReceiveType] = useState(""); //수령방법
-  const [deliveryFee, setDeliveryFee] = useState(" "); //택배배송일 때 - 택배비
-  const [receiveAddress, setReceiveAddress] = useState(" "); //직접수령일 때 - 픽업장소
-  //상품리스트
-  const [itemList, setItemList] = useState([]);
-  //판매자 계좌 정보
-  const [sellerBank, setSellerBank] = useState(null);
-  const [sellerAccount, setSellerAccount] = useState(null);
-  const [sellerAccountHolder, setSellerAccountHolder] = useState(null);
+	const navigate = useNavigate();
+
+	// GET DATA
+	//수령 방법
+	const [receiveType, setReceiveType] = useState(""); //수령방법
+	const [deliveryFee, setDeliveryFee] = useState(" "); //택배배송일 때 - 택배비
+	const [receiveAddress, setReceiveAddress] = useState(" "); //직접수령일 때 - 픽업장소
+	//상품리스트
+	const [itemList, setItemList] = useState([]);
+	//판매자 계좌 정보
+	const [sellerBank, setSellerBank] = useState(null);
+	const [sellerAccount, setSellerAccount] = useState(null);
+	const [sellerAccountHolder, setSellerAccountHolder] = useState(null);
 
   // POST DATA
   //배송 정보
@@ -149,30 +152,41 @@ const OrderForm = ({ goods_id }) => {
     fetchData();
   }, []);
 
-  const handleSubmit = async (e) => {
-    const postData = {
-      receiver: receiver,
-      zipcode: zipcode,
-      address: address,
-      address_detail: detailAddress,
-      phone: phoneNumber,
-      depositor: depositor,
-      depositTime: depositTime,
-      bank: refundBank,
-      account: refundAccount,
-      total_price: totalPrice,
-      delivery_msg: deliveryMessage,
-      orderRequestDtoList: orderList,
-    };
-    try {
-      console.log(postData);
-      await axios.post(`https://www.wowmkt.kr/project/${goods_id}`, postData);
-      console.log("OrderForm Post Success");
-    } catch (error) {
-      console.error("OrderForm Post Error");
-      window.alert("주문폼을 제출할 수 없습니다");
-    }
-  };
+	const handleSubmit = async (e) => {
+		const postData = {
+			receiver: receiver,
+			zipcode: zipcode,
+			address: address,
+			address_detail: detailAddress,
+			phone: phoneNumber,
+			depositor: depositor,
+			depositTime: depositTime,
+			bank: refundBank,
+			account: refundAccount,
+			total_price: totalPrice,
+			delivery_msg: deliveryMessage,
+			orderRequestDtoList: orderList
+		}
+
+		if (localStorage.getItem("accessToken") === null){
+			alert("로그인이 필요해요!");
+			navigate("/users/login");
+		} else if (localStorage.getItem("univ") === null){
+			alert("학교 인증이 필요해요!");
+			navigate("/users/UnivCert");
+		} else {
+			try {
+				console.log(postData);
+				await axios.post(`http://www.wowmkt.kr/project/${goods_id}`, postData);
+				alert("주문폼을 제출하였습니다!")
+				console.log('OrderForm Post Success');
+				navigate("/");
+			} catch(error){
+				console.error('OrderForm Post Error');
+				alert("같은 학교 굿즈만 주문할 수 있습니다!");
+			}
+		}
+	}
 
   useEffect(() => {
     fetchData();

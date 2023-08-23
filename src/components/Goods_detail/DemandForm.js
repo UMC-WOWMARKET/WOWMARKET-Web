@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/OrderForm.css";
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
 
 import axios from "axios";
 
@@ -54,9 +55,12 @@ const SelectItem = ({ id, index, name, price, onChangecount }) => {
 
 //주문폼 컴포넌트
 const DemandForm = ({ goods_id }) => {
-  // GET DATA
-  //상품리스트
-  const [itemList, setItemList] = useState([]);
+	const navigate = useNavigate();
+
+	// GET DATA
+	//상품리스트
+	const [itemList, setItemList] = useState([]);
+
 
   // POST DATA
   //상품별 수량 저장
@@ -117,18 +121,33 @@ const DemandForm = ({ goods_id }) => {
     const postData = orderList;
     console.log(postData);
 
-    try {
-      console.log(postData);
-      await axios.post(
-        `https://www.wowmkt.kr/demand_project/${goods_id}`,
-        postData
-      );
-      console.log("DemandForm Post Success");
-    } catch (error) {
-      console.error("DemandForm Post Error");
-      window.alert("참여폼을 제출할 수 없습니다");
-    }
-  };
+
+		if (localStorage.getItem("accessToken") === null){
+			alert("로그인이 필요해요!");
+			navigate("/users/login");
+		} else if (localStorage.getItem("univ") === null){
+			alert("학교 인증이 필요해요!");
+			navigate("/users/UnivCert");
+		} else {
+				try {
+					console.log(postData);
+					await axios.post(`http://www.wowmkt.kr/demand_project/${goods_id}`, postData);
+					alert("참여폼을 제출하였습니다!");
+					console.log('DemandForm Post Success');
+					navigate("/");
+				} catch(error){
+					console.error('DemandForm Post Error');
+
+					if (error.response) {
+						if (error.response.status === 400) {
+								window.alert("같은 학교 굿즈만 수요조사에 참여할 수 있습니다!");
+						} else if (error.response.status === 403) {
+								window.alert("이미 수요조사에 참여하였습니다!");
+						}
+					}
+				}
+		}
+	}
 
   useEffect(() => {
     fetchData();
