@@ -1,0 +1,21 @@
+.line {
+	display: flex;
+	align-items: center;
+}
+
+.line div {
+	display: flex;
+	align-items: center;
+}
+
+.line .text1 {
+	font-size: 32px;
+	font-weight: 700;
+	margin-bottom: 5px;
+}
+
+.line .text2 {
+	font-size: 20px;
+	font-weight: 400;
+	margin: 0;
+}

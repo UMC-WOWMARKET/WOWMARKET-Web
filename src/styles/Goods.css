@@ -1,0 +1,24 @@
+
+.Goods {
+	/* border: 5px solid purple; */
+	margin: 100px 144px auto 144px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.left_side {
+	/* margin: 115px auto auto 144px; */
+	/* border: 5px solid blue; */
+	
+	display: flex;
+	flex-direction: column;
+}
+
+.right_side {margin-right: 10px;
+}
+.searchbar {
+	display: inline;
+	position: absolute;
+	top: 100px;
+	right: 0px;
+}
