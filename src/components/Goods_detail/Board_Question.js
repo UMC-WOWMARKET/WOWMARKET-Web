@@ -261,7 +261,7 @@ const QuestionList = ({ goods_id }) => {
   const getList = async () => {
     try {
       const response = await axios.get(
-        `http://www.wowmkt.kr/project/${goods_id}/question`
+        `https://www.wowmkt.kr/project/${goods_id}/question`
       );
       setPosts(response.data);
       console.log("question GET Success");
@@ -285,7 +285,7 @@ const QuestionList = ({ goods_id }) => {
     console.log(postData);
     try {
       await axios.post(
-        `http://www.wowmkt.kr/project/${goods_id}/question`,
+        `https://www.wowmkt.kr/project/${goods_id}/question`,
         postData
       );
       getList();

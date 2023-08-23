@@ -131,7 +131,7 @@ const DemandForm = ({ goods_id }) => {
 		} else {
 				try {
 					console.log(postData);
-					await axios.post(`http://www.wowmkt.kr/demand_project/${goods_id}`, postData);
+					await axios.post(`https://www.wowmkt.kr/demand_project/${goods_id}`, postData);
 					alert("참여폼을 제출하였습니다!");
 					console.log('DemandForm Post Success');
 					navigate("/");
