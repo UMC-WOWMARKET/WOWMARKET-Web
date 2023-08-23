@@ -31,6 +31,7 @@ const Home = () => {
   const [univ, setUniv] = useState("allUniv"); // myUniv, allUniv
   const [projectList, setProjectList] = useState([]); // 프로젝트 목록 상태 추가
   const [searchTerm, setSearchTerm] = useState("");
+  const [isLast, setIsLast] = useState(false);
 
   let url = `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
 
@@ -70,6 +71,14 @@ const Home = () => {
       })
       .catch((err) => {});
   }, [orderBy, univ, page_type, searchTerm, pageNo]);
+
+  useEffect(() => {
+    if (projectList.length < 9) {
+      //마지막페이지
+      alert("마지막 페이지 입니다");
+      setIsLast(true);
+    }
+  }, [projectList]);
 
   return (
     <div className="main">
@@ -124,6 +133,7 @@ const Home = () => {
         onClick={() => {
           setPageNo((prevPageNo) => prevPageNo + 1);
         }}
+        disabled={isLast}
       >
         Next
       </button>
