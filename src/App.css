@@ -293,7 +293,8 @@ body {
   gap: 10px;
   padding-top: 20px;
 }
-.check_list .all { /*전체동의*/
+.check_list .all {
+  /*전체동의*/
   font-weight: 700;
 }
 
@@ -496,12 +497,12 @@ body {
 .UnivCert {
   width: 480px;
   height: 488px;
-  border: 1px solid #DDDDDD;
+  border: 1px solid #dddddd;
   border-radius: 5px;
 
   display: flex;
   flex-direction: column;
-  
+
   margin-bottom: 70px;
   position: absolute;
   margin-top: 220px;
@@ -517,7 +518,8 @@ body {
   margin-top: 50px;
 }
 
-.UnivCert .input_body { /*큰 박스*/
+.UnivCert .input_body {
+  /*큰 박스*/
   display: flex;
   flex-direction: column;
 
@@ -528,39 +530,43 @@ body {
   gap: 20px;
 }
 
-.UnivCert .input_body .input_box{ /*대학명 선택 박스*/
+.UnivCert .input_body .input_box {
+  /*대학명 선택 박스*/
   width: 401px;
   height: 48px;
-  background-color:transparent ;
-  border: 1px solid #DDDDDD;
+  background-color: transparent;
+  border: 1px solid #dddddd;
   border-radius: 5px;
 }
 
-
-.UnivCert .input_body .subtitle1 { /*대학명*/
+.UnivCert .input_body .subtitle1 {
+  /*대학명*/
   font-size: 16px;
   color: #646464;
   font-weight: 400;
   margin-top: 50px;
 }
-.UnivCert .input_body .subtitle2 { /*학교이메일*/
+.UnivCert .input_body .subtitle2 {
+  /*학교이메일*/
   font-size: 16px;
   color: #646464;
   font-weight: 400;
   margin-top: 15px;
 }
-.UnivCert .input_box_small { /*학교이메일 입력, 인증번호*/
+.UnivCert .input_box_small {
+  /*학교이메일 입력, 인증번호*/
   height: 48px;
   width: 260px;
   border-radius: 5px;
-  border: 1px solid #DDDDDD;
+  border: 1px solid #dddddd;
   background-color: transparent;
   color: #646464; /*입력시 폰트색*/
   font-size: 18px;
-  font-weight:400 ;
+  font-weight: 400;
   padding-left: 10px;
 }
-.UnivCert .small_but1{ /*인증번호 발송*/
+.UnivCert .small_but1 {
+  /*인증번호 발송*/
   width: 110px;
   height: 48px;
   margin-right: 32px;
@@ -572,23 +578,24 @@ body {
   font-family: Pretendard;
   color: white;
 }
-.UnivCert .small_but2{ /*인증번호 확인*/
+.UnivCert .small_but2 {
+  /*인증번호 확인*/
   width: 110px;
   height: 48px;
   margin-right: 32px;
   border: 1px solid transparent;
   border-radius: 5px;
-  background-color: #DDDDDD;
+  background-color: #dddddd;
   font-size: 17px;
   font-weight: 500;
   font-family: Pretendard;
   color: white;
 }
 .UnivCert ::placeholder {
-  color: #A0A0A0;
+  color: #a0a0a0;
   font-family: Pretendard;
 }
-.UnivCert .navigation{
+.UnivCert .navigation {
   font-family: Pretendard;
   font-size: 15px;
   font-weight: 400;
@@ -865,4 +872,17 @@ body {
 
 .MyOrder .MyOrderContent .order_space .content .order_date {
   padding-right: 23px;
+}
+
+/*Home*/
+.nextBut {
+  background-color: #a0a0a0;
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+  color: white;
+  border-radius: 20px;
+  margin-top: 100px;
+  margin-left: 1100px;
+  border: none;
 }

@@ -8,7 +8,6 @@ import styled from "styled-components";
 import banner_logo from "./banner_logo.svg";
 import "../styles/Home.css";
 
-
 import Search from "../components/Goods_list/Search";
 import Arrangement from "../components/Goods_list/Arrangement";
 
@@ -70,13 +69,7 @@ const Home = () => {
         setProjectList(fetchedProjectList); // 프로젝트 목록 업데이트
       })
       .catch((err) => {});
-  }, [orderBy, univ, page_type, searchTerm]);
-
-  useEffect(() => {
-    ///무한스크롤
-    //axios로 데이터 받기
-    //받은 데이터를 이미 있는 페이지 밑에 붙이기
-  }, [pageNo]);
+  }, [orderBy, univ, page_type, searchTerm, pageNo]);
 
   return (
     <div className="main">
@@ -126,6 +119,14 @@ const Home = () => {
           )
         )}
       </div>
+      <button
+        className="nextBut"
+        onClick={() => {
+          setPageNo((prevPageNo) => prevPageNo + 1);
+        }}
+      >
+        Next
+      </button>
     </div>
   );
 };
