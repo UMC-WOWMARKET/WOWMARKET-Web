@@ -216,13 +216,13 @@ background-color: #DDDDDD;
 .deliveryInfo .button{ /*우편번호검색*/
  margin-top: 18px;
  margin-left: 10px;
- width: 110px;
+ width: 120px;
  height: 30px;
  border: 1px solid #A0A0A0;
  border-radius: 5px;
  background-color: transparent;
  font-family: Pretendard;
- font-size: 14px;
+ font-size: 13.5px;
  color: #646464;
  cursor: pointer;
 }
