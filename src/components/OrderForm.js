@@ -177,7 +177,7 @@ const OrderForm = ({ goods_id }) => {
 		} else {
 			try {
 				console.log(postData);
-				await axios.post(`https://www.wowmkt.kr/project/${goods_id}`, postData);
+				await axios.post(`http://www.wowmkt.kr/project/${goods_id}`, postData);
 				alert("주문폼을 제출하였습니다!")
 				console.log('OrderForm Post Success');
 				navigate("/");
@@ -193,7 +193,7 @@ const OrderForm = ({ goods_id }) => {
   }, []);
 
   return (
-    <div id="OrderForm">
+    <div id="OrderForm" style={{position:'sticky', top: '160px'}} >
       <div className="OrderForm">
         <h3 style={{ margin: "37px 0 25px 0" }}>주문폼</h3>
         <div
@@ -533,13 +533,14 @@ const OrderForm = ({ goods_id }) => {
         }}
       >
         .
-      </div>
-      {/* 폼 제출하기 */}
+              {/* 폼 제출하기 */}
       <div className="submitForm">
         <div className="submitbutton" onClick={handleSubmit}>
           폼 제출하기
         </div>
       </div>
+      </div>
+
     </div>
   );
 };
