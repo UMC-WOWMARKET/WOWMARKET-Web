@@ -3,8 +3,8 @@ import { BiSearch } from "react-icons/bi";
 import "../../styles/Home.css";
 
 function Search({ searchTerm, setSearchTerm }) {
-  const handleInputChange = (event) => {
-    setSearchTerm(event.target.value);
+  const handleInputChange = (e) => {
+    setSearchTerm(e.target.value);
   };
 
   return (
