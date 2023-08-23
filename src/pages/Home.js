@@ -126,11 +126,12 @@ const Home = () => {
       <button
         className="nextBut"
         onClick={() => {
-          setPageNo((prevPageNo) => prevPageNo + 1);
           if (projectList.length < 9) {
             //마지막페이지
-            alert("마지막 페이지 입니다");
             setIsLast(true);
+            alert("마지막 페이지 입니다");
+          } else {
+            setPageNo((prevPageNo) => prevPageNo + 1);
           }
         }}
         disabled={isLast}

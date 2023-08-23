@@ -20,6 +20,7 @@ function Kakao() {
     })
     .catch((err) => {
       alert("카카오 로그인 오류! 다시 시도하세요");
+      navigate("/users/login");
     });
 
   return <div className="Kakao"></div>;
