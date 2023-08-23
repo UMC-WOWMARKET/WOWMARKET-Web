@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom";
 import { keyboard } from "@testing-library/user-event/dist/keyboard";
 
-const ProjectList = ({ list, pageType, setPageType }) => {
+const ProjectList = ({ list, pageType, setPageType, onProjectClick }) => {
   const getThirdDivText = () => {
     if (pageType === "selling_register" || pageType === "demand_register") {
       return "등록일";
@@ -29,7 +29,12 @@ const ProjectList = ({ list, pageType, setPageType }) => {
           return (
             <div className="content" key={list.id}>
               <div className="order_num">{index + 1}</div>
-              <div className="order_title">{list.name}</div>
+              <div
+                className="order_title"
+                onClick={() => onProjectClick(list.id)}
+              >
+                {list.name}
+              </div>
               <div className="order_date">{formattedDate}</div>
               <div className="order_memo">{list.status}</div>
             </div>

@@ -324,11 +324,6 @@ const Select = styled.select`
   color: ${theme.colors.darkgrey};
 `;
 
-const Option = styled.option`
-  font-size: 14px;
-  color: ${theme.colors.darkgrey};
-`;
-
 const SubmitButton = styled.button`
   color: ${theme.colors.white};
   border-radius: 5px;
