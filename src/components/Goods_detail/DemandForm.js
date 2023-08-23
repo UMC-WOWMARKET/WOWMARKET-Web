@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/OrderForm.css'
+import styled from "styled-components";
 
 import axios from 'axios';
 
@@ -94,24 +95,35 @@ const DemandForm = ({ goods_id }) => {
 			await axios.post(`http://www.wowmkt.kr/demand_project/${goods_id}`, postData);
 			console.log('DemandForm Post Success');
 		} catch(error){
-			console.error('DemandForm Post Error')
+			console.error('DemandForm Post Error');
+			window.alert("참여폼을 제출할 수 없습니다");
 		}
 	}
 
 	useEffect (() => { fetchData(); }, []);
 
 	return (
-		<div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+		<div id="OrderForm">
 		<div className="OrderForm">
 			<h3 style={{margin:'37px 0 25px 0'}}>참여폼</h3>
 			<div className='common-box' style={{width:'420px', height:'0px'}}></div>
 
 
-			<div className='gray-box' style={{width:'420px', height:'60px', marginTop:'32px', color:'#000', fontSize:'14px'}}>
+			<div className='gray-box'
+				 style={{
+					width:'420px',
+				 	height:'45px',
+					marginTop:'32px',
+					color:'#000',
+					fontSize:'14px',
+					backgroundColor:'#F2F2F2',
+					display:'flex',
+					justifyContent: 'center',
+					alignItems: 'center'}}>
 				정확한 수요 예측을 위해, 실제 구매를 원하는 분만 참여해주세요!
 			</div>
 
-			{/* 상품 선택  -> 회색 버튼 css 수정?*/}
+			{/* 상품 선택 */}
 			<div className='selectItem'>
 				<h4>상품 선택</h4>
 				<div className='flex-column'>
@@ -131,37 +143,170 @@ const DemandForm = ({ goods_id }) => {
 			{/* 주문 정보 */}
 			<div className='orderInfo'>
 				<h4>수요조사 정보</h4>
-				<div className='common-box text3' style={{width:'420px'}}>
+				<div className='orderInfoBox'
+					style={{width:'420px',
+					height:'auto',
+					border: '1px solid #DDDDDD '}}>
 					{itemList.map((item) => (
-						<div key={item.id} className='flex-row'>
-							<div className='item1'>{item.name}</div>
-							<div className='item2'>{itemQuantities[item.id] || 0}개</div>
-							<div className='item3'>{item.price * (itemQuantities[item.id] || 0)}원</div>
+						<div key={item.id}
+						style={{width:'420px',
+								height:'42px',
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
+								}}>
+							<Info1>{item.name}</Info1>
+							<div style={{width:'70px'}}></div>
+							<Info2>{itemQuantities[item.id] || 0}개</Info2>
 						</div>
 					))}
 				</div>
-				<div className='no-box'>
-					<div className='flex-row'>
-						<div className='item1'>총 상품 금액</div>
-						<div className='item2'>총 수량 {totalCount}개</div>
-						<div className='item3'>{totalPrice}원</div>
-					</div>
-
-					<div className='common-box' style={{width:'366px', height:'0px'}}></div>
-
-					<div>
-						<div className='item1'>최종 금액</div>
-						<div className='item3'>{totalPrice}원</div>
+				<div >
+					<div style={{
+							display: 'flex',
+							marginTop:'15px',
+							marginBottom:'15px',
+							justifyContent: 'center',
+							alignItems: 'center' }}>
+						<TotalSubtitle>총 상품 수량</TotalSubtitle>
+						<div style={{width:'70px'}}></div>
+						<TotalQuan>총 수량 {totalCount}개</TotalQuan>
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<div style={{width: '420px', heigth: '50px',marginBottom:'400px', backgroundColor:'transparent', color: 'white'}}>.</div>
 		{/* 폼 제출하기 */}
 		<div className='submitForm'>
-			<div onClick={handleSubmit}>폼 제출하기</div>
+			<div className='submitbutton' onClick={handleSubmit}>폼 제출하기</div>
 		</div>
 	</div>
 	);
 }
 
 export default DemandForm;
+
+const Info1 = styled.div`
+ width: 220px;
+ display: inline;
+ font-weight: 400;
+ font-size: 16px;
+ color: #646464;
+ text-align: left;
+ margin-left: 20px;
+`
+
+
+const Info2 = styled.div`
+display: inline;
+width: 50px;
+padding-left: 10px;
+font-size: 16px;
+color: #9A9A9A;
+`
+
+
+const Info3 = styled.div`
+display: inline;
+width: 100px;
+font-size: 16px;
+color: #9A9A9A;
+
+`
+
+const TotalSubtitle = styled.div`
+ display: inline;
+ font-size: 16px;
+ color:#646464;
+ color: #646464;
+ margin-right: 100px;
+`
+
+const TotalQuan =styled.div`
+ display: inline;
+ width: 110px;
+ color: #9A9A9A;
+ font-size: 16px;
+`
+
+const TotalSum =styled.div`
+	display: inline;
+	width: 100px;
+	margin-right:10px;
+	color:#646464;
+	font-size: 20px;
+	font-weight: 600;
+	`
+
+const DelivSubtitle = styled.div`
+	margin-right: 240px;
+	margin-left: 20px;
+	display: inline;
+	color: #646464;
+	font-size: 16px;
+
+`
+
+const DelivSum = styled.div`
+	display: inline;
+	color: #646464;
+	font-size: 20px;
+	font-weight: 600;
+	margin-right: px;
+`
+const Line = styled.div`
+	height: 2px;
+	width: 420px;
+	background-color: #DDDDDD;
+	margin-top: 20px;
+	margin-bottom: 20px;
+`
+
+const FinalSubtitle =styled.div`
+	margin-right: 225px;
+	margin-left: 25px;
+	display: inline;
+	font-size: 16px;
+	color: #646464;
+	align-items: flex-start;
+`
+
+const FinalSum =styled.div`
+	display: inline;
+	margin-right: 20px;
+	color: #646464;
+	font-weight: 600;
+	font-size: 20px;
+	width: 150px;
+`
+
+const Account = styled.div`
+	margin: 20px;
+	width: 80px;
+
+`
+const Bank =styled.div`
+	margin: 20px 20px 20px 25px;
+	width: 50px;
+	text-align: left;
+`
+const AccountNo =styled.div`
+	margin: 20px 20px 20px 0;
+	width: 150px;
+	text-align: left;
+`
+const Seller =styled.div`
+	margin-right: 55px;
+	margin-left: 5px;
+	`
+
+const SellerName =styled.div`
+	width: 120px;
+	text-align: left;
+`
+const Refund =styled.div`
+	font-size: 16px;
+	font-weight: 500;
+	color: #646464;
+`

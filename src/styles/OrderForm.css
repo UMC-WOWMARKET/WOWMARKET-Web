@@ -171,6 +171,8 @@ background-color: #DDDDDD;
 	border-radius: 5px;
 	margin-right: 170px;
 	margin-top: 18px;
+	font-family: Pretendard;
+	color: #646464;
 }
 .deliveryInfo .little-box2{
 	width: 96px;
@@ -179,6 +181,8 @@ background-color: #DDDDDD;
 	border-radius: 5px;
 	margin-top: 18px;
 	margin-left: 30px;
+	font-family: Pretendard;
+	color: #646464;
 }
 .deliveryInfo .label{
 	font-size: 16px;
@@ -199,6 +203,8 @@ background-color: #DDDDDD;
 	margin-top: 18px;
 	float: right;
 	margin-right: 40px;
+	font-family: Pretendard;
+	color: #646464;
 }
 
 .deliveryInfo .delivbox{

@@ -152,18 +152,19 @@ const NoticeList = ({goods_id}) => {
 								</div>
 							</div>
 
-							<div className='common-box' style={{width:'560px', height:'0px'}}></div>
-							{posts.map((post, index) => (
-								<NoticeItem
-									key={post.notice_id}
-									goods_id={goods_id}
-									notice_id={post.notice_id}
-									index={index}
-									title={post.title}
-									time={post.createdTime}
-								/>
+							<div className='common-box' style={{ width: '560px', height: '0px' }}></div>
+							{posts.slice().reverse().map((post, index, array) => (
+									<NoticeItem
+											key={post.notice_id}
+											goods_id={goods_id}
+											notice_id={post.notice_id}
+											index={array.length - 1 - index} // 역순 index 계산
+											title={post.title}
+											time={post.createdTime}
+									/>
 							))}
-						</div>
+							</div>
+
 						<div style={{display:'flex', justifyContent:'flex-end', marginTop:'20px'}}>
 							{showButton && <div className='submitButton' onClick={() => setShowForm(true)}>등록하기</div>}
 						</div>

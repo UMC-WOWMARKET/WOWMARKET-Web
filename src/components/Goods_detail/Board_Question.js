@@ -150,7 +150,10 @@ const QuestionItem = ({key, goods_id, question_id, index, title, writer, secret,
 				<div>
 					<div className='content'>{content}</div>
 					{answer !== null
-					? <div className='content'>{answer}</div>
+					? <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+							<div className='common-box' style={{ width: '500px', height: '0px' }}></div>
+							<div className='content' style={{alignSelf:'flex-start'}}>{answer}</div>
+						</div>
 					: (isSeller &&
 						<div style={{display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'20px'}}>
 							<textarea
@@ -225,20 +228,21 @@ const QuestionList = ({goods_id}) => {
 					</div>
 				</div>
 
-				<div className='common-box' style={{width:'560px', height:'0px'}}></div>
-				{posts.map((post, index) => (
-					<QuestionItem
-						key={post.id}
-						goods_id={goods_id}
-						question_id={post.id}
-						index={index}
-						title={post.title}
-						writer={post.writer}
-						secret={post.secret}
-						time={post.createdTime}
-					/>
+				<div className='common-box' style={{ width: '560px', height: '0px' }}></div>
+				{posts.slice().reverse().map((post, index, array) => (
+						<QuestionItem
+								key={post.id}
+								goods_id={goods_id}
+								question_id={post.id}
+								index={array.length - 1 - index} // 역순 index 계산
+								title={post.title}
+								writer={post.writer}
+								secret={post.secret}
+								time={post.createdTime}
+						/>
 				))}
-			</div>
+				</div>
+
 			<div style={{display:'flex', justifyContent:'flex-end', marginTop:'20px'}}>
 				<div className='submitButton' onClick={() => setShowForm(true)}>등록하기</div>
 			</div>

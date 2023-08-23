@@ -141,7 +141,8 @@ const OrderForm = ({ goods_id }) => {
 			await axios.post(`http://www.wowmkt.kr/project/${goods_id}`, postData);
 			console.log('OrderForm Post Success');
 		} catch(error){
-			console.error('OrderForm Post Error')
+			console.error('OrderForm Post Error');
+			window.alert("주문폼을 제출할 수 없습니다");
 		}
 	}
 
@@ -197,7 +198,7 @@ const OrderForm = ({ goods_id }) => {
 			{/* 주문 정보 */}
 			<div className='orderInfo'>
 				<h4>주문 정보</h4>
-				<div className='orderInfoBox' 
+				<div className='orderInfoBox'
 					style={{width:'420px',
 					height:'auto',
 					border: '1px solid #DDDDDD '}}>
@@ -205,10 +206,9 @@ const OrderForm = ({ goods_id }) => {
 						<div key={item.id}
 						style={{width:'420px',
 								height:'42px',
-								display: 'flex', 
+								display: 'flex',
 								justifyContent: 'center',
-								alignItems: 'center', 
-								
+								alignItems: 'center',
 								}}>
 							<Info1>{item.name}</Info1>
 							<Info2>{itemQuantities[item.id] || 0}개</Info2>
@@ -218,7 +218,7 @@ const OrderForm = ({ goods_id }) => {
 				</div>
 				<div >
 					<div style={{
-							display: 'flex', 
+							display: 'flex',
 							marginTop:'15px',
 							justifyContent: 'center',
 							alignItems: 'center' }}>
@@ -259,7 +259,7 @@ const OrderForm = ({ goods_id }) => {
 					 </div>
 						<label className='label' htmlFor="address">주소</label>
 						<input className='big-box' type="text" id="address" value={address} onChange={e => setAddress(e.target.value)} />
-						
+
 
 						<label className='label' htmlFor="detailAddress">상세주소</label>
 						<input className='big-box' type="text" id="detailAddress" value={detailAddress} onChange={e => setDetailAddress(e.target.value)} />
@@ -268,7 +268,7 @@ const OrderForm = ({ goods_id }) => {
 						<input className='big-box' type="text" id="phoneNumber" value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} />
 
 						<label className='label' htmlFor="deliveryMessage">배송메시지</label>
-						<select className='delivbox' 
+						<select className='delivbox'
 								style={{marginBottom:'20px', fontFamily:'Pretendard', color:'#646464'}}
 						id="deliveryMessage" value={deliveryMessage} onChange={e => setDeliveryMessage(e.target.value)}>
 							<option value="미리 연락 바랍니다.">미리 연락 바랍니다.</option>
@@ -298,13 +298,13 @@ const OrderForm = ({ goods_id }) => {
 			</div>
 
 
-			<div className='gray-box' 
+			<div className='gray-box'
 				 style={{
-					width:'420px', 
-				 	height:'45px', 
-					marginTop:'32px', 
-					color:'#000', 
-					fontSize:'14px', 
+					width:'420px',
+				 	height:'45px',
+					marginTop:'32px',
+					color:'#000',
+					fontSize:'14px',
 					backgroundColor:'#F2F2F2',
 					display:'flex',
 					justifyContent: 'center',
@@ -365,14 +365,14 @@ const OrderForm = ({ goods_id }) => {
 			</div>
 			<div className='redText' style={{margin:'10px 54px 30px 0', fontSize: '12px'}}>환불이 필요한 경우 입력해주신 계좌로 진행됩니다.</div>
 		</div>
-		
+
 
 		<div style={{width: '420px', heigth: '50px',marginBottom:'400px', backgroundColor:'transparent', color: 'white'}}>.</div>
 		{/* 폼 제출하기 */}
 		<div className='submitForm'>
 			<div className='submitbutton' onClick={handleSubmit}>폼 제출하기</div>
 		</div>
-		
+
 	</div>
 	);
 }
