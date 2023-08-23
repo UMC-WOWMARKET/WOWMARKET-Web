@@ -45,6 +45,7 @@ function Header() {
             onMouseEnter={() => {
               setView(true);
             }}
+            to={"/register/project"}
           >
             등록하기
           </NavLink>
