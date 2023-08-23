@@ -127,7 +127,7 @@ function UnivCert() {
 
       <div className="input_footer">
         <button className="navigation" onClick={handleNavitgateToReturn}>
-          > 다음에 인증하기
+          >다음에 인증하기
         </button>
       </div>
     </div>
