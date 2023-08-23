@@ -3,7 +3,7 @@ import GoodsInfo from "../components/Goods_detail/GoodsInfo";
 import GoodsBoard from "../components/Goods_detail/GoodsBoard";
 import OrderForm from "../components/OrderForm";
 import DemandForm from "../components/Goods_detail/DemandForm";
-
+import Search from "../components/Goods_list/Search";
 import axios from "axios";
 import "../styles/Goods.css";
 
@@ -29,11 +29,14 @@ const Goods = () => {
 
   return (
     <div className="Goods">
+          <div className="searchbar"><Search/></div>
       <div className="left_side" style={{width:'600px'}}>
         <GoodsInfo goods_id={goods_id} />
         <GoodsBoard goods_id={goods_id} />
       </div>
+      
       <div className="right_side">
+      
         {page_type === "selling" && <OrderForm goods_id={goods_id} />}
         {page_type === "demand" && <DemandForm goods_id={goods_id} />}
       </div>

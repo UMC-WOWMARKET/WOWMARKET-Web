@@ -367,11 +367,12 @@ const OrderForm = ({ goods_id }) => {
 		</div>
 		
 
-		
+		<div style={{width: '420px', heigth: '50px',marginBottom:'400px', backgroundColor:'transparent', color: 'white'}}>.</div>
 		{/* 폼 제출하기 */}
 		<div className='submitForm'>
-			<div onClick={handleSubmit}>폼 제출하기</div>
+			<div className='submitbutton' onClick={handleSubmit}>폼 제출하기</div>
 		</div>
+		
 	</div>
 	);
 }
@@ -475,6 +476,7 @@ const FinalSum =styled.div`
 
 const Account = styled.div`
 	margin: 20px;
+	width: 80px;
 
 `
 const Bank =styled.div`
