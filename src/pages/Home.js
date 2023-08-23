@@ -77,7 +77,12 @@ const Home = () => {
         setProjectList(fetchedProjectList); // 프로젝트 목록 업데이트
       })
       .catch((err) => {});
-  }, [orderBy, univ, page_type, searchTerm, pageNo, url]);
+  }, [orderBy, univ, page_type, searchTerm, pageNo]);
+
+  useEffect(() => {
+    setIsLast(false);
+    setPageNo(1);
+  }, [page_type]);
 
   return (
     <div className="main">
