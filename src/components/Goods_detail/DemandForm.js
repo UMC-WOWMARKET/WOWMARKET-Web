@@ -154,7 +154,7 @@ const DemandForm = ({ goods_id }) => {
   }, []);
 
   return (
-    <div id="OrderForm" style={{fontFamily:'Pretendard'}}>
+    <div id="OrderForm" style={{fontFamily:'Pretendard', position:'sticky', top: '160px'}}>
       <div className="OrderForm">
         <h3 style={{ margin: "37px 0 25px 0" }}>참여폼</h3>
         <div
@@ -251,14 +251,14 @@ const DemandForm = ({ goods_id }) => {
           color: "white",
         }}
       >
-        .
-      </div>
-      {/* 폼 제출하기 */}
+        .      {/* 폼 제출하기 */}
       <div className="submitForm">
         <div className="submitbutton" onClick={handleSubmit}>
           폼 제출하기
         </div>
       </div>
+      </div>
+
     </div>
   );
 };

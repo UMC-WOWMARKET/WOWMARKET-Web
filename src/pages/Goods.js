@@ -25,6 +25,8 @@ const Goods = () => {
   console.log(`${page_type} 상세 페이지 렌더링`);
   console.log(`상품아이디_${goods_id}`);
 
+  //axios Get 으로 데이터 다 받아서 자식 컴포넌트에 필요한 것만 내려주기
+
   return (
     <div className="Goods">
           <div className="searchbar"></div>
@@ -32,9 +34,9 @@ const Goods = () => {
         <GoodsInfo goods_id={goods_id} />
         <GoodsBoard goods_id={goods_id} />
       </div>
-
+      
       <div className="right_side">
-
+      
         {page_type === "selling" && <OrderForm goods_id={goods_id} />}
         {page_type === "demand" && <DemandForm goods_id={goods_id} />}
       </div>
