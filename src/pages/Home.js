@@ -75,15 +75,6 @@ const Home = () => {
       .catch((err) => {});
   }, [orderBy, univ, page_type, searchTerm, pageNo]);
 
-  useEffect(() => {
-    console.log(projectList.length);
-    if (projectList.length < 9) {
-      //마지막페이지
-      alert("마지막 페이지 입니다");
-      setIsLast(true);
-    }
-  }, [projectList]);
-
   return (
     <div className="main">
       <div className="SearchBox">
@@ -136,6 +127,11 @@ const Home = () => {
         className="nextBut"
         onClick={() => {
           setPageNo((prevPageNo) => prevPageNo + 1);
+          if (projectList.length < 9) {
+            //마지막페이지
+            alert("마지막 페이지 입니다");
+            setIsLast(true);
+          }
         }}
         disabled={isLast}
       >
