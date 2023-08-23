@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { keyboard } from "@testing-library/user-event/dist/keyboard";
 
-const ProjectList = ({ list, pageType, setPageType, onProjectClick }) => {
+const ProjectList = ({
+  list,
+  pageType,
+  setPageType,
+  onProjectClick,
+  infoText,
+}) => {
   const getThirdDivText = () => {
     if (pageType === "selling_register" || pageType === "demand_register") {
       return "등록일";
@@ -25,7 +31,8 @@ const ProjectList = ({ list, pageType, setPageType, onProjectClick }) => {
         {list.map((list, index) => {
           const orderDate = new Date(list.createdtime);
           const formattedDate = orderDate.toISOString().split("T")[0];
-
+          const memo = infoText[list.status];
+          console.log(list.status);
           return (
             <div className="content" key={list.id}>
               <div className="order_num">{index + 1}</div>
@@ -36,7 +43,7 @@ const ProjectList = ({ list, pageType, setPageType, onProjectClick }) => {
                 {list.name}
               </div>
               <div className="order_date">{formattedDate}</div>
-              <div className="order_memo">{list.status}</div>
+              <div className="order_memo">{memo}</div>
             </div>
           );
         })}
