@@ -46,9 +46,9 @@ const Home = () => {
       url = `https://www.wowmkt.kr/sale?search=${searchTerm}&pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
     } else if (page_type === "selling" && searchTerm === "") {
       url = `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
-    }
-    console.log(`url : ${url}`);
 
+    }
+    
     axios.interceptors.request.use((config) => {
       /* JWT 토큰 */
       const userAccessToken = localStorage.getItem("accessToken");
@@ -80,7 +80,7 @@ const Home = () => {
         <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </div>
 
-      <div className="banner_logo">
+<div className="banner_logo">
         {page_type === "selling" && <img src={banner_logo} alt="Banner" />}
         {page_type === "demand" && <img src={banner_demand} alt="Banner" />}
       </div>
@@ -126,15 +126,8 @@ const Home = () => {
       <button
         className="nextBut"
         onClick={() => {
-          if (projectList.length < 9) {
-            //마지막페이지
-            setIsLast(true);
-            alert("마지막 페이지 입니다");
-          } else {
-            setPageNo((prevPageNo) => prevPageNo + 1);
-          }
+          setPageNo((prevPageNo) => prevPageNo + 1);
         }}
-        disabled={isLast}
       >
         Next
       </button>
