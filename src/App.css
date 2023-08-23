@@ -885,15 +885,3 @@ body {
   padding-right: 23px;
 }
 
-/*Home*/
-.nextBut {
-  background-color: #a0a0a0;
-  width: 100px;
-  height: 50px;
-  font-size: 20px;
-  color: white;
-  border-radius: 20px;
-  margin-top: 100px;
-  margin-left: 1100px;
-  border: none;
-}

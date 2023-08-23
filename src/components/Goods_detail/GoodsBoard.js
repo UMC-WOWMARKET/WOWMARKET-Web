@@ -16,20 +16,20 @@ const GoodsBoard = ({ goods_id }) => {
 	};
 
   return (
-		<div>
+		<div style={{fontFamily:'Pretendard'}}>
 			<div className="BoardView" style={{display:'flex', justifyContent:'space-around'}}>
-				<div onClick={() => handleButtonClick('굿즈소개')} className={view === '굿즈소개' ? 'selected' : ''}>
+				<div style={{cursor:'pointer'}} onClick={() => handleButtonClick('굿즈소개')} className={view === '굿즈소개' ? 'selected' : ''}>
 					굿즈소개
 				</div>
 
 				{page_type === 'selling' &&
-					<div onClick={() => handleButtonClick('공지')} className={view === '공지' ? 'selected' : ''}>
+					<div  style={{cursor:'pointer'}} onClick={() => handleButtonClick('공지')} className={view === '공지' ? 'selected' : ''}>
 						공지
 					</div>
 				}
 
 				{page_type === 'selling' &&
-					<div onClick={() => handleButtonClick('문의')} className={view === '문의' ? 'selected' : ''}>
+					<div   style={{cursor:'pointer'}} onClick={() => handleButtonClick('문의')} className={view === '문의' ? 'selected' : ''}>
 						문의
 					</div>
 				}

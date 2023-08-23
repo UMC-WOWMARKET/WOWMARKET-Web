@@ -6,7 +6,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import banner_logo from "./banner_logo.svg";
-import "../styles/Home.css";
+import "../styles/Home.css"; //여기서 스타일 적용
+
 
 import Search from "../components/Goods_list/Search";
 import Arrangement from "../components/Goods_list/Arrangement";
