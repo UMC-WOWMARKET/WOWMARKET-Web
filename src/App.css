@@ -567,30 +567,41 @@ body {
 }
 .UnivCert .small_but1 {
   /*인증번호 발송*/
-  width: 110px;
+  width: 130px;
   height: 48px;
-  margin-right: 32px;
+  margin-right: 15px;
   border: 1px solid transparent;
   border-radius: 5px;
   background-color: #002472;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 500;
   font-family: Pretendard;
   color: white;
 }
+
+.UnivCert .small_but1:active{
+  background-color: #030066;
+	color: black;
+  }
 .UnivCert .small_but2 {
   /*인증번호 확인*/
-  width: 110px;
+  width: 130px;
   height: 48px;
-  margin-right: 32px;
+  margin-right: 15px;
   border: 1px solid transparent;
   border-radius: 5px;
   background-color: #dddddd;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 500;
   font-family: Pretendard;
   color: white;
 }
+
+.UnivCert .small_but2:active{
+  background-color: #A0A0A0;
+	color: #646464;
+  }
+
 .UnivCert ::placeholder {
   color: #a0a0a0;
   font-family: Pretendard;
@@ -874,15 +885,3 @@ body {
   padding-right: 23px;
 }
 
-/*Home*/
-.nextBut {
-  background-color: #a0a0a0;
-  width: 100px;
-  height: 50px;
-  font-size: 20px;
-  color: white;
-  border-radius: 20px;
-  margin-top: 100px;
-  margin-left: 1100px;
-  border: none;
-}

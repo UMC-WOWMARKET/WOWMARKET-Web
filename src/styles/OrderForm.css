@@ -73,6 +73,7 @@
 	display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 .selectItem .button:active{
 background-color: #DDDDDD;
@@ -221,8 +222,9 @@ background-color: #DDDDDD;
  border-radius: 5px;
  background-color: transparent;
  font-family: Pretendard;
- font-size: 16px;
+ font-size: 14px;
  color: #646464;
+ cursor: pointer;
 }
 
 /* 판매자 계좌 정보 */
@@ -270,6 +272,7 @@ background-color: #DDDDDD;
 	justify-content: center;
 	margin-left: 50px;
 	position: fixed;
+	cursor: pointer;
   }
 
   .submitbutton:active{

@@ -27,7 +27,7 @@ const Goods = () => {
 
   return (
     <div className="Goods">
-          <div className="searchbar"><Search/></div>
+          <div className="searchbar"></div>
       <div className="left_side" style={{width:'600px'}}>
         <GoodsInfo goods_id={goods_id} />
         <GoodsBoard goods_id={goods_id} />
