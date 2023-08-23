@@ -13,9 +13,7 @@ function Kakao() {
   axios
     .post(`https://www.wowmkt.kr/users/kakao/login?code=${code}`, {})
     .then((res) => {
-      console.log(res.data);
-      const { accessToken } = res.data.accessToken;
-      axios.defaults.headers.common["X-ACCESS-TOKEN"] = `${accessToken}`;
+      localStorage.setItem("accessToken", res.data.jwtAccessToken);
       navigate(`/`);
     })
     .catch((err) => {
