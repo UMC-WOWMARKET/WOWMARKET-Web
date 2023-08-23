@@ -830,16 +830,16 @@ body {
 .MyOrder .MyOrderContent .order_space .header .last,
 .MyOrder .MyOrderContent .order_space .header .third {
   margin: 10px; /* 기본 마진을 제거하여 끝쪽으로 위치 */
-  padding-right: 25px;
-  padding-left: 10px;
+  padding-right: 20px;
+  padding-left: 30px;
   flex: 0 0 auto;
 }
 
 .MyOrder .MyOrderContent .order_space .header .third {
-  padding-right: 45px;
+  padding-right: 70px;
 }
 .MyOrder .MyOrderContent .order_space .header .second {
-  padding-right: 120px;
+  padding-right: 100px;
 }
 .MyOrder .MyOrderContent .order_space .content {
   display: flex;
@@ -866,7 +866,7 @@ body {
 }
 
 .MyOrder .MyOrderContent .order_space .content .order_title {
-  padding-right: 380px;
+  padding-right: 200px;
   text-align: left;
 }
 
