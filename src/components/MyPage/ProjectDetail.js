@@ -3,7 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import theme from "../../styles/Theme";
 import { CalendarContainer } from "react-datepicker";
-import { Privacy_policy, notice } from "../../Terms/terms";
+import { Privacy_policy, Notice } from "../../Terms/terms";
 
 const ProjectDetail = ({ project_id, handleProjectClick, onGoBack }) => {
   const [projectData, setProjectData] = useState(null); // 프로젝트 데이터 상태
@@ -208,7 +208,7 @@ const ProjectDetail = ({ project_id, handleProjectClick, onGoBack }) => {
                 판매자 유의사항 동의 (필수)
               </Label>
               <ScrollableContainer>
-                <p>{notice}</p>
+                <p>{Notice}</p>
               </ScrollableContainer>
             </InputCell>
           </RegisterFormContainer>
