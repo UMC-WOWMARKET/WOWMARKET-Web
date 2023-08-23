@@ -96,7 +96,7 @@ const GoodsInfo = ({ goods_id }) => {
         </div>
         <div
           className="nickname"
-          style={{ color: "#A0A0A0", fontSize: "16px", fontWeight: "400" }}
+          style={{ marginRight: '15px', color: "#A0A0A0", fontSize: "16px", fontWeight: "400" }}
         >
           제작 {nickname}
         </div>
@@ -138,20 +138,23 @@ const GoodsInfo = ({ goods_id }) => {
         style={{ justifyContent: "space-around", marginBottom: "80px" }}
       >
         <div className="line">
+          
           <div className="text1" style={{ color: "rgba(64, 81, 231, 0.64)" }}>
             {achievedRate}
           </div>
           <div className="text2" style={{ color: "rgba(64, 81, 231, 0.64)" }}>
             % 달성
           </div>
+          <div style={{ color: "#646464", fontSize: '40px' }}>&nbsp; &nbsp;&nbsp;&nbsp;ㅣ</div>
         </div>
         <div className="line">
-          <div className="text1" style={{ color: "#646464" }}>
+          <div className="text1" style={{fontWeight:'400', color: "#646464" }}>
             {participant}
           </div>
-          <div className="text2" style={{ color: "#646464" }}>
+          <div className="text2" style={{  color: "#646464" }}>
             명 참여
           </div>
+          <div style={{ color: "#646464", fontSize: '40px' }}>&nbsp; &nbsp;&nbsp;&nbsp;ㅣ</div>
         </div>
         <div className="line">
           <div className="text1" style={{ color: "#646464" }}>
