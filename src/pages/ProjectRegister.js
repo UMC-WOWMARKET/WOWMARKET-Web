@@ -4,9 +4,10 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import GoodsAdd from "../components/register/GoodsAdd";
 import Calendar from "../components/register/Calendar";
-import useImageUploader from "../hooks/useImageUploader";
+//import useImageUploader from "../hooks/useImageUploader";
 import ReceiveType from "../components/register/ReceiveType";
 import theme from "../styles/Theme";
+import { Privacy_policy, Notice } from "../Terms/terms";
 
 const banks = [
   "KB국민",
@@ -55,8 +56,159 @@ const ProjectRegister = () => {
   const [address, setAddress] = useState(null);
   const [delivery_fee, setDeliveryFee] = useState(null);
   const [selectedBank, setSelectedBank] = useState(banks[-1]);
-  const thumbnail = "thumbnail";
-  const image1 = "image1";
+  const [thumbnail, setThumbnail] = useState("");
+  const [image1, setImage1] = useState("");
+  const [image2, setImage2] = useState("");
+  const [image3, setImage3] = useState("");
+
+  const handleImageUpload1 = async (selectedFile) => {
+    if (!selectedFile) {
+      console.error("파일이 선택되지 않았습니다.");
+      return;
+    }
+
+    axios.interceptors.request.use((config) => {
+      /* JWT 토큰 */
+      const userAccessToken = localStorage.getItem("accessToken");
+      if (userAccessToken) {
+        config.headers["X-ACCESS-TOKEN"] = `${userAccessToken}`;
+      }
+
+      return config;
+    });
+
+    try {
+      const response = await axios.get(
+        "https://www.wowmkt.kr/register/image?dirname=project"
+      );
+      const presignedUrl = response.data;
+      console.log("원래 주소",presignedUrl);
+
+      const parts = presignedUrl.split('?');
+      const desiredPart = parts[0];
+      setThumbnail(desiredPart);
+
+      await axios.put(presignedUrl, selectedFile, {
+        headers: {
+          "Content-Type": selectedFile.type,
+        },
+      });
+      console.log("Image uploaded successfully");
+    } catch (error) {
+      console.error("Error uploading image", error);
+    }
+  };
+  const handleImageUpload2 = async (selectedFile) => {
+    if (!selectedFile) {
+      console.error("파일이 선택되지 않았습니다.");
+      return;
+    }
+
+    axios.interceptors.request.use((config) => {
+      /* JWT 토큰 */
+      const userAccessToken = localStorage.getItem("accessToken");
+      if (userAccessToken) {
+        config.headers["X-ACCESS-TOKEN"] = `${userAccessToken}`;
+      }
+
+      return config;
+    });
+
+    try {
+      const response = await axios.get(
+        "https://www.wowmkt.kr/register/image?dirname=project"
+      );
+      const presignedUrl = response.data;
+      console.log("원래 주소",presignedUrl);
+
+      const parts = presignedUrl.split('?');
+      const desiredPart = parts[0];
+      setImage1(desiredPart);
+
+      await axios.put(presignedUrl, selectedFile, {
+        headers: {
+          "Content-Type": selectedFile.type,
+        },
+      });
+      console.log("Image uploaded successfully");
+    } catch (error) {
+      console.error("Error uploading image", error);
+    }
+  };
+  const handleImageUpload3 = async (selectedFile) => {
+    if (!selectedFile) {
+      console.error("파일이 선택되지 않았습니다.");
+      return;
+    }
+
+    axios.interceptors.request.use((config) => {
+      /* JWT 토큰 */
+      const userAccessToken = localStorage.getItem("accessToken");
+      if (userAccessToken) {
+        config.headers["X-ACCESS-TOKEN"] = `${userAccessToken}`;
+      }
+
+      return config;
+    });
+
+    try {
+      const response = await axios.get(
+        "https://www.wowmkt.kr/register/image?dirname=project"
+      );
+      const presignedUrl = response.data;
+      console.log("원래 주소",presignedUrl);
+
+      const parts = presignedUrl.split('?');
+      const desiredPart = parts[0];
+      setImage2(desiredPart);
+
+      await axios.put(presignedUrl, selectedFile, {
+        headers: {
+          "Content-Type": selectedFile.type,
+        },
+      });
+      console.log("Image uploaded successfully");
+    } catch (error) {
+      console.error("Error uploading image", error);
+    }
+  };
+  const handleImageUpload4 = async (selectedFile) => {
+    if (!selectedFile) {
+      console.error("파일이 선택되지 않았습니다.");
+      return;
+    }
+
+    axios.interceptors.request.use((config) => {
+      /* JWT 토큰 */
+      const userAccessToken = localStorage.getItem("accessToken");
+      if (userAccessToken) {
+        config.headers["X-ACCESS-TOKEN"] = `${userAccessToken}`;
+      }
+
+      return config;
+    });
+
+    try {
+      const response = await axios.get(
+        "https://www.wowmkt.kr/register/image?dirname=project"
+      );
+      const presignedUrl = response.data;
+      console.log("원래 주소",presignedUrl);
+
+      const parts = presignedUrl.split('?');
+      const desiredPart = parts[0];
+      setImage3(desiredPart);
+
+      await axios.put(presignedUrl, selectedFile, {
+        headers: {
+          "Content-Type": selectedFile.type,
+        },
+      });
+      console.log("Image uploaded successfully");
+    } catch (error) {
+      console.error("Error uploading image", error);
+    }
+  };
 
 
   useEffect(() => {
@@ -95,15 +247,6 @@ const ProjectRegister = () => {
   const handleOptionChange = (e) => {
     setSelectedBank(e.target.value);
   };
-  const { handleImageUpload, uploaded, desiredUrl } = useImageUploader();
-
-  const handleImageSubmit = async (event) => {
-    event.preventDefault();
-    const selectedFile = event.target.files[0];
-    await handleImageUpload(selectedFile);
-    console.log(desiredUrl);
-  };
-
 
   const onSubmit = async (data) => {
     await new Promise((r) => setTimeout(r, 1000));
@@ -117,6 +260,8 @@ const ProjectRegister = () => {
       receive_type,
       thumbnail,
       image1,
+      image2,
+      image3,
     };
     //useform으로 받은 data 말고도 외부 컴포넌트로 받은 데이터도 함께 처리
 
@@ -156,13 +301,17 @@ const ProjectRegister = () => {
 
       if (response.status === 200) {
         console.log("Data submitted successfully!");
+        window.alert("성공적으로 등록되었습니다.");
+        window.location.href = "/goods?page_type=selling";
       } else {
         console.error("Failed to submit data.");
+        window.alert("등록에 실패하였습니다.");
       }
     } catch (error) {
       console.error("Error:", error);
     }
     console.log(combinedData);
+    
   };
 
   return (
@@ -199,8 +348,9 @@ const ProjectRegister = () => {
           <StyledFileInput
             type="file"
             accept="image/*"
-            onChange={handleImageSubmit}
+            onChange={(event) => handleImageUpload1(event.target.files[0])}
           />
+          <br />
           <br />
         </InputCell>
 
@@ -225,15 +375,28 @@ const ProjectRegister = () => {
 
         <InputCell>
           <Label>
-            굿즈 소개 첨부 파일 *<span>최대 3개 첨부 가능</span>
+            굿즈 소개 첨부 파일 *<span>최소 1개 최대 3개 첨부 가능</span>
           </Label>
-          <StyledFileInput
-            type="file"
-            accept="image/*"
-            onChange={handleImageSubmit}
-            multiple
-          />
-          <br />
+          <Inputs>
+            <StyledFileInput
+              type="file"
+              accept="image/*"
+              onChange={(event) => handleImageUpload2(event.target.files[0])}
+              multiple
+            />
+            <StyledFileInput
+              type="file"
+              accept="image/*"
+              onChange={(event) => handleImageUpload3(event.target.files[0])}
+              multiple
+            />
+            <StyledFileInput
+              type="file"
+              accept="image/*"
+              onChange={(event) => handleImageUpload4(event.target.files[0])}
+              multiple
+            />
+          </Inputs>
         </InputCell>
 
         <InputCell>
@@ -303,7 +466,7 @@ const ProjectRegister = () => {
             개인정보 수집 및 이용 동의 (필수)
           </Label>
           <ScrollableContainer>
-            <p>{TermsContent1}</p>
+            <p>{Privacy_policy}</p>
           </ScrollableContainer>
         </InputCell>
 
@@ -317,7 +480,7 @@ const ProjectRegister = () => {
             판매자 유의사항 동의 (필수)
           </Label>
           <ScrollableContainer>
-            <p>{TermsContent2}</p>
+            <p>{Notice}</p>
           </ScrollableContainer>
         </InputCell>
       </RegisterFormContainer>
@@ -404,9 +567,16 @@ const InputRegister = styled.input`
   }
 `;
 
+const Inputs = styled.div`
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+`;
+
 const StyledFileInput = styled.input`
   float: left;
   margin: 12px 0;
+  width: 300px;
 `;
 
 const Date = styled.div`
@@ -465,12 +635,4 @@ const ScrollableContainer = styled.div`
   padding: 10px;
   margin: 10px 0;
   text-align: left;
-`;
-
-const TermsContent1 = `
-  서비스 이용 약관의 내용은 다음과 같으며 이를 제공하였으니 잘 읽어보아야한다. 내용내용내용 내용은 내용 내용이다.서비스 이용 약관의 내용은 다음과 같으며 이를 제공하였으니 잘 읽어보아야한다. 내용내용내용 내용은 내용 내용이다.
-`;
-
-const TermsContent2 = `
-  판매자 유의사항 동의 내용은 다음과 같으며 이를 제공하였으니 잘 읽어보아야한다. 내용내용내용 내용은 내용 내용이다.서비스 이용 약관의 내용은 다음과 같으며 이를 제공하였으니 잘 읽어보아야한다. 내용내용내용 내용은 내용 내용이다.
 `;

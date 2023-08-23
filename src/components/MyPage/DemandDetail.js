@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import theme from "../../styles/Theme";
 import { CalendarContainer } from "react-datepicker";
+import { Privacy_policy } from "../../Terms/terms";
 
-const ProjectDetail = () => {
-  const { id } = useParams();
-  const project_id = id.match(/\d+/)[0];
+const DemandDetail = ({ project_id, handleProjectClick, onGoBack }) => {
   const [projectData, setProjectData] = useState(null); // 프로젝트 데이터 상태
 
   //토큰
@@ -37,7 +35,7 @@ const ProjectDetail = () => {
       {projectData ? (
         <div>
           <RegisterFormContainer>
-            <Title>판매 등록폼</Title>
+            <Title>수요조사 등록폼</Title>
             <InputCell>
               <Label>
                 프로젝트 제목 *<span>공백포함 20자 이내</span>
@@ -62,6 +60,7 @@ const ProjectDetail = () => {
 
             <InputCell>
               <Label>대표 이미지 *</Label>
+              <img src={projectData.thumbnail} alt="thumbnail" width="300px" height="300px" />
               <br />
             </InputCell>
 
@@ -100,6 +99,9 @@ const ProjectDetail = () => {
                 굿즈 소개 첨부 파일 *<span>최대 3개 첨부 가능</span>
               </Label>
               <br />
+              <img src={projectData.image1} alt="image1" width="200px" height="200px" />
+              <img src={projectData.image2} alt="image2" width="200px" height="200px" />
+              <img src={projectData.image3} alt="image3" width="200px" height="200px" />
             </InputCell>
 
             <InputCell>
@@ -129,10 +131,12 @@ const ProjectDetail = () => {
                 수요조사 등록 유의사항 동의 (필수)
               </Label>
               <ScrollableContainer>
-                <p>{TermsContent}</p>
+                <p>{Privacy_policy}</p>
               </ScrollableContainer>
             </InputCell>
           </RegisterFormContainer>
+          <br />
+          <button onClick={onGoBack}>목록</button>
         </div>
       ) : (
         <div>Loading...</div>
@@ -141,14 +145,13 @@ const ProjectDetail = () => {
   );
 };
 
-export default ProjectDetail;
+export default DemandDetail;
 
 const RegisterFormContainer = styled.div`
   border: solid 0.5px ${theme.colors.lightgrey};
   width: 800px;
-  margin: 0 auto;
+  margin-left: 100px;
   padding: 60px;
-  margin-top: 205px;
   color: ${theme.colors.darkgrey};
   font-family: "Pretendard";
 `;
@@ -217,11 +220,6 @@ const InputRegister = styled.input`
   }
 `;
 
-const StyledFileInput = styled.input`
-  float: left;
-  margin: 12px 0;
-`;
-
 const Date = styled.div`
   margin-top: 10px;
 `;
@@ -261,12 +259,6 @@ const ScrollableContainer = styled.div`
   padding: 10px;
   margin: 10px 0;
   text-align: left;
-`;
-
-const TermsContent = `
-  서비스 이용 약관의 내용은 다음과 같으며 이를 제공하였으니 잘 읽어보아야 합니다.
-  내용내용내용 내용은 내용 내용이다. 서비스 이용 약관의 내용은 다음과 같으며 이를 제공하였으니 잘 읽어보아야 합니다.
-  내용내용내용 내용은 내용 내용이다.
 `;
 
 const GoodsAddContainer = styled.div`

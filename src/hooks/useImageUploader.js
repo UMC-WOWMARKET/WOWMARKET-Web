@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 //이미지 업로드 커스텀 훅
@@ -32,9 +32,7 @@ const useImageUploader = () => {
       const parts = presignedUrl.split('?');
       const desiredPart = parts[0];
       setDesiredUrl(desiredPart);
-      console.log("자른 주소",desiredUrl);
 
-      
       await axios.put(presignedUrl, selectedFile, {
         headers: {
           "Content-Type": selectedFile.type,

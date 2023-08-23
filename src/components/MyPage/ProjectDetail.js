@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import theme from "../../styles/Theme";
 import { CalendarContainer } from "react-datepicker";
+import { Privacy_policy, Notice } from "../../Terms/terms";
 
 const ProjectDetail = ({ project_id, handleProjectClick, onGoBack }) => {
   const [projectData, setProjectData] = useState(null); // 프로젝트 데이터 상태
@@ -28,6 +28,7 @@ const ProjectDetail = ({ project_id, handleProjectClick, onGoBack }) => {
         console.error("데이터 불러오기 실패", error);
       });
   }, [project_id]);
+  console.log(projectData);
 
   return (
     <div>
@@ -59,6 +60,7 @@ const ProjectDetail = ({ project_id, handleProjectClick, onGoBack }) => {
 
             <InputCell>
               <Label>대표 이미지 *</Label>
+              <img src={projectData.thumbnail} alt="thumbnail" width="300px" height="300px" />
               <br />
             </InputCell>
 
@@ -97,6 +99,9 @@ const ProjectDetail = ({ project_id, handleProjectClick, onGoBack }) => {
                 굿즈 소개 첨부 파일 *<span>최대 3개 첨부 가능</span>
               </Label>
               <br />
+              <img src={projectData.image1} alt="image1" width="200px" height="200px" />
+              <img src={projectData.image2} alt="image2" width="200px" height="200px" />
+              <img src={projectData.image3} alt="image3" width="200px" height="200px" />
             </InputCell>
 
             <InputCell>
@@ -192,7 +197,7 @@ const ProjectDetail = ({ project_id, handleProjectClick, onGoBack }) => {
                 개인정보 수집 및 이용 동의 (필수)
               </Label>
               <ScrollableContainer>
-                <p>{TermsContent1}</p>
+                <p>{Privacy_policy}</p>
               </ScrollableContainer>
             </InputCell>
 
@@ -203,10 +208,11 @@ const ProjectDetail = ({ project_id, handleProjectClick, onGoBack }) => {
                 판매자 유의사항 동의 (필수)
               </Label>
               <ScrollableContainer>
-                <p>{TermsContent2}</p>
+                <p>{Notice}</p>
               </ScrollableContainer>
             </InputCell>
           </RegisterFormContainer>
+          <br />
           <button onClick={onGoBack}>목록</button>
         </div>
       ) : (
@@ -340,14 +346,6 @@ const ScrollableContainer = styled.div`
   padding: 10px;
   margin: 10px 0;
   text-align: left;
-`;
-
-const TermsContent1 = `
-  서비스 이용 약관의 내용은 다음과 같으며 이를 제공하였으니 잘 읽어보아야한다. 내용내용내용 내용은 내용 내용이다.서비스 이용 약관의 내용은 다음과 같으며 이를 제공하였으니 잘 읽어보아야한다. 내용내용내용 내용은 내용 내용이다.
-`;
-
-const TermsContent2 = `
-  판매자 유의사항 동의 내용은 다음과 같으며 이를 제공하였으니 잘 읽어보아야한다. 내용내용내용 내용은 내용 내용이다.서비스 이용 약관의 내용은 다음과 같으며 이를 제공하였으니 잘 읽어보아야한다. 내용내용내용 내용은 내용 내용이다.
 `;
 
 const GoodsAddContainer = styled.div`
