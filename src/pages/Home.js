@@ -25,7 +25,7 @@ function chunkArray(arr, size) {
 
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  let page_type = searchParams.get("page_type");
+  const page_type = searchParams.get("page_type");
   // 필터링 값
   const [pageNo, setPageNo] = useState(1);
   const [orderBy, setOrderBy] = useState("view"); // endDate, view, startDate
@@ -33,32 +33,21 @@ const Home = () => {
   const [projectList, setProjectList] = useState([]); // 프로젝트 목록 상태 추가
   const [searchTerm, setSearchTerm] = useState("");
   const [isLast, setIsLast] = useState(false);
-  const [url, setUrl] = useState(
-    `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
-  );
+  let url = `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
 
   console.log(`${page_type} 굿즈 리스트 페이지 렌더링`);
 
   useEffect(() => {
-    setUrl(
-      `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
-    );
     if (page_type === "demand" && searchTerm === "") {
-      setUrl(
-        `https://www.wowmkt.kr/demand/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
-      );
+      url = `https://www.wowmkt.kr/demand/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
     } else if (page_type === "demand" && searchTerm !== "") {
-      setUrl(
-        `https://www.wowmkt.kr/demand?search=${searchTerm}&pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
-      );
+      url = `https://www.wowmkt.kr/demand?search=${searchTerm}&pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
     } else if (page_type === "selling" && searchTerm !== "") {
-      setUrl(
-        `https://www.wowmkt.kr/sell?search=${searchTerm}&pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
-      );
+      url = `https://www.wowmkt.kr/sale?search=${searchTerm}&pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
+    } else if (page_type === "selling" && searchTerm === "") {
+      url = `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`;
     }
     console.log(`url : ${url}`);
-
-    setIsLast(false);
 
     axios.interceptors.request.use((config) => {
       /* JWT 토큰 */
@@ -82,6 +71,7 @@ const Home = () => {
   useEffect(() => {
     setIsLast(false);
     setPageNo(1);
+    setSearchTerm("");
   }, [page_type]);
 
   return (
