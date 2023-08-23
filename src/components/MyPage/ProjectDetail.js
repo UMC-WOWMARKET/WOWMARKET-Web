@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import theme from "../../styles/Theme";
 import { CalendarContainer } from "react-datepicker";
@@ -28,6 +27,7 @@ const ProjectDetail = ({ project_id, handleProjectClick, onGoBack }) => {
         console.error("데이터 불러오기 실패", error);
       });
   }, [project_id]);
+  console.log(projectData);
 
   return (
     <div>
@@ -59,6 +59,7 @@ const ProjectDetail = ({ project_id, handleProjectClick, onGoBack }) => {
 
             <InputCell>
               <Label>대표 이미지 *</Label>
+              <img src={projectData.thumbnail} alt="thumbnail" width="300px" height="300px" />
               <br />
             </InputCell>
 
@@ -97,6 +98,9 @@ const ProjectDetail = ({ project_id, handleProjectClick, onGoBack }) => {
                 굿즈 소개 첨부 파일 *<span>최대 3개 첨부 가능</span>
               </Label>
               <br />
+              <img src={projectData.image1} alt="image1" width="200px" height="200px" />
+              <img src={projectData.image2} alt="image2" width="200px" height="200px" />
+              <img src={projectData.image3} alt="image3" width="200px" height="200px" />
             </InputCell>
 
             <InputCell>
@@ -207,6 +211,7 @@ const ProjectDetail = ({ project_id, handleProjectClick, onGoBack }) => {
               </ScrollableContainer>
             </InputCell>
           </RegisterFormContainer>
+          <br />
           <button onClick={onGoBack}>목록</button>
         </div>
       ) : (

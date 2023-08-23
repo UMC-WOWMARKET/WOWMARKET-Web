@@ -51,7 +51,7 @@ const ProjectRegister = () => {
   const [item, setItem] = useState(null);
   const [start_date, setStartDate] = useState(null);
   const [end_date, setEndDate] = useState(null);
-  const [recieve_type, setReceiveType] = useState(null);
+  const [receive_type, setReceiveType] = useState(null);
   const [address, setAddress] = useState(null);
   const [delivery_fee, setDeliveryFee] = useState(null);
   const [selectedBank, setSelectedBank] = useState(banks[-1]);
@@ -114,7 +114,7 @@ const ProjectRegister = () => {
       item,
       start_date,
       end_date,
-      recieve_type,
+      receive_type,
       thumbnail,
       image1,
     };

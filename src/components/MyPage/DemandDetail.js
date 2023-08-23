@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import theme from "../../styles/Theme";
 import { CalendarContainer } from "react-datepicker";
 
-const ProjectDetail = () => {
-  const { id } = useParams();
-  const project_id = id.match(/\d+/)[0];
+const DemandDetail = ({ project_id, handleProjectClick, onGoBack }) => {
   const [projectData, setProjectData] = useState(null); // 프로젝트 데이터 상태
 
   //토큰
@@ -37,7 +34,7 @@ const ProjectDetail = () => {
       {projectData ? (
         <div>
           <RegisterFormContainer>
-            <Title>판매 등록폼</Title>
+            <Title>수요조사 등록폼</Title>
             <InputCell>
               <Label>
                 프로젝트 제목 *<span>공백포함 20자 이내</span>
@@ -62,6 +59,7 @@ const ProjectDetail = () => {
 
             <InputCell>
               <Label>대표 이미지 *</Label>
+              <img src={projectData.thumbnail} alt="thumbnail" width="300px" height="300px" />
               <br />
             </InputCell>
 
@@ -100,6 +98,9 @@ const ProjectDetail = () => {
                 굿즈 소개 첨부 파일 *<span>최대 3개 첨부 가능</span>
               </Label>
               <br />
+              <img src={projectData.image1} alt="image1" width="200px" height="200px" />
+              <img src={projectData.image2} alt="image2" width="200px" height="200px" />
+              <img src={projectData.image3} alt="image3" width="200px" height="200px" />
             </InputCell>
 
             <InputCell>
@@ -133,6 +134,8 @@ const ProjectDetail = () => {
               </ScrollableContainer>
             </InputCell>
           </RegisterFormContainer>
+          <br />
+          <button onClick={onGoBack}>목록</button>
         </div>
       ) : (
         <div>Loading...</div>
@@ -141,14 +144,13 @@ const ProjectDetail = () => {
   );
 };
 
-export default ProjectDetail;
+export default DemandDetail;
 
 const RegisterFormContainer = styled.div`
   border: solid 0.5px ${theme.colors.lightgrey};
   width: 800px;
-  margin: 0 auto;
+  margin-left: 100px;
   padding: 60px;
-  margin-top: 205px;
   color: ${theme.colors.darkgrey};
   font-family: "Pretendard";
 `;
@@ -215,11 +217,6 @@ const InputRegister = styled.input`
   ::placeholder {
     color: ${theme.colors.lightgrey};
   }
-`;
-
-const StyledFileInput = styled.input`
-  float: left;
-  margin: 12px 0;
 `;
 
 const Date = styled.div`
