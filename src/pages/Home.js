@@ -25,7 +25,7 @@ function chunkArray(arr, size) {
 
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const page_type = searchParams.get("page_type");
+  let page_type = searchParams.get("page_type");
   // 필터링 값
   const [pageNo, setPageNo] = useState(1);
   const [orderBy, setOrderBy] = useState("view"); // endDate, view, startDate
@@ -38,26 +38,6 @@ const Home = () => {
   );
 
   console.log(`${page_type} 굿즈 리스트 페이지 렌더링`);
-
-  useEffect(() => {
-    setUrl(
-      `https://www.wowmkt.kr/sale/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
-    );
-    if (page_type === "demand" && searchTerm === "") {
-      setUrl(
-        `https://www.wowmkt.kr/demand/home?pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
-      );
-    } else if (page_type === "demand" && searchTerm !== "") {
-      setUrl(
-        `https://www.wowmkt.kr/demand?search=${searchTerm}&pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
-      );
-    } else if (page_type === "selling" && searchTerm !== "") {
-      setUrl(
-        `https://www.wowmkt.kr/sell?search=${searchTerm}&pageNo=${pageNo}&orderBy=${orderBy}&univ=${univ}`
-      );
-    }
-    console.log(`url : ${url}`);
-  }, []);
 
   useEffect(() => {
     setUrl(
