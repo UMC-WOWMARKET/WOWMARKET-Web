@@ -373,29 +373,26 @@ const ProjectRegister = () => {
           <Label>
             굿즈 소개 첨부 파일 *<span>최소 1개 최대 3개 첨부 가능</span>
           </Label>
-          <StyledFileInput
-            type="file"
-            accept="image/*"
-            onChange={(event) => handleImageUpload2(event.target.files[0])}
-            multiple
-          />
-          <StyledFileInput
-            type="file"
-            accept="image/*"
-            onChange={(event) => handleImageUpload3(event.target.files[0])}
-            multiple
-          />
-          <StyledFileInput
-            type="file"
-            accept="image/*"
-            onChange={(event) => handleImageUpload4(event.target.files[0])}
-            multiple
-          />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
+          <Inputs>
+            <StyledFileInput
+              type="file"
+              accept="image/*"
+              onChange={(event) => handleImageUpload2(event.target.files[0])}
+              multiple
+            />
+            <StyledFileInput
+              type="file"
+              accept="image/*"
+              onChange={(event) => handleImageUpload3(event.target.files[0])}
+              multiple
+            />
+            <StyledFileInput
+              type="file"
+              accept="image/*"
+              onChange={(event) => handleImageUpload4(event.target.files[0])}
+              multiple
+            />
+          </Inputs>
         </InputCell>
 
         <InputCell>
@@ -566,9 +563,16 @@ const InputRegister = styled.input`
   }
 `;
 
+const Inputs = styled.div`
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+`;
+
 const StyledFileInput = styled.input`
   float: left;
   margin: 12px 0;
+  width: 300px;
 `;
 
 const Date = styled.div`

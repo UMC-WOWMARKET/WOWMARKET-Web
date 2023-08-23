@@ -15,7 +15,7 @@ const DemandRegister = ({ ImageUrlUploaded }) => {
     formState: { isSubmitting },
   } = useForm();
   //register()로 각 입력란 등록, handleSubmit()로 submit 이벤트 처리
-  
+
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [item, setItem] = useState(null);
@@ -47,9 +47,9 @@ const DemandRegister = ({ ImageUrlUploaded }) => {
         "https://www.wowmkt.kr/register/image?dirname=demand"
       );
       const presignedUrl = response.data;
-      console.log("원래 주소",presignedUrl);
+      console.log("원래 주소", presignedUrl);
 
-      const parts = presignedUrl.split('?');
+      const parts = presignedUrl.split("?");
       const desiredPart = parts[0];
       setThumbnail(desiredPart);
 
@@ -84,9 +84,9 @@ const DemandRegister = ({ ImageUrlUploaded }) => {
         "https://www.wowmkt.kr/register/image?dirname=demand"
       );
       const presignedUrl = response.data;
-      console.log("원래 주소",presignedUrl);
+      console.log("원래 주소", presignedUrl);
 
-      const parts = presignedUrl.split('?');
+      const parts = presignedUrl.split("?");
       const desiredPart = parts[0];
       setImage1(desiredPart);
 
@@ -121,9 +121,9 @@ const DemandRegister = ({ ImageUrlUploaded }) => {
         "https://www.wowmkt.kr/register/image?dirname=demand"
       );
       const presignedUrl = response.data;
-      console.log("원래 주소",presignedUrl);
+      console.log("원래 주소", presignedUrl);
 
-      const parts = presignedUrl.split('?');
+      const parts = presignedUrl.split("?");
       const desiredPart = parts[0];
       setImage2(desiredPart);
 
@@ -158,9 +158,9 @@ const DemandRegister = ({ ImageUrlUploaded }) => {
         "https://www.wowmkt.kr/register/image?dirname=demand"
       );
       const presignedUrl = response.data;
-      console.log("원래 주소",presignedUrl);
+      console.log("원래 주소", presignedUrl);
 
-      const parts = presignedUrl.split('?');
+      const parts = presignedUrl.split("?");
       const desiredPart = parts[0];
       setImage3(desiredPart);
 
@@ -174,7 +174,6 @@ const DemandRegister = ({ ImageUrlUploaded }) => {
       console.error("Error uploading image", error);
     }
   };
-
 
   useEffect(() => {
     // Mock 데이터를 가져오기
@@ -286,6 +285,7 @@ const DemandRegister = ({ ImageUrlUploaded }) => {
             onChange={(event) => handleImageUpload1(event.target.files[0])}
           />
           <br />
+          <br />
         </InputCell>
 
         <InputSpanCell>
@@ -315,28 +315,26 @@ const DemandRegister = ({ ImageUrlUploaded }) => {
           <Label>
             굿즈 소개 첨부 파일 *<span>최소 1개 최대 3개 첨부 가능</span>
           </Label>
-          <StyledFileInput
-            type="file"
-            accept="image/*"
-            onChange={(event) => handleImageUpload2(event.target.files[0])}
-            multiple
-          />
-          <StyledFileInput
-            type="file"
-            accept="image/*"
-            onChange={(event) => handleImageUpload3(event.target.files[0])}
-            multiple
-          />
-          <StyledFileInput
-            type="file"
-            accept="image/*"
-            onChange={(event) => handleImageUpload4(event.target.files[0])}
-            multiple
-          />
-          <br />
-          <br />
-          <br />
-          <br />
+          <Inputs>
+            <StyledFileInput
+              type="file"
+              accept="image/*"
+              onChange={(event) => handleImageUpload2(event.target.files[0])}
+              multiple
+            />
+            <StyledFileInput
+              type="file"
+              accept="image/*"
+              onChange={(event) => handleImageUpload3(event.target.files[0])}
+              multiple
+            />
+            <StyledFileInput
+              type="file"
+              accept="image/*"
+              onChange={(event) => handleImageUpload4(event.target.files[0])}
+              multiple
+            />
+          </Inputs>
         </InputCell>
 
         <InputCell>
@@ -465,9 +463,16 @@ const InputSmall = styled.input`
   color: ${theme.colors.darkgrey};
 `;
 
+const Inputs = styled.div`
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+`;
+
 const StyledFileInput = styled.input`
   float: left;
   margin: 12px 0;
+  width: 300px;
 `;
 
 const Date = styled.div`
