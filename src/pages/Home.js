@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import banner_logo from "./banner_logo.svg";
 import "../styles/Home.css"; //여기서 스타일 적용
-
+import banner_demand from "./banner_demand.svg";
 
 import Search from "../components/Goods_list/Search";
 import Arrangement from "../components/Goods_list/Arrangement";
@@ -79,7 +79,8 @@ const Home = () => {
       </div>
 
       <div className="banner_logo">
-        <img src={banner_logo} alt="Banner" />
+        {page_type === "selling" && <img src={banner_logo} alt="Banner" />}
+        {page_type === "demand" && <img src={banner_demand} alt="Banner" />}
       </div>
 
       <div>

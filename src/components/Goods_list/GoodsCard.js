@@ -79,6 +79,7 @@ const GoodsList = styled.div`
   margin-right: 10px;
   margin-top: 90px;
   font-family: Pretendard;
+  cursor: pointer;
 `;
 
 const ProjectName = styled.div`
