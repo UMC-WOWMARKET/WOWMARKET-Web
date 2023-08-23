@@ -74,7 +74,9 @@ const CustomButton = styled.button`
   font-family: Pretendard;
   font-weight: 600;
   font-size: 16px;
-  margin-right: 10px;
+  margin-right: 10px; 
+   cursor: pointer;
+
 `;
 
 const CustomButton1 = styled(CustomButton)`
@@ -82,7 +84,6 @@ const CustomButton1 = styled(CustomButton)`
     background-color: #002472;
     color: #ffffff;
     border-color: #002472;
-\
   }
 `;
 
@@ -123,11 +124,14 @@ const StyledSelect = styled.select`
   font-weight: 400;
   font-size: 15px;
   color: #646464;
+  cursor: pointer;
+  
 `;
 
 const StyledOption = styled.option`
   height: 30px;
   width: 100px;
+  curosr: pointer;
 `;
 
 export default Arrangement;
