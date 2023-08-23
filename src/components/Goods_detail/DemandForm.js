@@ -23,7 +23,7 @@ const SelectItem = ({ id, index, name, price, onChangecount }) => {
   return (
     <div
       className="common-box text3"
-      style={{ width: "420px", height: "60px" }}
+      style={{ width: "420px", height: "60px", fontFamily:'Pretendard' }}
     >
       <div className="item1">
         {index}. {name}
@@ -135,7 +135,7 @@ const DemandForm = ({ goods_id }) => {
   }, []);
 
   return (
-    <div id="OrderForm">
+    <div id="OrderForm" style={{fontFamily:'Pretendard'}}>
       <div className="OrderForm">
         <h3 style={{ margin: "37px 0 25px 0" }}>참여폼</h3>
         <div

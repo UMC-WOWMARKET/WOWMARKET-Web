@@ -18,7 +18,7 @@ const DropdownContainer = styled.div`
   margin-left: 480px;
   width: 100%;
   top: 100px;
-  padding: 24px 0 ;
+  padding: 10px 0 10px 0;
 
   background-color: transparent;
 `;

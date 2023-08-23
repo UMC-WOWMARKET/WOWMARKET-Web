@@ -63,7 +63,7 @@ const GoodsInfo = ({ goods_id }) => {
   const remainingDays = Math.ceil(timeDifference / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
 
   return (
-    <div className="GoodsInfo">
+    <div className="GoodsInfo" style={{fontFamily:'Pretendard'}}>
       <div className="line" style={{ marginBottom: "12px" }}>
         <div
           className="category"

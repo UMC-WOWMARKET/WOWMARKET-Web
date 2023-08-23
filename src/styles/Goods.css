@@ -1,7 +1,7 @@
 
 .Goods {
 	/* border: 5px solid purple; */
-	margin: 100px 144px auto 144px;
+	margin: 60px 144px auto 144px;
 	display: flex;
 	flex-wrap: wrap;
 }
